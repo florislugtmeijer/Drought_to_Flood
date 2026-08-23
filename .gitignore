@@ -1,0 +1,24 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.ipynb_checkpoints/
+
+# Grote ruwe data: buiten de repo, zie data/manifest.yaml
+data/raw/*
+!data/raw/.gitkeep
+
+# Manuscript en reviewer-feedback blijven lokaal zolang het artikel in review is.
+# Zie de skill dtf-manuscript. Verwijder deze regels pas bij acceptatie, en
+# alleen als de repo dan bewust openbaar mag zijn.
+manuscript/
+review/
+*.docx
+
+# Resultaten: per run een map, niet standaard mee in git. Selectief toevoegen
+# met git add -f zodra een run bij een manuscriptversie hoort.
+results/*
+!results/.gitkeep
