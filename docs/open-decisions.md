@@ -1,5 +1,10 @@
 # Openstaande beslissingen
 
+**Bijgewerkt 23 augustus 2026 na verificatie.** Verscheidene punten hieronder
+kwamen uit de verkeerde notebook-versie en zijn vervallen. Zie
+`docs/reproducibility-check.md`. Vervallen: D-03, D-08, D-09, D-10.
+Nog echt open: D-01, D-02, D-04, D-05, D-06, D-07.
+
 Beslissingen die de resultaten of de tekst van het artikel raken en die nog
 genomen moeten worden. Niets hiervan wordt stilzwijgend opgelost. Bij elke
 beslissing: wie beslist, en wat er verandert als het zo of zo valt.
@@ -102,6 +107,8 @@ is geen antwoord dat je aan een reviewer geeft zonder het te hebben nagerekend.
 
 ## D-03 Dagelijkse randomisatie bij weekly observaties
 
+**VERVALLEN.** De gepubliceerde versie randomiseert op het weekly raster, gelijk aan de observaties. Dit was een artefact van de afgedankte `LAATSTE_VERSIE`-tak.
+
 **Status: open. Beslissing vraagt inhoudelijk oordeel, mogelijk met een co-auteur.**
 
 `monte_carlo_p_value` trekt gesimuleerde flood-tijden uit
@@ -165,6 +172,8 @@ Kandidaten in Downloads: `2. DTF_Europe_research_paper_manuscript.docx`
 ---
 
 ## D-08 Matching-anker: de Monte Carlo p-waarde is niet valide
+
+**VERVALLEN.** De gepubliceerde versie matcht aan beide zijden van de toets vanaf `end_time`. Dit was een artefact van de afgedankte `LAATSTE_VERSIE`-tak.
 
 **Status: geen keuze, dit is een fout die gerepareerd moet worden.**
 **Prioriteit: hoogste. Raakt alle Monte Carlo p-waardes in het artikel.**
@@ -246,3 +255,65 @@ drempelwaardes, dus de gerepareerde matching hoort daar meteen in.
 
 Voor de tekst betekent dit dat de Monte Carlo p-waardes in Tabel 3 gaan
 veranderen, en daarmee mogelijk de kernbevinding waar R1-01 en AE-02 om vragen.
+
+---
+
+## D-09 De Visegrád-locatie is fout, en de lookup verbergt het
+
+**VERVALLEN.** De gepubliceerde dataset heeft Visegrád op de juiste plek. Dit was een artefact van de afgedankte tak. Wel blijft staan: `find_nearest_grid_point` heeft geen maximale afstand, en dat hoort er wel in.
+
+**Status: fout, moet gerepareerd worden. Raakt de locatielijst van het artikel.**
+
+`definitive_file_6_04_25.nc` heeft het Visegrád-punt op 43,7917 / 19,2917. Dat is
+Višegrad in Bosnië aan de Drina, niet Visegrád in Hongarije aan de Donau
+(47,7675 / 18,9448 volgens de config en 47,79 / 18,91 volgens het manuscript).
+
+Doordat de nearest-point lookup zonder maximale afstand werkt, valt Visegrád
+vervolgens op Łączany (Vistula) op 2,32 graden. De resultaatrij voor de Donau
+midstream is dus in werkelijkheid de Vistula, en die locatie komt twee keer voor.
+
+Twee dingen te repareren:
+
+1. Het Visegrád-punt opnieuw uit de bronnen halen op de juiste coördinaat.
+2. Een maximale afstand op de lookup, met een harde fout erboven. Bij een grid van
+   1/12 graad hoort een treffer binnen ongeveer 0,05 graad te vallen. Een
+   afwijking van 2,3 graden had nooit stil mogen doorgaan.
+
+Raakt R4-05, want dat punt gaat over ruimtelijke heterogeniteit tussen
+riviersegmenten. Een segment dat op de verkeerde rivier ligt hoort daar niet in.
+
+---
+
+## D-10 Tabel 3 is niet reproduceerbaar met wat we hebben
+
+**VERVALLEN.** Tabel 3 is exact gereproduceerd, zie `docs/reproducibility-check.md`.
+
+**Status: open. Beslissing voor Floris, waarschijnlijk samen met de co-auteurs.**
+**Prioriteit: hoogste. Dit bepaalt wat de revisie is.**
+
+Uitgewerkt in `docs/reproducibility-check.md`. Samengevat: het notebook plus
+`definitive_file_6_04_25.nc` kan Tabel 3 niet hebben gemaakt. Tabel 3 bevat twee
+locatienamen die niet in de code staan, Visegrád en Łączany hebben daar
+verschillende waardes waar onze combinatie ze identiek maakt, en geen enkel
+resultatenbestand komt in de buurt van de gepubliceerde cijfers.
+
+Drie routes, met heel verschillende omvang:
+
+**A. De oorspronkelijke run terugvinden.** Zoeken naar de Colab-versie en de
+dataset die Tabel 3 wel oplevert, vermoedelijk met de `merged_points_timeseries`
+familie. Voordeel: je weet dan wat er gepubliceerd is. Risico: als die run met
+verschoven labels is gemaakt, vind je een fout in plaats van een bevestiging.
+
+**B. Opnieuw doorrekenen en Tabel 3 als achterhaald behandelen.** De pipeline
+correct opbouwen, D-01, D-08 en D-09 meteen goed, en alle cijfers vervangen.
+Sluit aan bij R4-01, dat toch een gevoeligheidsanalyse vraagt. Betekent wel dat
+de resultaten in de revisie afwijken van R1, en dat moet in de Revision Notes
+worden uitgelegd.
+
+**C. Eerst B, en A alleen om het verschil te kunnen verklaren.** Nieuwe cijfers
+als basis, de oude run erbij om te kunnen zeggen wat er is veranderd en waarom.
+
+Route B of C is inhoudelijk het sterkst, want de fouten in D-01, D-08 en D-09
+moeten toch worden gerepareerd. Maar dit is geen technische keuze. Alle cijfers in
+een artikel vervangen tijdens een revisie is een beslissing voor de auteurs, en de
+co-auteurs horen daarbij.
