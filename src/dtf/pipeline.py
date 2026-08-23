@@ -212,15 +212,26 @@ def monte_carlo_p_value(drought_events, flood_events, period_after_event,
 
 def drought_flood_p_value_trigger_ECA(data, lon, lat, begin, end, time_scale,
                                       threshold, period_after_event,
-                                      n_simulations=10000, seed=42):
+                                      n_simulations=10000, seed=42,
+                                      quantile_reference="daily"):
+    """quantile_reference bepaalt waartegen het weekmaximum als quantiel wordt
+    uitgedrukt. "daily" is de gepubliceerde berekening: de ruwe dagelijkse
+    verdeling. "weekly_max" is de variant uit P-02, waarbij het weekmaximum
+    tegen zijn eigen verdeling gaat, zodat de flooddrempel de droogtedrempel
+    spiegelt. Default is en blijft "daily"."""
     runoff_mean = river_runoff_time_location_mean(data, lon, lat, begin, end, time_scale)
     SRI_values = SRI_calculate(runoff_mean)
     runoff_slice_time_location = data.isel(valid_time=slice(begin, end)).sel(
         longitude=lon, latitude=lat)
     runoff_max_weekly = river_runoff_time_location_maximum(
         data, lon, lat, begin, end, time_scale)
-    quantiles_weekly_max = transform_to_quantiles(
-        runoff_max_weekly, runoff_slice_time_location)
+    if quantile_reference == "daily":
+        reference = runoff_slice_time_location
+    elif quantile_reference == "weekly_max":
+        reference = runoff_max_weekly
+    else:
+        raise ValueError("quantile_reference moet 'daily' of 'weekly_max' zijn")
+    quantiles_weekly_max = transform_to_quantiles(runoff_max_weekly, reference)
 
     intensities = Intensity_calc(SRI_values, quantiles_weekly_max, threshold)
     flood_events = extract_events(

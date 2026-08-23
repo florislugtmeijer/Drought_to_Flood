@@ -80,6 +80,12 @@ herimplementatie. De drie echte keuzes zijn beslecht met bewijs uit het notebook
 hoort vanaf de start van de droogte), `monte_carlo_p_value` uit cel 49,
 `fit_copula` uit cel 62. Die laatste twee wachten nog op bevestiging.
 
+**Twee registers, houd ze gescheiden.** `docs/open-decisions.md` gaat over wat
+uit de code of de data komt. `docs/proposed-changes.md` gaat over aanpassingen
+die Floris zelf voorstelt. Een voorstel daar met status `voorgesteld` wordt niet
+uitgevoerd, ook niet als het klein is en ook niet als het samenvalt met werk dat
+wel is vrijgegeven. Alleen bij status `vrijgegeven` mag het gedaan worden.
+
 **Openstaande beslissingen staan in `docs/open-decisions.md`.** Lees dat bestand
 voordat je aan de analyse of de tekst werkt. Nu open: de threshold van 0,5 tegen
 1 (D-01, raakt alle event-aantallen en p-waardes), de off-by-one in de

@@ -12,11 +12,21 @@ beslissing: wie beslist, en wat er verandert als het zo of zo valt.
 Gesloten beslissingen verhuizen naar `CHANGELOG-methodology.md` met de
 onderbouwing en het effect op de cijfers.
 
+Aanpassingen die Floris zelf voorstelt staan niet hier maar in
+`docs/proposed-changes.md`. Dit bestand gaat over wat uit de code en de data
+komt, dat bestand over wat Floris wil veranderen. Waar ze elkaar raken staat een
+verwijzing.
+
 ---
 
 ## D-01 Threshold: 0,5 of 1
 
-**Status: open, maar de richting is nu bekend. Beslist door Floris.**
+**Status: doorgerekend op 23 augustus 2026, beslissing nog open. Beslist door Floris.**
+
+**Uitkomst: het aantal significante locaties gaat van 10 naar 45 van de 48.**
+Zie `results/2026-08-23_threshold_comparison/README.md`. Dit is geen
+nuanceverschuiving maar een andere hoofdbevinding, en het raakt de abstract, de
+conclusie en Tabel 3. Beslis dit niet los van R4-01.
 **Prioriteit: hoog. Dit blokkeert R4-01 en raakt elk getal in het artikel.**
 
 ### Het manuscript zegt 0,5, de code draaide 1
@@ -317,3 +327,138 @@ Route B of C is inhoudelijk het sterkst, want de fouten in D-01, D-08 en D-09
 moeten toch worden gerepareerd. Maar dit is geen technische keuze. Alle cijfers in
 een artikel vervangen tijdens een revisie is een beslissing voor de auteurs, en de
 co-auteurs horen daarbij.
+
+---
+
+## D-11 De flooddrempel spiegelt de droogtedrempel niet
+
+**Status: open. Beslissing voor Floris. Raakt alle event-aantallen.**
+**Aanleiding: vraag van Floris, 23 augustus 2026.**
+
+### Er is geen aparte quantielparameter
+
+De vraag was of bij `threshold=1` het quantiel ook moet worden aangepast. Dat
+hoeft niet, want de code doet dat al:
+
+```python
+threshold_floods = norm.cdf(threshold)   # 1 -> 0,8413
+...
+threshold = -1 * threshold               # droogte bij SRI < -1
+```
+
+Eén parameter bestuurt beide kanten. Bij `threshold=1` is de flooddrempel dus al
+de 84,1e percentiel. In de code valt hier niets te wijzigen.
+
+**Wel in de tekst.** Pagina 17 zegt "a flood is defined when run-off exceeds the
+69th quantile, mirroring the drought threshold (the 69th quantile corresponds to
+a Z-score of 0.5)". Bij `threshold=1` moet daar de 84e quantile en een Z-score
+van 1 staan.
+
+### Maar "mirroring" gaat niet op
+
+Gemeten aandeel weken boven of onder de drempel, eerste periode:
+
+| locatie | boven flooddrempel | onder droogtedrempel |
+|---|---|---|
+| Aschach an der Donau | 28,2% | 14,8% |
+| Donji Milanovac | 24,9% | 17,2% |
+| Bremen | 24,7% | 16,1% |
+
+De droogtekant klopt: `norm.cdf(-1)` is 0,1587, dus ongeveer 16 procent. De
+floodkant ligt op 25 tot 28 procent, ruim anderhalf keer zo vaak. Van spiegelen
+is dus geen sprake.
+
+### De oorzaak
+
+`transform_to_quantiles(runoff_maximum_weekly, runoff_slice_time_location)`
+drukt het **weekmaximum** uit als quantiel van de **ruwe dagelijkse** verdeling.
+Een weekmaximum is per definitie hoger dan een gemiddelde dagwaarde, dus die
+quantielen liggen systematisch te hoog. Gemeten mediaan bij Aschach: 0,653 in
+plaats van 0,50.
+
+De droogtekant heeft dit niet, want de SRI standaardiseert het weekgemiddelde
+tegen de verdeling van datzelfde weekgemiddelde, per kalenderweek.
+
+### De reparatie is één regel
+
+Weekmaxima tegen hun eigen verdeling in plaats van tegen de dagelijkse:
+
+| referentie | mediaan quantiel | weken boven 0,8413 |
+|---|---|---|
+| ruwe dagwaardes, huidig | 0,653 | 28,2% |
+| weekmaxima zelf | 0,501 | **15,9%** |
+
+15,9 procent is exact `norm.cdf(-1)`. Dan spiegelen de twee drempels wel, en
+klopt de tekst op pagina 17 weer met de code.
+
+### Twee verdedigbare keuzes, geen technische
+
+**A. Referentie aanpassen naar de weekmaxima.** Dan spiegelen de drempels en
+klopt de "mirroring"-claim. Nadeel: alle event-aantallen en p-waardes veranderen,
+dus Tabel 3 opnieuw.
+
+**B. Huidige berekening houden en de tekst aanpassen.** De methodensectie zegt
+nu al "quantiles relative to the entire dataset for each location", en dat is
+precies wat de code doet. Dan moet alleen de "mirroring"-claim eruit en moet
+erbij dat de flooddrempel in de praktijk 25 tot 28 procent van de weken selecteert.
+
+Route B verandert geen cijfers. Route A is methodologisch schoner. Beide vragen
+een aanpassing in de tekst, want zoals het er nu staat is het niet juist.
+
+Hoort bij R4-01, want dat punt gaat over de onderbouwing van precies deze
+drempels.
+
+---
+
+## D-12 De Dnieper detecteert bijna geen droogtes
+
+**Status: open, inhoudelijk. Waarschijnlijk een punt voor de discussie.**
+
+Krementsjoek heeft maar 2,9 procent weken met SRI < -1, waar 15,9 procent hoort.
+Dat is geen rekenfout: de SRI heeft daar een spreiding van 0,999, geen NaN's en
+geen clipping. De onderkant van de afvoerverdeling is samengedrukt, met een
+weekminimum van 1473 tegen een mediaan van 1598. Bij Aschach is dat 588 tegen
+1378.
+
+Met zo weinig droogtes zijn er in de eerste periode maar 5 droogte-events en nul
+drought-to-flood transities, en dat is waarom Tabel 3 voor alle drie de
+Dnieper-locaties in beide periodes 1,0000 geeft.
+
+**Te controleren hypothese.** Krementsjoek is Kremenchuk, waar een groot
+stuwmeer in de Dnieper ligt. Kunstmatig opgehouden laagwater zou precies dit
+patroon geven. Als dat de verklaring is, meet de analyse daar niet
+droogte-tot-flood dynamiek maar reservoirbeheer.
+
+Dit is direct het punt van Reviewer #4 in R4-02: de EFAS/LISFLOOD reanalyse kan
+systematische afwijkingen hebben "especially in regions with strong human
+regulation". Ook relevant voor R4-05 over lokale factoren.
+
+### Scan over alle 48 locaties
+
+Afgerond, zie `results/2026-08-23_sri_diagnostic/`. De mediaan over alle
+locaties is 16,0 procent, tegen 15,9 verwacht. De SRI gedraagt zich dus vrijwel
+overal precies zoals hij moet. Vier locaties niet:
+
+| rivier | locatie | % weken SRI < -1 | min / mediaan afvoer |
+|---|---|---|---|
+| Dnieper | Krementsjoek | 2,9 | 0,92 |
+| Dnieper | Cherson | 3,4 | 0,90 |
+| Dnieper | Dnipro | 5,6 | 0,87 |
+| Tagus | Vila Velha de Rodao | 6,6 | 0,76 |
+
+Ter vergelijking de andere kant: Rhône bij Avignon haalt 18,4 procent met een
+min/mediaan van 0,32, Rhine bij Nijmegen 17,9 procent met 0,33.
+
+Het patroon is eenduidig. Bij de vier afwijkende locaties zakt het laagwater
+nauwelijks onder de mediaan, 8 tot 24 procent, terwijl dat bij een vrij
+afstromende rivier 60 tot 70 procent is. Alle drie de Dnieper-locaties zitten
+erbij, plus één op de Tagus. Beide rivieren hebben een zware stuwmeercascade.
+
+Dat is dus geen los geval maar een systematisch patroon dat samenhangt met
+regulering, precies waar R4-02 op wijst. Het is bruikbaar materiaal voor het
+antwoord op dat punt en op R4-05, en het verklaart waarom de Dnieper in Tabel 3
+op alle zes de cellen 1,0000 staat.
+
+Wat nog niet vastgesteld is: of dit regulering in de werkelijkheid is, of de
+manier waarop EFAS/LISFLOOD die regulering modelleert. Dat onderscheid doet uit
+voor hoe je het in de tekst opschrijft.
