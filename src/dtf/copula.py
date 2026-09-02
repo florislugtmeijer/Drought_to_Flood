@@ -34,8 +34,9 @@ def calculate_rolling_max(series, period_after_event):
 
     Uit cel 12, ongewijzigd. Let op dat deze functie de eigen week uitsluit en dus
     period_after_event punten telt, terwijl quantile_max_value in extract_events
-    vanaf de laatste droogteweek telt en er dus een meer heeft. Dat verschil is
-    R-02 en is nog niet besloten.
+    vanaf de laatste droogteweek telt en er dus een meer heeft. Dat was R-02, en
+    dat is besloten: flood_peak_after_drought sluit die week uit, waarmee de twee
+    kanten weer even lang zijn.
     """
     d = series.values if isinstance(series, xr.DataArray) else np.asarray(series)
     out = np.empty(len(d))
@@ -43,6 +44,43 @@ def calculate_rolling_max(series, period_after_event):
         start, end = i + 1, min(i + period_after_event + 1, len(d))
         out[i] = np.max(d[start:end]) if start < len(d) else np.nan
     return out
+
+
+def flood_peak_after_drought(quantiles_weekly_max, end_times, weeks):
+    """Hoogste runoff-quantiel in het venster na de droogte, de laatste droogteweek
+    niet meegeteld.
+
+    BESLUIT: dit is de gecorrigeerde versie van quantile_max_value, zie R-02. De
+    berekening in extract_events start de slice op de laatste week van de droogte
+    zelf, en omdat .sel aan beide kanten inclusief is telt dat venster vijf
+    weekpunten. Pagina 19 van het manuscript zegt vier weken na afloop. Deze versie
+    telt er vier en bevat geen droogteweek meer, en sluit daarmee ook aan op
+    calculate_rolling_max, die de eigen week ook uitsluit.
+
+    Hoort thuis in extract_events. Staat hier tijdelijk omdat pipeline.py
+    niet-gecommitte wijzigingen bevat en de twee anders in één commit belanden.
+    """
+    out = np.empty(len(end_times))
+    for i, end in enumerate(end_times):
+        window = quantiles_weekly_max.sel(
+            valid_time=slice(end + np.timedelta64(1, "W"),
+                             end + np.timedelta64(weeks, "W")))
+        out[i] = float(window.max().values) if window.size else np.nan
+    return out
+
+
+def mean_severity_per_week(max_intensity, duration_weeks):
+    """Gemiddelde droogte-severity per week.
+
+    BESLUIT: gecorrigeerde versie van mean_drought_severity, zie R-03. De
+    berekening in extract_events deelt door einde min begin, en dat is een week te
+    kort: een droogte over twee weekpunten wordt door 1 gedeeld. Bij één weekpunt
+    wordt het delen door nul en verdwijnt het event. Hier wordt gedeeld door het
+    aantal weekpunten, dus duur plus één.
+
+    Hoort thuis in extract_events, zie de opmerking bij flood_peak_after_drought.
+    """
+    return np.asarray(max_intensity, dtype=float) / (np.asarray(duration_weeks, dtype=float) + 1.0)
 
 
 def fit_best_distribution(data):
@@ -96,8 +134,8 @@ def _exceedance(sorted_values, thresholds):
 
 
 def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
-               n_draw=100000, seed=None, axis="quantile", with_surface=False,
-               cops=None):
+               n_draw=100000, seed=None, axis="quantile", marginals="empirical",
+               with_surface=False, cops=None):
     """Transitiekansen uit een bivariate copula op droogte en de flood erna.
 
     data1 is de droogtekarakteristiek, data2 het hoogste runoff-quantiel in het
@@ -119,6 +157,21 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
     Zie R-01 in de review. Welke van de twee je kiest verandert de curves niet, het
     verandert waar je ze afleest. De vergelijking van mild tegen zwaar staat in
     beide gevallen op de rangschaal en is dus niet van deze keuze afhankelijk.
+
+    marginals bepaalt hoe F_X en F_Y worden bepaald.
+
+      "empirical"   F_X(x) = sum(data1 <= x)/(n+1) en F_Y(q) = sum(data2 <= q)/(n+1).
+                    Dit is wat de bron voor de droogtezijde deed.
+
+      "parametric"  F_X en F_Y uit de verdelingen die fit_best_distribution kiest.
+                    Dit is wat pagina 21 van het manuscript beschrijft, met de
+                    kanttekening dat die selectie op chi-kwadraat gaat zonder
+                    correctie voor het aantal parameters.
+
+    Pagina 21 geeft de formule waar dit uit volgt:
+    P(Y > y | X >= x) = (1 - F_X(x) - F_Y(y) + C(F_X(x), F_Y(y))) / (1 - F_X(x)).
+    De bron sloeg de stap F_Y over en stopte y rechtstreeks in de copula, en dat is
+    precies waarom de gefitte marginalen daar ongebruikt bleven staan. Zie R-08.
 
     PORT: de figuren zijn uit deze functie gehaald, die zaten er in de bron in met
     plt.show() erbij. PORT: het Z-oppervlak is optioneel geworden, het is alleen
@@ -151,16 +204,28 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
     n_nonfinite = int(np.sum(~finite))
     draw = draw[finite]
 
-    t_minor = float(np.sum(d1 <= X[0]) / (n + 1))
-    t_major = float(np.sum(d1 <= X[1]) / (n + 1))
+    if marginals == "empirical":
+        t_minor = float(np.sum(d1 <= X[0]) / (n + 1))
+        t_maj = float(np.sum(d1 <= X[1]) / (n + 1))
+        read_quantile = np.array([np.sum(d2 <= q) / (n + 1) for q in Y])
+        dist1_name = dist2_name = "empirical"
+    elif marginals == "parametric":
+        (dist1, par1), _ = fit_best_distribution(d1)
+        (dist2, par2), _ = fit_best_distribution(d2)
+        eps = 1e-6
+        t_minor = float(np.clip(dist1.cdf(X[0], *par1), eps, 1 - eps))
+        t_maj = float(np.clip(dist1.cdf(X[1], *par1), eps, 1 - eps))
+        read_quantile = np.clip(dist2.cdf(Y, *par2), eps, 1 - eps)
+        dist1_name, dist2_name = dist1.name, dist2.name
+    else:
+        raise ValueError("marginals moet 'empirical' of 'parametric' zijn")
+    t_major = t_maj
     sorted_minor = np.sort(draw[draw[:, 0] >= t_minor, 1])
     sorted_major = np.sort(draw[draw[:, 0] >= t_major, 1])
 
-    if axis == "quantile":
-        # de rang die hoort bij elk runoff-quantiel in Y
-        read_at = np.array([np.sum(d2 <= q) / (n + 1) for q in Y])
-    else:
-        read_at = Y
+    # bij axis="quantile" is Y een runoff-quantiel en wordt de curve afgelezen op
+    # F_Y(Y). Bij axis="rank" is Y al een waarde op de copula-schaal.
+    read_at = read_quantile if axis == "quantile" else Y
 
     rolling = calculate_rolling_max(quantiles_weekly_max, period_after_event)
     rolling = rolling[np.isfinite(rolling)]
@@ -171,6 +236,9 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         "par": par,
         "aic": float(aic),
         "axis": axis,
+        "marginals": marginals,
+        "dist1": dist1_name,
+        "dist2": dist2_name,
         "n_events": n,
         "k_minor": int(np.sum(d1 > X[0])),
         "k_major": int(np.sum(d1 > X[1])),
@@ -184,6 +252,13 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         # rolling bevat runoff-quantielen. Alleen bij axis="quantile" ligt hij op
         # dezelfde as als de conditionele curves.
         "unconditional": 1.0 - empirical_cdf(rolling, Y),
+        # de curve die je zou krijgen bij volledige onafhankelijkheid tussen
+        # droogtezwaarte en de piek erna, namelijk 1 - F_Y. Het verschil tussen de
+        # conditionele curve en deze lijn is het deel dat de copula bijdraagt, het
+        # verschil tussen deze lijn en de unconditionele curve is het marginale
+        # deel, dus of het venster na een droogte natter is dan een willekeurig
+        # venster. Samen vormen ze het gat dat in de figuren zichtbaar is.
+        "independence_reference": 1.0 - read_at,
     }
 
     if with_surface:
@@ -246,8 +321,10 @@ def copula_func_mean_drought_severity(data, lon, lat, begin, end, time_scale, X,
                                       threshold=0.5, period_after_event=4, **kwargs):
     """Transitiekansen met de gemiddelde droogte-severity als karakteristiek.
 
-    Let op R-03: mean_drought_severity deelt in extract_events door einde min begin,
-    en dat is een week te kort. Nog niet besloten, dus hier ongewijzigd overgenomen.
+    Let op R-03: mean_drought_severity uit extract_events deelt door einde min
+    begin en is daarmee een week te kort. Besloten is om door het aantal weken te
+    delen, zie mean_severity_per_week. Deze wrapper gebruikt nog het ongewijzigde
+    veld, de aanroepende scripts geven de gecorrigeerde reeks door aan fit_copula.
     """
     return _copula_func("mean_drought_severity", data, lon, lat, begin, end,
                         time_scale, X, Y, threshold, period_after_event, **kwargs)
