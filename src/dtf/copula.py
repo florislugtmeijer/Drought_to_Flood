@@ -208,6 +208,12 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         t_minor = float(np.sum(d1 <= X[0]) / (n + 1))
         t_maj = float(np.sum(d1 <= X[1]) / (n + 1))
         read_quantile = np.array([np.sum(d2 <= q) / (n + 1) for q in Y])
+        # de omgekeerde vertaling, het runoff-quantiel dat bij elke rang hoort.
+        # Zelfde conventie als F_Y, dus de rang y hoort bij de ceil(y*(n+1))-de
+        # ordestatistiek.
+        order = np.sort(d2)
+        pos = np.clip(np.ceil(Y * (n + 1)).astype(int) - 1, 0, n - 1)
+        quantile_of_rank = order[pos]
         dist1_name = dist2_name = "empirical"
     elif marginals == "parametric":
         (dist1, par1), _ = fit_best_distribution(d1)
@@ -216,6 +222,7 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         t_minor = float(np.clip(dist1.cdf(X[0], *par1), eps, 1 - eps))
         t_maj = float(np.clip(dist1.cdf(X[1], *par1), eps, 1 - eps))
         read_quantile = np.clip(dist2.cdf(Y, *par2), eps, 1 - eps)
+        quantile_of_rank = dist2.ppf(np.clip(Y, eps, 1 - eps), *par2)
         dist1_name, dist2_name = dist1.name, dist2.name
     else:
         raise ValueError("marginals moet 'empirical' of 'parametric' zijn")
@@ -259,6 +266,15 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         # deel, dus of het venster na een droogte natter is dan een willekeurig
         # venster. Samen vormen ze het gat dat in de figuren zichtbaar is.
         "independence_reference": 1.0 - read_at,
+        # De omgekeerde presentatie. In plaats van de conditionele curve naar de
+        # runoff-quantielschaal te halen, wordt hier de unconditionele lijn naar de
+        # copula-schaal gehaald, door hem af te lezen op het runoff-quantiel dat bij
+        # elke rang hoort. Het gat tussen de curves is op overeenkomstige punten
+        # identiek, want het is dezelfde vergelijking anders gelabeld. Het verschil
+        # zit in het plaatje: hier blijven de gepubliceerde conditionele curves
+        # staan en verschuift alleen de referentielijn.
+        "unconditional_on_rank": 1.0 - empirical_cdf(rolling, quantile_of_rank),
+        "quantile_of_rank": quantile_of_rank,
     }
 
     if with_surface:
