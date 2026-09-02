@@ -17,7 +17,9 @@ Draai na scripts/09_sensitivity_grid.py:
 import csv, os, sys, collections
 import numpy as np
 
-GRID = "results/2026-09-01_sensitivity_grid"
+# Post-fix raster. De pre-fix versie staat in results/2026-09-01_sensitivity_grid/
+# met zijn eigen report.txt, en wordt niet opnieuw gegenereerd.
+GRID = "results/2026-09-02_sensitivity_grid_endfix"
 CSV_PATH = f"{GRID}/grid_results.csv"
 NULL_DIR = f"{GRID}/pooled_null"
 FIG_DIR = f"{GRID}/figures"

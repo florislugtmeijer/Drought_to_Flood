@@ -43,8 +43,12 @@ from dtf.pipeline import find_nearest_grid_point, drought_flood_p_value_trigger_
 # --- parameters, horen in config/analysis.yaml (T-42) ---------------------
 DATA = os.path.expanduser("~/Downloads/8_maart_european_river_runoff_1994_2024.nc")
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-09-01_sensitivity_grid"
-RUN_DATE = "2026-09-01"
+OUT = "results/2026-09-02_sensitivity_grid_endfix"
+RUN_DATE = "2026-09-02"
+# Herberekening van het volledige raster na de reparatie van de einddetectie in
+# extract_events, zie CHANGELOG-methodology.md 2026-09-02. Resultaten uit een
+# vorige run worden nooit overschreven: de pre-fix run staat vast in
+# results/2026-09-01_sensitivity_grid/ en blijft de vergelijkingsbasis.
 
 BASE_THRESHOLD = 0.5                  # vastgelegd in T-01
 BASE_FLOOD_Q = float(norm.cdf(0.5))   # 0,6914624..., NIET afgerond op 0,6915.

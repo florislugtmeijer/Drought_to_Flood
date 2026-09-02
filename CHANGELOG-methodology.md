@@ -104,6 +104,88 @@ R4-03.
 
 ---
 
+## 2026-09-02 (tweede) — Einddetectie van events gerepareerd, met duur en flood-piekvenster
+
+**Beslist door Floris op 2 september 2026, na de code-review van de ECA-keten.**
+Drie reparaties in `extract_events`, dit verandert gepubliceerde cijfers. Branch
+`eca-endtime-fix`, commit "ECA-review: einddetectie, duur en quantile_max_value
+gerepareerd". Het volledige gevoeligheidsraster wordt opnieuw gedraaid naar
+`results/2026-09-02_sensitivity_grid_endfix/`; de pre-fix run blijft staan in
+`results/2026-09-01_sensitivity_grid/` als vergelijkingsbasis.
+
+### 1. end_time van eenweekse events lag een week te laat
+
+De einddetectie zocht de eerste week waarvan de vólgende week nul is, maar eiste
+`valid_time > starttijd`. Daardoor viel de eigen index af, en bij een event van
+precies één week is dat juist de index die het einde is. Het einde schoof dan door
+naar het eerstvolgende gat verderop.
+
+**Bewijs, uitputtend.** Alle 1024 patronen van tien weken, vergeleken met een
+onafhankelijke implementatie: 2816 events, waarvan 1280 met een fout einde, en
+alle 1280 zijn eenweekse events. Elk event van twee weken of langer was goed. Na
+de reparatie: 0 afwijkingen in start, einde én duur over dezelfde 2816.
+
+**Omvang.** Een derde van de droogtes duurt precies één week, gemeten 33,5 procent
+over 10 locaties maal 2 periodes bij threshold 0,5. De floodzijde heeft dezelfde
+fout maar die raakt de ECA niet, want van floods wordt alleen `start_time`
+gebruikt.
+
+**Waarom het de toets raakt.** `end_time` is het matching-anker. Het venster na
+een eenweekse droogte in week t was daardoor (t+1, t+5] in plaats van (t, t+4]:
+de methode miste week t+1, precies de vertraging waar de samenhang het sterkst
+zit, en pakte in plaats daarvan t+5. De Monte Carlo gebruikte dezelfde verschoven
+ankers, dus de toets was intern consistent maar mat het verkeerde venster.
+
+### 2. duration_weeks van tijdspanne naar telling
+
+Was `einde min start` in weken, dus nul voor een eenweeks event. Met reparatie 1
+zou dat `mean_drought_severity = NaN` geven en zouden eenweekse droogtes uit de
+copula vallen. Nu een telling: een event van één week duurt 1, van drie weken 3.
+**Let op: dit verschuift de duur van elk meerweeks event met één**, en daarmee
+`mean_drought_severity` van elk event. Raakt de ECA niet, wel de copula-invoer
+van T-11.
+
+### 3. quantile_max_value strikt na het event
+
+Het venster was `slice(einde, einde + 4 weken)`, aan beide kanten inclusief: vijf
+weekwaardes waarvan de eerste de laatste week van de droogte zelf. Het manuscript
+zegt "within four weeks after a drought ends" en de matching gebruikt
+(einde, einde + venster]. Nu doet dit veld hetzelfde. Eindigt een event op de
+laatste week van de reeks, dan is de waarde NaN, en de copula filtert die al weg.
+Raakt de ECA niet, wel de copula-invoer van T-11.
+
+### Gemeten effect op de ECA-baseline
+
+96 runs, threshold 0,5, floodpercentiel 0,6915, venster 4, seed per locatie,
+vergeleken met dezelfde regels uit het pre-fix raster:
+
+| | pre-fix | post-fix |
+|---|---|---|
+| droogte-, floodaantallen, n_weeks | — | **0 van 96 veranderd**, zoals hoort |
+| matches, totaal | 4764 | **5503, plus 15,5 procent** |
+| runs met meer matches | | 89 omhoog, 1 omlaag |
+| significant van 96, Monte Carlo | 91 | 92 |
+| significant van 96, analytisch | 90 | 91 |
+| gepoolde rate periode 1 | 0,5994 | 0,6878 |
+| gepoolde ratio periode 1 | 1,59 | **1,82** |
+| gepoolde ratio periode 2 | 1,55 | **1,81** |
+
+De ene locatie die significant wordt is Rostov in periode 1, 0,0599 naar 0,0268.
+**De fout drukte de samenhang dus systematisch omlaag.** Dat is de goede kant op
+voor de bevinding, maar het betekent ook dat elke eerder gerapporteerde ratio een
+onderschatting was, en dat moet eerlijk in de Revision Notes.
+
+### Wat opnieuw moet
+
+- het volledige gevoeligheidsraster, 12000 runs, loopt
+- Tabel 3 zodra T-54 wordt uitgevoerd, met de gerepareerde code
+- de conceptteksten en figuren van T-58, zodra het nieuwe raster er is
+- **T-11 let op:** `duration_weeks`, `mean_drought_severity` en
+  `quantile_max_value` zijn alle drie veranderd. De copula-kant moet op de
+  gerepareerde `extract_events` bouwen, niet op de notebook-versie
+
+---
+
 ## 2026-09-02 — Gevoeligheidsraster uitgebreid naar de volle kruising
 
 **Vervolg op de entry hieronder.** Het raster van 29 cellen is uitgebreid naar de
