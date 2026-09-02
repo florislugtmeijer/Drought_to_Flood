@@ -8,6 +8,102 @@ Floris: `docs/proposed-changes.md`. Werk dat eruit volgt: `docs/todo.md`.
 
 ---
 
+## 2026-09-02 — De copula-kant gerepareerd: F_Y, het floodvenster en de duur
+
+Uit de review van de copula-kant, T-11, kwamen vijftien bevindingen. Vier daarvan
+zijn besloten en doorgevoerd. De review zelf en de volledige lijst staan in
+`results/2026-09-02_copula_definition_variants/` en
+`results/2026-09-02_copula_corrected/`.
+
+### R-01, de ontbrekende stap F_Y
+
+Pagina 21 van het manuscript geeft de formule
+
+    P(Y > y | X >= x) = (1 - F_X(x) - F_Y(y) + C(F_X(x), F_Y(y))) / (1 - F_X(x))
+
+De code stopte `y` rechtstreeks in de copula in plaats van `F_Y(y)`. Omdat een
+copula alleen rangnummers kent, stond de conditionele curve daardoor op de rang van
+de post-droogte piek terwijl de unconditionele curve op de runoff-quantielschaal
+stond. In de figuren werden ze op dezelfde x-as gezet.
+
+Dit is geen methodewijziging maar een reparatie. De regel die het oplost,
+`prob_flood = dist2.cdf(Y, *params2)`, stond al in de bron en werd nergens gelezen.
+Dat is meteen de verklaring waarom de gefitte marginalen ongebruikt bleven, wat in
+de review als aparte bevinding R-08 stond.
+
+**Effect op de cijfers.** Bij het floodniveau van het manuscript, quantiel 0,6915,
+gaat de transitiekans na een milde droogte van mediaan 0,274 naar 0,775. Het gat met
+de unconditionele lijn gaat van -0,422 naar +0,057, en het aantal cellen waar de
+conditionele curve onder de unconditionele ligt van 188 van de 192 naar 33.
+
+De vergelijking van milde tegen zware droogte verandert niet. Die twee staan
+allebei op de rangschaal en waren onderling altijd al consistent.
+
+### R-02, het floodvenster
+
+`extract_events` nam het maximum vanaf de laatste week van de droogte zelf, en
+omdat `.sel` met een slice aan beide kanten inclusief is, telde dat venster vijf
+weekpunten. Pagina 19 zegt vier weken na afloop. Bovendien sloot
+`calculate_rolling_max`, die de unconditionele curve voedt, de eigen week wel uit,
+dus de twee kanten waren onderling ongelijk.
+
+Gecorrigeerd naar vier weken na afloop, zonder droogteweek.
+
+**Effect.** Mediaan verschuiving van de conditionele curve 0,010, p90 0,045,
+maximaal 0,399. De gekozen copulafamilie kantelt in 30 van de 96 locatie-periodes.
+Dertig droogtes aan het einde van de reeks vallen weg, van de 7925.
+
+### R-03, de duur in mean_drought_severity
+
+De deling gebruikte einde min begin, en dat is een week te kort. Een droogte over
+twee weekpunten werd door 1 gedeeld, een droogte van één weekpunt door nul, met
+NaN als gevolg. Gecorrigeerd naar het aantal weekpunten.
+
+**Effect.** Alleen op `mean_drought_severity`. Mediaan verschuiving 0,033, p90
+0,108, maximaal 0,231. Familie kantelt in 36 van de 96. Zeven eenweekse droogtes
+komen terug in de analyse.
+
+### Marginalen: parametrisch
+
+Het manuscript beschrijft op pagina 21 dat de marginale verdelingen met maximum
+likelihood zijn geschat en met chi-kwadraat geselecteerd. De code gebruikte voor de
+droogtezijde de empirische verdeling. Besloten is de tekst te volgen.
+
+**Effect.** Mediaan verschil met de empirische route -0,004, mediaan absoluut 0,03,
+p90 0,10. Geen systematische richting. Wel valt de zware curve weg bij 24 van de 192
+cellen, en dat zijn precies de cellen met `k_major = 0`, dus zonder enkele zware
+droogte. De empirische route maakte daar wel een curve, uit de bovenste procent van
+een gesimuleerde copula op nul waarnemingen.
+
+### Verder in dezelfde beweging
+
+- **Seed toegevoegd.** De gepubliceerde berekening seedde niet, dus was niet exact
+  reproduceerbaar. Eigen seedstroom per locatie-periode via
+  `SeedSequence(42).spawn(96)`
+- **Dode code verwijderd.** `flood_score = 0.9` voedde alleen `prob_flood_fixed`,
+  dat nergens werd gelezen. De regel in `docs/open-decisions.md` die het "het vaste
+  floodquantiel in `fit_copula`" noemde is gecorrigeerd
+- **Figuur 1 en 2 op dezelfde precisie.** Het Z-oppervlak gebruikte een tweede
+  trekking van 10.000 tegen 100.000 voor de curves
+- **Niet-eindige trekkingen.** `random` levert bij de Joe-families 0,1 tot 0,4
+  procent NaN. De bron liet die stil wegvallen bij een `>=` vergelijking, nu worden
+  ze geteld en verwijderd zodat teller en noemer dezelfde steekproef gebruiken
+- **`src/dtf/copula.py` aangelegd**, T-46. De copula-kant zat nog in de notebook.
+  Geverifieerd tegen de eerdere run: bit-identiek op de afronding na
+
+### Wat dit voor de tekst betekent
+
+Vier passages vergelijken de conditionele curve met de unconditionele lijn en
+draaien van teken om: pagina 27 tweemaal, pagina 28 en pagina 30. De zin op pagina
+27 dat de zwaarte van de droogte het effect gedeeltelijk terugdraait blijft staan,
+de eerste helft van die redenering niet. Zie
+`results/2026-09-02_copula_definition_variants/manuscript_claim_check.md`.
+
+Wat er nog niet in zit zijn de betrouwbaarheidsintervallen, de tweede helft van
+R4-03.
+
+---
+
 ## 2026-09-02 — Gevoeligheidsraster uitgebreid naar de volle kruising
 
 **Vervolg op de entry hieronder.** Het raster van 29 cellen is uitgebreid naar de

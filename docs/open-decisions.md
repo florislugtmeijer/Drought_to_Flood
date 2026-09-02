@@ -5,6 +5,11 @@ kwamen uit de verkeerde notebook-versie en zijn vervallen. Zie
 `docs/reproducibility-check.md`. Vervallen: D-03, D-08, D-09, D-10.
 Nog echt open: D-01, D-02, D-04, D-05, D-06, D-07.
 
+**Aangevuld 2 september 2026.** Uit de review van de copula-kant, T-11, komen
+D-15 tot en met D-20. Vier bevindingen uit diezelfde review zijn al besloten en
+staan in `CHANGELOG-methodology.md`: de ontbrekende stap F_Y, het floodvenster, de
+duur in `mean_drought_severity` en de keuze voor parametrische marginalen.
+
 Beslissingen die de resultaten of de tekst van het artikel raken en die nog
 genomen moeten worden. Niets hiervan wordt stilzwijgend opgelost. Bij elke
 beslissing: wie beslist, en wat er verandert als het zo of zo valt.
@@ -796,7 +801,132 @@ er ook echt staat.
 ### Wat níet hoeft te veranderen
 
 `X = [1, 2]` voor drought peak en `X = [0.5, 1]` voor mean severity zijn de
-grenzen voor minor en severe drought binnen de copula, beschreven op pagina 22.
-`flood_score = 0.9` is het vaste floodquantiel in `fit_copula`. Alle drie staan
-los van de event-drempel en hoeven niet mee. Ze bevatten wel toevallig ook 0,5 en
-1, dus in de tekst moeten ze duidelijk van de drempel onderscheiden worden.
+grenzen voor minor en severe drought binnen de copula, beschreven op pagina 22. Ze
+staan los van de event-drempel en hoeven niet mee. Ze bevatten wel toevallig ook 0,5
+en 1, dus in de tekst moeten ze duidelijk van de drempel onderscheiden worden.
+
+**Correctie, 2 september 2026.** Hier stond dat `flood_score = 0.9` het vaste
+floodquantiel in `fit_copula` is. Dat klopt niet. Het argument voedde alleen
+`prob_flood_fixed`, en dat werd nergens gelezen. Het had dus geen enkel effect op de
+uitkomsten. Bij het overzetten naar `src/dtf/copula.py` is het vervallen. Zie R-09
+in de copula-review.
+
+---
+
+## D-15. De twee helften van het artikel gebruiken een andere quantielreferentie
+
+- herkomst: eigen bevinding uit de copula-review, R-04
+- status: **open**
+- wie beslist: Floris, mogelijk met de co-auteurs
+
+`transform_to_quantiles` krijgt in de ECA-kant de **dagelijkse** reeks als
+referentie mee, cel 16 regel 152. In de copula-kant krijgt hij de **wekelijkse
+gemiddelden**, cel 25 regel 67 en 97. `quantile_max_value` betekent daarmee niet
+hetzelfde in Tabel 3 als in de appendix met de transitiekansen.
+
+Dit is geen fout, het is een keuze die nergens is vastgelegd en die niet uit de
+tekst valt af te leiden. Wat er moet gebeuren: of gelijktrekken en herrekenen, of
+laten staan en in de methodensectie expliciet benoemen dat de twee onderdelen een
+andere referentieverdeling gebruiken.
+
+De copula-berekeningen van 2 september volgen de copula-kant, dus de wekelijkse
+gemiddelden, omdat dat is wat gereproduceerd moest worden.
+
+---
+
+## D-16. Hoe de instabiele copulakeuze wordt gerapporteerd
+
+- herkomst: eigen bevinding uit de copula-review, R-05, raakt R4-03
+- status: **open**
+- wie beslist: Floris
+
+Gemeten over alle 192 cellen: het mediane AIC-verschil met de nummer twee is 0,47,
+en bij 175 van de 192 ligt het onder 2. De gangbare vuistregel is dat onder 2 geen
+onderscheid gemaakt kan worden. De gekozen familie is in de meeste cellen dus een
+van meerdere die ongeveer even goed passen.
+
+Reviewer #4 vraagt alleen welke familie is gekozen. Dat antwoord alleen geven is
+dunner dan het kan zijn. De opties: alleen de tabel met de gekozen familie, of die
+tabel plus het AIC-verschil met de nummer twee, of daarbovenop nog het maximale
+verschil tussen de curve van de winnaar en die van de nummer twee.
+
+De laatste is het sterkste antwoord, want die laat zien of een instabiele keuze de
+transitiekans eigenlijk wel raakt. Kost een run van enkele minuten.
+
+---
+
+## D-17. De vier passages die van teken omdraaien
+
+- herkomst: volgt uit de reparatie van R-01
+- status: **open**
+- wie beslist: Floris met de co-auteurs
+
+Vier passages vergelijken de conditionele curve met de unconditionele lijn en
+draaien om: pagina 27 tweemaal, pagina 28 en pagina 30. Nu staat er dat
+conditioneren op een droogte de floodkans verlaagt. Na de reparatie is hij licht
+hoger.
+
+Wat er moet gebeuren is duidelijk, hoe het geformuleerd wordt niet. De vraag is ook
+of dit naar de co-auteurs gaat voordat de rest van de revisie wordt geschreven, want
+het raakt de kernbevinding van de copula-helft. Zie
+`results/2026-09-02_copula_definition_variants/manuscript_claim_check.md` voor de
+citaten en de cijfers.
+
+Let op dat de vergelijking van milde tegen zware droogte niet verandert. De
+uitspraken daarover blijven staan.
+
+---
+
+## D-18. Wordt het onderscheid marginaal tegen copula opgeschreven
+
+- herkomst: eigen bevinding, volgt uit de opsplitsing van 2 september
+- status: **open**
+- wie beslist: Floris met de co-auteurs
+
+Het gat tussen de conditionele en de unconditionele curve valt uiteen in een
+marginaal deel, is het venster na een droogte natter dan een willekeurig venster, en
+een copula deel, hangt de piek samen met de zwaarte van de droogte. Alleen het
+tweede is waar een copula voor dient.
+
+Gemeten over alle 192 cellen bij quantiel 0,6915: gat +0,057, marginaal +0,076,
+copula -0,023. Bij Ebro en Po is het copula deel wel positief, bijvoorbeeld Ebro
+Tudela periode 2 mean severity: +0,135 is +0,069 plus +0,066.
+
+Opschrijven is eerlijk en voorkomt dat een reviewer in ronde drie vraagt wat de
+copula toevoegt. Niet opschrijven laat een raamwerk centraal staan dat vooral iets
+meet wat de ECA-kant al meet.
+
+---
+
+## D-19. Het criterium achter de tellingen op pagina 31
+
+- herkomst: eigen bevinding uit de manuscripttoets
+- status: **open**
+- wie beslist: Floris
+
+Pagina 31 zegt dat toename van de transitiekans wordt gezien bij 5 locaties voor
+Drought Peak en 6 voor Mean Severity in periode 1, en 7 en 9 in periode 2. Nergens
+staat wanneer iets als toename telt.
+
+Nagerekend: bij een drempel van +0,02 op het mediane verschil tussen de zware en de
+milde curve komt er 7, 5, 6, 9 uit. Bij +0,05 wordt het 5, 5, 4, 9. Dezelfde orde,
+niet exact gelijk, en exact reproduceren kan niet want de gepubliceerde berekening
+heeft geen seed.
+
+Er moet een criterium gekozen worden en dat moet in de tekst.
+
+---
+
+## D-20. De curve die per constructie de diagonaal is
+
+- herkomst: eigen bevinding uit de copula-review, R-10
+- status: **open**, klein
+- wie beslist: Floris
+
+`conditional_probability_drought` is `1 - empirical_cdf(ur[:,1], flood_quantiles)`,
+en `ur[:,1]` is per constructie uniform. Die curve is dus de rechte lijn 1 min y en
+bevat geen informatie over de copula. Hij wordt niet geplot in figuur 2 maar zit wel
+in het resultaat.
+
+Nagaan of hij ergens in het manuscript of de appendices opduikt. Zo ja, eruit of
+uitleggen als de definitie die hij is.
