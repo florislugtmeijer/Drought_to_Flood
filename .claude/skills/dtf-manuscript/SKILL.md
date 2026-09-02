@@ -56,6 +56,11 @@ verder. Per punt vastleggen:
 - status: open, in behandeling, gedaan, of afgewezen met reden
 - verwijzing naar de commit of het bestand waar het is verwerkt
 
+Het openstaande werk dat uit die feedback volgt staat als taak in
+`docs/todo.md`. Lees die werklijst aan het begin van een sessie en werk hem aan
+het eind bij. `review/round-<n>.md` blijft de plek voor het punt zelf, het citaat,
+de classificatie en het eigen standpunt.
+
 Uit die bestanden schrijf je het response-to-reviewers document, niet omgekeerd.
 Dat scheelt aan het eind een reconstructie.
 

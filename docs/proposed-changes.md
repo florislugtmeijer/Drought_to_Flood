@@ -24,11 +24,16 @@ keuze niet te verdedigen is, staat dat er ook.
 | | |
 |---|---|
 | voorgesteld | 23 augustus 2026 |
-| status | **voorgesteld, voor nu blijft het 1** |
+| status | **gedaan, 1 september 2026: threshold gaat naar 0,5 voor beide onderdelen** |
 | raakt | alle event-aantallen, alle p-waardes, Tabel 3, abstract, conclusie |
 
 Floris: "thresholds hadden inderdaad op 0.5 moeten staan", en later dezelfde dag
 "voor nu blijven we op de threshold van 1 zitten".
+
+**Beslist op 1 september 2026: threshold gaat naar 0,5, voor beide onderdelen.**
+Een eerdere beslissing diezelfde dag om op 1 te blijven is herroepen. Zie
+`CHANGELOG-methodology.md`. Alleen de ECA verandert, de copula stond al op 0,5.
+Tabel 3 gaat van 10 naar 45 significante locaties van de 48.
 
 Al doorgerekend, zie `results/2026-08-23_threshold_comparison/`. Het aantal
 significante locaties gaat van 10 naar 45 van de 48. Dat is een andere
@@ -68,6 +73,12 @@ keuze maar een correctie. Zie D-01.
   die je vanaf het begin verdedigt.
 
 ### Verdediging als we op 1 blijven
+
+> **Achterhaald.** Deze onderbouwing hoorde bij de beslissing om op 1 te blijven,
+> die op 1 september 2026 is herroepen. Blijft staan omdat het argument bruikbaar
+> is om threshold 1 als variant in de gevoeligheidsanalyse van R4-01 te
+> motiveren. Voorwaarde 1 hieronder, over de 84e quantile, geldt niet meer: bij
+> 0,5 klopt de 69e quantile in de tekst gewoon.
 
 Deze is sterk, en ze rust op een bestaande conventie.
 
@@ -111,8 +122,46 @@ moet je zelf vaststellen.
 | | |
 |---|---|
 | voorgesteld | 23 augustus 2026 |
-| status | **voorgesteld, niet uitvoeren** |
+| status | **heropend 1 september 2026, wacht op Floris** |
+| laatste update | 1 september 2026: de onderbouwing van de beslissing bleek op threshold 1 te staan |
 | raakt | alle event-aantallen, alle p-waardes, Tabel 3 |
+
+**Heropend op 1 september 2026.** De beslissing van diezelfde dag om de berekening
+ongewijzigd te laten stond op de variant-run van 23 augustus, en die staat vast op
+`threshold=1`. T-01 heeft de threshold later diezelfde dag op 0,5 gezet. Alle
+cijfers in dit stuk over het effect van P-02 zijn dus threshold-1 cijfers, en dat
+staat er hieronder per blok bij. Opnieuw doorgerekend op 0,5 in
+`results/2026-09-01_reference_grid/`.
+
+Wat er van de oude beslissing overeind blijft: de tekst moet gecorrigeerd worden,
+want er is geen sprake van een mirroring-effect.
+
+### Doorgerekend op 0,5, en twee van de drie argumenten kantelen
+
+Bron: `results/2026-09-01_reference_grid/`, 384 runs, controlecel over alle 96 runs
+exact gelijk aan de gepubliceerde berekening.
+
+| argument | zoals het op 1 september lag | na doorrekenen op 0,5 |
+|---|---|---|
+| aanpassen sloopt de resultaten | 18 locaties verliezen significantie, periode 2 houdt er nul over | **weg.** 89 van 96 significant tegen 90 nu, drie verliezen, twee winnen |
+| spiegelen levert geen symmetrie | niet gemeten bij 0,5 | **draait om, pleit vóór aanpassen.** De onbalans tussen de twee zijdes gaat van 9,17 naar 5,37 procentpunt |
+| absolute flooddrempel is hydrologisch te verdedigen | stond | **staat nog, ongewijzigd** |
+
+Wat er dus over is als reden om de berekening te laten staan: de inhoudelijke
+verdediging hieronder, plus dat aanpassen alle cijfers verandert met 16 dagen tot
+de deadline. Het cijfermatige argument en het symmetrie-argument zijn geen steun
+meer, en het tweede is zelfs een tegenargument geworden.
+
+Volledige uitwerking, inclusief waarom het bij threshold 1 anders uitpakte en
+waarom floodweken en floodevents niet meeschalen, staat in de README van die map en
+in D-11. Gemeten bij threshold 0,5: ongeveer 44 procent van de weken
+ligt boven de flooddrempel tegen ongeveer 35 procent onder de droogtedrempel,
+waar symmetrie 30,9 procent aan beide kanten zou geven. Bij threshold 1 was die
+verhouding 1,63, bij 0,5 is hij 1,27, dus kleiner maar niet weg.
+
+Wat wél vaststaat, los van hoe deze beslissing valt: het woord "mirroring" moet
+uit de methodensectie en de feitelijke selectiviteit van de flooddrempel moet
+gerapporteerd worden. Zie de voorwaarden onderaan.
 
 Floris: "dan moeten we denk ik ook het quantiel aanpassen naar een quantiel dat
 hoort bij de z score van 1".
@@ -121,13 +170,18 @@ Het voorstel raakt iets echts, alleen niet waar het leek te zitten. De code
 koppelt de twee drempels al via `threshold_floods = norm.cdf(threshold)`, dus er
 is geen aparte quantielparameter om te veranderen.
 
-Wat niet klopt is de spiegeling. Gemeten aandeel weken boven de flooddrempel is
-25 tot 28 procent, tegen ongeveer 16 procent onder de droogtedrempel. De oorzaak
-is dat het weekmaximum als quantiel van de ruwe dagelijkse verdeling wordt
-uitgedrukt, en een weekmaximum ligt daar structureel hoog in.
+Wat niet klopt is de spiegeling. Gemeten over alle 48 locaties en beide periodes,
+bij de huidige threshold 0,5: **44,6 procent** van de weken boven de flooddrempel
+tegen **35,8 procent** onder de droogtedrempel, waar 30,9 aan beide kanten hoort.
+Bij threshold 1 was dat 26,2 tegen 15,1 procent. De oorzaak is dat het
+weekmaximum als quantiel van de ruwe dagelijkse verdeling wordt uitgedrukt, en een
+weekmaximum ligt daar structureel hoog in.
 
-De aanpassing zou zijn: weekmaxima tegen hun eigen verdeling. Dan komt de
-floodkant op 15,9 procent, exact `norm.cdf(-1)`, en spiegelen de drempels wel.
+De aanpassing zou zijn: weekmaxima tegen hun eigen verdeling. Die repareert de
+floodzijde exact, van 13,80 procentpunten te hoog naar 0,02, en halveert de
+onbalans tussen de zijdes bijna, van 9,17 naar 5,37 punten. Volledige symmetrie
+levert het niet op, want de droogtezijde blijft op 35,8 staan waar 30,9 hoort.
+Dat is een tweede, los probleem dat P-02 niet oplost.
 
 Volledige uitwerking met de gemeten cijfers staat in D-11 in
 `docs/open-decisions.md`.
@@ -135,8 +189,9 @@ Volledige uitwerking met de gemeten cijfers staat in D-11 in
 ### Waarom wel aanpassen
 
 - Het manuscript zegt nu letterlijk dat de flooddrempel de droogtedrempel
-  spiegelt. Dat is feitelijk niet zo: 25 tot 28 procent van de weken tegen
-  ongeveer 16 procent. Met de aanpassing wordt de tekst waar zonder dat je hem
+  spiegelt. Dat is feitelijk niet zo: bij threshold 0,5 ligt 44,6 procent van de
+  weken boven de flooddrempel tegen 35,8 procent onder de droogtedrempel, waar
+  30,9 aan beide kanten hoort. Met de aanpassing wordt de tekst waar zonder dat je hem
   hoeft te herschrijven.
 - Symmetrie is makkelijker uit te leggen. Eén parameter, twee drempels, aan
   beide kanten dezelfde zeldzaamheid.
@@ -144,7 +199,46 @@ Volledige uitwerking met de gemeten cijfers staat in D-11 in
   dan per constructie vast in plaats van mee te bewegen met hoe schoksgewijs een
   rivier reageert.
 
+### Redenering van Floris, 24 augustus 2026
+
+Floris: bij het bepalen van de p-waarde toetsen we niet op basis van twee events
+die even vaak voorkomen. Omdat er meer floods zijn, corrigeert de toets ook voor
+het feit dat er meer floods zijn. De correctie hoort dus in de tekst, met een
+duidelijke uitleg voor de lezer hoe de flood-events bepaald zijn.
+
+**Dat is juist.** De nullijn is `1 - (1 - 4/W)^n_floods`, en die schaalt mee met
+het aantal floods. Meer floods geeft een hogere toevalsverwachting, en de
+p-waarde meet alleen het overschot daarboven. Empirisch bevestigd in de
+variant-run: 25 procent minder floods gaf 22 procent lagere toevalsverwachting.
+
+Gevolg voor de weging van dit voorstel: de asymmetrie in eventfrequentie
+**vertekent de toets niet**. P-02 is dus geen statistisch probleem maar een
+definitie- en presentatiekwestie. Dat verschuift het zwaartepunt naar het
+aanpassen van de tekst, en maakt het argument om de berekening te laten staan
+sterker.
+
+### Getoetst alternatief: eerst quantielen, dan weekmaxima
+
+Floris stelde voor om de flood-waardes als quantiel van de hele set
+runoff-waardes te bepalen vóórdat naar weekwaardes wordt overgestapt.
+
+**Dat is wiskundig identiek aan de huidige berekening.** De quantieltransformatie
+is monotoon stijgend, dus `max(q(x))` en `q(max(x))` geven hetzelfde. Getoetst op
+Aschach, eerste periode: maximaal absoluut verschil 0,00 en in beide gevallen
+221 weken boven de drempel. Niets te draaien.
+
+**Maar naast die vraag zit wel een echt verschil**, en dat is over welke periode
+de referentieverdeling loopt. Nu is dat alleen de periode zelf, 5479 dagen, niet
+de volledige 30 jaar. De 84e percentiel verschuift daardoor mediaan 8,6 procent
+tussen de periodes, en bij 32 van de 48 locaties meer dan tien procent. Op de Don
+ruim 30 procent omlaag, op de Tagus tot 120 procent omhoog. Uitgewerkt als D-13
+in `docs/open-decisions.md`.
+
 ### Waarom niet aanpassen
+
+**Alle cijfers in dit blok zijn gemeten bij threshold 1.** Bij threshold 1 zat de
+hoofdbevinding op minder dan één standaardfout van de nullijn, bij 0,5 op ruim
+vier. Een strengere flooddrempel doet in die twee gevallen niet hetzelfde.
 
 - Het verandert alle cijfers, en de eerste uitkomsten wijzen erop dat het de
   ándere kant op gaat dan threshold 0,5: strengere flooddrempel, minder floods,
@@ -192,17 +286,114 @@ optioneel:
    seizoensrelatieve droogte tegen absolute floodgrens, met de reden waarom dat
    twee verschillende dingen zijn.
 3. De feitelijke selectiviteit rapporteren, dus dat de flooddrempel ongeveer 25
-   tot 28 procent van de weken aanmerkt tegen ongeveer 16 procent aan de
-   droogtekant. Dat getal hoort in de tekst of in een appendix, niet weggelaten.
+   44,6 procent van de weken aanmerkt tegen 35,8 procent aan de droogtekant, bij
+   de huidige threshold 0,5. Dat getal hoort in de tekst of in een appendix, niet weggelaten.
 
 Punt 1 en 2 zijn hoe dan ook nodig, ook als het voorstel wel wordt uitgevoerd,
 want dan moet er staan waarom er nu wél gespiegeld wordt.
 
-### Effect op de resultaten
+### Effect op de resultaten, gemeten bij threshold 1
 
-Wordt hier aangevuld zodra de run over alle 48 locaties en beide periodes klaar
-is. Script: `scripts/03_quantile_reference_variant.py`, uitvoer in
-`results/2026-08-23_quantile_reference_variant/`.
+**Verouderd als onderbouwing.** Doorgerekend over alle 48 locaties en beide
+periodes, maar met `threshold=1`. Volledige uitwerking in
+`results/2026-08-23_quantile_reference_variant/README.md`. De run op 0,5 staat in
+`results/2026-09-01_reference_grid/`.
+
+> **Deze tabel is bij `threshold=1` gemeten en geldt niet meer als grondslag.**
+> Sinds T-01 draait alles op 0,5. Bij 0,5 kantelt het beeld volledig: significante
+> runs van de 96 gaan van 90 naar 89 in plaats van van 20 naar 2. Drie locaties
+> verliezen, twee winnen, mediane verschuiving in p is +0,0001. Zie
+> `results/2026-09-01_reference_grid/`. De tabel blijft staan als vergelijking.
+
+| | eerste periode | | tweede periode | |
+|---|---|---|---|---|
+| | nu | variant | nu | variant |
+| floods per locatie | 66,3 | 49,8 | 71,5 | 52,6 |
+| matches per locatie | 19,9 | 12,8 | 20,4 | 12,5 |
+| **significant, Monte Carlo** | **10 / 48** | **2 / 48** | **10 / 48** | **0 / 48** |
+| significant, Poisson | 13 / 48 | 2 / 48 | 14 / 48 | 0 / 48 |
+
+Achttien locaties verliezen hun significantie, nul winnen er een. De droogtekant
+blijft gelijk.
+
+~~**Dit weegt zwaar tegen het voorstel.** In de tweede periode blijft er geen
+enkele significante locatie over.~~ **Vervallen op 1 september 2026.** Dat gold
+bij threshold 1. Bij 0,5 bestaat het cijfermatige argument tegen het voorstel
+niet: 90 naar 89 significante runs. Wat overblijft is het methodologische
+argument, de flow duration curve als absolute floodgrens tegenover de
+seizoensrelatieve droogtemaat.
+
+Het verandert niets aan de eis dat "mirroring" uit de methodensectie moet en dat
+de feitelijke selectiviteit gerapporteerd wordt. Die twee blijven, welke kant
+deze beslissing ook op valt.
+
+**Waarom de p-waarde omhoog gaat terwijl er minder floods zijn.** Een p-waarde
+kijkt niet naar het aantal matches maar naar het overschot boven wat het toeval
+al oplevert. Een strengere drempel verlaagt beide, dus dat de matches dalen zegt
+op zichzelf niets. Gemiddeld per locatie:
+
+| | nu | variant | verandering |
+|---|---|---|---|
+| floods | 66,3 | 49,8 | −25% |
+| matches geobserveerd | 19,9 | 12,8 | −36% |
+| matches verwacht bij toeval | 16,2 | 12,6 | −22% |
+| **overschot boven toeval** | **3,7** | **0,1** | **−97%** |
+| ratio geobserveerd / verwacht | 1,13 | 0,94 | |
+
+Eerste periode. De geobserveerde matches dalen harder dan de toevalsverwachting,
+dus het overschot verdampt. In de tweede periode gaat de ratio naar 0,93, dus
+droogtes worden dan iets minder vaak door een flood gevolgd dan het toeval
+voorspelt.
+
+"Verwacht bij toeval" is hier analytisch berekend met dezelfde binomiale formule
+die de code voor de Poisson-tak gebruikt: `1 - (1 - 4/784)^floods` maal het
+aantal droogtes. De Monte Carlo komt via randomisatie op dezelfde nulverwachting
+uit, langs een andere route.
+
+**Getoetst, en het is een bevinding.** De floods die de strengere drempel
+weggooit blijken juist de floods te zijn die relatief vaak na een droogte kwamen.
+Over 6617 flood-events, uitgesplitst naar grootte:
+
+| groottebin | kans op voorafgaande droogte | toeval | ratio |
+|---|---|---|---|
+| kleinste 20% | 0,313 | 0,249 | 1,26 |
+| 20-40% | 0,302 | 0,248 | 1,22 |
+| 40-60% | 0,316 | 0,248 | 1,27 |
+| 60-80% | 0,277 | 0,248 | 1,12 |
+| grootste 20% | 0,247 | 0,248 | **1,00** |
+
+Bij de grootste floods is het effect exact nul. Twee onafhankelijke maten voor
+grootte geven hetzelfde, en het patroon zit in beide periodes. Volledige
+uitwerking met de beperkingen in
+`results/2026-08-23_flood_magnitude_test/README.md`.
+
+Voor P-02 betekent dit dat het signaalverlies geen statistisch artefact is: de
+strengere drempel verwijdert precies de groep waar de samenhang in zit. Dat weegt
+mee als inhoudelijk argument en niet alleen als ongelukkige uitkomst.
+
+**Seizoensverklaring uitgesloten**, zie `results/2026-08-24_season_control/`. Met
+groottebins binnen locatie én seizoen en een seizoensspecifieke empirische nullijn
+blijft het verloop staan: 1,17 / 1,23 / 1,12 / 1,01 / 0,94. Het verschil tussen
+klein en groot wordt zelfs sterker, chi-kwadraat 24,8 tegen 17,6. Het confound
+bleek er ook nauwelijks te zijn: droogtes eindigen vrijwel gelijkmatig over het
+jaar en de floodgrootte verschilt per seizoen nauwelijks.
+
+Wel een correctie op de cijfers hierboven: de empirische nullijn is 0,265 tot
+0,271, waar de binomiale formule op 0,248 uitkwam. De ratio's zijn dus iets lager
+dan de tabel hierboven suggereert, 1,17 tot 1,23 in plaats van 1,22 tot 1,27.
+Richting en significantie blijven.
+
+Drie beperkingen die je moet meenemen: het is een uitspraak op Europese schaal en
+niet per rivier (57 van 95 locatie-periodes tonen het individueel) of per seizoen
+(alleen winter en najaar geven een schoon verloop), bij de grootste floods is er
+geen samenhang maar ook geen negatieve samenhang, en het blijft een associatie.
+Om het mechanisme hard te maken is een variabele nodig die de veronderstelde
+oorzaak meet, bodemvocht of infiltratiecapaciteit. Dat is precies wat R4-04
+bedoelt met "ideally supported by ancillary data". Een
+lezing die dat verklaart staat in de README bij de resultaten: de strengere
+drempel houdt alleen de grote seizoensfloods over, en die hangen minder met een
+voorafgaande droogte samen dan de matig verhoogde afvoerweken. Als dat klopt is
+het materiaal voor R4-04. Nog te toetsen, niet aan te nemen.
 
 ---
 

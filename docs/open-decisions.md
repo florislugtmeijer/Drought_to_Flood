@@ -21,7 +21,10 @@ verwijzing.
 
 ## D-01 Threshold: 0,5 of 1
 
-**Status: doorgerekend op 23 augustus 2026, beslissing nog open. Beslist door Floris.**
+**Status: GESLOTEN 1 september 2026. Threshold gaat naar 0,5 voor beide
+onderdelen.** Zie `CHANGELOG-methodology.md` en taak T-01. Alleen de ECA
+verandert, de copula stond al op 0,5. Een eerdere beslissing diezelfde dag om op
+1 te blijven is herroepen. Onderstaande analyse blijft staan als onderbouwing.
 
 **Uitkomst: het aantal significante locaties gaat van 10 naar 45 van de 48.**
 Zie `results/2026-08-23_threshold_comparison/README.md`. Dit is geen
@@ -55,7 +58,8 @@ Bevestigd in het manuscript zelf, pagina 17 van `manuscript/HYDROL79380_R1.pdf`:
 > 0.5)."
 
 Het manuscript noemt de Z-score van 0,5 dus letterlijk. Dat is geen parafrase van
-de reviewer en geen leesfout van onze kant.
+de reviewer en geen leesfout van onze kant. **Sinds de beslissing van 1 september
+klopt deze passage weer met de code.**
 
 Het coincidence-venster van 4 weken klopt wel, dat is `period_after_event=4` in
 zowel de parametercel als de aanroepen.
@@ -97,7 +101,9 @@ raakt R1-01, waar juist gevraagd wordt de kernbevinding concreter te maken.
 
 ## D-02 Off-by-one in de periodesplitsing
 
-**Status: open. Beslist door Floris.**
+**Status: GESLOTEN 1 september 2026. Niet corrigeren.** Effect nagerekend op vier
+locaties bij threshold 0,5: identieke event-aantallen en identieke p-waardes tot
+vier decimalen. Wel drie feitelijke tekstcorrecties, zie taak T-56.
 
 `data.isel(valid_time=slice(begin, end))` is exclusief aan het eind. Met
 `first_begin=0, first_end=5479, second_begin=5480, second_end=10958`:
@@ -138,7 +144,8 @@ Of het effect groot is, is niet vastgesteld. Te testen door de simulatie ook op
 
 ## D-04 Vaste seed over alle locaties
 
-**Status: open, laag risico.**
+**Status: GESLOTEN 1 september 2026. Seed blijft 42.** Restant: het aantal
+simulaties en de seed worden in de tekst vermeld, zie taak T-56.
 
 `seed=42` staat vast voor alle 48 locaties. Elke locatie krijgt daarmee dezelfde
 pseudo-random reeks. Niet fout, en het is goed voor reproduceerbaarheid, maar het
@@ -332,8 +339,25 @@ co-auteurs horen daarbij.
 
 ## D-11 De flooddrempel spiegelt de droogtedrempel niet
 
-**Status: open. Beslissing voor Floris. Raakt alle event-aantallen.**
+**Status: GESLOTEN 1 september 2026, route B. De berekening blijft ongewijzigd.**
+Beslist ná de rerun op threshold 0,5, zie `results/2026-09-01_reference_grid/` en
+taak T-02. Gekozen op de inhoudelijke verdediging, niet op de cijfers.
+
+Belangrijk voor wie dit teruglees: het cijfermatige argument tegen het spiegelen
+gold alleen bij threshold 1, waar het 18 locaties hun significantie kostte. Bij
+0,5 gaan de significante runs van 90 naar 89, drie verliezen en twee winnen, en
+de mediane verschuiving in p is +0,0001. De symmetriekant pleit juist vóór
+spiegelen: de floodzijde gaat van 13,80 procentpunten te hoog naar 0,02 en de
+onbalans tussen de zijdes van 9,17 naar 5,37. De keuze rust dus volledig op het
+argument hieronder, dat de 69,1e percentiel van de dagelijkse verdeling een
+herkenbare hydrologische grootheid is en de spiegelvariant dat opgeeft.
+
+Route B houdt in: de berekening blijft ongewijzigd,
+de tekst wordt gecorrigeerd. Zie `CHANGELOG-methodology.md` en T-02.**
 **Aanleiding: vraag van Floris, 23 augustus 2026.**
+**Bijgewerkt 1 september 2026: alle metingen hieronder zijn bij `threshold=1`
+gedaan, en T-01 heeft de threshold op 0,5 gezet. De cijfers bij 0,5 staan
+onderaan, in het blok "Hoe dit ligt bij threshold 0,5".**
 
 ### Er is geen aparte quantielparameter
 
@@ -358,15 +382,25 @@ van 1 staan.
 
 Gemeten aandeel weken boven of onder de drempel, eerste periode:
 
+**Let op: de cijfers hieronder zijn bij `threshold=1` gemeten, en sinds T-01
+draait alles op 0,5.** Gemeten over alle 48 locaties en beide periodes:
+
+| | flooddrempel | droogtedrempel | nominaal | onbalans |
+|---|---|---|---|---|
+| threshold 0,5, **de huidige keuze** | 44,6% | 35,8% | 30,9% | 1,25 |
+| threshold 1, historisch | 26,2% | 15,1% | 15,9% | 1,74 |
+
+Bron: `results/2026-09-01_threshold_selectivity/`. Bij beide drempels is de
+floodkant selectiever dan de droogtekant, dus van spiegelen is in geen van beide
+gevallen sprake. De onbalans is bij 0,5 wel kleiner.
+
+De oorspronkelijke meting bij threshold 1, op drie locaties:
+
 | locatie | boven flooddrempel | onder droogtedrempel |
 |---|---|---|
 | Aschach an der Donau | 28,2% | 14,8% |
 | Donji Milanovac | 24,9% | 17,2% |
 | Bremen | 24,7% | 16,1% |
-
-De droogtekant klopt: `norm.cdf(-1)` is 0,1587, dus ongeveer 16 procent. De
-floodkant ligt op 25 tot 28 procent, ruim anderhalf keer zo vaak. Van spiegelen
-is dus geen sprake.
 
 ### De oorzaak
 
@@ -397,16 +431,98 @@ klopt de tekst op pagina 17 weer met de code.
 klopt de "mirroring"-claim. Nadeel: alle event-aantallen en p-waardes veranderen,
 dus Tabel 3 opnieuw.
 
-**B. Huidige berekening houden en de tekst aanpassen.** De methodensectie zegt
-nu al "quantiles relative to the entire dataset for each location", en dat is
-precies wat de code doet. Dan moet alleen de "mirroring"-claim eruit en moet
-erbij dat de flooddrempel in de praktijk 25 tot 28 procent van de weken selecteert.
+**B. Huidige berekening houden en de tekst aanpassen.** Dan moet de
+"mirroring"-claim eruit en moet erbij dat de flooddrempel in de praktijk 44,6 procent van de weken selecteert bij threshold 0,5.
+
+> **Correctie, 1 september 2026.** Hier stond eerst dat de methodensectie al
+> "quantiles relative to the entire dataset for each location" zegt en dat de code
+> precies dat doet. **Dat laatste is onjuist.** De referentie is
+> `data.isel(valid_time=slice(begin, end))`, dus de dagelijkse reeks van de periode,
+> 5479 dagen. Niet de volledige dataset van 10958. Route B leunde dus op een zin die
+> iets anders beschrijft dan er draait, en die zin moet gecorrigeerd worden. Zie
+> T-29 punt 5.
 
 Route B verandert geen cijfers. Route A is methodologisch schoner. Beide vragen
 een aanpassing in de tekst, want zoals het er nu staat is het niet juist.
 
 Hoort bij R4-01, want dat punt gaat over de onderbouwing van precies deze
 drempels.
+
+### Hoe dit ligt bij threshold 0,5
+
+Gemeten over alle 48 locaties en beide periodes, bron
+`results/2026-09-01_threshold_selectivity/`:
+
+| | boven flooddrempel | onder droogtedrempel | nominaal | ratio |
+|---|---|---|---|---|
+| threshold 1 | 26,2% (17,5 tot 36,0) | 15,1% (2,9 tot 18,4) | 15,87% | 1,74 |
+| threshold 0,5 | 44,6% (33,3 tot 55,7) | 35,8% (19,8 tot 41,7) | 30,85% | 1,25 |
+
+Twee dingen die bij 0,5 anders liggen dan hierboven beschreven:
+
+1. **De asymmetrie is kleiner**, ratio 1,25 in plaats van 1,74. Het argument dat
+   de flooddrempel de droogtedrempel niet spiegelt blijft staan, maar het is minder
+   groot dan de threshold-1 cijfers suggereren.
+2. **De droogtekant overschiet nu ook.** 35,8 procent waar `norm.cdf(-0.5)` 30,85
+   voorschrijft, bijna vijf procentpunt te veel. Bij threshold 1 klopte die kant
+   wel, 15,1 tegen 15,87. Dit is dus niet zuiver een floodprobleem meer.
+   **Oorzaak niet vastgesteld.** Vermoeden, niet gemeten: de vorm van de gammafit
+   per kalenderweek wijkt in het midden van de verdeling meer van normaal af dan
+   in de staart. Wie hier in de tekst een uitspraak over doet moet het eerst
+   narekenen.
+
+### Doorgerekend op 0,5, en de weging verschuift
+
+Bron: `results/2026-09-01_reference_grid/`, 384 runs, controlecel exact gelijk aan
+de gepubliceerde berekening.
+
+**Het cijfermatige argument tegen de reparatie bestaat bij 0,5 niet.** Significante
+runs van de 96, Monte Carlo:
+
+| | huidige berekening | reparatie |
+|---|---|---|
+| threshold 1 | 20 | 2 |
+| threshold 0,5 | 90 | **89** |
+
+Drie locaties verliezen hun significantie, twee winnen er een.
+
+**En de reparatie doet wél wat hij belooft, alleen niet volledig.** Afwijking van
+de nominale 30,85 procent, per locatie over 96 runs:
+
+| | floodweken | droogteweken | onbalans tussen de zijdes |
+|---|---|---|---|
+| huidige berekening | 13,80 punten | 5,38 punten | 9,17 punten |
+| reparatie | **0,02 punten** | 5,38 punten | **5,37 punten** |
+
+De onbalans wordt bijna gehalveerd. Route A is dus beter geijkt dan route B, niet
+alleen anders. Wat er overblijft is de droogtezijde, en dat is een los probleem.
+
+### Waarom de droogtezijde bij 0,5 overschiet
+
+Gemeten op drie locaties, periode 1:
+
+| locatie | mediaan SRI | < -0,5 | > +0,5 | < -1 | > +1 |
+|---|---|---|---|---|---|
+| nominaal | 0,00 | 30,85 | 30,85 | 15,87 | 15,87 |
+| Aschach | -0,15 | 33,80 | 27,42 | 14,80 | 15,31 |
+| Krapowice | -0,16 | 36,73 | 28,06 | 16,33 | 17,22 |
+| Maastricht | -0,06 | 33,80 | 30,87 | 17,09 | 15,31 |
+
+De SRI ligt links van nul. Daarom vallen er te veel weken onder -0,5 en te weinig
+boven +0,5. Bij -1 is het effect weg, en bij Aschach zelfs iets de andere kant op.
+De onderste staart is dus niet dikker, alleen de band tussen -0,5 en -1 is voller.
+Bij threshold 1 vielen de twee fouten tegen elkaar weg, en daarom leek die kant
+daar goed geijkt. Dat was hij niet, hij kwam goed uit.
+
+**Oorzaak niet vastgesteld.** Aanknopingspunt uit de meting: de gammafit gebeurt
+per kalenderweek en heeft 14,8 waardes per fit, met de locatieparameter op nul
+vast. Vermoeden, niet gemeten: een MLE-gammafit op zo weinig punten wordt door de
+hoge waardes omhoog getrokken, waardoor de gefitte mediaan boven de
+steekproefmediaan komt en de SRI systematisch negatief uitvalt. Te toetsen tegen
+een empirische variant of een grotere fitsteekproef. Dat is nieuw werk.
+
+Dit raakt ook T-01, want het betekent dat de drempel van 0,5 een slechter geijkte
+droogtezijde heeft dan 1. Materiaal voor de gevoeligheidsanalyse van R4-01.
 
 ---
 
@@ -462,3 +578,225 @@ op alle zes de cellen 1,0000 staat.
 Wat nog niet vastgesteld is: of dit regulering in de werkelijkheid is, of de
 manier waarop EFAS/LISFLOOD die regulering modelleert. Dat onderscheid doet uit
 voor hoe je het in de tekst opschrijft.
+
+---
+
+## D-13 De drempels worden per periode opnieuw bepaald
+
+**Status: open. Beslissing voor Floris. Raakt de vergelijking tussen de periodes.**
+**Doorgerekend op 1 september 2026**, zie `results/2026-09-01_reference_grid/`.
+Bij ijking per periode lijken de twee periodes bijna identiek, 35,9 tegen 35,6
+procent droogteweken. Bij een gemeenschappelijk ijkpunt blijkt periode 2 fors
+droger, 29,0 tegen 40,4 procent. Mediaan verschil tussen de periodes per locatie:
+1,8 procentpunt bij ijking per periode, 13,4 bij een gemeenschappelijk ijkpunt,
+en bij 20 van de 48 locaties meer dan 15 punten. Rostov gaat van 3,7 naar 64,5
+procent droogteweken. Route A kost drie locaties hun significantie, allemaal
+gereguleerde rivieren in periode 1.
+**Gevonden 24 augustus 2026, bij het natrekken van P-02.**
+
+### Wat er gebeurt
+
+Zowel de flooddrempel als de droogtedrempel wordt binnen elke periode apart
+bepaald:
+
+- `transform_to_quantiles(runoff_max_weekly, runoff_slice_time_location)` waarbij
+  `runoff_slice_time_location` alleen de 5479 dagen van díe periode bevat
+- `SRI_calculate` fit de gammaverdeling per kalenderweek, ook alleen binnen die
+  periode
+
+Beide periodes krijgen dus hun eigen ijkpunt. Een flood in periode 2 is
+gedefinieerd ten opzichte van periode 2, niet ten opzichte van een gemeenschappelijke
+standaard.
+
+### Hoe groot is dat
+
+De afvoer verschilt substantieel tussen de periodes. Verschuiving van de 84e
+percentiel van periode 1 naar periode 2, over 48 locaties:
+
+| | |
+|---|---|
+| mediane verschuiving | −8,6% |
+| bereik | −33,8% tot +119,7% |
+| lager in periode 2 | 34 van 48 |
+| verschuiving groter dan 10% | 32 van 48 |
+| mediane verschuiving van de mediane afvoer | −9,4% |
+
+Grootste gevallen:
+
+| rivier | locatie | 84e perc. p1 | p2 | |
+|---|---|---|---|---|
+| Tagus | La Bazagona | 34,2 | 75,2 | +119,7% |
+| Tagus | Vila Velha de Rodao | 319,2 | 529,6 | +65,9% |
+| Tagus | Toledo | 63,7 | 101,3 | +58,9% |
+| Don | Rostov - Dov | 1403,4 | 928,8 | −33,8% |
+| Don | Kochetovskaya | 1166,8 | 799,7 | −31,5% |
+| Dnieper | Krementsjoek | 2316,3 | 1599,4 | −30,9% |
+
+### Waarom dit uitmaakt
+
+Op de Don is een flood in periode 2 een ruim 30 procent lagere afvoer dan een
+flood in periode 1. Op de Tagus meer dan het dubbele de andere kant op. Die
+verschuiving wordt door de per-periode normalisatie volledig weggenomen.
+
+Het artikel vergelijkt de twee periodes met elkaar. Een uitspraak als "de
+samenhang tussen droogte en flood is veranderd tussen 1995-2009 en 2010-2024"
+vermengt daarmee twee dingen: een verandering in de samenhang, en een
+verandering in het afvoerregime zelf. Bij 32 van de 48 locaties is die tweede
+component groter dan tien procent.
+
+### Twee routes
+
+**A. Gemeenschappelijke referentie over de volledige 30 jaar.** Eén drempel per
+locatie, geldig voor beide periodes. Dan meet het verschil tussen de periodes ook
+werkelijk een verschil, en wordt een trend in de afvoer zichtbaar in de
+event-aantallen in plaats van weggepoetst. Nadeel: alle cijfers veranderen.
+
+**B. Per periode houden en het expliciet opschrijven.** Verdedigbaar als je
+bedoelt "een flood zoals die in die periode voorkwam", dus relatief aan het
+regime van dat moment. Dat is een legitieme keuze voor een studie naar samenhang
+in plaats van naar trends. Voorwaarde: het moet in de methodensectie staan, met
+de constatering dat de drempels tussen de periodes verschuiven en met hoeveel.
+Zonder die toelichting leest de lezer de vergelijking anders dan hij bedoeld is.
+
+Route B vraagt geen herberekening. Route A verandert alles maar maakt de
+tweeperiodenvergelijking interpreteerbaar.
+
+Hoort bij R4-01 en bij elke passage waarin de twee periodes tegen elkaar worden
+afgezet.
+
+### Doorgerekend, 1 september 2026
+
+Bron: `results/2026-09-01_reference_grid/`. Aandeel weken per periode, gemiddeld
+over 48 locaties, `quantile_reference="daily"`:
+
+| ijking | periode | droogteweken | floodweken |
+|---|---|---|---|
+| per periode | 1 | 35,9% | 44,3% |
+| per periode | 2 | 35,6% | 45,0% |
+| volle 30 jaar | 1 | 29,0% | 48,3% |
+| volle 30 jaar | 2 | 40,4% | 40,9% |
+
+Bij ijking per periode lijken de twee periodes bijna identiek. Bij een
+gemeenschappelijk ijkpunt blijkt periode 2 aanzienlijk droger.
+
+Verschil tussen de periodes per locatie, in procentpunten droogteweken:
+
+| ijking | mediaan | boven 15 punten | grootste |
+|---|---|---|---|
+| per periode | 1,8 | 0 van 48 | 13,3 bij Dnipro |
+| volle 30 jaar | **13,4** | **20 van 48** | **60,8 bij Rostov** |
+
+De Don is het duidelijkst: Rostov van 3,7 procent droogteweken in periode 1 naar
+64,5 in periode 2, Kochetovskaya van 4,8 naar 62,1, Nikolaevskaya van 6,1 naar
+60,8. Cherson op de Dnieper van 0,0 naar 39,4, dus daar zijn in periode 1 nul
+droogtes bij een gemeenschappelijk ijkpunt.
+
+**Dat is dit punt in cijfers.** De per-periode normalisatie haalt precies de
+verandering weg die het artikel wil laten zien.
+
+**Wat route A kost.** Drie locaties verliezen hun significantie bij
+`quantile_reference="daily"`, zes bij de variant van P-02. Nul winnen er een. Het
+zijn de gereguleerde rivieren in periode 1: Krementsjoek en de drie Don-locaties,
+plus bij de variant Vernon, Pora Wesfalica en Bremen.
+
+Of dat een verlies of een winst is, is een keuze en geen rekenkundig punt. Die
+locaties tellen nu mee als bewijs terwijl hun droogtedefinitie meebeweegt met het
+afvoerregime van de periode zelf.
+
+### Nog na te kijken
+
+De Tagus springt eruit met plus 60 tot 120 procent op alle drie de locaties. Dat
+is een grote sprong voor vijftien jaar. Samen met de bevinding uit D-12, dat Vila
+Velha de Rodao maar 6,6 procent droogteweken haalt, ziet de Tagus eruit als een
+rivier waar de reanalyse of de regulering aandacht verdient voordat er conclusies
+aan worden gehangen.
+
+---
+
+## D-14 De copula draait op een andere drempel dan de ECA
+
+**Status: GESLOTEN 1 september 2026. Route C: beide op 0,5.** De copula stond al
+op 0,5, de ECA gaat mee. Zie taak T-54 voor het werk dat daaruit volgt.
+**Gevonden 1 september 2026, na de beslissing om de ECA op 1 te houden.**
+
+### Wat er aan de hand is
+
+De twee helften van het "twofold" raamwerk gebruiken een verschillende
+droogtedefinitie.
+
+| onderdeel | aanroep | droogte | levert |
+|---|---|---|---|
+| ECA | `threshold=1` | SRI < -1 | Tabel 3 |
+| copula | positioneel `0.5` | SRI < -0,5 | transitiekansen, Appendix D |
+
+De copula-aanroepen geven de argumenten positioneel mee:
+
+```python
+copula_func_drought_peak(data, lon, lat, begin, end, time_scale,
+                         X, Y, flood_score, threshold, period_after_event, ...)
+copula_func_drought_peak(data, nearest_lon, nearest_lat, first_begin, first_end,
+                         '1W', X, Y, 0.9, 0.5, 4, ...)
+```
+
+Dus `flood_score=0.9` en `threshold=0.5`. Dat geldt voor alle zes de
+copula-aanroepen, in cel 30, 31 en 35.
+
+### Wat de drempel daar precies doet
+
+In `copula_func_drought_peak` en `copula_func_mean_drought_severity` wordt
+`threshold` alleen gebruikt voor `Intensity_calc`, en daarvan wordt vervolgens
+uitsluitend `Drought_Intensity` gebruikt. `Flood_Intensity` wordt wel toegekend
+maar nooit gelezen.
+
+Gevolg: de drempel bepaalt in de copula **alleen welke droogtes meetellen**. De
+floodkant is daar continu, want die loopt via `quantile_max_value`, het hoogste
+floodquantiel in de vier weken na het droogte-einde, zonder drempel.
+
+Met 0,5 telt de copula ongeveer 83 droogtes per locatie, met 1 zouden dat er
+ongeveer 53 zijn.
+
+### Het manuscript beschrijft 0,5, niet 1
+
+Pagina 17 heeft één definitiesectie, en die geldt in de tekst voor het hele
+artikel:
+
+> "a flood is defined when run-off exceeds the 69th quantile, mirroring the
+> drought threshold (the 69th quantile corresponds to a Z-score of 0.5)"
+
+Ook het bijschrift van Figuur 3 en de discussie noemen SRI < -0,5 en de 69e
+quantile. De tekst klopt dus met de copula en niet met de ECA.
+
+### Drie routes
+
+**A. Zo laten en het verschil expliciet verantwoorden.** Verdedigbaar, en er is
+een inhoudelijk argument: de ECA toetst of samenvallen vaker gebeurt dan toeval
+en heeft baat bij een conservatieve, conventionele droogtedefinitie. De copula
+schat een afhankelijkheidsstructuur en heeft steekproefomvang nodig. Met 53 in
+plaats van 83 droogtes wordt een bivariate fit dunner. Voorwaarde: het staat
+expliciet in de methodensectie, met deze reden, en Figuur 3 en de discussie
+worden gesplitst naar welk onderdeel ze beschrijven.
+
+**B. Beide op 1.** Consistent en het makkelijkst uit te leggen. Betekent de
+copula opnieuw draaien, dus nieuwe transitiekansen en een nieuwe Appendix D, met
+ongeveer een derde minder droogte-events voor de fit. Effect nog niet nagerekend.
+
+**C. Beide op 0,5.** Dan klopt de tekst zoals hij nu staat, maar dan gaat de ECA
+naar 45 van de 48 significant en herroept dat de beslissing van 1 september.
+
+Route A vraagt geen herberekening, alleen tekst. Route B vraagt een run en een
+nieuwe appendix.
+
+### Waarom dit een reviewervraag kan worden
+
+R4-01 vraagt om onderbouwing van de drempels. Twee verschillende drempels binnen
+één raamwerk, waarvan er één niet in de methodensectie staat, is precies het
+soort ding waar dat punt over gaat. Route A is verdedigbaar maar alleen als het
+er ook echt staat.
+
+### Wat níet hoeft te veranderen
+
+`X = [1, 2]` voor drought peak en `X = [0.5, 1]` voor mean severity zijn de
+grenzen voor minor en severe drought binnen de copula, beschreven op pagina 22.
+`flood_score = 0.9` is het vaste floodquantiel in `fit_copula`. Alle drie staan
+los van de event-drempel en hoeven niet mee. Ze bevatten wel toevallig ook 0,5 en
+1, dus in de tekst moeten ze duidelijk van de drempel onderscheiden worden.

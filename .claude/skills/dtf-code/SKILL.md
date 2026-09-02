@@ -80,6 +80,14 @@ herimplementatie. De drie echte keuzes zijn beslecht met bewijs uit het notebook
 hoort vanaf de start van de droogte), `monte_carlo_p_value` uit cel 49,
 `fit_copula` uit cel 62. Die laatste twee wachten nog op bevestiging.
 
+**De werklijst staat in `docs/todo.md`.** Dat is het overzicht van al het
+openstaande werk voor de revisie, met de reviewerpunten, de openstaande
+beslissingen en de voorstellen als bron. Lees hem aan het begin van een sessie en
+werk hem aan het eind bij: status aanpassen, een taak die klaar is naar het
+laatste blok met de datum erbij. Een nieuwe bevinding gaat eerst naar
+`open-decisions.md` of `proposed-changes.md` en daarna als taak naar de werklijst.
+De werklijst vervangt die twee registers niet, hij verwijst ernaar.
+
 **Twee registers, houd ze gescheiden.** `docs/open-decisions.md` gaat over wat
 uit de code of de data komt. `docs/proposed-changes.md` gaat over aanpassingen
 die Floris zelf voorstelt. Een voorstel daar met status `voorgesteld` wordt niet
