@@ -129,6 +129,26 @@ def extract_events(data_array, SRI_Values, quantiles_weekly_max, period_after_ev
 
     Voor de p-waardes maakt dit niets uit, quantile_max_value zit niet in dat
     pad. Voor de copula-kant wel, zie T-11.
+
+    Drie reparaties op 2 september 2026, goedgekeurd door Floris, zie
+    CHANGELOG-methodology.md. Deze veranderen cijfers:
+
+    1. end_time. De einddetectie eiste valid_time > starttijd, waardoor bij een
+       event van precies een week de eigen index afviel en het einde een week te
+       laat lag. Uitputtend aangetoond over alle 1024 patronen van tien weken:
+       elk eenweeks event fout, elk langer event goed. Een derde van de droogtes
+       duurt een week, en end_time is het matching-anker van de ECA.
+    2. duration_weeks. Was de tijdspanne einde min start, dus nul voor een
+       eenweeks event, en is nu een telling in weken. Zonder die omzetting zou
+       de reparatie van end_time eenweekse droogtes een duur van nul geven, een
+       mean_drought_severity van NaN, en daarmee zouden ze uit de copula vallen.
+    3. quantile_max_value. Het venster was slice(einde, einde + peak_window],
+       aan beide kanten inclusief: vijf weekwaardes waarvan de eerste de laatste
+       week van de droogte zelf is. Het manuscript zegt "within four weeks after
+       a drought ends" en de matching gebruikt (einde, einde + venster]. Nu doet
+       dit veld hetzelfde: strikt na het einde, tot en met venster weken erna.
+       Eindigt een event op de laatste week van de reeks, dan is er niets na te
+       meten en is de waarde NaN. De copula filtert die er al uit.
     """
     peak_window = period_after_event if event_peak_window is None else event_peak_window
     crossing_indices = np.where(
@@ -137,35 +157,36 @@ def extract_events(data_array, SRI_Values, quantiles_weekly_max, period_after_ev
     crossing_times = data_array.valid_time.values[crossing_indices]
     start_times, end_times, max_intensities = [], [], []
     durations, drought_peak, quantile_max_value, mean_severity = [], [], [], []
+    tijd_as = quantiles_weekly_max["valid_time"]
     for time in crossing_times:
+        # >= en niet >: de starweek zelf mag het einde zijn, anders krijgt een
+        # event van een week het einde van het eerstvolgende gat erachter
         nz = np.where(
             (data_array.shift(valid_time=-1, fill_value=0) == 0)
-            & (data_array.valid_time.values > time)
+            & (data_array.valid_time.values >= time)
         )[0]
         nz = nz[0] if len(nz) > 0 else len(data_array.valid_time) - 1
         event = data_array.sel(
             valid_time=slice(time, data_array.coords["valid_time"].values[nz])
         )
+        eind = event.valid_time.values[-1]
         start_times.append(event.valid_time.values[0])
-        end_times.append(event.valid_time.values[-1])
+        end_times.append(eind)
         max_intensities.append(event.max().values)
-        dur = (
-            event.valid_time.values[-1] - event.valid_time.values[0]
-        ).astype("timedelta64[W]") / np.timedelta64(1, "W")
+        # telling in weken, niet de tijdspanne: een event van een week duurt 1
+        dur = (eind - event.valid_time.values[0]).astype(
+            "timedelta64[W]") / np.timedelta64(1, "W") + 1
         durations.append(dur)
         drought_peak.append(
             SRI_Values.sel(
-                valid_time=slice(event.valid_time.values[0], event.valid_time.values[-1])
+                valid_time=slice(event.valid_time.values[0], eind)
             ).max().values
         )
-        quantile_max_value.append(
-            quantiles_weekly_max.sel(
-                valid_time=slice(
-                    event.valid_time.values[-1],
-                    event.valid_time.values[-1] + np.timedelta64(peak_window, "W"),
-                )
-            ).max().values
-        )
+        # strikt na het einde van het event, zelfde regel als de matching
+        na_event = quantiles_weekly_max.where(
+            (tijd_as > eind) & (tijd_as <= eind + np.timedelta64(peak_window, "W")),
+            drop=True)
+        quantile_max_value.append(na_event.max().values if na_event.size else np.nan)
         mean_severity.append(float(event.max().values) / float(dur) if dur else np.nan)
     return xr.Dataset(
         {
