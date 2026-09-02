@@ -50,15 +50,18 @@ def flood_peak_after_drought(quantiles_weekly_max, end_times, weeks):
     """Hoogste runoff-quantiel in het venster na de droogte, de laatste droogteweek
     niet meegeteld.
 
-    BESLUIT: dit is de gecorrigeerde versie van quantile_max_value, zie R-02. De
-    berekening in extract_events start de slice op de laatste week van de droogte
-    zelf, en omdat .sel aan beide kanten inclusief is telt dat venster vijf
-    weekpunten. Pagina 19 van het manuscript zegt vier weken na afloop. Deze versie
-    telt er vier en bevat geen droogteweek meer, en sluit daarmee ook aan op
-    calculate_rolling_max, die de eigen week ook uitsluit.
+    BESLUIT: de gecorrigeerde versie van quantile_max_value, zie R-02.
 
-    Hoort thuis in extract_events. Staat hier tijdelijk omdat pipeline.py
-    niet-gecommitte wijzigingen bevat en de twee anders in één commit belanden.
+    BIJGEWERKT 2 september 2026, ECA-review (branch eca-endtime-fix): de
+    reparatie zit nu OOK in extract_events zelf, samen met de reparatie van
+    end_time. Die laatste is hier relevant: tot die commit lag end_time van elk
+    eenweeks event een week te laat, een derde van de droogtes, en dan stond ook
+    dit venster een week te laat. Alles wat voor die commit met deze functie is
+    berekend draagt die verschuiving, zie CHANGELOG-methodology.md.
+
+    Deze functie geeft nu exact hetzelfde als drought_events["quantile_max_value"]
+    en blijft alleen staan omdat de scripts 20, 22 en 25 hem aanroepen. Nieuw werk
+    hoort het veld uit extract_events te gebruiken.
     """
     out = np.empty(len(end_times))
     for i, end in enumerate(end_times):
@@ -72,15 +75,22 @@ def flood_peak_after_drought(quantiles_weekly_max, end_times, weeks):
 def mean_severity_per_week(max_intensity, duration_weeks):
     """Gemiddelde droogte-severity per week.
 
-    BESLUIT: gecorrigeerde versie van mean_drought_severity, zie R-03. De
-    berekening in extract_events deelt door einde min begin, en dat is een week te
-    kort: een droogte over twee weekpunten wordt door 1 gedeeld. Bij één weekpunt
-    wordt het delen door nul en verdwijnt het event. Hier wordt gedeeld door het
-    aantal weekpunten, dus duur plus één.
+    BESLUIT: gecorrigeerde versie van mean_drought_severity, zie R-03.
 
-    Hoort thuis in extract_events, zie de opmerking bij flood_peak_after_drought.
+    BIJGEWERKT 2 september 2026, ECA-review (branch eca-endtime-fix):
+    duration_weeks uit extract_events is sinds die commit al een telling in
+    weekpunten in plaats van de tijdspanne einde min begin. De plus één die hier
+    stond zou daar bovenop dubbel corrigeren: een eenweekse droogte zou door twee
+    worden gedeeld. De deling is nu rechtstreeks door duration_weeks, en de
+    uitkomst is identiek aan drought_events["mean_drought_severity"]. De functie
+    blijft staan omdat de scripts 20, 22 en 25 hem aanroepen; nieuw werk hoort
+    het veld uit extract_events te gebruiken.
+
+    LET OP: alleen aanroepen met duration_weeks uit de gerepareerde
+    extract_events. Wie oude, voor de commit weggeschreven duration-waardes
+    doorgeeft deelt een week te kort.
     """
-    return np.asarray(max_intensity, dtype=float) / (np.asarray(duration_weeks, dtype=float) + 1.0)
+    return np.asarray(max_intensity, dtype=float) / np.asarray(duration_weeks, dtype=float)
 
 
 def fit_best_distribution(data):

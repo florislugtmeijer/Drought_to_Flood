@@ -180,9 +180,21 @@ onderschatting was, en dat moet eerlijk in de Revision Notes.
 - het volledige gevoeligheidsraster, 12000 runs, loopt
 - Tabel 3 zodra T-54 wordt uitgevoerd, met de gerepareerde code
 - de conceptteksten en figuren van T-58, zodra het nieuwe raster er is
-- **T-11 let op:** `duration_weeks`, `mean_drought_severity` en
-  `quantile_max_value` zijn alle drie veranderd. De copula-kant moet op de
-  gerepareerde `extract_events` bouwen, niet op de notebook-versie
+- **T-11 let op, en dit is dringend.** De copula-review van vandaag heeft R-02 en
+  R-03 onafhankelijk ook gevonden en gecompenseerd in `src/dtf/copula.py`, met
+  `flood_peak_after_drought` en `mean_severity_per_week`, expliciet als
+  tijdelijke plek gemarkeerd. Twee gevolgen van de ECA-reparatie:
+  1. `mean_severity_per_week` deelde door duur plus één. Nu `duration_weeks` uit
+     `extract_events` zelf al een telling is, zou dat dubbel corrigeren. De
+     functie deelt daarom nu rechtstreeks door de duur, en beide helpers geven
+     bewezen exact dezelfde waardes als de velden uit de gerepareerde
+     `extract_events`. Scripts 20, 22 en 25 blijven werken
+  2. **de copula-runs van vandaag zijn gedraaid met de oude `end_time`.** Voor
+     een derde van de droogtes, de eenweekse, stond het floodvenster daardoor
+     alsnog een week te laat, ook ná de R-02-correctie, want die corrigeerde het
+     venster ten opzichte van een anker dat zelf fout was.
+     `results/2026-09-02_copula_corrected/` en de bootstrap moeten dus opnieuw
+     zodra dit gemerged is
 
 ---
 
