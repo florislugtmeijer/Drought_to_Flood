@@ -271,11 +271,34 @@ Floris. Dit is het kritieke pad.
 
 ### T-11. Copulakeuze en betrouwbaarheidsintervallen
 - herkomst: **Reviewer #4** (R4-03)
-- status: open
+- status: **loopt**, bijgewerkt 2 september 2026
 - twee dingen: per locatie en variabelenpaar rapporteren welke copula AIC koos,
   en betrouwbaarheidsintervallen bij de transitiekansen
-- de bootstrap of vergelijkbare methode bestaat nog niet, dus dit is nieuw werk
 - prioriteit: hoog
+
+**Eerste helft is klaar.** `results/2026-09-01_copula_selection/` bevat de gekozen
+familie, de parameter en de AIC voor alle 192 cellen, plus het AIC-verschil met de
+nummer twee en `k_major`. Die informatie werd al berekend en weggegooid, want de
+aanroeplussen in cel 30 en 35 pakken alleen de figuren.
+
+**Onderweg liep de review vast op iets groters.** De code sloeg de stap `F_Y` uit de
+formule op pagina 21 over, waardoor de conditionele curve op de rangschaal stond en
+de unconditionele op de runoff-quantielschaal, terwijl ze in de figuren op dezelfde
+as staan. Gerepareerd, samen met het floodvenster en de duur in
+`mean_drought_severity`. Zie `CHANGELOG-methodology.md` van 2 september en
+`results/2026-09-02_copula_corrected/`.
+
+Gevolg voor de tekst: vier passages draaien van teken om, zie D-17. De vergelijking
+van milde tegen zware droogte verandert niet.
+
+**Tweede helft staat nog open.** De bootstrap. Ontwerp ligt klaar: niet-parametrisch
+op de event-paren, B is 2000, familie herselecteren per replicatie met de vaste
+familie als tweede kolom, percentiel-intervallen puntsgewijs, en het verschil tussen
+mild en zwaar apart gebootstrapt. Plus een circulaire blokbootstrap als controle op
+seriele afhankelijkheid.
+
+Rekentijd gemeten: 59 minuten voor alle 48 locaties, 118 met de blokcontrole erbij.
+De beperking tot een deelverzameling locaties uit het G-blok is daarmee niet nodig.
 
 ### T-12. Validatie tegen meetreeksen
 - herkomst: **Reviewer #4** (R4-02)
@@ -600,6 +623,13 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 - status: open
 - `pyproject.toml` en `uv.lock` ontbreken. `vinecopulas` is niche, die versie moet
   vast, anders is dit over een jaar niet meer te draaien. Nodig voor T-11
+- **2 september 2026.** De API van `vinecopulas` is inmiddels uitgezocht en
+  vastgelegd in `results/2026-09-01_copula_timing/README.md`. De runs draaien met
+  `uv run --with vinecopulas --no-project`, dus de versie ligt nog niet vast. Twee
+  dingen om mee te nemen bij het pinnen: `bestcop` fit op maximum likelihood en de
+  familie-nummering is 1 Gaussian, 2 tot 5 Gumbel in vier rotaties, 6 tot 9 Clayton,
+  10 Frank, 11 tot 14 Joe, 15 Student. En de `CDF` van het package klopt niet voor
+  Clayton met een parameter onder ongeveer -0,4, wat 12 van de 192 cellen raakt
 
 ### T-45. `manifest.yaml` toevoegen aan de bestaande resultaatmappen
 - herkomst: werkafspraak uit dtf-code
@@ -610,7 +640,15 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 
 ### T-46. Copula-kant en figuurcompositie overzetten naar `src/dtf/`
 - herkomst: intern, uit `docs/function-provenance.md` · blokkeert T-11 (R4-03) en T-16 (R1-09)
-- status: open
+- status: **grotendeels gedaan, 2 september 2026.** De rekenkant staat in
+  `src/dtf/copula.py`: `fit_copula`, beide `copula_func_*`, `calculate_rolling_max`
+  uit cel 12 en `fit_best_distribution`. Geverifieerd tegen de eerdere run,
+  bit-identiek op de afronding na. T-11 is daarmee niet meer geblokkeerd.
+  **Wat nog rest is de figuurcompositie**, `create_page` en `process_img`, en dat
+  is wat T-16 en R1-09 nodig hebben. Let daarbij op: cel 30 en 35 roepen
+  `create_page` aan met drie argumenten terwijl cel 31 hem met vier definieert, en
+  cel 31 staat daartussen. In de uitvoervolgorde van de notebook kan dat niet
+  allebei gewerkt hebben
 - `fit_copula`, `copula_func_drought_peak`, `copula_func_mean_drought_severity`
   en de figuren zitten nog in de notebook. De ECA-kant is compleet
 - blokkeert T-11 en T-16
