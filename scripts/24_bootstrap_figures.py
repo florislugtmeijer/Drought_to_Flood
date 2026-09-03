@@ -53,7 +53,7 @@ def band(ax, cel, hoeveelheid, colour, label):
 
 
 # ------------------------------------------------------------------ figuur 1
-voorbeeld = ("Ebro", "Tudela", "second", "drought_peak")
+voorbeeld = ("Ebro", "Haro", "second", "mean_drought_severity")
 if voorbeeld not in cellen:
     voorbeeld = cellen[0]
 fig, axes = plt.subplots(1, 2, figsize=(13, 5.2), constrained_layout=True)
@@ -113,4 +113,32 @@ for ax in axes[:, 0]:
     ax.set_ylabel("Severe minus minor drought", fontsize=10)
 fig.savefig(f"{FIG}/ci_per_river.png", dpi=170, facecolor="white")
 plt.close(fig)
-print(f"geschreven: drie figuren in {FIG}/", flush=True)
+# ------------------------------------------------------------------ figuur 4
+# sterkte en richting van de samenhang per cel: tau tegen de permutatie-p van de
+# copulafit, met de consensuscellen benoemd
+import csv as _csv
+dep = list(_csv.DictReader(open("results/2026-09-02_dependence_tests/dependence_tests.csv")))
+KOLS = ("tau_p", "hoeffd_p", "aic_perm_p", "cp_q6915_p")
+fig, ax = plt.subplots(figsize=(9.5, 7), constrained_layout=True)
+for r in dep:
+    tau, p = float(r["tau"]), float(r["aic_perm_p"])
+    ns = sum(1 for k in KOLS if float(r[k]) < 0.05)
+    kleur = RED if (ns >= 3 and tau < 0) else (GREEN if ns >= 3 else GREY)
+    ax.scatter(tau, -np.log10(max(p, 1e-4)), s=46 if ns >= 3 else 16,
+               color=kleur, alpha=0.9 if ns >= 3 else 0.45, zorder=3 if ns >= 3 else 2)
+    if ns >= 3:
+        per = "P1" if r["period"] == "first" else "P2"
+        ax.annotate(f'{r["river"]} {r["village"][:12]} {per}',
+                    (tau, -np.log10(max(p, 1e-4))), fontsize=7.5,
+                    xytext=(5, 3), textcoords="offset points")
+ax.axhline(-np.log10(0.05), color="black", lw=1, ls="--")
+ax.text(0.31, -np.log10(0.05) + 0.03, "p = 0.05", fontsize=8.5)
+ax.axvline(0, color="black", lw=0.8)
+ax.set_xlabel("Kendall's tau between drought severity and subsequent peak")
+ax.set_ylabel("$-\log_{10}$ p, permutation test on the copula fit")
+ax.set_title("Strength and direction of severity dependence, all 190 cells\n"
+             "large points: at least 3 of 4 tests below 0.05", fontsize=11)
+ax.grid(alpha=0.3)
+fig.savefig(f"{FIG}/dependence_overview.png", dpi=200, facecolor="white")
+plt.close(fig)
+print(f"geschreven: vier figuren in {FIG}/", flush=True)
