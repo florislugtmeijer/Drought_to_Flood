@@ -83,9 +83,9 @@ Dit is het zware blok. Vier van de zes vragen nieuw rekenwerk.
 | punt | wat | taak | rekenwerk |
 |---|---|---|---|
 | R4-01 | geen gevoeligheidsanalyse op de drempels | T-10 | ja, zwaarste punt |
-| R4-02 | geen validatie tegen meetreeksen | T-12 | ja, externe databron nodig |
+| R4-02 | geen validatie tegen meetreeksen | T-12 | nee meer, besloten 2 sep: verwijzen naar bestaande validatiestudies |
 | R4-03 | copulakeuze en betrouwbaarheidsintervallen niet gerapporteerd | T-11 | ja, bootstrap bestaat nog niet |
-| R4-04 | verlaagde transitiekans niet verklaard | T-13 | deels gedaan |
+| R4-04 | verlaagde transitiekans niet verklaard | T-13 | deels gedaan, besloten 2 sep: associatie, geen mechanisme |
 | R4-05 | lokale factoren niet gekwantificeerd | T-14 | hangt van de gekozen omvang af |
 | R4-06 | p-waardes in Tabel 3 afronden | T-15 | nee |
 
@@ -238,8 +238,23 @@ Floris. Dit is het kritieke pad.
 
 ### T-10. Gevoeligheidsanalyse over de drie parameters
 - herkomst: **Reviewer #4** (R4-01) · associate editor tilt dit boven de rest uit (AE-01)
-- status: **gedaan, 1 september 2026.** Cijfers, figuur en verantwoording in
-  `results/2026-09-01_sensitivity_grid/`. Changelog-entry staat er
+- status: **opnieuw gedraaid en klaar, 2 september 2026**, resultaten in
+  `results/2026-09-02_sensitivity_grid_endfix/`. 12000 runs, 500,5 minuten, nul
+  fouten. **201 van de 250 cel-periodes houden stand**, tegen 193 pre-fix. De
+  gepoolde ratio op de baseline gaat van 1,59 naar 1,82 bij venster 4 en van 3,36
+  naar 4,25 bij venster 1. De uiterste hoek wordt juist scherper, van 0,75 naar
+  0,49, dus het uitblijven van extreme floods na een droogte staat steviger.
+  README, twee figuren, conceptteksten en captions zijn bijgewerkt op de post-fix
+  cijfers
+- aanleiding voor de herrun: De ECA-review vond een
+  fout in de einddetectie van events: eenweekse events, een derde van de
+  droogtes, kregen een matching-anker dat een week te laat lag. Gerepareerd op
+  branch `eca-endtime-fix`, goedgekeurd door Floris, en het volledige raster
+  draait opnieuw naar `results/2026-09-02_sensitivity_grid_endfix/`. Gemeten op
+  de baseline: matches plus 15,5 procent, gepoolde ratio van 1,59 naar 1,82, de
+  fout drukte de samenhang dus systematisch omlaag. Zie de changelog van
+  2 september. De pre-fix run van 1 september blijft staan als vergelijking, en
+  de cijfers verderop in deze taak zijn de PRE-FIX cijfers, ter vergelijking
 - opzet: **volledig gekruist, 5 maal 5 maal 5 is 125 cellen, 12000 runs.** In twee
   delen gedraaid, eerst het vlak bij venster 4 plus de vensterlijn, daarna de rest
 - **de kop van het antwoord is een gepoolde toets over alle 48 locaties samen**,
@@ -268,6 +283,20 @@ Floris. Dit is het kritieke pad.
   te laag uit. Randomiseren op riviersniveau zou het oplossen, dat is niet gedaan
 - wat hieruit volgt: **T-58** voor de tekst, en T-17 kan nu uit
   `per_location_table.csv`
+
+### LET OP voor T-11: copula-runs van 2 september moeten opnieuw
+- de ECA-review van 2 september (branch `eca-endtime-fix`) heeft de einddetectie
+  in `extract_events` gerepareerd. De copula-runs van diezelfde dag,
+  `results/2026-09-02_copula_corrected/` en de bootstrap, zijn gedraaid met de
+  oude `end_time`: bij een derde van de droogtes stond het floodvenster daardoor
+  alsnog een week te laat, ook ná de eigen R-02-correctie, want die corrigeerde
+  ten opzichte van een anker dat zelf fout was
+- `mean_severity_per_week` in `src/dtf/copula.py` is aangepast, hij deelde door
+  duur plus één en dat zou met de gerepareerde `duration_weeks` dubbel
+  corrigeren. Beide helpers geven nu bewezen dezelfde waardes als de velden uit
+  `extract_events`. Scripts 20, 22 en 25 blijven werken, maar draai ze pas na een
+  merge met `eca-endtime-fix`, anders rekent de werkkopie gemengd
+- zie CHANGELOG-methodology.md, entry "2026-09-02 (tweede)"
 
 ### T-11. Copulakeuze en betrouwbaarheidsintervallen
 - herkomst: **Reviewer #4** (R4-03)
@@ -302,22 +331,50 @@ De beperking tot een deelverzameling locaties uit het G-blok is daarmee niet nod
 
 ### T-12. Validatie tegen meetreeksen
 - herkomst: **Reviewer #4** (R4-02)
-- status: open
-- eerst uitzoeken wat er beschikbaar is en voor welke locaties, dan pas
-  vergelijken. GRDC of nationale diensten, die databron zit nu niet in het project
-- realistisch: een deelverzameling locaties, niet alle 48. Wat niet gedekt wordt
-  moet in de tekst als beperking staan
-- prioriteit: hoog, en dit is het punt met de grootste kans dat het niet volledig
-  binnen de deadline past
+- status: **omvang teruggebracht, besloten 2 september 2026 door Floris en Paolo
+  per mail.** Geen eigen validatie tegen meetreeksen. In plaats daarvan
+  verwijzen naar bestaande validatiestudies, plus een beperking in de tekst
+- onderbouwing: een tweede dataset die vergelijkbaar is in dekking, periode en
+  definitie is er niet, en zonder dat zegt de vergelijking meer over het verschil
+  tussen de bronnen dan over onze resultaten. Paolo: "There are other studies
+  that validate GLOFAS, so we may add more reference to those, and explain that
+  it is out of scope for here"
+- referenties gezocht op 2 september 2026, zie
+  `review/referenties-r4-02-r4-04.md`. Twee daarvan staan in Journal of
+  Hydrology zelf, Hirpa et al. 2018 en Alfieri et al. 2020
+- wat er nog moet: de scopeparagraaf en de beperking schrijven, de referenties
+  in de literatuurlijst zetten, en de cijfers die we uit die artikelen citeren
+  in het artikel zelf nakijken
+- **eerst uitzoeken, vraag aan Floris:** staat er EFAS of GloFAS in de
+  methodesectie. Reviewer #4 citeert EFAS/LISFLOOD, Paolo schrijft GloFAS, de
+  skill `dtf-manuscript` schrijft ook GloFAS. In de repo komt GloFAS nergens
+  voor. De validatieliteratuur is per product anders, dus dit blokkeert de
+  definitieve referentielijst
+- prioriteit: hoog, maar het is geen rekenwerk meer, alleen schrijfwerk. Het
+  deadlinerisico dat hier eerst stond is daarmee weg
 
 ### T-13. Fysische interpretatie van de verlaagde transitiekans
 - herkomst: **Reviewer #4** (R4-04) · ook **Reviewer #1** (R1-08) en associate editor (AE-02)
-- status: loopt
+- status: loopt. **Richting besloten 2 september 2026 door Floris en Paolo per
+  mail: geen ancillary data, de claim wordt teruggebracht tot een associatie.**
+  Paolo: "the reasoning for a more limited message on the association/causation,
+  as you propose, seems appropriate"
 - de magnitude-test en de seizoenscontrole zijn hier het begin van het antwoord:
   bij de grootste floods is er geen samenhang, dus bij hoge floodquantielen is er
   niets om op te conditioneren
-- nog nodig: ofwel ancillary data die de oorzaak meet, bodemvocht of
-  infiltratiecapaciteit, ofwel de claim expliciet als associatie neerzetten
+- voor de richting van het mechanisme verwijzen we naar literatuur in plaats van
+  naar eigen data. Belangrijkste: Matanó et al. 2025 in HESS, droogte geeft
+  ongeveer 20 procent minder afvoerrespons op neerslag tijdens de droogte en nog
+  ongeveer 2 procent een jaar erna. Dat is precies het mechanisme dat de reviewer
+  aanwijst. Zie `review/referenties-r4-02-r4-04.md` blok C
+- Anderson et al. 2025 in HESS onderbouwt dat drempelkeuze en venstermaat de
+  gevonden transities sterk bepalen. Dat is een externe onderbouwing van onze
+  eigen sensitiviteitsresultaten, bruikbaar in de methodesectie en bij T-10
+- let op bij Muñoz-Castro et al. 2026: dat artikel is twee kanten op te
+  gebruiken, zie het referentiebestand. Niet in de brief zetten zonder overleg
+  met Paolo
+- nog nodig: de tekst zelf, elke passage die een mechanisme suggereert nalopen en
+  omzetten naar een associatie
 - de drie beperkingen uit `results/2026-08-23_flood_magnitude_test/README.md`
   moeten mee in de tekst, niet weggelaten
 
@@ -870,8 +927,8 @@ meer**. Dat is een schatting, geen planning.
 | AE-02 | overnemen als rode draad | verweven | geen los punt, bewaken bij R1-01, R1-07, R1-08 en R4-04 |
 | R4-01 | overnemen | week of meer | dit is het punt dat je niet kunt weigeren, en het meeste ligt al klaar. Alleen de venstergrootte is nog echt open |
 | R4-03 | eerste helft overnemen, tweede helft verkleinen | week of meer | de tabel met de gekozen copula per locatie en paar is goedkoop en overtuigend. De betrouwbaarheidsintervallen vragen een bootstrap die er niet is. Overweeg die voor een deelverzameling locaties, met de reden erbij |
-| R4-02 | verkleinen | week of meer | validatie voor een gemotiveerde deelverzameling in plaats van alle 48. Neem er expliciet gereguleerde locaties in mee, want dat is precies waar de reviewer op wijst. Wat niet gedekt is gaat als beperking in de tekst |
-| R4-04 | gedeeltelijk overnemen, mechanisme niet hard maken | dagen | er ligt al een empirisch antwoord: bij de grootste floods is er geen samenhang, dus bij hoge quantielen is er niets om op te conditioneren. Bodemvocht toevoegen is een nieuwe analyse. Voorstel: het empirische deel geven, expliciet zeggen dat het associatie is, en de drie beperkingen uit de magnitude-README meenemen |
+| R4-02 | **besloten 2 sep: niet overnemen, met onderbouwing** | dagen | geen eigen validatie. Verwijzen naar bestaande validatiestudies van het onderliggende product, waarvan twee in Journal of Hydrology zelf, en de rest als beperking in de tekst. Zie `review/referenties-r4-02-r4-04.md`. Het advies hieronder om een deelverzameling te valideren is hiermee vervallen |
+| R4-04 | **besloten 2 sep: gedeeltelijk overnemen, mechanisme niet hard maken** | dagen | er ligt al een empirisch antwoord: bij de grootste floods is er geen samenhang, dus bij hoge quantielen is er niets om op te conditioneren. Bodemvocht toevoegen is een nieuwe analyse. Voorstel: het empirische deel geven, expliciet zeggen dat het associatie is, en de drie beperkingen uit de magnitude-README meenemen |
 | R4-05 | terugbrengen in de tekst | dagen | de eerlijke lijn: wij noemen lokale factoren als mogelijke verklaring en kwantificeren ze niet, dus die claim moet zwakker. Wat je wel hebt, het reguleringspatroon op Dnieper en Tagus, is één gekwantificeerd voorbeeld en dat is meer dan de tekst nu doet |
 | ED-01 t/m ED-07 | overnemen | uren tot dagen | vormeisen, geen discussie mogelijk |
 
@@ -910,9 +967,12 @@ terugdraait en dat niets blokkeert:
 gerepareerde punten er meteen in. Niet in losse runs, want dan is niet meer te
 zeggen welk effect waar vandaan komt.
 
-**Parallel:** T-12 opstarten, want dat is het enige punt dat van iets buiten het
-project afhangt. Als de meetreeksen er niet tijdig zijn, weet je dat liever in
-week één dan in week zes.
+**Parallel:** vervallen op 2 september 2026. T-12 hing af van een externe
+databron en dat is nu juist het punt dat we niet meer doen. Wat ervoor in de
+plaats komt is schrijfwerk met de referenties uit
+`review/referenties-r4-02-r4-04.md`, en dat hangt van niets buiten het project
+af. Er blijft één externe afhankelijkheid over, en dat is de vraag aan Floris
+of de methodesectie EFAS of GloFAS noemt.
 
 **Als laatste:** de tekst. Blok C wacht op de cijfers uit T-10 en op T-31, en
 tekst herschrijven op cijfers die nog veranderen is werk dat je twee keer doet.
