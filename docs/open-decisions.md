@@ -992,6 +992,57 @@ Methodologie verandert niet, dit is een keuze voor een telcriterium dat in de te
 ontbrak. Wel een regel in `CHANGELOG-methodology.md` zodra de keuze valt, want de
 gepubliceerde tellingen veranderen.
 
+### Besluit 4 september 2026: C afgewezen
+
+Floris heeft C, het mediaancriterium bij +0,02, afgewezen. A blijft het voorstel en
+wacht op bevestiging. De onderbouwing van de afwijzing staat hier volledig, zodat
+hij in de Revision Notes en de brief aan de reviewers te gebruiken is.
+
+Waarom C niet, in vijf punten:
+
+1. **Geen onzekerheid.** C telt op puntschattingen. Reviewer #4 vraagt in R4-03
+   expliciet om betrouwbaarheidsintervallen bij de transitiekansen. Een telling die
+   die intervallen negeert, in hetzelfde artikel waar we ze toevoegen, is niet te
+   verdedigen.
+2. **De zware curve rust op bijna geen data.** Mediaan één droogte-event boven de
+   zware drempel per cel. Het verschil met de milde curve is dan vooral de vorm van
+   de gefitte copula, niet een waarneming. Een afstand van 0,02 tussen twee zulke
+   curves is ruis.
+3. **De tellingen houden geen stand.** Van de 24 cellen die C als toename aanwijst,
+   overleeft er 0 het bootstrapinterval bij quantiel 0,69, 1 het interval op een van
+   de drie niveaus, en 2 de onafhankelijkheidstoetsen. Zie de overlaptabel in
+   `results/2026-09-04_increase_criterion/report.md`.
+4. **De drempel is willekeurig.** De 0,02 volgt nergens uit. Bij 0,05 worden de
+   tellingen 0, 1, 2, 2. Een criterium waarvan de uitkomst zo sterk van een
+   ongefundeerde constante afhangt, hoort niet in de tekst.
+5. **De gepubliceerde tellingen zijn niet reproduceerbaar.** De oorspronkelijke
+   berekening had geen seed, en post-fix komt C op 5, 4, 7, 8 tegen 5, 6, 7, 9. C
+   vasthouden omdat het dicht bij de oude getallen komt, is oude getallen verdedigen
+   die we zelf niet meer kunnen maken.
+
+Wat er tegenover staat: onder A gaan de toenames van 27 naar 9, onder B naar 1. Dat
+is een forse terugname van de alinea op pagina 31. Zelf melden is een sterkere
+positie dan het door een reviewer laten vinden, en A houdt precies de locaties over
+waar het artikel al op leunt: Po, Ebro, Tagus, Danube.
+
+Concept voor de Revision Notes, Engels:
+
+> In the submitted version, the counts of locations with increased transition
+> probability (5, 6, 7 and 9) were based on visual inspection of the conditional
+> curves without a stated criterion. We were able to approximately reproduce them
+> with a threshold of +0.02 on the median difference between the major and the minor
+> curve, but this criterion ignores sampling uncertainty: the major curve typically
+> rests on a single drought event above the severity threshold, and none of the
+> locations counted this way show a difference whose 95% bootstrap interval excludes
+> zero. We have therefore replaced the counts by a criterion based on the four
+> dependence tests introduced in Section 2.4.2 [A], which reduces the number of
+> locations with a detectable increase to 1, 2, 2 and 4, and identifies 3 locations
+> with a detectable decrease. The paragraph on page 31 has been rewritten
+> accordingly.
+
+De haak [A] vervalt zodra A is bevestigd. Bij een andere keuze moet de laatste zin
+mee.
+
 ---
 
 ## D-20. De curve die per constructie de diagonaal is
