@@ -300,6 +300,14 @@ for k, naam in (("tau_p", "Kendall's tau"), ("rho_p", "Spearman's rho"),
     b = sum(1 for d in dep_s.values() if float(d[k]) < 0.05)
     A(f"| {naam} | {a} van {len(dep_r)} | {b} van {len(dep_s)} | {len(dep_r)*0.05:.1f} / {len(dep_s)*0.05:.1f} |")
 tau_r = np.array([float(d["tau"]) for d in dep_r.values()]); tau_s = np.array([float(d["tau"]) for d in dep_s.values()])
+gem_cellen = sorted(set(dep_r) & set(dep_s))
+tr_g = np.array([float(dep_r[c]["tau"]) for c in gem_cellen])
+ts_g = np.array([float(dep_s[c]["tau"]) for c in gem_cellen])
+r_pearson = float(np.corrcoef(tr_g, ts_g)[0, 1]) if len(gem_cellen) > 2 else np.nan
+zelfde_teken = float(np.mean(np.sign(tr_g) == np.sign(ts_g))) if len(gem_cellen) else np.nan
+sd_diff = float(np.std(ts_g - tr_g)) if len(gem_cellen) else np.nan
+n_s_med = int(np.median([int(dep_s[c]["n_events"]) for c in gem_cellen])) if gem_cellen else 0
+sd_ruis = float(np.sqrt(2 * (2 * n_s_med + 5) / (9 * n_s_med * (n_s_med - 1)))) if n_s_med > 2 else np.nan
 A("")
 A(f"Mediaan tau: referentie {np.median(tau_r):+.3f}, strikt {np.median(tau_s):+.3f}.")
 A("")
@@ -327,15 +335,46 @@ A(f"{len(sterk_r)-len(verloren)} sterk onder strikt en vallen er {len(verloren)}
 if verloren:
     A("Weggevallen: " + "; ".join(f"{c[0]} {c[1]} P{PER_NL[c[2]]} {PAIR_NL[c[3]]}" for c in sorted(verloren)) + ".")
 A("")
-A("Dat wegvallen is grotendeels een kwestie van macht, niet van richting: met half")
-A("zoveel events is een even sterke samenhang moeilijker van toeval te onderscheiden.")
-A("De tau-waardes zelf, zie de figuur, verschuiven weinig.")
+A("### Het is geen kwestie van macht alleen: het zijn andere cellen")
+A("")
+A("De voor de hand liggende verklaring is dat er met minder events minder macht is, en")
+A("dat de sterke cellen daardoor onder de drempel zakken. Dat klopt niet met de cijfers.")
+A("De cellen die onder strikt sterk zijn, zijn grotendeels **andere** cellen, en soms")
+A("met het omgekeerde teken.")
+A("")
+A(f"Over de {len(gem_cellen)} cellen die in beide analyses zitten:")
+A("")
+A(f"- de correlatie tussen tau bij 0,5 en tau bij 1,0 is **{r_pearson:+.2f}**")
+A(f"- het teken van tau is in **{zelfde_teken:.0%}** van de cellen hetzelfde, dus")
+A("  ongeveer wat je bij muntje opgooien zou krijgen")
+A(f"- de mediaan van |tau| is vergelijkbaar, {np.median(np.abs(tr_g)):.3f} tegen")
+A(f"  {np.median(np.abs(ts_g)):.3f}, dus de samenhang wordt niet zwakker, hij zit ergens anders")
+A("")
+A("Voorbeeld: Vistula bij Turon in periode 2 heeft tau -0,03 bij drempel 0,5 en +0,35")
+A("bij drempel 1,0. Danube bij Donji Milanovac in periode 1 gaat van +0,01 naar -0,23.")
+A("Twee van de achttien cellen die in de hoofdanalyse sterk waren, zijn dat ook onder")
+A("strikt: Vistula Turon periode 1 en Rhine Straatsburg periode 2.")
+A("")
+A("**Hoeveel hiervan is ruis?** De standaardafwijking van het verschil tussen de twee")
+A(f"tau's is {sd_diff:.3f}. Als de twee analyses onafhankelijke steekproeven waren")
+A(f"zonder enige echte samenhang, zou je bij de mediane omvang van {n_s_med} events al")
+A(f"ongeveer {sd_ruis:.3f} verwachten. Het gemeten verschil is dus maar iets groter dan")
+A("pure toevalsvariatie. Dat is de eerlijke lezing van beide analyses samen: de")
+A("tau-waardes per cel zijn grotendeels ruis, en welke cellen boven de drempel uitkomen")
+A("hangt sterk af van de definitiekeuze.")
+A("")
+A("**Dit is een waarschuwing bij de hoofdanalyse, niet alleen bij deze variant.** De")
+A("twaalf sterke cellen daar zijn met vier toetsen onderbouwd en de clusters waren")
+A("ruimtelijk samenhangend, wat tegen pure toeval pleit. Maar ze overleven een")
+A("verandering van de droogtedrempel niet. Wie ze in het artikel noemt, moet erbij")
+A("zetten dat ze aan die drempel hangen. Voor Po Piacenza en Ebro, de locaties die het")
+A("artikel vooraf aanwijst, geldt dat het bewijs bij 0,5 staat en bij 1,0 verdwijnt.")
 A("")
 A(fig(f"{FIG}/strict_tau_compare.png",
       "Figuur 2. Kendall's tau per cel, referentie (horizontaal) tegen strikt (verticaal). "
-      "Gekleurd: cellen die in minstens een van beide analyses sterk zijn. De richting blijft "
-      "in vrijwel alle cellen gelijk; de spreiding rond de diagonaal is het effect van de "
-      "kleinere steekproef."))
+      "Gekleurd: cellen die in minstens een van beide analyses sterk zijn. De punten liggen "
+      "niet langs de diagonaal maar in een wolk: de samenhang per cel is niet stabiel onder "
+      "de drempelkeuze."))
 A("")
 
 # ------------------------------------------------------------------ 6
@@ -392,10 +431,13 @@ A("laat de rivier nog in milde droogte achter. Voor de tekst betekent dit dat de
 A("\"conditioneren op een droogte verhoogt de kans licht\" alleen geldt bij de")
 A("drempel van de hoofdanalyse en expliciet aan die drempel gekoppeld moet worden.")
 A("")
-A("**De severity-afhankelijkheid wordt dunner, niet anders.** De richting per cel")
-A("blijft, de tau's schuiven weinig, maar met half zoveel events overleven minder cellen")
-A("de toetsen. De clusters uit de hoofdanalyse, positief in het zuiden en negatief bij")
-A("Vistula en Weser, zijn te herkennen in de tabel van sectie 5.")
+A("**De severity-afhankelijkheid is niet robuust.** Dit is de zwaarste uitkomst van de")
+A("variant. De correlatie tussen tau bij 0,5 en tau bij 1,0 is bijna nul en het teken")
+A("komt in de helft van de cellen niet overeen. Van de achttien cellen die in de")
+A("hoofdanalyse sterk waren blijven er twee sterk. De clusters uit de hoofdanalyse,")
+A("positief in het zuiden en negatief bij Vistula en Weser, komen onder strikt niet")
+A("terug. Wat in de hoofdanalyse als locatiespecifieke samenhang is gerapporteerd, hangt")
+A("dus aan de drempelkeuze en moet in de tekst met die kanttekening staan.")
 A("")
 A("**Wat strikt kost.** De grenzen voor mild en zwaar uit pagina 22 passen niet bij een")
 A("droogtedrempel van 1: mild valt samen met alles. Wie de strenge definitie wil")
