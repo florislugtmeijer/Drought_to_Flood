@@ -813,7 +813,7 @@ in de copula-review.
 
 ---
 
-## D-15. De twee helften van het artikel gebruiken een andere quantielreferentie
+##  De copula-kolom kan pas na de herrun van T-11
 
 - herkomst: eigen bevinding uit de copula-review, R-04
 - status: **open**
@@ -901,19 +901,96 @@ meet wat de ECA-kant al meet.
 ## D-19. Het criterium achter de tellingen op pagina 31
 
 - herkomst: eigen bevinding uit de manuscripttoets
-- status: **open**
+- status: **open, rekenwerk klaar op 4 september 2026, voorstel ligt er**
 - wie beslist: Floris
+- materiaal: `results/2026-09-04_increase_criterion/report.md`, gemaakt door
+  `scripts/29_increase_criterion_counts.py`, leest alleen de bootstrap van 3
+  september en de onafhankelijkheidstoetsen van 2 september, beide post-fix
 
 Pagina 31 zegt dat toename van de transitiekans wordt gezien bij 5 locaties voor
 Drought Peak en 6 voor Mean Severity in periode 1, en 7 en 9 in periode 2. Nergens
 staat wanneer iets als toename telt.
 
-Nagerekend: bij een drempel van +0,02 op het mediane verschil tussen de zware en de
-milde curve komt er 7, 5, 6, 9 uit. Bij +0,05 wordt het 5, 5, 4, 9. Dezelfde orde,
-niet exact gelijk, en exact reproduceren kan niet want de gepubliceerde berekening
-heeft geen seed.
+Eerste narekening, pre-fix op de rangas: bij een drempel van +0,02 op het mediane
+verschil tussen de zware en de milde curve komt er 7, 5, 6, 9 uit. Exact
+reproduceren kan niet, de gepubliceerde berekening heeft geen seed.
 
-Er moet een criterium gekozen worden en dat moet in de tekst.
+### Acht criteria naast elkaar, post-fix
+
+Alle op het verschil zwaar min mild, toename en afname allebei geteld. Volgorde
+van de kolommen: periode 1 drought peak, periode 1 mean severity, periode 2 drought
+peak, periode 2 mean severity. Van de 190 cellen in de bootstrap hebben 13 geen
+zware curve, want geen enkele droogte boven de zware drempel. Die tellen niet mee.
+
+| criterium | toenames | afnames |
+|---|---|---|
+| gepubliceerd | 5, 6, 7, 9 | niet gegeven |
+| mediaan over y voorbij +0,02, hetzelfde criterium als de eerste narekening | 5, 4, 7, 8 | 19, 13, 11, 6 |
+| punt bij quantiel 0,69 voorbij +0,02 | 13, 13, 11, 19 | 24, 18, 19, 10 |
+| 95 procent bootstrapinterval sluit nul uit bij 0,69 | 0, 1, 0, 0 | 1, 1, 0, 0 |
+| idem bij 0,69, 0,90 of 0,95 | 1, 1, 0, 0 | 1, 1, 0, 0 |
+| minstens 3 van 4 onafhankelijkheidstoetsen p < 0,05, richting uit tau | 1, 2, 2, 4 | 2, 1, 0, 0 |
+
+Twee dingen springen eruit. Het mediaancriterium bij +0,02 geeft post-fix bijna
+precies de gepubliceerde tellingen, 5, 4, 7, 8 tegen 5, 6, 7, 9. Dat is dus
+vermoedelijk het criterium dat destijds op het oog is toegepast. Maar van die 24
+toenames houdt er onder het bootstrapinterval bij 0,69 geen enkele stand, en onder de
+toetsen twee. Het zijn afstanden tussen twee gesimuleerde curves waarvan de zware op
+mediaan één event rust.
+
+En onder de puntcriteria zijn er in periode 1 en bij drought peak in periode 2 meer
+afnames dan toenames, alleen mean severity in periode 2 heeft er meer toenames. De zin
+"most locations exhibit either no difference or a decrease" klopt dus grotendeels, de
+zin dat de toenames "point to important regional dynamics" rust op tellingen die
+onder onzekerheid niet standhouden.
+
+### De met naam genoemde locaties
+
+- Dnieper Krementsjoek, periode 1, mean severity: verschil bij 0,69 is +0,000,
+  interval [-0,158, +0,156], 2 van 4 toetsen. De tekst noemt hier een toename, ook
+  boven de unconditionele lijn. Niet onderbouwd.
+- Dnieper Dnipro, periode 2, mean severity: +0,060 [-0,021, +0,240], 0 van 4.
+- Tagus La Bazagona: de tekst noemt periode 1, de toetsen vinden periode 2, 4 van 4
+  voor beide variabelen. Voor mean severity periode 1 is er geen zware curve.
+- Tagus Vila Velha de Rodao: in drie van de vier cellen geen zware curve. De
+  beschreven omslag van afname naar toename is niet te toetsen.
+- Vistula en Oder midstream, drought peak, "toename alleen bij hogere quantielen":
+  bij Warchau en Scinawa in periode 2 zijn de puntverschillen bij 0,90 en 0,95
+  positief, maar elk interval bevat nul. Vistula Turon periode 1 is het enige
+  Vistula-punt dat nul uitsluit, en dat is een afname op alle drie niveaus.
+
+### Drie opties, met conceptteksten in het rapport
+
+**A. De onafhankelijkheidstoetsen.** Toename als minstens drie van de vier toetsen
+p < 0,05 geven en tau positief is. Geeft 1, 2, 2, 4 toenames en 2, 1, 0, 0 afnames.
+Dit is dezelfde definitie als sectie 1 van het bootstraprapport, dus consistent met
+wat er al voor R4-03 ligt. De toename van periode 1 naar 2 blijft, van 3 naar 6. De
+positieve cellen zijn Po Piacenza, Ebro Haro en Tudela, Tagus La Bazagona en Danube
+Aschach, precies de rivieren waar het artikel op leunt. De negatieve zijn Vistula
+Turon en Weser Bodenwerder.
+
+**B. Het bootstrapinterval bij 0,69.** Toename als het 95 procent interval van het
+verschil geheel boven nul ligt. Geeft 0, 1, 0, 0 en 1, 1, 0, 0. Het meest directe
+criterium op de curves die de figuren tonen, maar zo conservatief dat de alinea
+verdwijnt: één toename, Danube Aschach.
+
+**C. Het mediaancriterium bij +0,02.** Reproduceert de gepubliceerde tellingen bijna,
+5, 4, 7, 8, maar zonder onzekerheid. Een reviewer die R4-03 heeft gesteld zal dat
+opmerken, en van de 24 toenames overleven er 0 tot 2 een onzekerheidscriterium.
+
+**Voorstel: A**, met de intervallen uit B in Appendix E als onzekerheid bij de curves.
+A meet de samenhang tussen droogtezwaarte en piek over alle events van een cel, en
+dat is wat het verschil tussen de zware en de milde curve hoort uit te drukken. B en
+C meten de afstand tussen twee curves waarvan één op bijna geen events rust.
+
+Wat er bij A in de tekst moet veranderen: het criterium zelf, de tellingen, de
+Dnieper-passage terugbrengen of schrappen, La Bazagona van periode 1 naar 2, de
+Vistula en Oder passage terugbrengen tot puntschattingen met intervallen die nul
+bevatten, en het negatieve cluster benoemen. Raakt D-17 en D-18.
+
+Methodologie verandert niet, dit is een keuze voor een telcriterium dat in de tekst
+ontbrak. Wel een regel in `CHANGELOG-methodology.md` zodra de keuze valt, want de
+gepubliceerde tellingen veranderen.
 
 ---
 
