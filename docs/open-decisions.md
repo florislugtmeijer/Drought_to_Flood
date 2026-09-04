@@ -901,7 +901,9 @@ meet wat de ECA-kant al meet.
 ## D-19. Het criterium achter de tellingen op pagina 31
 
 - herkomst: eigen bevinding uit de manuscripttoets
-- status: **open, rekenwerk klaar op 4 september 2026, voorstel ligt er**
+- status: **besloten 4 september 2026 door Floris: optie A, de
+  onafhankelijkheidstoetsen. C afgewezen.** Zie `CHANGELOG-methodology.md`, entry
+  2026-09-04, en taak T-60 voor het schrijfwerk
 - wie beslist: Floris
 - materiaal: `results/2026-09-04_increase_criterion/report.md`, gemaakt door
   `scripts/29_increase_criterion_counts.py`, leest alleen de bootstrap van 3
@@ -994,9 +996,10 @@ gepubliceerde tellingen veranderen.
 
 ### Besluit 4 september 2026: C afgewezen
 
-Floris heeft C, het mediaancriterium bij +0,02, afgewezen. A blijft het voorstel en
-wacht op bevestiging. De onderbouwing van de afwijzing staat hier volledig, zodat
-hij in de Revision Notes en de brief aan de reviewers te gebruiken is.
+Floris heeft C, het mediaancriterium bij +0,02, afgewezen en A, de
+onafhankelijkheidstoetsen, gekozen. De onderbouwing van de afwijzing staat hier
+volledig, zodat hij in de Revision Notes en de brief aan de reviewers te gebruiken
+is. Hoe A is bepaald en welke rivieren erbinnen vallen staat in T-60.
 
 Waarom C niet, in vijf punten:
 
@@ -1040,8 +1043,7 @@ Concept voor de Revision Notes, Engels:
 > with a detectable decrease. The paragraph on page 31 has been rewritten
 > accordingly.
 
-De haak [A] vervalt zodra A is bevestigd. Bij een andere keuze moet de laatste zin
-mee.
+A is bevestigd, de haak [A] kan weg bij het overnemen.
 
 ---
 

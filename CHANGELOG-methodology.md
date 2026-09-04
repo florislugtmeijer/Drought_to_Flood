@@ -8,6 +8,65 @@ Floris: `docs/proposed-changes.md`. Werk dat eruit volgt: `docs/todo.md`.
 
 ---
 
+## 2026-09-04 — Telcriterium voor de toenames op pagina 31: de onafhankelijkheidstoetsen
+
+**Beslist door Floris.** Sluit D-19. Schrijfwerk in T-60. Raakt R4-03, R1-07, R1-08,
+D-17 en D-18.
+
+### Wat er verandert
+
+Pagina 31 telt locaties waar een zwaardere droogte de transitiekans verhoogt, 5, 6,
+7 en 9, zonder te zeggen wanneer iets als toename telt. Er is nu een criterium: een
+cel telt als toename als minstens drie van de vier onafhankelijkheidstoetsen uit
+`scripts/25_dependence_tests.py` p < 0,05 geven en Kendall's tau positief is, en als
+afname bij negatieve tau. De vier toetsen zijn Kendall's tau, Hoeffding's D, een
+permutatietoets op de copulafit met de familieselectie in de nulverdeling, en de
+permutatie-p van het copula-deel bij floodquantiel 0,69. 1000 permutaties, seed 43,
+cellen met minder dan 15 events uitgesloten.
+
+### Waarom
+
+De gepubliceerde tellingen zijn op het oog gemaakt. Een drempel van +0,02 op het
+mediane verschil tussen de zware en de milde curve reproduceert ze bijna, post-fix
+5, 4, 7, 8, maar dat criterium negeert onzekerheid terwijl R4-03 daar juist om
+vraagt. De zware curve rust op mediaan één event boven de zware drempel. Van de 24
+toenames onder dat criterium overleeft er nul het bootstrapinterval bij 0,69 en twee
+de toetsen. De toetsen meten de samenhang tussen droogtezwaarte en piek over alle
+events van een cel, en dat is wat het verschil tussen de curves hoort uit te
+drukken. Volledige weging, acht criteria naast elkaar, en de afwijzing van het
+mediaancriterium in vijf punten: `docs/open-decisions.md` D-19 en
+`results/2026-09-04_increase_criterion/report.md`.
+
+### Effect op de resultaten
+
+Geen berekening verandert, wel de tellingen in de tekst. Volgorde periode 1 drought
+peak, periode 1 mean severity, periode 2 drought peak, periode 2 mean severity:
+
+| | gepubliceerd | nu |
+|---|---|---|
+| toenames | 5, 6, 7, 9 | 1, 2, 2, 4 |
+| afnames | niet gegeven | 2, 1, 0, 0 |
+
+Toenames bij Po Piacenza in beide periodes en beide variabelen, Ebro Haro en Tudela
+in periode 2 voor mean severity, Tagus La Bazagona in periode 2 voor beide
+variabelen, en Danube Aschach in periode 1 voor mean severity. Afnames bij Vistula
+Turon in periode 1 voor beide variabelen en Weser Bodenwerder in periode 1 voor
+drought peak. De toename van periode 1 naar 2 blijft, van 3 naar 6 cellen.
+
+Van de met naam genoemde locaties op pagina 31 houdt de Dnieper niet stand,
+verschuift La Bazagona van periode 1 naar 2, is Vila Velha de Rodao niet toetsbaar
+door het ontbreken van een zware curve, en blijft bij Vistula en Oder midstream
+alleen een puntschatting over waarvan elk interval nul bevat.
+
+### Kanttekening voor de tekst
+
+Over 190 cellen overleeft geen enkele toets een Benjamini-Hochberg-correctie. De
+telling is beschrijvend. Voor de vooraf benoemde locaties is de ongecorrigeerde p
+legitiem, want daar wordt een aangewezen claim getoetst. Dat onderscheid moet in de
+tekst.
+
+---
+
 ## 2026-09-02 — De copula-kant gerepareerd: F_Y, het floodvenster en de duur
 
 Uit de review van de copula-kant, T-11, kwamen vijftien bevindingen. Vier daarvan

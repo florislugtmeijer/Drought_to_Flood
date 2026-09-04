@@ -1,7 +1,7 @@
 # Werklijst revisie HYDROL79380R1
 
-**Bijgewerkt: 1 september 2026, na de beslissing over de threshold (T-01).** Deadline hersubmissie **17 september 2026**, dat
-is 16 dagen. Er ligt een concept-uitstelverzoek klaar, zie T-52. Dit is de enige lijst waar het werk op staat. De onderbouwing staat
+**Bijgewerkt: 4 september 2026, na een controle van elke status tegen `results/`, de git-log en de changelog.** Deadline hersubmissie **17 september 2026**, dat
+is 13 dagen. Er ligt een concept-uitstelverzoek klaar, zie T-52. Dit is de enige lijst waar het werk op staat. De onderbouwing staat
 elders, hier staat wat er moet gebeuren, wie het doet en waar het op wacht.
 
 Bronbestanden waar dit uit komt:
@@ -84,7 +84,7 @@ Dit is het zware blok. Vier van de zes vragen nieuw rekenwerk.
 |---|---|---|---|
 | R4-01 | geen gevoeligheidsanalyse op de drempels | T-10 | ja, zwaarste punt |
 | R4-02 | geen validatie tegen meetreeksen | T-12 | nee meer, besloten 2 sep: verwijzen naar bestaande validatiestudies |
-| R4-03 | copulakeuze en betrouwbaarheidsintervallen niet gerapporteerd | T-11 | ja, bootstrap bestaat nog niet |
+| R4-03 | copulakeuze en betrouwbaarheidsintervallen niet gerapporteerd | T-11 | gedaan 2 en 3 sep, bootstrap en toetsen op de gerepareerde definities, alleen de figuren van scripts 19 tot 21 nog pre-fix |
 | R4-04 | verlaagde transitiekans niet verklaard | T-13 | deels gedaan, besloten 2 sep: associatie, geen mechanisme |
 | R4-05 | lokale factoren niet gekwantificeerd | T-14 | hangt van de gekozen omvang af |
 | R4-06 | p-waardes in Tabel 3 afronden | T-15 | nee |
@@ -141,6 +141,11 @@ Floris. Dit is het kritieke pad.
   moeten nog in de tekst en de tabel landen. Zie T-54
 - cijfers liggen klaar in `results/2026-08-23_threshold_comparison/`: 10 tegen 45
   van de 48 locaties significant
+- **4 september 2026: die map is pre-fix.** Gedraaid vóór de reparatie van de
+  einddetectie en vóór de seed per locatie. De definitieve baseline-cel staat in
+  `results/2026-09-02_sensitivity_grid_endfix/per_location_table.csv`, filter op
+  drempel 0,5, percentiel 0,6915, venster 4: **47 van 48 significant in periode 1,
+  45 van 48 in periode 2**, Monte Carlo. Gebruik die voor Tabel 3, zie T-54
 - blokkeert: T-10, en elk getal in de tekst
 - prioriteit: hoog
 
@@ -232,6 +237,30 @@ Floris. Dit is het kritieke pad.
   nergens. Appendix A verwijst naar de Monte Carlo maar geeft geen `n` en geen
   seed. Eén regel toevoegen is standaard voor reproduceerbaarheid. Zie T-56
 
+### T-59. Zes open beslissingen uit de copula-review, D-15 tot D-20
+- herkomst: eigen bevindingen D-15 tot D-20 in `docs/open-decisions.md`, uit de
+  copula-review van 2 september · raakt **Reviewer #4** (R4-03) en **Reviewer #1**
+  (R1-07)
+- wie: Floris, bij D-17 en D-18 met de co-auteurs
+- status: wacht op Floris. Toegevoegd 4 september 2026 omdat ze wel in
+  `open-decisions.md` stonden maar nergens op deze lijst
+- D-15: de twee helften van het artikel gebruiken een andere quantielreferentie.
+  Dit is de enige van de zes die rekenwerk kan raken
+- D-16: hoe de instabiele copulakeuze wordt gerapporteerd
+- D-17: de vier passages die van teken omdraaien
+- D-18: of het onderscheid marginaal tegen copula in de tekst komt
+- D-19: het criterium achter de tellingen op pagina 31. **Rekenwerk klaar 4
+  september 2026**, acht criteria naast elkaar in
+  `results/2026-09-04_increase_criterion/report.md` met conceptteksten. Voorstel
+  staat in `open-decisions.md`: de onafhankelijkheidstoetsen als criterium, geeft
+  1, 2, 2, 4 toenames tegen 5, 6, 7, 9 gepubliceerd. **Besloten 4 september 2026:
+  optie A, de onafhankelijkheidstoetsen. C afgewezen**, onderbouwing en een concept
+  voor de Revision Notes staan bij D-19. Het schrijfwerk staat als T-60 in blok C
+- D-20: de curve die per constructie de diagonaal is, klein
+- materiaal om op te beslissen: `results/2026-09-03_copula_method_report/report.pdf`
+  en voor D-19 `results/2026-09-04_increase_criterion/report.md`
+- blokkeert: de copula-tekst in blok C, en bij D-15 mogelijk een herrun
+
 ---
 
 ## B. Rekenwerk en code
@@ -284,23 +313,32 @@ Floris. Dit is het kritieke pad.
 - wat hieruit volgt: **T-58** voor de tekst, en T-17 kan nu uit
   `per_location_table.csv`
 
-### LET OP voor T-11: copula-runs van 2 september moeten opnieuw
-- de ECA-review van 2 september (branch `eca-endtime-fix`) heeft de einddetectie
-  in `extract_events` gerepareerd. De copula-runs van diezelfde dag,
-  `results/2026-09-02_copula_corrected/` en de bootstrap, zijn gedraaid met de
-  oude `end_time`: bij een derde van de droogtes stond het floodvenster daardoor
-  alsnog een week te laat, ook ná de eigen R-02-correctie, want die corrigeerde
-  ten opzichte van een anker dat zelf fout was
-- `mean_severity_per_week` in `src/dtf/copula.py` is aangepast, hij deelde door
-  duur plus één en dat zou met de gerepareerde `duration_weeks` dubbel
-  corrigeren. Beide helpers geven nu bewezen dezelfde waardes als de velden uit
-  `extract_events`. Scripts 20, 22 en 25 blijven werken, maar draai ze pas na een
-  merge met `eca-endtime-fix`, anders rekent de werkkopie gemengd
-- zie CHANGELOG-methodology.md, entry "2026-09-02 (tweede)"
+### Stand van de copula-runs na de ECA-reparatie, gecontroleerd 4 september 2026
+- de ECA-review van 2 september (branch `eca-endtime-fix`, commit 23429e1) heeft de
+  einddetectie in `extract_events` gerepareerd. Alles wat vóór dat commit is
+  gedraaid heeft bij een derde van de droogtes het floodvenster een week te laat
+- **al opnieuw gedraaid, op de gerepareerde definities:** de bootstrap in
+  `results/2026-09-02_copula_bootstrap/` (commit 7ec93b9) en de
+  onafhankelijkheidstoetsen in `results/2026-09-02_dependence_tests/` (commit
+  aa2fb76). Script 22 rekent de puntschatting zelf opnieuw en leest niets uit de
+  oude map. Deze twee zijn de bron voor cijfers over het verschil tussen milde en
+  zware droogte, met interval en p-waarde per cel
+- **nog pre-fix:** `results/2026-09-02_copula_corrected/` (commit 303e452, scripts
+  19 tot 21, dus ook de figuren `three_presentations.png` en
+  `corrected_overview.png`), `results/2026-09-02_copula_definition_variants/`,
+  `results/2026-09-01_copula_selection/` en `results/2026-09-01_copula_timing/`.
+  Het rapport van 3 september labelt de twee figuren als pre-fix. Herdraaien staat
+  als restant bij T-11. **Niet uit `summary.csv` in `copula_corrected` citeren**
+- de mappen met achtervoegsel `_ONGELDIG`, `_PREFIX_ENDTIME` en `_GEMENGD` zijn
+  bewust bewaarde foute of gemengde runs, zonder README die dat zegt. Zie T-45
+- `mean_severity_per_week` in `src/dtf/copula.py` deelt sinds commit b840a54
+  rechtstreeks door de duur, consistent met de gerepareerde `duration_weeks`. Zie
+  CHANGELOG-methodology.md, entry "2026-09-02 (tweede)"
 
 ### T-11. Copulakeuze en betrouwbaarheidsintervallen
 - herkomst: **Reviewer #4** (R4-03)
-- status: **loopt**, bijgewerkt 2 september 2026
+- status: **rekenwerk gedaan, 3 september 2026.** Restant: scripts 19 tot 21
+  herdraaien en de tekst, zie onderaan
 - twee dingen: per locatie en variabelenpaar rapporteren welke copula AIC koos,
   en betrouwbaarheidsintervallen bij de transitiekansen
 - prioriteit: hoog
@@ -320,14 +358,23 @@ as staan. Gerepareerd, samen met het floodvenster en de duur in
 Gevolg voor de tekst: vier passages draaien van teken om, zie D-17. De vergelijking
 van milde tegen zware droogte verandert niet.
 
-**Tweede helft staat nog open.** De bootstrap. Ontwerp ligt klaar: niet-parametrisch
-op de event-paren, B is 2000, familie herselecteren per replicatie met de vaste
-familie als tweede kolom, percentiel-intervallen puntsgewijs, en het verschil tussen
-mild en zwaar apart gebootstrapt. Plus een circulaire blokbootstrap als controle op
-seriele afhankelijkheid.
+**Tweede helft is ook klaar, 2 en 3 september 2026.** Bootstrap zoals ontworpen:
+niet-parametrisch op de event-paren, B is 2000, familie herselecteren per
+replicatie met de vaste familie als tweede kolom, puntsgewijze
+percentiel-intervallen, het verschil tussen mild en zwaar apart gebootstrapt, en
+een circulaire blokbootstrap als controle. Uitvoer in
+`results/2026-09-02_copula_bootstrap/` op de gerepareerde definities. Daarnaast
+onafhankelijkheidstoetsen per cel (Kendall, Spearman, Hoeffding, permutatie op
+AIC en op het copula-deel) in `results/2026-09-02_dependence_tests/`. Het
+uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
 
-Rekentijd gemeten: 59 minuten voor alle 48 locaties, 118 met de blokcontrole erbij.
-De beperking tot een deelverzameling locaties uit het G-blok is daarmee niet nodig.
+**Wat nog rest:**
+1. scripts 19 tot 21 opnieuw draaien zodat `results/2026-09-02_copula_corrected/`
+   en de twee figuren ook post-fix zijn. Kleine run, geen Monte Carlo
+2. de beslissingen D-15 tot D-20 in `docs/open-decisions.md`, allemaal open en
+   allemaal van Floris. Zie T-59
+3. de tekst: welke copula per cel, de intervallen, en de vier passages die van
+   teken omdraaien (D-17). Hoort bij blok C en wacht op T-31
 
 ### T-12. Validatie tegen meetreeksen
 - herkomst: **Reviewer #4** (R4-02)
@@ -404,8 +451,23 @@ De beperking tot een deelverzameling locaties uit het G-blok is daarmee niet nod
 
 ### T-17. Nieuwe tabel met de fysische resultaten per rivier
 - herkomst: **Reviewer #1** (R1-08, tweede deel)
-- status: geblokkeerd door T-10, want de inhoud volgt uit de definitieve run
-- moet uit `results/` gegenereerd worden, niet met de hand
+- status: **open, niet meer geblokkeerd.** T-10 is af en de copula-bronnen zijn
+  post-fix, gecontroleerd 4 september 2026
+- moet uit `results/` gegenereerd worden, niet met de hand. Nieuw script
+  `scripts/27_physical_results_table.py`, uitvoer per locatie en per rivier plus
+  Markdown en LaTeX, in een eigen resultaatmap met manifest
+- bronnen: `extract_events` op de baseline (drempel 0,5, percentiel 0,6915,
+  venster 4) voor aantal, duur, aandeel eenweeks en piek-SRI van de droogtes;
+  `results/2026-09-02_sensitivity_grid_endfix/` voor floodpercentages, overgangen
+  en de ratio; timing en seizoen opnieuw berekenen in het script, want de mappen
+  van 24 augustus en 1 september zijn pre-fix; `results/2026-08-23_sri_diagnostic/`
+  voor de reguleringsindicator (weekpercentages, niet geraakt door de fix); en voor
+  de copula-kolom `transition_ci.csv` in de bootstrapmap en
+  `dependence_tests.csv`, **niet** `summary.csv` uit `copula_corrected`
+- keuzes voor Floris: per rivier in de hoofdtekst met per locatie in een
+  appendix, of alleen per locatie; beide periodes of één gepoolde kolom; of de
+  regime- en copula-kolom erin gaan
+- hoort bij T-27 en T-28, want de tabel draagt de hydrologische lijn
 
 ### T-18. Maximale afstand op de gridpunt-lookup
 - herkomst: eigen bevinding, restant van D-09 · **niet door een reviewer gevraagd**
@@ -433,6 +495,93 @@ De beperking tot een deelverzameling locaties uit het G-blok is daarmee niet nod
 
 Alles in dit blok is geblokkeerd door T-31 zolang niet vast is welk bestand het
 actuele manuscript is.
+
+### T-60. Het telcriterium voor de toenames op pagina 31: hoe bepaald, welke rivieren
+- herkomst: eigen bevinding D-19 · raakt **Reviewer #4** (R4-03) en **Reviewer #1**
+  (R1-07, R1-08)
+- wie: Floris schrijft, met de conceptteksten uit
+  `results/2026-09-04_increase_criterion/report.md`
+- status: **besloten 4 september 2026 door Floris: optie A, de
+  onafhankelijkheidstoetsen.** Optie C, het mediaancriterium, is afgewezen met vijf
+  argumenten, zie D-19. Schrijfwerk open
+- prioriteit: hoog, want de alinea op pagina 31 en de met naam genoemde locaties
+  veranderen
+
+**Hoe het criterium is bepaald.** Een locatie telt als toename van de transitiekans
+met de droogtezwaarte als minstens drie van de vier onafhankelijkheidstoetsen p < 0,05
+geven en Kendall's tau positief is. Bij negatieve tau telt het als afname. De vier
+toetsen staan in `scripts/25_dependence_tests.py` en draaien op de paren
+droogtezwaarte en piek erna van alle events in een cel, dus locatie maal periode maal
+variabele:
+
+1. Kendall's tau, analytische p
+2. Hoeffding's D, permutatie-p, ziet ook niet-monotone samenhang
+3. permutatietoets op de copulafit zelf, waarbij de nulverdeling dezelfde selectie
+   over vijftien families doorloopt als de echte fit. Zonder dat vindt een selectie
+   over vijftien kandidaten altijd wel iets
+4. permutatie-p van het copula-deel van het gat bij floodquantiel 0,69
+
+1000 permutaties per cel, seed 43, cellen met minder dan 15 events uitgesloten, dat
+is alleen Dnieper Cherson periode 1. Spearman's rho is ook berekend maar zit niet in
+de vier, hij dubbelt met tau. Bron: `results/2026-09-02_dependence_tests/`, op de
+gerepareerde einddetectie. De tellingen zelf komen uit
+`scripts/29_increase_criterion_counts.py`.
+
+**Waarom dit criterium en niet de curves.** De zware curve rust op mediaan één event
+boven de zware drempel, dus het verschil met de milde curve is vooral de vorm van de
+gefitte copula. De toetsen kijken naar de samenhang in alle events van de cel, en dat
+is de samenhang die het verschil tussen de curves hoort uit te drukken. Van de 24
+toenames onder het oude, ongeschreven criterium overleeft er nul het
+bootstrapinterval en twee de toetsen. Volledige weging en de afwijzing van C: D-19.
+
+**Kanttekening die in de tekst moet.** Over 190 cellen tegelijk overleeft geen enkele
+toets een Benjamini-Hochberg-correctie. De telling is beschrijvend. Voor de vooraf
+benoemde locaties, Po, Ebro, Tagus, is de ongecorrigeerde p legitiem bewijs, want
+daar wordt een aangewezen claim getoetst en niet de hele kaart afgezocht. Dat
+onderscheid moet in de tekst staan, anders vraagt een reviewer ernaar.
+
+**Welke rivieren erbinnen vallen.** Tellingen: 1, 2, 2, 4 toenames en 2, 1, 0, 0
+afnames, volgorde periode 1 drought peak, periode 1 mean severity, periode 2 drought
+peak, periode 2 mean severity. Tegen 5, 6, 7, 9 gepubliceerd.
+
+| rivier, locatie | periode | variabele | richting | toetsen | tau |
+|---|---|---|---|---|---|
+| Po Piacenza | 1 | drought peak | toename | 4/4 | +0,151 |
+| Po Piacenza | 1 | mean severity | toename | 3/4 | +0,175 |
+| Po Piacenza | 2 | drought peak | toename | 3/4 | +0,164 |
+| Po Piacenza | 2 | mean severity | toename | 3/4 | +0,206 |
+| Ebro Haro | 2 | mean severity | toename | 4/4 | +0,171 |
+| Ebro Tudela | 2 | mean severity | toename | 3/4 | +0,155 |
+| Tagus La Bazagona | 2 | drought peak | toename | 4/4 | +0,229 |
+| Tagus La Bazagona | 2 | mean severity | toename | 4/4 | +0,234 |
+| Danube Aschach an der Donau | 1 | mean severity | toename | 3/4 | +0,146 |
+| Vistula Turon | 1 | drought peak | afname | 4/4 | -0,219 |
+| Vistula Turon | 1 | mean severity | afname | 4/4 | -0,211 |
+| Weser Bodenwerder | 1 | drought peak | afname | 3/4 | -0,143 |
+
+Vier rivieren met toename, Po, Ebro, Tagus en Danube. Twee met afname, Vistula en
+Weser. Danube Aschach periode 1 mean severity is bovendien de enige cel waar het
+bootstrapinterval van het verschil zwaar min mild bij 0,69 boven nul ligt, +0,106
+[+0,002, +0,172]. Vistula Turon periode 1 drought peak is de enige waar het onder nul
+ligt, op alle drie floodniveaus.
+
+**Wat er in de tekst moet veranderen.**
+- het criterium zelf, één alinea in 2.4.2, sluit aan op de twee alinea's die het
+  bootstraprapport daar al voor heeft, sectie 7
+- de tellingen op pagina 31, conceptalinea A in het rapport
+- Dnieper Krementsjoek en Dnipro: de tekst noemt een toename, de toetsen vinden 2/4
+  en 0/4 en het verschil bij Krementsjoek is precies nul. Terugbrengen of schrappen
+- Tagus La Bazagona: van periode 1 naar periode 2, waar het 4/4 haalt voor beide
+  variabelen
+- Tagus Vila Velha de Rodao: in drie van vier cellen geen zware curve, de omslag van
+  afname naar toename is niet te toetsen. Schrappen of als niet toetsbaar benoemen
+- Vistula en Oder midstream, "toename alleen bij hogere quantielen": puntschattingen
+  bij 0,90 en 0,95 zijn positief in periode 2, elk interval bevat nul. Terugbrengen
+- het negatieve cluster, Vistula Turon en Weser Bodenwerder in periode 1, staat
+  nergens en hoort erin. Materiaal voor T-13
+- de zin "point to important regional dynamics" vervangen door wat de toetsen dragen
+- Revision Notes: het Engelse concept bij D-19, de haak [A] is nu vervuld
+- hoort bij D-17 en D-18 en bij T-27 en T-28
 
 ### T-20. Abstract concreet maken
 - herkomst: **Reviewer #1** (R1-01) · associate editor (AE-02)
@@ -535,6 +684,12 @@ actuele manuscript is.
      onderdelen gelijk staan. Hoort bij het antwoord op R4-01
 - de bron voor de SPI-classificatie moet uit de referentielijst van het
   manuscript komen, nog vast te stellen
+- **over de bronnen, 4 september 2026:** `threshold_selectivity` en
+  `reference_grid` zijn van vóór de ECA-reparatie. De weekpercentages in punt 3,
+  4 en 6 tellen weken onder of boven een drempel en worden door de reparatie van
+  `end_time` niet geraakt. De significantietellingen uit `reference_grid` (89 tegen
+  90 van 96) wel, die zijn indicatief. Als daar een getal uit in de tekst komt,
+  eerst herdraaien
 - prioriteit: hoog, dit is een correctie en geen keuze
 
 ### T-30. De zes cellen op 1,0000 voor de Dnieper toelichten
@@ -550,8 +705,9 @@ actuele manuscript is.
 ### T-58. Gevoeligheidsanalyse in de tekst verwerken
 - herkomst: volgt uit T-10 · antwoord op **Reviewer #4** (R4-01) en de weging van de
   associate editor (AE-01)
-- status: **concepttekst ligt klaar**, Engels, in
-  `results/2026-09-01_sensitivity_grid/draft_text_en.md`. Drie stukken: methoden,
+- status: **concepttekst ligt klaar op de post-fix cijfers**, Engels, in
+  `results/2026-09-02_sensitivity_grid_endfix/draft_text_en.md`. De versie in de
+  map van 1 september is pre-fix en vervalt. Drie stukken: methoden,
   resultaten en beperkingen. Nog niet in het manuscript geplaatst
 - geblokkeerd door T-31 zoals heel blok C, want sectienummers en het figuurnummer
   kunnen pas als vaststaat welke `.docx` geldt
@@ -650,9 +806,10 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 
 ### T-40. `CHANGELOG-methodology.md` aanmaken
 - herkomst: werkafspraak uit beide skills · ondersteunt **Reviewer #4** (R4-01, R4-02, R4-03)
-- status: open
-- bestaat nog niet, terwijl elke wijziging die de uitkomsten raakt daar een regel
-  hoort te krijgen. Zonder dit bestand is straks niet na te vertellen wat er
+- status: **gedaan, 1 september 2026.** Bestaat en wordt bijgehouden, twaalf entries
+  van 1 tot 2 september, met de herroepen threshold-beslissing erin
+- eerdere motivering: elke wijziging die de uitkomsten raakt hoort daar een regel
+  te krijgen. Zonder dit bestand is straks niet na te vertellen wat er
   tussen R1 en R2 is veranderd, en dat is precies wat de Revision Notes vragen
 - prioriteit: hoog, en het is een half uur werk
 
@@ -666,7 +823,8 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 ### T-42. `config/analysis.yaml` en `config/locations.yaml`
 - herkomst: werkafspraak uit dtf-code
 - status: open
-- `config/` bestaat niet. De parameters zitten nu in de code en in scriptargumenten
+- `config/` bestaat als lege map sinds 23 augustus, er staat niets in. De
+  parameters zitten nu in de code en in scriptargumenten
 
 ### T-43. `data/manifest.yaml` en checksumcontrole in de loader
 - herkomst: werkafspraak uit dtf-code
@@ -691,9 +849,15 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 ### T-45. `manifest.yaml` toevoegen aan de bestaande resultaatmappen
 - herkomst: werkafspraak uit dtf-code
 - status: open
-- alle vijf mappen in `results/` missen hem. Achteraf reconstrueren kan nu nog,
-  over een maand niet meer
-- `results/2026-08-23_sri_diagnostic/` mist ook een README
+- **stand 4 september 2026: 21 mappen, 11 zonder manifest.** De vijf van augustus
+  (`flood_magnitude_test`, `quantile_reference_variant`, `sri_diagnostic`,
+  `threshold_comparison`, `season_control`), plus `2026-09-01_copula_scale_check`,
+  `2026-09-01_threshold_selectivity`, `2026-09-03_copula_method_report` en de drie
+  bewaarde foute runs `copula_bootstrap_ONGELDIG`, `copula_bootstrap_PREFIX_ENDTIME`
+  en `dependence_tests_GEMENGD`. Achteraf reconstrueren kan nu nog, over een maand
+  niet meer
+- `results/2026-08-23_sri_diagnostic/` mist ook een README, en de drie foute runs
+  hebben geen README die zegt waarom ze bewaard zijn en wat er fout aan is
 
 ### T-46. Copula-kant en figuurcompositie overzetten naar `src/dtf/`
 - herkomst: intern, uit `docs/function-provenance.md` · blokkeert T-11 (R4-03) en T-16 (R1-09)
@@ -706,9 +870,9 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
   `create_page` aan met drie argumenten terwijl cel 31 hem met vier definieert, en
   cel 31 staat daartussen. In de uitvoervolgorde van de notebook kan dat niet
   allebei gewerkt hebben
-- `fit_copula`, `copula_func_drought_peak`, `copula_func_mean_drought_severity`
-  en de figuren zitten nog in de notebook. De ECA-kant is compleet
-- blokkeert T-11 en T-16
+- blokkeert alleen nog T-16. `docs/function-provenance.md` zegt onder "Nog niet
+  overgezet" nog dat de copula-kant in de notebook zit, dat is achterhaald en moet
+  mee bij het overzetten van de figuurcompositie
 - ~~let op: `fit_copula` uit cel 62 als canonieke versie wacht nog op bevestiging
   van Floris~~ **vervallen 1 september 2026.** Cel 62 hoorde bij de afgedankte
   `LAATSTE_VERSIE`-notebook van 104 cellen. In de gepubliceerde notebook, 64
@@ -733,8 +897,11 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 ### T-49. Repo op privé zetten
 - herkomst: eigen bevinding D-05 · **niet door een reviewer gevraagd**
 - wie: Floris
-- status: open
-- `florislugtmeijer/Drougt_to_flood` staat publiek terwijl het manuscript in
+- status: **lijkt gedaan, te bevestigen door Floris.** Op 4 september 2026 geeft de
+  GitHub API zonder inlog een 404 op `florislugtmeijer/Drougt_to_flood` terwijl
+  de repo via ssh gewoon bereikbaar is. Dat is het gedrag van een privé-repo. Niet
+  zelf in de instellingen gecontroleerd
+- `florislugtmeijer/Drougt_to_flood` stond publiek terwijl het manuscript in
   review is. Advies: privé tot acceptatie, want publiek maken kan later met één
   klik en de andere richting niet
 
@@ -745,11 +912,13 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 
 ### T-51. Niet-gecommit werk vastleggen
 - herkomst: administratief
-- status: open
-- `scripts/04_flood_magnitude_test.py` en `scripts/05_season_control.py` staan
-  untracked, en de wijzigingen in `open-decisions.md` en `proposed-changes.md`
-  zijn niet gecommit. De resultaten waar in de documentatie naar wordt verwezen
-  zijn dus deels niet herleidbaar tot code in de historie
+- status: open, klein
+- scripts 04 en 05 en de documentwijzigingen zijn op 2 september gecommit in
+  f7002e6. **Nu nog untracked: `scripts/13_copula_scale_check.py`**, terwijl
+  `results/2026-09-01_copula_scale_check/` er wel staat. Zolang dat zo is, is die
+  uitkomst niet herleidbaar tot code in de historie
+- branch `eca-endtime-fix` is nog niet gemerged naar `main`. Alle post-fix
+  resultaten en de todo-updates staan alleen daar
 
 ### T-56. Feitelijke correcties in de methodensectie, periodes en Monte Carlo
 - herkomst: gevolg van T-04 en T-05 · **niet door een reviewer gevraagd**
@@ -812,8 +981,11 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 ### T-54. Tabel 3 en de tekst herrekenen op threshold 0,5
 - herkomst: gevolg van de beslissing bij T-01 · raakt **Reviewer #1** (R1-01, R1-06) en de abstract
 - status: open
-- de cijfers bestaan al in `results/2026-08-23_threshold_comparison/`, filter op
-  `threshold=0.5`. Wat nog moet: Tabel 3 opnieuw opmaken, Figuur 4 met de
+- ~~de cijfers bestaan al in `results/2026-08-23_threshold_comparison/`, filter op
+  `threshold=0.5`~~ **Achterhaald, 4 september 2026: die run is pre-fix.** Gebruik
+  de baseline-cel uit `results/2026-09-02_sensitivity_grid_endfix/`: drempel 0,5,
+  percentiel 0,6915, venster 4. Daar is het 47 van 48 in periode 1 en 45 van 48 in
+  periode 2, Monte Carlo met seed per locatie. Wat nog moet: Tabel 3 opnieuw opmaken, Figuur 4 met de
   significante locaties opnieuw genereren, en elke passage die aantallen of
   p-waardes noemt nalopen
 - raakt de kernbevinding: van 10 naar 45 van de 48 significant. De abstract en de
@@ -861,11 +1033,22 @@ een aantal punten kan bij een nieuwe blik anders lijken dan ze zijn.
 | **T-10 gevoeligheidsanalyse gedraaid** | 12000 runs, 125 cellen, volledig gekruist. De SRI-drempel doet vrijwel niets bij elk venster, het floodpercentiel doet alles. 193 van 250 cel-periodes houden stand, de rest zit in de hoek met hoge floodpercentielen. Gepoolde toets volgens Donges 2016. Concepttekst en twee figuren liggen klaar, zie T-58 | 1 en 2 sep 2026 |
 | Monte Carlo 29x versneld | telling gevectoriseerd, trekking onaangeroerd, bit-identiek bewezen over 24 aanroepen van 10000 simulaties. Run van 11,2 naar 4,5 seconde | 1 sep 2026 |
 | Seed per locatie ingevoerd | nodig voor de gepoolde toets, want één vaste seed gaf identieke surrogaten. Effect op `p_mc_trigger`: mediaan 0,0000, maximum 0,0097, één van de 96 runs steekt de 0,05 over. D-04 blijft gesloten voor losse locaties | 1 sep 2026 |
+| **ECA-reparatie: einddetectie, duur en piekvenster** | eenweekse events, een derde van de droogtes, hadden een `end_time` een week te laat. Gerepareerd op `eca-endtime-fix`, commit 23429e1, uitputtend bewezen over 1024 patronen. Matches plus 15,5 procent op de baseline | 2 sep 2026 |
+| **Gevoeligheidsraster opnieuw op de gerepareerde code** | 12000 runs, 201 van 250 cel-periodes houden stand tegen 193 pre-fix, gepoolde ratio 1,59 naar 1,82. README, figuren en concepttekst bijgewerkt, zie T-10 en T-58 | 2 en 3 sep 2026 |
+| **T-11 bootstrap en onafhankelijkheidstoetsen** | B is 2000 met herselectie en blokcontrole, plus Kendall, Spearman, Hoeffding en permutatietoetsen per cel, alles op de gerepareerde definities. Twee eerdere runs bewaard als `_ONGELDIG` en `_PREFIX_ENDTIME` | 2 en 3 sep 2026 |
+| **Uitlegdocument copula-analyse** | `results/2026-09-03_copula_method_report/report.pdf`, methode, herberekening en wat er van de gepubliceerde bevindingen overeind blijft. Pre-fix figuren zijn zo gelabeld | 3 sep 2026 |
+| T-40 changelog | bestaat sinds 1 september en wordt bijgehouden | 1 sep 2026 |
 | Afhankelijkhedenkaart van de twee modellen | 31 functies, 44 aanroepen en 20 gegevensstromen uit de bron gelezen met `ast`. Gedeelde kern is zeven functies, waarvan `transform_to_quantiles` en `Intensity_calc` door de twee modellen met verschillende argumenten worden aangeroepen. Script, figuur en caption in `results/2026-09-02_function_dependency_map/` | 2 sep 2026 |
 
 ---
 
 ## G. Voorstel voor de aanpak
+
+> **Stand 4 september 2026.** Dit blok is geschreven vóór de besluiten van 1 en 2
+> september en is niet herschreven. Achterhaald: T-01 tot T-03 zijn beslist, T-10
+> is gedraaid, bij R4-03 zijn beide helften gedaan inclusief de bootstrap, en bij
+> R4-02 en R4-04 is de richting gekozen. Wat nog staat is de indeling in
+> overnemen, verkleinen of afwijzen, en de vraag per punt aan Floris (T-35).
 
 **Dit is een voorstel, geen besluit.** Het staat hier zodat er iets ligt om op te
 reageren. Wat er per punt gebeurt beslis jij, en bij de zwaardere punten hoort dat
@@ -979,10 +1162,11 @@ tekst herschrijven op cijfers die nog veranderen is werk dat je twee keer doet.
 
 ### Wat ik van jou nodig heb om dit concreet te maken
 
-- T-01 tot T-03, de drie drempelbesluiten. Zonder die kan T-10 niet
+- ~~T-01 tot T-03, de drie drempelbesluiten~~ beslist op 1 september
 - per punt of het overnemen, verkleinen of afwijzen wordt, T-35
-- bij R4-02 en R4-03: hoeveel locaties je acceptabel vindt voor een gedeeltelijk
-  antwoord
+- ~~bij R4-02 en R4-03: hoeveel locaties je acceptabel vindt~~ vervallen, R4-02 is
+  besloten en R4-03 is voor alle 48 locaties gedaan
+- de zes copula-beslissingen D-15 tot D-20, zie T-59
 - bij R4-05: kwantificeren of de claim terugbrengen
 - of de co-auteurs meelezen op de afwijzingen voordat ze in de Revision Notes
   staan
