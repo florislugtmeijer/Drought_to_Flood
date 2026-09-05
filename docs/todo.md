@@ -678,9 +678,18 @@ ligt, op alle drie floodniveaus.
   1. de 69e quantile en Z-score 0,5 op pagina 17 **kloppen nu wel**, na de
      beslissing bij T-01. Wel een onderbouwing toevoegen waarom juist die grens,
      want R4-01 noemt de keuze "somewhat arbitrary"
-  2. het woord "mirroring" eruit. Bij 0,5 selecteert de flooddrempel ongeveer 44
-     procent van de weken tegen ongeveer 35 procent aan de droogtekant, terwijl
-     symmetrie 30,9 aan beide kanten zou geven
+  2. het woord "mirroring" **preciseren, niet schrappen.** Bevestigd door Floris
+     op 5 september 2026: de drempel blijft 0,5 en het floodniveau blijft het
+     gespiegelde niveau `norm.cdf(0.5) = 0,6915`, met name voor het copula-deel
+     waar de curves op dat niveau worden afgelezen. Die z-score-spiegeling is
+     waar en blijft in de tekst. Wat niet waar is, is dat de twee drempels
+     daardoor even selectief zijn: bij 0,5 selecteert de flooddrempel 44,6
+     procent van de weken tegen 35,8 aan de droogtekant, waar symmetrie 30,9 aan
+     beide kanten zou geven. Oorzaak: het weekmaximum wordt uitgedrukt als
+     quantiel van de dagelijkse verdeling (D-11). De zin op pagina 17 moet dus
+     twee dingen zeggen: het floodniveau is het quantiel bij dezelfde z-score als
+     de droogtedrempel, én dat maakt de drempels niet even selectief, met de
+     cijfers en de reden. Zie ook de changelog-entry van 4 september (tweede)
   3. de feitelijke selectiviteit van beide drempels rapporteren, in de tekst of
      een appendix. Gemeten over alle 48 locaties en beide periodes, bij threshold
      0,5: **44,6 procent** van de weken boven de flooddrempel (bereik 33,3 tot

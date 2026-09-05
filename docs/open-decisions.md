@@ -348,6 +348,18 @@ co-auteurs horen daarbij.
 
 ## D-11 De flooddrempel spiegelt de droogtedrempel niet
 
+> **Terminologie, 5 september 2026.** "Spiegelen" wordt in deze stukken voor twee
+> dingen gebruikt, en die moeten uit elkaar blijven:
+> 1. **z-score-spiegeling**: het floodniveau is `norm.cdf(0.5) = 0,6915`, het
+>    quantiel bij dezelfde z-score als de droogtedrempel SRI < -0,5. **Dit blijft**,
+>    bevestigd door Floris op 4 en 5 september, en het geldt met name voor het
+>    copula-deel, waar de curves op 0,6915 worden afgelezen.
+> 2. **selectiviteitsspiegeling** (P-02): weekmaxima tegen hun eigen verdeling, zodat
+>    beide drempels 30,9 procent van de weken selecteren. **Dit is losgelaten**,
+>    route B, de berekening blijft zoals hij is.
+> De tekst op pagina 17 mag dus "mirroring" in betekenis 1 houden, maar moet erbij
+> zeggen dat betekenis 2 niet opgaat, met de cijfers. Zie T-29 punt 2.
+
 **Status: GESLOTEN 1 september 2026, route B. De berekening blijft ongewijzigd.**
 Beslist ná de rerun op threshold 0,5, zie `results/2026-09-01_reference_grid/` en
 taak T-02. Gekozen op de inhoudelijke verdediging, niet op de cijfers.
@@ -1196,7 +1208,7 @@ ligt.**
 lengte, normale weken als vrije vulling, blokken raken elkaar niet, verplaatsbaar
 over stukken heen, met een aparte laag voor floods die in een droogteweek beginnen.
 Geen gebruik van de waargenomen posities, dus zonder het voorbehoud van C'. 1000
-simulaties per run, alle zelfcontroles geslaagd, nul herstarts.
+simulaties per run, alle zelfcontroles geslaagd, 928 herstarts op 192.000 plaatsingen.
 
 **Onder D' blijft bij 0,5 een gepoolde ratio van 1,05 over met 22 van de 96
 significant, bij threshold 1 een ratio van 1,00 met 11 van de 96.** D' ligt dus onder
