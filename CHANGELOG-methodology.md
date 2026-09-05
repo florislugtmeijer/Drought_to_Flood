@@ -8,17 +8,27 @@ Floris: `docs/proposed-changes.md`. Werk dat eruit volgt: `docs/todo.md`.
 
 ---
 
-## 2026-09-04 (tweede) — Strengere drempels getoetst en afgewezen, 0,5 met gespiegeld floodniveau blijft
+## 2026-09-04 (tweede) — Strengere drempels getoetst en afgewezen, 0,5 blijft
 
-**Beslist door Floris op 4 september 2026.** De drempel blijft 0,5 met het
-gespiegelde floodniveau `norm.cdf(0.5) = 0,6915`. **Aan de cijfers verandert
-niets**, dit is de bestaande configuratie. De strengere variant is doorgerekend als
-gevoeligheidscontrole en afgewezen.
+**Beslist door Floris op 4 september 2026.** De droogtedrempel blijft 0,5 en het
+floodniveau blijft `0,6915`. **Aan de cijfers verandert niets**, dit is de bestaande
+configuratie. De strengere variant is doorgerekend als gevoeligheidscontrole en
+afgewezen.
+
+**Let op de verantwoording in de tekst.** Numeriek is 0,6915 gelijk aan
+`norm.cdf(0.5)`, dus aan de spiegeling van de droogtedrempel. Voor de tekst geldt
+echter onverkort route B uit D-11, herbevestigd door Floris op 4 september: de
+flooddrempel wordt gepresenteerd als een percentiel dat op eigen gronden is gekozen,
+niet als spiegeling, en het woord "mirroring" verdwijnt van pagina 17. De spiegeling
+is hieronder alleen gebruikt als constructieprincipe om de strengere variant op te
+bouwen, zodat beide zijdes even veel strenger werden.
 
 ### Wat is doorgerekend
 
-Droogte bij SRI onder -1 in plaats van -0,5, met het floodniveau meegespiegeld naar
-`norm.cdf(1) = 0,8413`. Volledig gescheiden van de hoofdanalyse: eigen scripts
+Droogte bij SRI onder -1 in plaats van -0,5. Om beide zijdes even veel strenger te
+maken is het floodniveau via dezelfde z-score meegeschoven, naar
+`norm.cdf(1) = 0,8413`. Dat is hier een rekenkundig constructieprincipe voor de
+variant, geen verantwoording voor de gerapporteerde drempel. Volledig gescheiden van de hoofdanalyse: eigen scripts
 (`scripts/27` tot `30`), eigen resultaatmappen met `strict` in de naam, geen
 bestaande code aangepast. De referentie op 0,5 is in dezelfde run met dezelfde seeds
 opnieuw berekend. Rapport in `results/2026-09-04_strict_definition_report/`.

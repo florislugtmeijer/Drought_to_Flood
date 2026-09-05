@@ -1105,13 +1105,13 @@ uitleggen als de definitie die hij is.
   zodra Floris dat vrijgeeft
 - raakt: T-01, T-10, T-29, R4-01, R4-04, de abstract en de conclusie
 - **rapport met figuren, 5 september 2026:** `results/2026-09-05_eca_null_routes_report/report.pdf`,
-  gemaakt door `scripts/29_eca_null_routes_report.py`. Legt de routes naast elkaar
+  gemaakt door `scripts/33_eca_null_routes_report.py`. Legt de routes naast elkaar
   voor de keuze, met een advies. De vier diagnose-CSV's staan daar in `data/`
 - **derde rapport, 5 september 2026:** `results/2026-09-05_eca_null_dprime/report.pdf`, de
   resultaten van D', gemaakt door `scripts/32_eca_null_dprime_report.py`. De nul zelf:
   `scripts/31_run_permutation_null.py`
 - **tweede rapport, 5 september 2026:** `results/2026-09-05_eca_simulations_report/report.pdf`,
-  gemaakt door `scripts/30_eca_simulations_report.py`. Antwoord op de vraag of de toets
+  gemaakt door `scripts/34_eca_simulations_report.py`. Antwoord op de vraag of de toets
   hele events hussel of alleen starts: alleen starts, als punten. Met de echte weekreeks
   van Aschach als illustratie van de toets, de nul, de drie problemen en de nulmodellen
 
