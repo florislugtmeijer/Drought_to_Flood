@@ -1095,6 +1095,9 @@ uitleggen als de definitie die hij is.
 - **rapport met figuren, 5 september 2026:** `results/2026-09-05_eca_null_routes_report/report.pdf`,
   gemaakt door `scripts/29_eca_null_routes_report.py`. Legt de routes naast elkaar
   voor de keuze, met een advies. De vier diagnose-CSV's staan daar in `data/`
+- **derde rapport, 5 september 2026:** `results/2026-09-05_eca_null_dprime/report.pdf`, de
+  resultaten van D', gemaakt door `scripts/32_eca_null_dprime_report.py`. De nul zelf:
+  `scripts/31_run_permutation_null.py`
 - **tweede rapport, 5 september 2026:** `results/2026-09-05_eca_simulations_report/report.pdf`,
   gemaakt door `scripts/30_eca_simulations_report.py`. Antwoord op de vraag of de toets
   hele events hussel of alleen starts: alleen starts, als punten. Met de echte weekreeks
@@ -1185,12 +1188,24 @@ ligt.**
 | B | 90 | 1,58 | 30 | 1,24 |
 | C | 74 | 1,18 | 21 | 1,06 |
 | B' | 90 | 1,63 | 29 | 1,24 |
-| **C'** | **80** | **1,25** | **21** | **1,07** |
+| C' | 80 | 1,25 | 21 | 1,07 |
+| **D'**, blokken met lengte, gestratificeerd | **22** | **1,05** | **11** | **1,00** |
 
-Bij 0,5 verdwijnt ruim twee derde van het overschot onder C'. Er blijft een rest van
-ratio 1,25 met 80 van de 96 significant. Bij threshold 1, de R1-configuratie, blijft
-1,07 over met 21 van de 96. Het R1-resultaat was dus vermoedelijk grotendeels
-hetzelfde artefact.
+**D' is op 5 september gebouwd en gedraaid**, zie
+`results/2026-09-05_eca_null_dprime/`. Droogtes vast, floods als blokken met hun eigen
+lengte, normale weken als vrije vulling, blokken raken elkaar niet, verplaatsbaar
+over stukken heen, met een aparte laag voor floods die in een droogteweek beginnen.
+Geen gebruik van de waargenomen posities, dus zonder het voorbehoud van C'. 1000
+simulaties per run, alle zelfcontroles geslaagd, nul herstarts.
+
+**Onder D' blijft bij 0,5 een gepoolde ratio van 1,05 over met 22 van de 96
+significant, bij threshold 1 een ratio van 1,00 met 11 van de 96.** D' ligt dus onder
+C'. De circulariteit van C' maakte hem niet te streng maar te mild: als blokken een
+lengte hebben en twee derde van de niet-droogteweken flood is, volgt na vrijwel elk
+droogte-einde binnen vier weken een blokstart, onder elke indeling. Het overschot van
+de gepubliceerde toets is daarmee vrijwel geheel definitioneel. 22 van 96 is wel meer
+dan de 5 die onder een zuivere nul te verwachten zijn, dus bij een deel van de
+locaties blijft een echte rest. Welke, staat in het rapport.
 
 Voorbeeld om A, B en C uit elkaar te houden, D is droogteweek, F floodweek, N geen
 van beide:
@@ -1370,4 +1385,46 @@ downloadinstellingen halen, want de tekst zegt "average daily (24-hour)".
 
 Gevolg voor het werk: T-12 kan door zodra dit bevestigd is. Sectie 2.2 gaat mee in
 batch B01 als feitelijke correctie, de referenties in B06.
+
+---
+
+## D-22. Zijn de locatiespecifieke severity-bevindingen robuust onder de drempelkeuze
+
+- herkomst: eigen bevinding uit de gevoeligheidscontrole met strengere drempels
+- status: **open**, het rekenwerk is klaar
+- wie beslist: Floris met de co-auteurs
+
+De drempelkeuze zelf is beslist, zie `CHANGELOG-methodology.md` van 4 september: 0,5
+met gespiegeld floodniveau blijft. Wat daarbij naar boven kwam is een aparte vraag.
+
+Over de 186 cellen die in beide analyses zitten is de correlatie tussen Kendall's tau
+bij drempel 0,5 en bij drempel 1,0 slechts +0,12, en het teken komt in 52 procent van
+de cellen overeen. Van de achttien cellen die bij 0,5 door minstens twee
+onafhankelijkheidstoetsen worden aangewezen, blijven er twee over bij 1,0. De
+gemeten spreiding van het verschil tussen beide tau's is 0,129, terwijl pure
+toevalsvariatie bij de mediane omvang van 55 events al 0,093 oplevert.
+
+Dat betekent niet dat de bevindingen bij 0,5 fout zijn. De vier toetsen daar zijn
+onafhankelijk van elkaar en de clusters waren ruimtelijk samenhangend, wat tegen puur
+toeval pleit. Maar het betekent wel dat ze aan de drempel hangen.
+
+Drie manieren om ermee om te gaan, allemaal verdedigbaar:
+
+1. de locatiespecifieke claims laten staan, met de drempel er expliciet bij en de
+   gevoeligheid als beperking in de tekst
+2. de claims terugbrengen tot het niveau van "op enkele locaties is er aanwijzing
+   voor", zonder namen
+3. de namen alleen noemen waar ze bij beide drempels standhouden, dat zijn Vistula
+   Turon periode 1 en Rhine Straatsburg periode 2
+
+Cijfers in `results/2026-09-04_strict_definition_report/report.md`, sectie 5.
+
+---
+
+## Administratief: dubbel gebruikt D-nummer
+
+`D-21` staat twee keer in dit bestand, met verschillende onderwerpen: de
+nulhypothese van de ECA die floods laat vallen, en de dataset die EFAS op 1
+boogminuut blijkt te zijn. Beide zijn inhoudelijk in orde, alleen het nummer botst.
+Hernummeren is aan Floris, want beide worden elders aangehaald.
 

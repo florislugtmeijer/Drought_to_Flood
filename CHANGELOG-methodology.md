@@ -8,6 +8,80 @@ Floris: `docs/proposed-changes.md`. Werk dat eruit volgt: `docs/todo.md`.
 
 ---
 
+## 2026-09-04 (tweede) — Strengere drempels getoetst en afgewezen, 0,5 met gespiegeld floodniveau blijft
+
+**Beslist door Floris op 4 september 2026.** De drempel blijft 0,5 met het
+gespiegelde floodniveau `norm.cdf(0.5) = 0,6915`. **Aan de cijfers verandert
+niets**, dit is de bestaande configuratie. De strengere variant is doorgerekend als
+gevoeligheidscontrole en afgewezen.
+
+### Wat is doorgerekend
+
+Droogte bij SRI onder -1 in plaats van -0,5, met het floodniveau meegespiegeld naar
+`norm.cdf(1) = 0,8413`. Volledig gescheiden van de hoofdanalyse: eigen scripts
+(`scripts/27` tot `30`), eigen resultaatmappen met `strict` in de naam, geen
+bestaande code aangepast. De referentie op 0,5 is in dezelfde run met dezelfde seeds
+opnieuw berekend. Rapport in `results/2026-09-04_strict_definition_report/`.
+
+### Wat de strengere drempel oplevert
+
+De aanleiding was terecht: bij 0,5 kan een week tegelijk droogte en flood zijn. Dat
+gebeurt bij 1440 van de 26.917 droogteweken, dus 5,3 procent. Bij drempel 1 daalt
+dat naar 38 van de 11.361, dus 0,3 procent. De strengere definitie scheidt de twee
+toestanden dus daadwerkelijk.
+
+### Waarom hij toch is afgewezen
+
+**Het venster na de droogte meet dan iets anders.** Een droogte eindigt zodra de SRI
+boven de drempel komt. Bij drempel 1 is dat boven -1, en dan zit de rivier vaak nog
+in milde droogte. Gemeten over de vier weken na afloop: 46 procent van die weken ligt
+onder SRI -0,5, tegen 36 procent van alle weken. Bij drempel 0,5 is dat 22 procent,
+dus daar betekent het einde dat de omstandigheden echt zijn omgeslagen. Gevolg: het
+marginale deel draait van teken om, van +0,054 bij 0,5 naar -0,098 bij 1,0, en het
+venster na een strenge droogte is droger dan een willekeurig venster in 136 van de
+187 cellen. Dat is een definitieartefact, geen hydrologische bevinding.
+
+**De categorieën uit pagina 22 vallen samen.** De grens voor een milde droogte staat
+daar op drought peak 1. Met droogtedrempel 1 heeft elke droogte per definitie een
+piek van minstens 1, dus valt alles onder mild en wordt de milde curve gelijk aan de
+onafhankelijkheidslijn. Dat gebeurt in 82 van de 188 cellen.
+
+**De statistische basis wordt dunner.** Droogte-events per cel gaan van mediaan 85
+naar 55, de mediane intervalbreedte rond de milde curve van 0,128 naar 0,237, en het
+aantal cellen zonder enkele zware droogte van 45 naar 94.
+
+### Eén uitkomst die als beperking in de tekst hoort
+
+De locatiespecifieke severity-afhankelijkheid is **niet robuust onder de
+drempelkeuze**. Over de 186 cellen die in beide analyses zitten is de correlatie
+tussen Kendall's tau bij 0,5 en bij 1,0 slechts +0,12, en het teken komt in 52
+procent van de cellen overeen, ongeveer wat muntje opgooien geeft. Van de achttien
+cellen die bij 0,5 door minstens twee toetsen werden aangewezen, blijven er twee
+over bij 1,0. De gemeten spreiding van het verschil tussen beide tau's is 0,129,
+terwijl pure toevalsvariatie bij 55 events al 0,093 geeft.
+
+Dat raakt de hoofdanalyse, niet alleen deze variant. De twaalf sterke cellen die in
+`results/2026-09-02_copula_bootstrap/report.md` staan, waaronder Po Piacenza en Ebro,
+zijn onderbouwd bij drempel 0,5 en verdwijnen bij 1,0. Wie ze in het artikel noemt
+moet die koppeling aan de drempel expliciet maken. Zie D-22.
+
+### Concept voor de Revision Notes, bij R4-01
+
+> We additionally tested a stricter event definition in which droughts are defined at
+> SRI < -1 and the flood level is mirrored accordingly to the 84.13th percentile. This
+> reduces the overlap between drought and flood weeks from 5.3% to 0.3% of drought
+> weeks, but it changes what the post-event window measures: after a drought defined
+> at SRI < -1, 46% of the following four weeks still fall below SRI -0.5, against 36%
+> of all weeks, so the window captures recovery from within drought conditions rather
+> than a transition to wet conditions. It also collapses the minor and severe drought
+> categories, since every drought then exceeds the minor threshold by construction. We
+> therefore retain the -0.5 threshold with the mirrored flood level. We note, however,
+> that the location-specific dependence results are sensitive to this choice: the rank
+> correlation between Kendall's tau at the two thresholds is 0.12 across the 186
+> comparable cells.
+
+---
+
 ## 2026-09-04 — Telcriterium voor de toenames op pagina 31: de onafhankelijkheidstoetsen
 
 **Beslist door Floris.** Sluit D-19. Schrijfwerk in T-60. Raakt R4-03, R1-07, R1-08,
