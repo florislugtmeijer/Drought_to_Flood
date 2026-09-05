@@ -10,6 +10,10 @@ D-15 tot en met D-20. Vier bevindingen uit diezelfde review zijn al besloten en
 staan in `CHANGELOG-methodology.md`: de ontbrekende stap F_Y, het floodvenster, de
 duur in `mean_drought_severity` en de keuze voor parametrische marginalen.
 
+**Aangevuld 4 september 2026.** D-21 uit de hertest van de ECA-nulhypothese, op
+vraag van Floris. De implementatie is trouw, de nul laat floods vallen waar de
+definities ze vrijwel uitsluiten. Rekenwerk in de scratchpad, nog niet in `results/`.
+
 Beslissingen die de resultaten of de tekst van het artikel raken en die nog
 genomen moeten worden. Niets hiervan wordt stilzwijgend opgelost. Bij elke
 beslissing: wie beslist, en wat er verandert als het zo of zo valt.
@@ -837,7 +841,11 @@ gemiddelden, omdat dat is wat gereproduceerd moest worden.
 ## D-16. Hoe de instabiele copulakeuze wordt gerapporteerd
 
 - herkomst: eigen bevinding uit de copula-review, R-05, raakt R4-03
-- status: **open**
+- status: **besloten 5 september 2026 door Floris: de volledige variant.** Tabel met
+  de gekozen familie per cel, plus het AIC-verschil met de nummer twee, plus het
+  maximale verschil tussen de transitiecurve van de winnaar en die van de nummer
+  twee. Rekenwerk: enkele minuten, op de gerepareerde code (script 12 is pre-fix en
+  moet mee). Landt in Appendix E. Schrijfwerk in batch B04
 - wie beslist: Floris
 
 Gemeten over alle 192 cellen: het mediane AIC-verschil met de nummer twee is 0,47,
@@ -858,7 +866,12 @@ transitiekans eigenlijk wel raakt. Kost een run van enkele minuten.
 ## D-17. De vier passages die van teken omdraaien
 
 - herkomst: volgt uit de reparatie van R-01
-- status: **open**
+- status: **besloten 5 september 2026 door Floris: de vier passages worden
+  herschreven.** Daarbij hoort een nieuwe analysevraag: zijn Po en Ebro na de
+  reparatie nog de twee rivieren die de tekst als voorbeeld uitlicht, of horen dat
+  nu andere te zijn. Zie taak T-61 in `docs/todo.md`. De formulering gaat wel naar
+  de co-auteurs via het co-auteursdocument, want het raakt de kernbevinding van de
+  copula-helft
 - wie beslist: Floris met de co-auteurs
 
 Vier passages vergelijken de conditionele curve met de unconditionele lijn en
@@ -880,7 +893,9 @@ uitspraken daarover blijven staan.
 ## D-18. Wordt het onderscheid marginaal tegen copula opgeschreven
 
 - herkomst: eigen bevinding, volgt uit de opsplitsing van 2 september
-- status: **open**
+- status: **besloten 5 september 2026 door Floris: ja, beschrijven.** De alinea
+  voor 2.4.2 ligt klaar in `results/2026-09-02_copula_bootstrap/report.md` sectie
+  7, de cijfers per cel in `transition_ci.csv`. Batch B04
 - wie beslist: Floris met de co-auteurs
 
 Het gat tussen de conditionele en de unconditionele curve valt uiteen in een
@@ -1050,7 +1065,9 @@ A is bevestigd, de haak [A] kan weg bij het overnemen.
 ## D-20. De curve die per constructie de diagonaal is
 
 - herkomst: eigen bevinding uit de copula-review, R-10
-- status: **open**, klein
+- status: **besloten 5 september 2026 door Floris: beschrijven.** Eerst nagaan of
+  de curve in het manuscript of Appendix D voorkomt, dan uitleggen als de definitie
+  die hij is. Batch B04
 - wie beslist: Floris
 
 `conditional_probability_drought` is `1 - empirical_cdf(ur[:,1], flood_quantiles)`,
@@ -1060,3 +1077,297 @@ in het resultaat.
 
 Nagaan of hij ergens in het manuscript of de appendices opduikt. Zo ja, eruit of
 uitleggen als de definitie die hij is.
+
+---
+
+## D-21. De nulhypothese van de ECA laat floods vallen waar de definities ze niet toestaan
+
+- herkomst: vraag van Floris op 4 september 2026, na de gerepareerde ECA, of de
+  implementatie klopt gezien 92 van de 96 runs significant en 84 op p precies 0
+- status: **open, rekenwerk klaar op 4 september 2026, nog niet in `results/`**
+- wie beslist: Floris, met de co-auteurs, want dit raakt de hoofdbevinding
+- materiaal: scratchpad-scripts `nulltest_all.py`, `restricted_null_all.py`,
+  `stratified_null_all.py`, `overlap_map.py`, met hun CSV's. **Niet in de repo.** De
+  scratchpad is op 4 september al een keer gewist, dus de cijfers staan hier volledig
+  uitgeschreven. Overzetten naar `scripts/` en een `results/2026-09-04_eca_null_diagnosis/`
+  zodra Floris dat vrijgeeft
+- raakt: T-01, T-10, T-29, R4-01, R4-04, de abstract en de conclusie
+- **rapport met figuren, 5 september 2026:** `results/2026-09-05_eca_null_routes_report/report.pdf`,
+  gemaakt door `scripts/29_eca_null_routes_report.py`. Legt de routes naast elkaar
+  voor de keuze, met een advies. De vier diagnose-CSV's staan daar in `data/`
+- **tweede rapport, 5 september 2026:** `results/2026-09-05_eca_simulations_report/report.pdf`,
+  gemaakt door `scripts/30_eca_simulations_report.py`. Antwoord op de vraag of de toets
+  hele events hussel of alleen starts: alleen starts, als punten. Met de echte weekreeks
+  van Aschach als illustratie van de toets, de nul, de drie problemen en de nulmodellen
+
+### De implementatie is trouw, de nulhypothese niet
+
+De code reproduceert de notebook, de reparatie van de einddetectie is gedocumenteerd
+en de Monte Carlo-vectorisatie is elementsgewijs gecontroleerd. Daar zit het niet.
+
+`monte_carlo_p_value` houdt de droogtes vast, neemt het aantal floodstarts en strooit
+die willekeurig over **alle weken**, 10.000 keer. De p-waarde is het aandeel
+strooiingen met minstens zo veel matches als waargenomen. Dat toetst de hypothese
+"floodstarts liggen willekeurig in de tijd, onafhankelijk van droogtes". Die
+hypothese is bij deze definities al onwaar voordat er iets hydrologisch gebeurt,
+omdat beide labels uit dezelfde afvoerreeks komen.
+
+### Waarom: bij percentiel 0,69 is "flood" bijna "niet in droogte"
+
+Een droogteweek heeft een laag weekgemiddelde en daarmee meestal ook een laag
+weekmaximum. Bij threshold 0,5 ligt de flooddrempel bovendien laag: de 69e
+percentiel van de dagwaardes, waar het mediane weekmaximum al op quantiel 0,65 zit.
+Gemeten over alle 48 locaties en beide periodes, medianen:
+
+| | threshold 0,5 | threshold 1 |
+|---|---|---|
+| aandeel droogteweken | 36% | 15% |
+| aandeel floodweken | 46% | 27% |
+| P(flood, gegeven droogteweek) | 0,05 | 0,00 |
+| P(flood, gegeven niet-droogteweek) | **0,67** | 0,32 |
+
+Twee van elke drie niet-droogteweken heten bij 0,5 flood.
+
+**Let op, dit is geen verbod maar een kansverschil.** Een floodweek kan wel een
+droogteweek zijn, want de SRI is seizoensrelatief en de flooddrempel absoluut. Over
+96 runs bij 0,5: 1591 weken zijn tegelijk droogte en flood, 5,9 procent van de
+droogteweken, en 764 van de 8032 floodstarts, 9,5 procent, beginnen op een
+droogteweek. Bij threshold 1 is dat 0,3 procent. Zie de kaart onderaan.
+
+### Wat dat met een droogte-einde doet
+
+Een droogte eindigt zodra het gemiddelde weer boven -0,5 komt. De week erna is dus
+per definitie een niet-droogteweek, en die is voor twee derde een floodweek. De week
+ervóór, de laatste droogteweek, was vrijwel zeker geen floodweek. Een floodweek
+direct na een droogte is daarmee **automatisch een floodstart**, want een start is
+een floodweek met een niet-floodweek ervoor. Dat is de definitie, geen hydrologie.
+
+Lagverdeling van alle 5503 matches bij 0,5 op de gerepareerde baseline:
+
+| lag na het droogte-einde | gemeten | onder onafhankelijkheid |
+|---|---|---|
+| week 1 | **71%** | ongeveer 27% |
+| week 2 | 13% | ongeveer 24% |
+| week 3 | 9% | ongeveer 21% |
+| week 4 | 7% | ongeveer 19% |
+
+Bij threshold 1: 43, 28, 16, 13 procent.
+
+De beslissende meting: is de week na een droogte-einde vaker flood dan een
+willekeurige andere niet-droogteweek? **Nee.** Bij 0,5 is P(flood in de week na een
+droogte-einde) 0,58 tegen P(flood, gegeven niet-droogte) 0,67, en in 85 van de 96
+runs is hij lager. Bij threshold 1: 0,14 tegen 0,32, in 93 van de 94 runs lager. De
+afvoer die net uit een droogte komt is een gewone niet-droogteweek, geen natte.
+
+### Vijf nulmodellen naast elkaar
+
+Alle over 48 locaties en beide periodes, 2000 simulaties per run, dezelfde telling
+als de toets. Alleen de verzameling weken waar een gesimuleerde start mag vallen
+verschilt.
+
+| nul | floodstarts geplaatst op | gebruikt waargenomen floodposities |
+|---|---|---|
+| A, gepubliceerd | alle weken | nee |
+| B | alleen niet-droogteweken | nee |
+| C | alleen weken die een floodstart kunnen zijn: niet-droogte en week ervoor geen flood | ja, voor "week ervoor" |
+| B', gestratificeerd | het waargenomen aantal starts op droogteweken uniform over de droogteweken, de rest over de niet-droogteweken | nee |
+| C', gestratificeerd plus startregel | als B', plus week ervoor geen flood | ja, voor "week ervoor" |
+
+B en C verbieden floods in droogteweken en zijn daarmee iets te streng, want die
+komen bij 0,5 voor. B' en C' laten er precies zo veel toe als er werkelijk zijn en
+randomiseren alleen de timing binnen elke laag. **C' is de eerlijkste nul die er nu
+ligt.**
+
+| nul | threshold 0,5 | | threshold 1 | |
+|---|---|---|---|---|
+| | significant van 96 | gepoolde ratio | significant van 96 | gepoolde ratio |
+| A | 92 | 1,81 | 30 | 1,26 |
+| B | 90 | 1,58 | 30 | 1,24 |
+| C | 74 | 1,18 | 21 | 1,06 |
+| B' | 90 | 1,63 | 29 | 1,24 |
+| **C'** | **80** | **1,25** | **21** | **1,07** |
+
+Bij 0,5 verdwijnt ruim twee derde van het overschot onder C'. Er blijft een rest van
+ratio 1,25 met 80 van de 96 significant. Bij threshold 1, de R1-configuratie, blijft
+1,07 over met 21 van de 96. Het R1-resultaat was dus vermoedelijk grotendeels
+hetzelfde artefact.
+
+Voorbeeld om A, B en C uit elkaar te houden, D is droogteweek, F floodweek, N geen
+van beide:
+
+```
+week:   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15
+label:  D  D  D  F  F  F  N  F  F  N  D  D  N  F  F
+```
+
+Echte starts: week 4, 8 en 14. A mag een gesimuleerde start ook op 1, 2, 3, 11 en 12
+zetten. B sluit die uit maar laat 5, 6, 9 en 15 toe, midden in een run, waar geen
+start kan beginnen. C houdt 4, 7, 8, 10, 13 en 14 over. Week 4 is in elke nul
+kandidaat, want week 3 is droogte en dus geen flood. Kandidaatweken voor een start
+liggen daardoor geconcentreerd direct na droogtes, en C bouwt dat in de nul in.
+
+### Een geprobeerde en verworpen nul: floodruns verplaatsen
+
+Runs als blokken met behoud van lengte verplaatsen binnen de niet-droogtestukken,
+met een scheidingsweek tussen aangrenzende runs. Zelfcontroles slaagden, maar de
+constructie rust op het verbod op floods in droogteweken, en dat verbod klopt bij
+0,5 niet. Op Aschach periode 1 gaf hij verwacht 61,7 tegen 52 waargenomen, p = 1,0.
+Bij threshold 1, waar de overlap nul is, gaf hij ratio 1,0 tot 1,15, in lijn met C'.
+Een gestratificeerde run-versie is te bouwen maar is niet gedaan.
+
+### Kruiscontrole met het gevoeligheidsraster
+
+`results/2026-09-02_sensitivity_grid_endfix/`, gepubliceerde nul A. De SRI-as doet
+vrijwel niets, de floodpercentiel-as alles. Significante runs van 96 bij venster 4:
+
+| SRI-drempel | 0,60 | 0,6915 | 0,80 | 0,90 | 0,95 |
+|---|---|---|---|---|---|
+| 0,25 | 89 | 92 | 93 | 84 | 52 |
+| 0,5 | 90 | 92 | 93 | 66 | **30** |
+| 0,75 | 90 | 88 | 80 | 32 | 8 |
+| 1,0 | 86 | 79 | 52 | 13 | 3 |
+| 1,5 | 59 | 31 | 7 | 4 | 0 |
+
+Bij SRI 0,5 met percentiel 0,95 blijft 30 van de 96 over met gepoolde ratio 1,25,
+onder nul A. Bij strenge drempels aan beide kanten keert het om naar ratio 0,5 tot
+0,7. Twee onafhankelijke wegen, de nul repareren of de flooddefinitie aanscherpen,
+komen op ongeveer ratio 1,2 uit.
+
+### Weken en events schalen niet mee
+
+Een event is een aaneengesloten reeks weken. Een strengere flooddrempel maakt events
+vooral korter en neemt ze minder vaak weg. Wie over selectiviteit schrijft moet
+weken en events uit elkaar houden, zie T-29.
+
+### De kaart: waar de definities exclusief worden
+
+Overlap als aandeel van de droogteweken, gepoold over 96 runs, per SRI-drempel en
+floodpercentiel:
+
+| SRI-drempel | 0,60 | 0,6915 | 0,80 | 0,90 | 0,95 |
+|---|---|---|---|---|---|
+| 0,25 | 20,2% | 10,6% | 3,2% | 0,6% | 0,1% |
+| 0,5 | 13,1% | 5,9% | 1,6% | 0,3% | 0,0% |
+| 0,75 | 7,1% | 2,8% | 0,8% | 0,2% | 0,0% |
+| 1,0 | 3,6% | 1,7% | 0,5% | 0,1% | 0,0% |
+| 1,5 | 1,2% | 0,5% | 0,1% | 0,0% | 0,0% |
+
+De gepubliceerde configuratie, 0,5 met 0,6915, zit op 5,9 procent. Onder de procent
+kom je bij SRI 0,5 vanaf floodpercentiel 0,90, en bij percentiel 0,6915 pas boven een
+SRI-drempel van 1,5. Van de twee varianten uit route 2 hieronder is het
+floodpercentiel omhoog dus de weg die de definities exclusief maakt zonder de
+SRI-drempel van de copula te raken.
+
+Dezelfde indeling, P(flood, gegeven niet-droogteweek), mediaan over 96 runs. Hoe
+hoger, hoe meer "flood" samenvalt met "niet-droogte" en hoe groter het
+lag-1-artefact:
+
+| SRI-drempel | 0,60 | 0,6915 | 0,80 | 0,90 | 0,95 |
+|---|---|---|---|---|---|
+| 0,25 | 0,87 | 0,76 | 0,57 | 0,33 | 0,19 |
+| 0,5 | 0,80 | 0,67 | 0,49 | 0,28 | 0,16 |
+| 0,75 | 0,72 | 0,60 | 0,43 | 0,25 | 0,14 |
+| 1,0 | 0,65 | 0,54 | 0,38 | 0,22 | 0,12 |
+| 1,5 | 0,57 | 0,47 | 0,34 | 0,19 | 0,11 |
+
+Deze twee kaarten zijn niet hetzelfde. De overlap is bij 0,90 al bijna weg, maar
+de complementariteit zit daar nog op 0,28 en het lag-1-effect blijft.
+
+### Wat niet fout is
+
+- de implementatie en de reproductie van de notebook
+- de reparatie van de einddetectie op 2 september, die versterkt het effect eerder
+  dan dat hij het veroorzaakt
+- de copula. Die selecteert alleen droogtes op `threshold`, via `Intensity_calc`
+  naar `Drought_Intensity`, en heeft de floodkant als continue variabele, zie
+  `_copula_inputs` in `src/dtf/copula.py`. **Het floodpercentiel in de ECA aanpassen
+  raakt de copula dus niet, de SRI-drempel wel**
+
+### Voorbehouden
+
+- C en C' gebruiken de waargenomen floodreeks voor "week ervoor geen flood" en zijn
+  daarmee deels circulair, mogelijk iets te streng. B en B' zijn te mild omdat ze
+  een start midden in een floodrun laten vallen. De waarheid ligt tussen 1,25 en
+  1,63 bij 0,5
+- de ruimtelijke afhankelijkheid tussen locaties, al genoemd in de README van het
+  raster, komt hier bovenop en maakt de gepoolde p te laag
+- de veertien jaarverschuivingen als nul behouden seizoen en autocorrelatie maar
+  laten floods in droogteweken vallen, en repareren dit dus niet: ratio 1,63 bij 0,5
+
+### Routes, nog niet gekozen
+
+1. **Nul repareren, drempels houden.** SRI 0,5 en percentiel 0,69 blijven, consistent
+   met de copula en de tekst. Een variant van `monte_carlo_p_value` met
+   gestratificeerde kandidaten en startregel, het raster opnieuw. Rapporteren met B'
+   en C' als grenzen
+2. **Definities exclusief maken door de drempel te verplaatsen.** Voorkeur van
+   Floris, 4 september: een week hoort niet tegelijk droogte en flood te heten. Twee
+   varianten: de SRI-drempel omhoog, wat breekt met de copula op 0,5, of het
+   floodpercentiel in de ECA omhoog met SRI op 0,5, wat de copula niet raakt. De
+   kaart hierboven laat zien vanaf waar de overlap onder de procent komt.
+   **Kanttekening: exclusiviteit repareert de nul niet.** Bij threshold 1 is de
+   overlap 0,3 procent en haalt C' de ratio toch van 1,26 naar 1,07. Het
+   lag-1-effect komt uit de startregel, niet uit de overlap. Wie de drempel
+   verplaatst moet de nul alsnog repareren, anders staat er een kleiner getal met
+   dezelfde fout eronder
+3. **Allebei.** De nul repareren als hoofdlijn en de flooddefinitie als
+   gevoeligheidsas erbij. Het meest volledige antwoord op R4-01
+4. **Eerst met co-auteurs.**
+
+Niet in deze ronde: een nul op synthetische afvoer, een stochastisch model per
+locatie met de volledige pijplijn erop, als controle van buitenaf op wat de
+definities uit zichzelf produceren.
+
+Bij elke route een regel in `CHANGELOG-methodology.md` zodra de keuze valt, want
+de hoofdbevinding verandert van "1,8 keer zo vaak als toeval" naar iets tussen 1,25
+en 1,63.
+
+---
+
+## D-21. De dataset is EFAS op 1 boogminuut, de tekst zegt 5 km en citeert het GloFAS-artikel
+
+- herkomst: eigen bevinding, 5 september 2026, bij het uitzoeken van de vraag
+  "EFAS of GloFAS" uit T-12 · raakt **Reviewer #4** (R4-02) en sectie 2.2
+- status: **open, te bevestigen door Floris en Paolo.** Floris meldt op 5 september
+  dat de data van ewds.climate.copernicus.eu komt, de Early Warning Data Store. Daar
+  staan zowel EFAS als GloFAS, dus dat beslist het nog niet. De metadata in het
+  bestand wel
+- wie beslist: Floris, met Paolo voor de referenties
+
+Gelezen uit `8_maart_european_river_runoff_1994_2024.nc`, de GRIB-attributen die bij
+het downloaden zijn meegekomen:
+
+| attribuut | waarde | betekenis |
+|---|---|---|
+| `GRIB_iDirectionIncrementInDegrees` | 0,016667 | 1 boogminuut, ongeveer 1,5 tot 1,8 km |
+| `GRIB_Nx` x `GRIB_Ny` | 4530 x 2970 | Europees domein, lon -25,2 tot 50,2, lat 22,8 tot 72,2 |
+| `GRIB_shortName` | `dis06` | "Mean discharge in the last 6 hours", de EFAS-variabele. GloFAS levert `dis24` op 0,1 graad wereldwijd |
+| `GRIB_dateOfModelVersion` | 2023-01-01 | EFAS v5, de versie die op 1 boogminuut draait |
+| `GRIB_centre` | ecmf | ECMWF als producent |
+
+Conclusie: de dataset is **EFAS historical, versie 5, 1 boogminuut**, uit de EWDS.
+Reviewer #4 heeft dus gelijk dat het EFAS/LISFLOOD is.
+
+Drie dingen in sectie 2.2 kloppen daar niet mee:
+
+1. **"5 x 5 km grid resolution"**: dat was EFAS v4. Versie 5 draait op 1 boogminuut.
+2. **"forced with temperature and precipitation data from the ERA5 climate
+   reanalysis"**: de EFAS historical simulations worden gedreven door het gridded
+   observatieproduct EMO-1, niet door ERA5. Te bevestigen tegen de
+   EWDS-documentatie van `efas-historical`, maar als dat klopt is ook de
+   karakterisering "reanalyse gedreven door ERA5" van Reviewer #4 onjuist, en
+   moet dat netjes in het antwoord
+3. **Harrigan et al. 2020** is het GloFAS-ERA5-artikel. Voor EFAS hoort de
+   referentie naar de EWDS-dataset zelf plus de EFAS-systeembeschrijving. In
+   `review/referenties-r4-02-r4-04.md` wordt dan Tilloy et al. 2025 (HERA, 2448
+   Europese stations) de belangrijkste validatiereferentie, en Hirpa 2018,
+   Alfieri 2020 en Harrigan 2020 vallen weg of worden "vergelijkbaar product"
+
+Wat er nog bij hoort: de reeks in het bestand heeft één waarde per dag om 12:00,
+terwijl `dis06` een zesuursgemiddelde is. Hoe die dagwaarde tot stand is gekomen
+(daggemiddelde bij download, of één van de vier zesuursvakken) moet Floris uit de
+downloadinstellingen halen, want de tekst zegt "average daily (24-hour)".
+
+Gevolg voor het werk: T-12 kan door zodra dit bevestigd is. Sectie 2.2 gaat mee in
+batch B01 als feitelijke correctie, de referenties in B06.
+

@@ -392,11 +392,12 @@ uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
 - wat er nog moet: de scopeparagraaf en de beperking schrijven, de referenties
   in de literatuurlijst zetten, en de cijfers die we uit die artikelen citeren
   in het artikel zelf nakijken
-- **eerst uitzoeken, vraag aan Floris:** staat er EFAS of GloFAS in de
-  methodesectie. Reviewer #4 citeert EFAS/LISFLOOD, Paolo schrijft GloFAS, de
-  skill `dtf-manuscript` schrijft ook GloFAS. In de repo komt GloFAS nergens
-  voor. De validatieliteratuur is per product anders, dus dit blokkeert de
-  definitieve referentielijst
+- ~~**eerst uitzoeken, vraag aan Floris:** staat er EFAS of GloFAS in de
+  methodesectie~~ **Grotendeels beantwoord 5 september 2026, zie D-21.** De
+  metadata in het databestand wijzen op EFAS historical v5 op 1 boogminuut uit
+  de EWDS. De tekst zegt EFAS maar noemt 5 km, ERA5 en citeert Harrigan 2020, en
+  dat is het GloFAS-artikel. Te bevestigen door Floris en Paolo, daarna de
+  referentielijst omzetten naar de EFAS-validatie (Tilloy 2025 voorop)
 - prioriteit: hoog, maar het is geen rekenwerk meer, alleen schrijfwerk. Het
   deadlinerisico dat hier eerst stond is daarmee weg
 
@@ -436,12 +437,15 @@ uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
 
 ### T-15. Afronding van de p-waardes in Tabel 3
 - herkomst: **Reviewer #4** (R4-06)
-- status: open
-- drie conventies botsen: de reviewer vraagt drie significante cijfers, de
-  manuscript-afspraak zegt `p < 0.05` of twee decimalen, de huidige tabel doet
+- status: **besloten 5 september 2026 door Floris: drie significante cijfers**,
+  zoals de reviewer voorstelt. Geldt voor het hele artikel, dus ook voor de
+  p-waardes in de gevoeligheidstekst (die staan er al zo) en de copula-appendix.
+  De manuscript-afspraak in `.claude/skills/dtf-manuscript/SKILL.md` ("p < 0.05 of
+  twee decimalen") wordt daarop aangepast
+- uitvoering: in het nieuwe script voor Tabel 3 (script 39), niet met de hand
+- drie conventies botsten: de reviewer vraagt drie significante cijfers, de
+  manuscript-afspraak zei `p < 0.05` of twee decimalen, de huidige tabel doet
   drie decimalen via `safe_format`
-- eerst één conventie kiezen die door het hele artikel geldt, dan in het script
-  dat de tabel maakt zetten, niet met de hand in de tekst
 
 ### T-16. Appendix D, figuurtitels en kopjes
 - herkomst: **Reviewer #1** (R1-09)
@@ -451,11 +455,22 @@ uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
 
 ### T-17. Nieuwe tabel met de fysische resultaten per rivier
 - herkomst: **Reviewer #1** (R1-08, tweede deel)
-- status: **open, niet meer geblokkeerd.** T-10 is af en de copula-bronnen zijn
-  post-fix, gecontroleerd 4 september 2026
-- moet uit `results/` gegenereerd worden, niet met de hand. Nieuw script
-  `scripts/27_physical_results_table.py`, uitvoer per locatie en per rivier plus
-  Markdown en LaTeX, in een eigen resultaatmap met manifest
+- status: **concept gegenereerd, 4 september 2026, wacht op keuzes van Floris.**
+  `results/2026-09-04_physical_table/`, script `scripts/27_physical_results_table.py`,
+  3,5 minuten. Alle 96 locatie-periodes reproduceren de baseline-cel van het
+  endfix-raster exact. Per locatie, per rivier, md en LaTeX met caption, README
+  met bevindingen en beperkingen. Geen wijziging aan `src/dtf/`
+- **wat eruit springt:** aandeel droogtes gevolgd door een flood 0,38 tot 0,83 per
+  rivier, ratio tegen verwacht 1,39 tot 2,43, mediane lag één week (Dnieper en Don
+  twee). Dnieper periode 2: ratio 0,72, nul significante locaties, Cherson geen
+  enkele overgang. Δp-kolom uit de copula is in 1 tot 2 van 96 cellen
+  onderscheidend, overweeg hem te vervangen of weg te laten
+- **keuzes voor Floris, staan in de README:** per rivier of per locatie in de
+  hoofdtekst, beide periodes of één kolom, welke van de dertien kolommen blijven,
+  en of de Δp-kolom blijft
+- nog te doen na die keuzes: het script op de gekozen kolommen zetten, de tabel in
+  het manuscript plaatsen (blok C, wacht op T-31), regel in `claims.yaml` (T-41)
+- nog niet gecommit, staat op branch `eca-endtime-fix`
 - bronnen: `extract_events` op de baseline (drempel 0,5, percentiel 0,6915,
   venster 4) voor aantal, duur, aandeel eenweeks en piek-SRI van de droogtes;
   `results/2026-09-02_sensitivity_grid_endfix/` voor floodpercentages, overgangen
@@ -464,9 +479,6 @@ uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
   voor de reguleringsindicator (weekpercentages, niet geraakt door de fix); en voor
   de copula-kolom `transition_ci.csv` in de bootstrapmap en
   `dependence_tests.csv`, **niet** `summary.csv` uit `copula_corrected`
-- keuzes voor Floris: per rivier in de hoofdtekst met per locatie in een
-  appendix, of alleen per locatie; beide periodes of één gepoolde kolom; of de
-  regime- en copula-kolom erin gaan
 - hoort bij T-27 en T-28, want de tabel draagt de hydrologische lijn
 
 ### T-18. Maximale afstand op de gridpunt-lookup
@@ -582,6 +594,29 @@ ligt, op alle drie floodniveaus.
 - de zin "point to important regional dynamics" vervangen door wat de toetsen dragen
 - Revision Notes: het Engelse concept bij D-19, de haak [A] is nu vervuld
 - hoort bij D-17 en D-18 en bij T-27 en T-28
+
+### T-61. Zijn Po en Ebro nog de twee voorbeeldrivieren
+- herkomst: vraag van Floris, 5 september 2026, bij het besluit over D-17 · raakt
+  **Reviewer #4** (R4-03, R4-04) en **Reviewer #1** (R1-07, R1-08)
+- status: open, rekenwerk klein
+- de tekst licht Po en Ebro uit als de rivieren waar de droogtezwaarte de
+  transitiekans het duidelijkst beïnvloedt (figuren 5 tot 8, secties 3.2 en 3.3).
+  Na de reparatie van 2 september en met de onafhankelijkheidstoetsen en de
+  bootstrap erbij is dat opnieuw te wegen
+- aanpak: alle 16 rivieren rangschikken op wat de tekst wil laten zien, per
+  periode en per variabele: (1) aantal toetsen dat onafhankelijkheid verwerpt en
+  het teken van tau, (2) het copula-deel van het gat bij quantiel 0,69 met
+  bootstrapinterval, (3) het verschil zwaar min mild met interval, (4) het aantal
+  events waar de zware curve op rust. Bronnen: `results/2026-09-02_dependence_tests/`
+  en `results/2026-09-02_copula_bootstrap/`, beide post-fix. Geen nieuwe Monte
+  Carlo nodig
+- wat er nu al op wijst: onder het criterium van T-60 zijn Po Piacenza (4 cellen),
+  Ebro Haro en Tudela (periode 2, mean severity), Tagus La Bazagona (periode 2,
+  beide) en Danube Aschach (periode 1, mean severity) de positieve cellen. Danube
+  Aschach is bovendien de enige cel waar het bootstrapinterval van het verschil
+  boven nul ligt. Vistula Turon en Weser Bodenwerder zijn het negatieve cluster
+- uitkomst bepaalt welke locaties in figuren 5 tot 8 komen en welke rivieren
+  sectie 3.3 en 3.4 uitlichten. Hoort bij D-17 en bij batch B04
 
 ### T-20. Abstract concreet maken
 - herkomst: **Reviewer #1** (R1-01) · associate editor (AE-02)

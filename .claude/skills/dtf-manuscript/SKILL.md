@@ -38,8 +38,9 @@ machinaal te vinden.
 - **drought-to-flood** met streepjes, kleine letters, ook als bijvoeglijk gebruik
 - **event coincidence analysis**, afgekort **ECA**, bij eerste gebruik uitschrijven
 - **SRI** voor de standardised runoff index, bij eerste gebruik uitschrijven
-- **discharge** waar het over de GloFAS-variabele gaat, **runoff** waar het over
-  de afgeleide reeksen gaat. Niet door elkaar.
+- **discharge** waar het over de EFAS-variabele gaat (zie D-21, de dataset is EFAS
+  historical, niet GloFAS), **runoff** waar het over de afgeleide reeksen gaat. Niet
+  door elkaar.
 - rivier- en plaatsnamen in het Engels waar een Engelse naam bestaat: Rhine,
   Danube, Meuse, Vistula. In `config/locations.yaml` staan een paar Nederlandse
   namen (Straatsburg, Warchau, Turijn, Krementsjoek), die horen in de tekst niet
@@ -79,7 +80,9 @@ Wetenschappelijk Engels, geen overstatement. Concreet:
 - resultaten in de verleden tijd, interpretatie in de tegenwoordige
 - getallen met een consistent aantal decimalen per grootheid, vastgelegd zodra we
   het eerste keer kiezen
-- p-waardes als `p < 0.05` of met twee decimalen, niet allebei in één artikel
+- p-waardes met drie significante cijfers, besloten 5 september 2026 op verzoek van
+  Reviewer #4 (R4-06). Niet mengen met `p < 0.05` in tabellen; in lopende tekst mag
+  `p < 0.05` als drempel worden genoemd
 
 ## Figuren en tabellen
 
