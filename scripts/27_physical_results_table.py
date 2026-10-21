@@ -40,7 +40,7 @@ from dtf.pipeline import (find_nearest_grid_point, river_runoff_time_location_me
     Intensity_calc, extract_events)
 
 # --- parameters, horen in config/analysis.yaml (T-42) ---------------------
-DATA = os.path.expanduser("~/Downloads/8_maart_european_river_runoff_1994_2024.nc")
+DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-09-04_physical_table"
 RUN_DATE = "2026-09-04"

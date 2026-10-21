@@ -12,7 +12,7 @@ from scipy.stats import norm
 from dtf.pipeline import (find_nearest_grid_point, river_runoff_time_location_mean,
     river_runoff_time_location_maximum, SRI_calculate, transform_to_quantiles)
 
-DATA = os.path.expanduser("~/Downloads/8_maart_european_river_runoff_1994_2024.nc")
+DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 OUT = "results/2026-09-01_threshold_selectivity"; os.makedirs(OUT, exist_ok=True)
 data = xr.open_dataset(DATA).set_index(point=["latitude", "longitude"])
 src = "\n".join("".join(c["source"]) for c in json.load(

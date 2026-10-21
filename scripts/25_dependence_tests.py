@@ -48,7 +48,7 @@ from dtf.copula import (flood_peak_after_drought, mean_severity_per_week,
                         fit_best_distribution, calculate_rolling_max, _exceedance)
 from vinecopulas.bivariate import bestcop, random as cop_random, copulas
 
-DATA = os.path.expanduser("~/Downloads/8_maart_european_river_runoff_1994_2024.nc")
+DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-09-02_dependence_tests"
 THRESHOLD, DT, SEED = 0.5, 4, 43
