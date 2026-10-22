@@ -296,7 +296,12 @@ def fit_copula(data1, data2, X, Y, quantiles_weekly_max, period_after_event=4,
         u1_sorted, u2_by_u1 = draw[order, 0], draw[order, 1]
         surface = np.zeros((len(drought_values), len(Y)))
         for i, value in enumerate(drought_values):
-            pseudo = np.sum(d1 <= value) / (n + 1)
+            # Zelfde F_X als de curves, anders valt de rij bij X[0] niet samen met
+            # de milde curve.
+            if marginals == "parametric":
+                pseudo = float(np.clip(dist1.cdf(value, *par1), eps, 1 - eps))
+            else:
+                pseudo = np.sum(d1 <= value) / (n + 1)
             start = np.searchsorted(u1_sorted, pseudo, side="left")
             surface[i] = _exceedance(np.sort(u2_by_u1[start:]), read_at)
         result["surface"] = surface
