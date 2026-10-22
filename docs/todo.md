@@ -429,7 +429,8 @@ uitlegdocument staat in `results/2026-09-03_copula_method_report/report.pdf`.
 ### T-14. Lokale factoren kwantificeren of de claim terugbrengen
 - herkomst: **Reviewer #4** (R4-05)
 - wie: Floris kiest de omvang
-- status: wacht op Floris
+- status: **besloten 22 oktober 2026: terugbrengen, niet kwantificeren.** Zie
+  `CHANGELOG-methodology.md`, entry 2026-10-22, punt 5. Wordt schrijfwerk
 - twee heel verschillende hoeveelheden werk: factoren in de analyse opnemen, of
   in de tekst terugbrengen tot wat de data dragen
 - materiaal dat er al ligt: de SRI-scan over 48 locaties en het reguleringspatroon
@@ -516,6 +517,13 @@ actuele manuscript is.
 - status: **besloten 4 september 2026 door Floris: optie A, de
   onafhankelijkheidstoetsen.** Optie C, het mediaancriterium, is afgewezen met vijf
   argumenten, zie D-19. Schrijfwerk open
+- **teruggedraaid 22 oktober 2026, 's avonds: criterium A blijft**, drie van
+  vier. De herziening hieronder is herroepen. Changelog entry 2026-10-22 (derde)
+- **herzien 22 oktober 2026:** de toetsenregel is nu twee van drie (tau, Hoeffding,
+  permutatie) in plaats van drie van vier. Tellingen worden 2, 3, 2, 6 toenames
+  en 2, 2, 0, 1 afnames. Het nieuwe Engelse concept staat in de changelog, entry
+  2026-10-22 (tweede). Wat hieronder over het criterium en de rivieren staat,
+  gaat nog uit van de oude regel. Open: of Krementsjoek meetelt, gezien D-12
 - prioriteit: hoog, want de alinea op pagina 31 en de met naam genoemde locaties
   veranderen
 
@@ -598,7 +606,9 @@ ligt, op alle drie floodniveaus.
 ### T-61. Zijn Po en Ebro nog de twee voorbeeldrivieren
 - herkomst: vraag van Floris, 5 september 2026, bij het besluit over D-17 · raakt
   **Reviewer #4** (R4-03, R4-04) en **Reviewer #1** (R1-07, R1-08)
-- status: open, rekenwerk klein
+- status: **besloten 22 oktober 2026: Po en Ebro blijven, met bootstrapinterval en
+  "threshold-dependent"; Vistula Turon p1 komt erbij als extra paneel.** Zie de
+  changelog, entry 2026-10-22, punt 2. Volgt nog: het paneel maken
 - de tekst licht Po en Ebro uit als de rivieren waar de droogtezwaarte de
   transitiekans het duidelijkst beïnvloedt (figuren 5 tot 8, secties 3.2 en 3.3).
   Na de reparatie van 2 september en met de onafhankelijkheidstoetsen en de
@@ -617,6 +627,67 @@ ligt, op alle drie floodniveaus.
   boven nul ligt. Vistula Turon en Weser Bodenwerder zijn het negatieve cluster
 - uitkomst bepaalt welke locaties in figuren 5 tot 8 komen en welke rivieren
   sectie 3.3 en 3.4 uitlichten. Hoort bij D-17 en bij batch B04
+
+### T-62. Effectrapport locatiespecifieke claims onder alle gevoeligheden
+- herkomst: besluit van Floris over D-22, 21 oktober 2026 · raakt **Reviewer #4**
+  (R4-03) en de discussiesectie
+- status: **rapport klaar 21 oktober 2026, wacht op de weging van Floris.**
+  `results/2026-10-21_t62_location_claims/report.md`, gemaakt door
+  `scripts/38_t62_location_claims_report.py`. **Gecorrigeerd 21 oktober 2026**:
+  de eerste versie telde met de verkeerde toetsenset (met rho, minstens 2 van 4)
+  en kwam op 20 cellen. Nu criterium A uit D-19 (tau, Hoeffding, permutatie,
+  copula-deel; 3 van 4, bij drempel 1,0 2 van 3): 12 cellen, gelijk aan de
+  9 toenames en 3 afnames van D-19. Uitkomst: 1 "noemen" (Vistula Turon p1
+  mean severity), 3 "noemen met markering" (Tagus La Bazagona p2 drought peak,
+  Vistula Turon p1 drought peak, Weser Bodenwerder p1), 8 "drempelafhankelijk
+  samenvatten" (alle Po Piacenza, Ebro Haro en Tudela, Danube Aschach, La
+  Bazagona p2 mean severity)
+- **weging besloten 22 oktober 2026: de voorzet volgen**, zie de changelog, entry
+  2026-10-22, punt 1. Geldt onder criterium A
+- **teruggedraaid 22 oktober 2026, 's avonds: criterium A blijft.** De voorzet
+  van 21 oktober is weer leidend: 1 noemen (Vistula Turon p1 mean severity), 3
+  met markering, 8 samenvatten. Changelog entry 2026-10-22 (derde)
+- **definitie beslist 22 oktober 2026**: twee van drie toetsen (tau, Hoeffding,
+  permutatie), de regel uit sectie 5 van het strict-rapport, ook voor D-19.
+  Voorzet opnieuw berekend in `results/2026-10-22_t62_location_claims/`: 2
+  "noemen" (Vistula Turon p1, Rhine Straatsburg p2), 3 met markering, 13
+  samenvatten. De versie onder criterium A blijft in de map van 21 oktober
+- D-22 is besloten als optie 1 en 3 gecombineerd: de namen waar het artikel op
+  leunt (Po, Ebro, Tagus, Danube, uit D-19 criterium A) blijven genoemd, per
+  naam gemarkeerd of hij bij drempel 1,0 standhoudt, met expliciet erbij dat
+  alleen Vistula Turon (periode 1) en Rhine Straatsburg (periode 2) dat doen.
+  Floris wil de definitieve formulering pas vaststellen op een uitgebreid
+  effectrapport ná de rasterrun
+- het rapport legt per genoemde locatie naast elkaar: (1) de vier
+  onafhankelijkheidstoetsen bij drempel 0,5 en 1,0
+  (`results/2026-09-02_dependence_tests/` en het strict-rapport van 4
+  september), (2) het teken en de omvang onder de weekly en de daily
+  quantielreferentie (`results/2026-09-04_copula_quantile_reference/`), (3) de
+  ECA-significantie onder C′ (`results/2026-10-21_eca_null_production/` en het
+  raster zodra dat er is), (4) het aantal events waar de zware curve op rust.
+  Eén tabel, één advies per naam: noemen, noemen met markering, of samenvatten
+  als drempelafhankelijk
+- overlapt met T-61 (de voorbeeldrivieren) en levert de passage voor D-22 in
+  batch B04
+
+### T-63. Formule (1) en Appendix A kloppen niet met de code
+- herkomst: eigen bevinding bij D-07, 22 oktober 2026 · raakt **Reviewer #4**
+  (R4-01) en de methodensectie
+- status: open, schrijfwerk
+- **Formule (1), regel 267 tot 269** van de ingeleverde versie:
+  t_i^D − t_i^F < ΔT, "where t_i^D is the first week of a drought event, t_i^F is
+  the first week of a flood event". Dat is de start van de droogte, en met dit
+  teken is het verschil negatief zodra de flood na de droogte komt. De code en
+  Tabel 2 ("within four weeks after a drought ends") matchen vanaf het einde:
+  0 < t_F,start − t_D,end ≤ ΔT. Dit was het "nog na te kijken"-punt uit
+  `manuscript/README.md`, nu leesbaar uit de .docx
+- **Appendix A**, alleen in de .docx: "This process is repeated across 1,000
+  simulations" en "A thousand simulation rounds". De gepubliceerde berekening
+  gebruikte 10.000 per locatie en periode. Daarnaast beschrijft de appendix de
+  oude nul ("randomly sample new flood start times across the full observational
+  period"). Die moet C′ worden, zie D-21 en de changelog van 21 oktober
+- open vraag aan Floris: zijn de appendices in maart als apart bestand
+  ingeleverd? In de ingeleverde PDF en in `HYDROL79380_R1.pdf` staan ze niet
 
 ### T-20. Abstract concreet maken
 - herkomst: **Reviewer #1** (R1-01) · associate editor (AE-02)
@@ -778,7 +849,10 @@ ligt, op alle drie floodniveaus.
 ### T-31. Vaststellen welke .docx het actuele manuscript is
 - herkomst: formele eis editor (ED-05) · eigen bevinding D-07
 - wie: alleen Floris weet dit
-- status: wacht op Floris
+- status: **gedaan 22 oktober 2026.** De lopende tekst komt uit het Google Doc
+  (baseline in `manuscript/`, commit f503539), de appendices uit
+  `DTF_Europe_reasearch_paper_manuscript_22_03_26.pdf.pdf.docx`. De twee
+  .docx-kandidaten bleken tekstueel identiek. Zie D-07
 - kandidaten in Downloads: `2. DTF_Europe_research_paper_manuscript.docx` van 16
   maart en `DTF_Europe_reasearch_paper_manuscript_22_03_26.pdf.pdf.docx` van 22
   maart, plus losse `References.docx` en
@@ -941,7 +1015,7 @@ reviewers, maar ze maken het reviewerwerk wel controleerbaar.
 ### T-49. Repo op privé zetten
 - herkomst: eigen bevinding D-05 · **niet door een reviewer gevraagd**
 - wie: Floris
-- status: **lijkt gedaan, te bevestigen door Floris.** Op 4 september 2026 geeft de
+- status: **gedaan, bevestigd door Floris op 22 oktober 2026.** Op 4 september 2026 gaf de
   GitHub API zonder inlog een 404 op `florislugtmeijer/Drougt_to_flood` terwijl
   de repo via ssh gewoon bereikbaar is. Dat is het gedrag van een privé-repo. Niet
   zelf in de instellingen gecontroleerd

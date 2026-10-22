@@ -8,6 +8,496 @@ Floris: `docs/proposed-changes.md`. Werk dat eruit volgt: `docs/todo.md`.
 
 ---
 
+## 2026-10-22 (derde) — Telcriterium terug naar drie van vier (criterium A)
+
+**Beslist door Floris op 22 oktober 2026, 's avonds.** Herroept de entry
+2026-10-22 (tweede). Een cel telt als toename of afname wanneer minstens drie van
+de vier toetsen (Kendall's tau, Hoeffding's D, de permutatie op de copulafit en
+de permutatie op het copula-deel bij 0,6915) p < 0,05 geven, met de richting uit
+tau. Dat is criterium A uit D-19, besloten op 4 september. **Aan de berekeningen
+verandert niets.**
+
+**Waarom niet twee van drie.** De drie toetsen tau, Hoeffding en de permutatie op
+de copulafit hangen sterk samen (rangcorrelatie van de p-waardes 0,70 tot 0,77
+over 190 cellen), dus "twee van drie" is weinig strenger dan één toets. Eén toets
+geeft 19 treffers waar toeval er 9,5 verwacht; een FDR-correctie laat er nul
+over. Drie van vier zit daartussen. De zes cellen die twee van drie erbij haalt
+zijn grotendeels dun (Dnieper Kremenchuk 28 events zonder zware droogte, Tagus La
+Bazagona p1 zonder zware droogte) of randgevallen (Rhine Strasbourg haalt
+Hoeffding met p = 0,04995).
+
+**Wat er tegenover staat, voor de volledigheid.** Bij drempel 1,0 is de toets op
+het copula-deel per constructie nul. Criterium A wordt daar dus twee van de
+overige drie, zoals het T-62-rapport van 21 oktober al deed. De twee drempels
+worden daardoor niet met exact dezelfde regel beoordeeld; dat staat in de
+methodensectie.
+
+**Effect op de tekst:**
+
+- tellingen op pagina 31: 1, 2, 2, 4 toenames en 2, 1, 0, 0 afnames (D-19)
+- robuust bij drempel 1,0: alleen Vistula Turon periode 1, mean severity. Rhine
+  Straatsburg valt weg uit de formulering van D-22
+- de leidende T-62-voorzet is weer die van 21 oktober,
+  `results/2026-10-21_t62_location_claims/`. De versie van 22 oktober blijft
+  staan maar is niet leidend
+- het open punt over Dnieper Kremenchuk vervalt, die cel haalt criterium A niet
+- het Engelse concept bij D-19 (entry 2026-09-04) geldt weer, met de haak [A]
+  ingevuld
+
+**Concept voor de Revision Notes bij D-22, vervangt dat in de entry 2026-10-21
+(zesde), Engels:**
+
+> Where the text names individual locations, we now indicate whether the
+> finding is robust to the drought severity threshold (SRI −0.5 versus −1.0).
+> Of the cells flagged by at least three of the four dependence tests at the
+> published threshold, only Vistula Toruń (period 1, mean severity) also shows
+> a dependence at the stricter threshold, where the test on the copula part is
+> zero by construction and two of the remaining three tests are required. The
+> remaining named locations are reported as threshold-dependent, and the
+> regional interpretation in the discussion has been qualified accordingly.
+
+---
+
+## 2026-10-22 (tweede) — Eén definitie van "sterk": twee van drie toetsen, ook voor pagina 31
+
+**Herroepen op 22 oktober 2026, zie de entry 2026-10-22 (derde). Criterium A blijft.**
+
+**Beslist door Floris op 22 oktober 2026.** Punt 1 uit beslisdocument 2. Een cel
+geldt voortaan als sterk wanneer minstens **twee van de drie toetsen** Kendall's
+tau, Hoeffding's D en de permutatie op de copulafit p < 0,05 geven, met de
+richting uit het teken van tau. Bij beide drempels dezelfde regel. Dit is de
+definitie die sectie 5 van het strict-rapport al gebruikte
+(`scripts/29_strict_report_pdf.py`, `KOLS`). Hij vervangt **criterium A** uit D-19
+(drie van vier, met de toets op het copula-deel erbij), zodat het artikel één
+definitie heeft, voor de tellingen op pagina 31 en voor de locatienamen van D-22.
+
+**Correctie op beslisdocument 2 en de toelichting van 22 oktober.** Daar stond
+dat de set van het strict-rapport Spearman's rho bevat. Dat klopt niet. Rho staat
+in dat rapport alleen in een beschrijvende tabel. De regel is de hierboven
+beschreven twee van drie.
+
+**Effect op de cijfers.** Narekening op dezelfde toetsresultaten
+(`results/2026-09-02_dependence_tests/` en `results/2026-09-04_strict_dependence_tests/`).
+Criterium A reproduceert daarbij exact de D-19-tellingen, dus het verschil komt
+alleen van de definitie:
+
+| | criterium A (D-19, vervallen) | twee van drie (nu) |
+|---|---|---|
+| sterke cellen bij drempel 0,5 | 12 | 18 |
+| toenames p1 DP, p1 MS, p2 DP, p2 MS | 1, 2, 2, 4 | **2, 3, 2, 6** |
+| afnames, zelfde volgorde | 2, 1, 0, 0 | **2, 2, 0, 1** |
+| robuust bij drempel 1,0 | Vistula Turon p1 | **Vistula Turon p1, Rhine Straatsburg p2** |
+
+De twaalf cellen van criterium A zitten allemaal in de achttien. Er komen zes
+bij: Dnieper Krementsjoek p1, Ebro Zaragoza p2 en Rhône Montelimar p2 (toenames),
+Tagus La Bazagona p1 drought peak (toename), Seine Paris p1 en Rhine Straatsburg
+p2 (afnames), alle mean severity behalve La Bazagona.
+
+**Waarom deze definitie, in drie punten:**
+
+1. **Eén definitie in het artikel.** De robuustheidsuitspraak van D-22 rust op
+   deze regel. Dezelfde regel gebruiken voor pagina 31 voorkomt dat er twee
+   verschillende criteria voor "sterk" in één tekst staan.
+2. **Bij beide drempels dezelfde toetsen.** De toets op het copula-deel is bij
+   drempel 1,0 per constructie nul en kan daar niet meedoen. Met twee van drie
+   wordt een cel bij beide drempels op precies dezelfde manier beoordeeld, zonder
+   een omrekening van drie van vier naar twee van drie.
+3. **De drie toetsen meten de samenhang direct.** De toets op het copula-deel
+   meet iets anders, wat de copula toevoegt bovenop het marginale effect. Dat
+   onderscheid wordt al apart gerapporteerd (D-18).
+
+**Wat ertegenover staat.** De drempel is lager: twee van drie in plaats van drie
+van vier. Er komen meer cellen bij die net over de grens zitten (Straatsburg
+haalt Hoeffding met p = 0,04995). Bij 186 cellen per drempel verwacht je onder
+toeval al ongeveer 9 cellen per afzonderlijke toets, zie de tabel in sectie 5 van
+het strict-rapport. Dat hoort als kanttekening bij de tellingen in de tekst.
+
+**Gevolgen:**
+
+- De tellingen op pagina 31 worden 2, 3, 2, 6 toenames en 2, 2, 0, 1 afnames. Het
+  Engelse concept bij D-19 (entry 2026-09-04) is daarmee achterhaald, het nieuwe
+  staat hieronder.
+- De voorzet voor de locatienamen (T-62) is opnieuw berekend in
+  `results/2026-10-22_t62_location_claims/`. De versie onder criterium A blijft
+  staan in `results/2026-10-21_t62_location_claims/`. Verschil: Rhine
+  Straatsburg p2 komt erbij als "noemen". De drie gemarkeerde namen en de
+  samengevatte cellen blijven gelijk, de zes nieuwe cellen komen bij de
+  samengevatte. Besluit 1 uit de entry hieronder ("de voorzet volgen") geldt dus
+  met Straatsburg erbij.
+- Het Engelse concept bij D-22 (entry 2026-10-21, zesde) is aangepast aan deze
+  definitie.
+- **Open punt, niet zelf opgelost:** Dnieper Krementsjoek p1 telt nu mee als
+  toename, terwijl D-12 de Dnieper-locaties markeert als niet informatief voor
+  droogte-tot-flood dynamiek. Of die cel in de telling hoort, beslist Floris.
+
+**Concept voor de Revision Notes, vervangt dat bij D-19, Engels:**
+
+> In the submitted version, the counts of locations with increased transition
+> probability (5, 6, 7 and 9) were based on visual inspection of the conditional
+> curves without a stated criterion. We have replaced them by an explicit
+> criterion: a location-period counts as showing a dependence between drought
+> severity and the subsequent flood peak when at least two of three dependence
+> tests (Kendall's tau, Hoeffding's D and a permutation test on the copula fit)
+> are significant at the 5% level, with the direction given by the sign of tau.
+> This yields 2, 3, 2 and 6 locations with an increase and 2, 2, 0 and 1 with a
+> decrease. The same criterion is used for the robustness check at the stricter
+> drought threshold. The paragraph on page 31 has been rewritten accordingly.
+
+---
+
+## 2026-10-22 — Vijf presentatiebesluiten uit beslisdocument 2
+
+**Beslist door Floris op 22 oktober 2026.** Punt 2 tot en met 6 uit beslisdocument
+2. **Aan de berekeningen verandert niets**, het zijn keuzes over wat er in de
+tekst en de figuren komt. Besluit 1 hieronder is genomen onder criterium A. Punt 1
+is later dezelfde dag beslist (entry 2026-10-22, tweede), en onder die definitie
+komt Rhine Straatsburg p2 erbij als "noemen". De rest van besluit 1 blijft gelijk.
+
+1. **Locatienamen (T-62): de voorzet volgen.** Vistula Turon p1 mean severity met
+   naam. Tagus La Bazagona p2 drought peak, Vistula Turon p1 drought peak en Weser
+   Bodenwerder p1 noemen met markering. Po Piacenza, Ebro Haro en Tudela, Danube
+   Aschach en La Bazagona p2 mean severity samenvatten als drempelafhankelijk,
+   zonder naam. Reden: bij acht van de twaalf cellen rust de zware curve op
+   minder dan drie events. Bron: `results/2026-10-21_t62_location_claims/`.
+2. **Voorbeeldrivieren (T-61): Po en Ebro blijven, Vistula Turon komt erbij.** De
+   figuren 5 tot 8 houden Po en Ebro, met het bootstrapinterval erbij en
+   "threshold-dependent" in bijschrift en tekst. Turon p1 komt erbij als de enige
+   cel die onder beide drempels standhoudt. Toename en afname staan dan naast
+   elkaar.
+3. **Hoofdbevinding in het abstract: alleen C′.** "1.25 times more often than
+   expected by chance, significant in 80 of 96 location-periods". De bandbreedte
+   van de alternatieve nullen komt in de methode, niet in het abstract. Het
+   ruimtelijke patroon komt beschrijvend in de resultaten, zonder oorzaak. Gaat
+   als voorstel naar de co-auteurs.
+4. **Gevoeligheidsraster in de appendix: alleen C′.** Eén heatmap, het raster
+   onder de besloten nul. Het raster onder nul A blijft in
+   `results/2026-10-21_sensitivity_grid_cprime/` (kolom `pA`) en
+   `results/2026-09-02_sensitivity_grid_endfix/`, en komt niet in het artikel.
+5. **Lokale factoren (R4-05, T-14): de claim terugbrengen.** De tekst zegt wat de
+   data dragen: het reguleringspatroon van Dnieper en Tagus (D-12) en het
+   ruimtelijke patroon per rivier, en verder dat het verklaren van verschillen
+   tussen segmenten buiten deze studie valt. Niet kwantificeren.
+
+**Concept voor de Revision Notes bij R4-05, Engels:**
+
+> We agree that local factors are likely to shape the differences between
+> river segments. Quantifying them would require catchment attributes and
+> regulation data that are beyond the scope of this study, and with sixteen
+> rivers the statistical power to separate such factors would be limited. We
+> have therefore restricted the discussion to what our data support: the
+> compressed low flows at the regulated Dnieper and Tagus locations, and the
+> spatial pattern of where the drought-to-flood signal persists under the
+> revised null model. We note the attribution of segment-level differences as
+> a direction for future work.
+
+---
+
+## 2026-10-21 (zesde) — Locatiespecifieke severity-claims: namen blijven, met robuustheidsmarkering
+
+**Beslist door Floris op 21 oktober 2026.** Sluit D-22, opties 1 en 3
+gecombineerd. **Aan de berekeningen verandert niets**; dit is een
+presentatiebesluit over hoe de locatienamen in de tekst komen.
+
+**Wat er is besloten.** De namen waar het artikel op leunt — de rivieren die
+D-19 onder criterium A aanwijst: Po, Ebro, Tagus, Danube — blijven genoemd,
+maar per naam wordt gemarkeerd of de bevinding bij drempel 1,0 standhoudt, en
+de tekst zegt expliciet dat alleen Vistula Turon (periode 1) en Rhine
+Straatsburg (periode 2) dat doen. Geen kale namen (optie 1 alleen), geen
+anonimisering (optie 2).
+
+**Waarom, in drie punten:**
+
+1. De locatiespecifieke bevindingen zijn aantoonbaar gevoelig voor de
+   definitiekeuzes: bij drempel 1,0 blijven van de achttien aangewezen cellen
+   er twee over (tau-correlatie tussen de drempels +0,12, tekenovereenkomst 52
+   procent), en onder de daily-quantielreferentie wisselen 9 van de 190 cellen
+   van teken. Kale namen zijn tegenover Reviewer #4 niet te verdedigen.
+2. Volledig anonimiseren (optie 2) gooit de regionale duiding weg die een deel
+   van de discussie draagt, terwijl de vier toetsen onafhankelijk zijn en de
+   clusters ruimtelijk samenhangen — de bevindingen zijn drempelafhankelijk,
+   niet fout.
+3. Zelf markeren is een sterkere positie dan het door een reviewer laten
+   vinden, dezelfde lijn als bij D-19.
+
+**Definitieve formulering volgt op een effectrapport**, taak T-62: per
+genoemde locatie de toetsen bij beide drempels, het teken onder beide
+quantielreferenties, de ECA-significantie onder C′ en de omvang van de zware
+curve naast elkaar, na de rasterrun met C′.
+
+**Dit concept is vervangen door dat in de entry 2026-10-22 (derde).**
+
+**Concept voor de Revision Notes, Engels:**
+
+> Where the text names individual locations, we now indicate whether the
+> finding is robust to the drought severity threshold (SRI −0.5 versus −1.0).
+> Of the cells flagged by at least two of three dependence tests (Kendall's
+> tau, Hoeffding's D and a permutation test on the copula fit) at the published
+> threshold, only Vistula Toruń (period 1) and Rhine Strasbourg (period 2)
+> persist at the stricter threshold under the same criterion; the remaining named locations
+> are reported as threshold-dependent, and the regional interpretation in the
+> discussion has been qualified accordingly.
+
+---
+
+## 2026-10-21 (vijfde) — Dagwaarde bevestigd: het 12:00-veld van dis06, geen 24-uursgemiddelde
+
+**Bevestigd door Floris op 21 oktober 2026.** Hoort bij D-21b (de
+EFAS-bevinding van 5 september). Bij het downloaden is per dag alleen het veld
+van 12:00 opgehaald, één van de vier zesuursvakken, geen daggemiddelde.
+Precisering uit de metadata: `dis06` is "mean discharge in the last 6 hours",
+dus de dagwaarde is het zesuursgemiddelde over 06:00–12:00 UTC. **Aan de
+cijfers verandert niets**, zo is alles al berekend; dit legt vast wat de
+dagwaarde ís.
+
+**Wat er in de tekst moet veranderen (batch B01, sectie 2.2):**
+
+1. "average daily (24-hour) run-off" wordt: de afvoer gemiddeld over de zes
+   uur voorafgaand aan 12:00 UTC, één waarde per dag.
+2. De eerder vastgestelde correcties blijven staan: EFAS historical v5 op
+   1 boogminuut in plaats van "5 x 5 km", en de forcering (EMO-1, niet ERA5)
+   nog te bevestigen tegen de EWDS-documentatie.
+3. De referentieruil (EWDS-dataset plus EFAS-systeembeschrijving in plaats van
+   Harrigan 2020; Tilloy 2025 als validatiereferentie) ligt bij Paolo, batch
+   B06. D-21b blijft daarvoor open.
+
+**Concept voor de Revision Notes, Engels:**
+
+> We have corrected the description of the discharge data in Section 2.2. The
+> dataset is the EFAS historical simulation, version 5, at 1 arc-minute
+> resolution (not 5 km, which applied to version 4), obtained from the
+> Copernicus Early Warning Data Store. The daily value used throughout is the
+> mean discharge over the six hours preceding 12:00 UTC (the dis06 field at
+> 12:00), one value per day, rather than a 24-hour average; the references
+> have been updated accordingly.
+
+---
+
+## 2026-10-21 (vierde) — De Dnieper-bevinding gaat als reguleringspatroon de discussie in, zonder oorzaaksclaim
+
+**Beslist door Floris op 21 oktober 2026.** Sluit D-12. **Aan de berekeningen
+verandert niets**; dit is een tekst- en presentatiebesluit.
+
+**Wat er is besloten, in drie punten:**
+
+1. **Het patroon wordt in de discussie beschreven zonder de oorzaak te
+   claimen.** Vier locaties (Krementsjoek, Cherson en Dnipro op de Dnieper,
+   Vila Velha de Rodao op de Tagus) detecteren 2,9 tot 6,6 procent
+   droogteweken waar 15,9 hoort, met laagwater dat nauwelijks onder de mediaan
+   zakt (min/mediaan 0,76 tot 0,92 tegen 0,32 bij een vrij afstromende
+   rivier). Beide rivieren hebben een zware stuwmeercascade. De formulering
+   claimt niet of dit regulering in de werkelijkheid is of de modellering
+   ervan in EFAS/LISFLOOD: "consistent with reservoir regulation, whether in
+   reality or in how the reanalysis represents it".
+2. **De locaties blijven in de tabellen maar worden gemarkeerd** als
+   niet-toetsbaar op droogte-tot-flood dynamiek, zodat tellingen als "X van
+   48 significant" niet stilzwijgend rusten op locaties waar de methode
+   vrijwel geen droogtes kán vinden. Dit verklaart ook de zes cellen 1,0000
+   van de Dnieper in Tabel 3.
+3. **Eén alinea bedient R4-02 en R4-05 samen**, en haakt aan op de
+   Tagus-kanttekening uit D-13 (La Bazagona en Vila Velha de Rodao komen in
+   beide stukken terug). Bron van de cijfers:
+   `results/2026-08-23_sri_diagnostic/`.
+
+**Concept voor de Revision Notes, Engels:**
+
+> Following the reviewer's comment on EFAS/LISFLOOD performance in regions
+> with strong human regulation, we examined the SRI behaviour at all 48
+> locations. At 44 locations the SRI behaves as expected (median 16.0% of
+> weeks below -1, against 15.9% nominal). The four exceptions - all three
+> Dnieper locations and Vila Velha de Rodao on the Tagus, both rivers with
+> large reservoir cascades - show compressed low flows and 2.9-6.6% drought
+> weeks, a pattern consistent with reservoir regulation, whether in reality
+> or in how the reanalysis represents it. We now discuss this explicitly,
+> mark these locations in the results tables, and note that the
+> drought-to-flood analysis is not informative there.
+
+---
+
+## 2026-10-21 (derde) — De quantielreferentie blijft gesplitst: copula op weekly, ECA op daily
+
+**Beslist door Floris op 21 oktober 2026.** Sluit de ongenummerde beslissing uit
+de copula-review (bevinding R-04; in het beslisdocument van 21 oktober D-15
+genoemd). De copula-kant blijft het weekmaximum uitdrukken als quantiel van de
+**wekelijkse gemiddelden**, de ECA-kant als quantiel van de **dagelijkse**
+reeks. **Aan de cijfers verandert niets**, dit is de gepubliceerde berekening.
+
+**Onderbouwing.** Niet "de tekst zegt het", want de methodensectie legt de
+referentie nergens vast ("quantiles relative to the entire dataset" beschrijft
+geen van beide varianten precies, de referentie is bovendien de periode-slice).
+De dragende argumenten, op het vergelijkingsmateriaal van
+`results/2026-09-04_copula_quantile_reference/` (script 28, beide varianten met
+dezelfde seeds over alle 192 cellen):
+
+1. **De kernbevindingen zijn ongevoelig voor de keuze.** Het mediane gat tussen
+   de conditionele en de unconditionele curve is +0,055 (weekly) tegen +0,056
+   (daily), met 138 tegen 137 van de 190 cellen positief. Ook zwaar-tegen-mild
+   blijft op het aggregaat gelijk. De uitspraak waar D-17 op rust verandert
+   dus niet met de referentie.
+2. **Continuïteit met R1.** Weekly is de referentie waarmee de gepubliceerde
+   Appendix D, de bootstrap van 3 september en de onafhankelijkheidstoetsen
+   zijn gemaakt. Daily zou een herrun van bootstrap en toetsen vragen en
+   enkele getallen in de appendix verschuiven zonder de conclusies te raken.
+3. **De gevoeligheid is gemeten en wordt gemeld, niet verstopt.** Bij 23 van de
+   192 cellen (milde curve) en 28 van de 177 (zware curve) scheelt de
+   referentie meer dan vijf procentpunt op de transitiekans bij 0,6915, en 9
+   van de 190 cellen wisselen van teken op cond-tegen-uncond (waaronder Don
+   Nikolaevskaya en Seine Paris). Locatiespecifieke uitspraken zijn dus
+   gevoelig voor deze keuze, net als voor de drempelkeuze (D-22), en dat weegt
+   mee in hoe stellig individuele locaties genoemd worden.
+
+**Voorwaarden, naar het schrijfwerk:**
+
+1. De methodensectie benoemt expliciet dat de twee onderdelen een verschillende
+   referentieverdeling gebruiken, met de reden: de ECA toetst
+   toeval-overschrijding van een drempel, de copula schat een
+   afhankelijkheidsstructuur op de continue floodzijde.
+2. De zin "quantiles relative to the entire dataset" wordt gecorrigeerd naar
+   wat er draait (periode-slice, en per onderdeel de juiste reeks), zie ook
+   T-29 punt 5.
+3. Tabel 3 en de transitiekansen worden in de tekst niet één op één naast
+   elkaar gelegd alsof `quantile_max_value` er hetzelfde betekent.
+
+**Concept voor de Revision Notes, Engels:**
+
+> The two components of the framework use different reference distributions
+> for the flood quantile: the ECA expresses the weekly runoff maximum as a
+> quantile of the daily series of the period, while the copula component uses
+> the distribution of weekly means. This reflects their different roles — a
+> threshold exceedance test versus the estimation of a dependence structure on
+> a continuous flood variable — and is now stated explicitly in the methods
+> section. We verified that the headline findings are insensitive to this
+> choice: recomputing the full copula chain under the daily reference changes
+> the median gap between the conditional and unconditional transition curves
+> from +0.055 to +0.056, with the number of positive cells essentially
+> unchanged (138 versus 137 of 190). Individual cells can shift by more than
+> five percentage points, which we take into account when naming specific
+> locations.
+
+---
+
+## 2026-10-21 (tweede) — De drempels blijven per periode bepaald
+
+**Beslist door Floris op 21 oktober 2026.** Sluit D-13, route B. Zowel de
+flooddrempel als de SRI-gammafit blijft binnen elke periode apart bepaald, met
+elk haar eigen ijkpunt. **Aan de cijfers verandert niets**, dit is de bestaande
+berekening.
+
+**Wat de keuze betekent.** Een flood of droogte is gedefinieerd relatief aan het
+afvoerregime van de eigen periode. De vergelijking tussen de periodes is daarmee
+een vergelijking van de samenhang binnen elk regime, geen trenduitspraak over
+het regime zelf. Dat is een legitieme keuze voor een studie naar samenhang, en
+hij is nu expliciet gemaakt in plaats van impliciet.
+
+**Wat er tegenover staat, voor de volledigheid vastgelegd.** De afvoer
+verschilt fors tussen de periodes: de 84e percentiel verschuift bij 32 van de
+48 locaties meer dan 10 procent (mediaan −8,6 procent, uitersten −33,8 op de
+Don tot +119,7 op de Tagus). De per-periode ijking neemt die verschuiving weg:
+bij een gemeenschappelijk ijkpunt zou periode 2 fors droger blijken (40,4 tegen
+29,0 procent droogteweken) waar de periodes nu vrijwel identiek lijken (35,6
+tegen 35,9). Bron: `results/2026-09-01_reference_grid/`.
+
+**Voorwaarde bij route B, naar het schrijfwerk:**
+
+1. De methodensectie moet expliciet zeggen dat de drempels per periode worden
+   bepaald en wat dat betekent voor de interpretatie van de
+   tweeperiodenvergelijking.
+2. De verschuiving van de drempels tussen de periodes wordt met cijfers
+   vermeld.
+3. De tekst moet worden nagelopen op trendclaims: een passage die zegt dat
+   periode 2 droger of natter is gewórden kan onder deze ijking niet
+   onderbouwd worden en moet worden herschreven of geschrapt.
+
+**Concept voor de Revision Notes, Engels:**
+
+> Both the flood threshold and the SRI gamma fit are determined within each
+> 15-year period separately, so that events are defined relative to the flow
+> regime of their own period. We have retained this choice, as the study
+> addresses the dependence between droughts and floods within each regime
+> rather than trends in the regime itself, and we now state it explicitly in
+> the methods section. For transparency we also report how the thresholds
+> shift between the periods (the 84th discharge percentile shifts by more than
+> 10% at 32 of the 48 locations, median −8.6%), so that the two-period
+> comparison is read as a comparison of dependence structures, not as a
+> statement about changes in discharge itself.
+
+---
+
+## 2026-10-21 — De nulhypothese van de ECA wordt C′: gestratificeerd met startregel
+
+**Beslist door Floris op 21 oktober 2026.** Sluit het eerste D-21. Route 1 uit
+dat besluit: de drempels blijven SRI 0,5 met floodniveau 0,6915, de nul wordt
+gerepareerd. Van de doorgerekende nulmodellen wordt **C′** de nul van de toets:
+gesimuleerde floodstarts vallen alleen op weken die een start kunnen zijn
+(niet-droogte en de week ervoor geen flood), gestratificeerd zodat het
+waargenomen aantal starts op droogteweken behouden blijft.
+
+**Effect op de cijfers: de hoofdbevinding verandert. Definitief doorgerekend
+op 21 oktober 2026**, productierun met 10.000 simulaties per cel en nul in
+`results/2026-10-21_eca_null_production/` (script 36, alle zelfcontroles
+geslaagd): gepoolde ratio **1,246** in plaats van de gepubliceerde 1,81, en
+**80 van de 96** runs significant in plaats van 92. De grenzen uit dezelfde
+run: nul A 92 van 96 met ratio 1,814 (de in-run baseline, gelijk aan de
+gepubliceerde berekening), B′ 90 van 96 met 1,627. Twaalf cellen verliezen hun
+significantie onder C′: de drie Don-locaties en Dnipro in periode 1, Elbe
+Magdeburg en Wittenberge, Weser Bremen, Bodenwerder en Pora Wesfalica, Vistula
+Turon, Oder Kostrzyn (periode 2). Don en Dnieper zijn de rivieren met het
+gemeten reguleringspatroon uit D-12; voor Elbe, Weser, Oder en Vistula is geen
+verklaring vastgesteld. De tien rivieren in het zuiden en westen houden alle
+zes runs significant. Abstract, conclusie en Tabel 3 gaan mee. Het besluit gaat als
+voorstel naar de co-auteurs, want het raakt de hoofdbevinding.
+
+**Waarom C′ en niet de gepubliceerde nul A, in drie punten:**
+
+1. Nul A strooit floodstarts over alle weken, ook midden in droogtes waar de
+   definities een flood vrijwel uitsluiten (P(flood | droogteweek) = 0,05 tegen
+   P(flood | niet-droogteweek) = 0,67 bij threshold 0,5). De nul verwacht
+   daardoor systematisch te weinig matches en telt het definitie-artefact als
+   signaal: 71 procent van de matches ligt op lag 1, waar onder
+   onafhankelijkheid ongeveer 27 procent hoort.
+2. De beslissende meting staat los van elk nulmodel: de week na een
+   droogte-einde is níet vaker flood dan een willekeurige andere
+   niet-droogteweek (0,58 tegen 0,67, in 85 van de 96 runs lager).
+3. Een onafhankelijke controle komt op dezelfde orde uit: de definities
+   exclusief maken (floodpercentiel 0,95) geeft onder nul A ook ratio 1,25.
+
+**Waarom C′ en niet D′ (blokkenmodel, ratio 1,05):** C′ sluit direct aan op de
+startdefinitie van de toets en heeft geen modelconstructie voor bloklengtes
+nodig. D′ bleek bovendien een gemeten fout in de strenge richting te hebben:
+floods die over het droogte-einde heen lopen worden verkeerd geplaatst,
+waardoor de verwachting ruim 5 procent te hoog uitvalt en de eerlijke
+D-ratio eerder 1,10 is. Voorbehoud dat in de tekst moet: C′ gebruikt de
+waargenomen floodreeks voor de regel "week ervoor geen flood" en is daarmee
+deels circulair; de vergelijking met D′ laat zien dat dit hem eerder iets te
+mild dan te streng maakt. B′ (1,63, laat starts midden in een floodrun vallen)
+en D′ (1,05) zijn de buitengrenzen en worden als gevoeligheid gerapporteerd.
+D″ blijft op de plank.
+
+**Wat hier uit volgt.** De scratchpad-nulscripts worden overgezet naar
+`scripts/` met een resultaatmap, de baseline van de huidige cijfers wordt
+vastgelegd vóór de productierun, het gevoeligheidsraster draait opnieuw met C′,
+en de passages over de Monte Carlo-toets in methode, abstract en conclusie gaan
+op de herschrijflijst.
+
+**Concept voor de Revision Notes, Engels:**
+
+> The Monte Carlo test in the submitted version placed simulated flood onsets
+> uniformly over all weeks, including weeks within droughts where the
+> definitions all but preclude a flood (at our thresholds, two out of three
+> non-drought weeks exceed the flood threshold, against one in twenty drought
+> weeks). This null hypothesis is violated by construction, since both labels
+> derive from the same discharge series, and the excess it reports is largely
+> definitional: 71% of the observed matches occur in the first week after a
+> drought ends, which is where a flood week is automatically a flood onset. We
+> have replaced it by a stratified permutation null that places simulated
+> onsets only on weeks where an onset can occur, preserving the observed number
+> of onsets within drought weeks. Under this null (10,000 simulations per
+> location and period), the pooled ratio of observed to expected matches is
+> 1.25 rather than 1.81, with 80 of the 96 location-period combinations
+> remaining significant. Alternative nulls bracketing ours yield pooled ratios
+> between 1.05 and 1.63; we report these as a sensitivity in Appendix [X].
+
+---
+
 ## 2026-09-04 (tweede) — Strengere drempels getoetst en afgewezen, 0,5 blijft
 
 **Beslist door Floris op 4 september 2026.** De droogtedrempel blijft 0,5 en het

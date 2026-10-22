@@ -166,7 +166,7 @@ punt waar dit uit kan maken.
 
 ## D-05 Repo publiek of privé
 
-**Status: open. Beslist door Floris.**
+**Status: GESLOTEN 22 oktober 2026. Floris bevestigt dat de repo privé staat.**
 
 `florislugtmeijer/Drougt_to_flood` staat nu publiek terwijl het manuscript in
 review is. Er is nog niets gecommit en niets gepusht. Advies: privé tot
@@ -188,7 +188,28 @@ onbelangrijk.
 
 ## D-07 Welke .docx is het actuele manuscript
 
-**Status: open. Alleen Floris weet dit.**
+**Status: GESLOTEN 22 oktober 2026.** Floris stuurde de ingeleverde versie,
+`0.2. DTF_Europe_reasearch_paper_manuscript_22_03_26.pdf` (22 maart 13:22, met
+regelnummers). Nagelopen:
+
+- De twee .docx-kandidaten zijn tekstueel identiek. Ze verschillen alleen in
+  alinea-afbrekingen. De lopende tekst van beide komt overeen met de ingeleverde
+  PDF; de 14 zinnen die niet letterlijk terugkomen zijn opmaakverschillen
+  (koppen, tabellen, formule (1)).
+- Beide .docx bevatten daarnaast de appendices A, B, C, D en F. Appendix E wordt
+  in de tekst genoemd (regel 448) maar heeft geen eigen kop. De appendices staan
+  niet in de ingeleverde PDF en niet in `manuscript/HYDROL79380_R1.pdf`.
+- **De werkversie bestaat al**: het Google Doc "0.2. DTF_Europe_reasearch_paper_manuscript_(Changes marked)_22_03_26",
+  met een baseline-export in `manuscript/` (commit f503539, tak
+  `r2-werkversie-opzet`). De lopende tekst daarvan is gelijk aan de ingeleverde
+  versie; alleen de appendices ontbreken.
+
+Gevolg: de lopende tekst komt uit het Google Doc. Voor de appendices is
+`DTF_Europe_reasearch_paper_manuscript_22_03_26.pdf.pdf.docx` de bron, de laatst
+opgeslagen Word-versie. Twee bevindingen uit die vergelijking staan als taak
+T-63 in `docs/todo.md`.
+
+Oorspronkelijke vraag:
 
 Kandidaten in Downloads: `2. DTF_Europe_research_paper_manuscript.docx`
 (16 maart, 27 MB) en `DTF_Europe_reasearch_paper_manuscript_22_03_26.pdf.pdf.docx`
@@ -549,7 +570,12 @@ droogtezijde heeft dan 1. Materiaal voor de gevoeligheidsanalyse van R4-01.
 
 ## D-12 De Dnieper detecteert bijna geen droogtes
 
-**Status: open, inhoudelijk. Waarschijnlijk een punt voor de discussie.**
+**Status: GESLOTEN 21 oktober 2026 door Floris.** Het patroon gaat de discussie
+in zonder oorzaaksclaim ("consistent with reservoir regulation, whether in
+reality or in how the reanalysis represents it"), de vier locaties blijven in
+de tabellen maar worden gemarkeerd, één alinea bedient R4-02 en R4-05 samen.
+Onderbouwing en Engels concept in `CHANGELOG-methodology.md`, entry 2026-10-21
+(vierde).
 
 Krementsjoek heeft maar 2,9 procent weken met SRI < -1, waar 15,9 procent hoort.
 Dat is geen rekenfout: de SRI heeft daar een spreiding van 0,999, geen NaN's en
@@ -604,7 +630,10 @@ voor hoe je het in de tekst opschrijft.
 
 ## D-13 De drempels worden per periode opnieuw bepaald
 
-**Status: open. Beslissing voor Floris. Raakt de vergelijking tussen de periodes.**
+**Status: GESLOTEN 21 oktober 2026 door Floris: route B, de drempels blijven per
+periode bepaald.** Geen effect op de cijfers. Voorwaarden voor de tekst
+(expliciete vermelding, verschuivingscijfers, trendclaims nalopen) staan in
+`CHANGELOG-methodology.md`, entry 2026-10-21 (tweede).
 **Doorgerekend op 1 september 2026**, zie `results/2026-09-01_reference_grid/`.
 Bij ijking per periode lijken de twee periodes bijna identiek, 35,9 tegen 35,6
 procent droogteweken. Bij een gemeenschappelijk ijkpunt blijkt periode 2 fors
@@ -829,10 +858,18 @@ in de copula-review.
 
 ---
 
-##  De copula-kolom kan pas na de herrun van T-11
+## D-15 De copula-kolom kan pas na de herrun van T-11
 
-- herkomst: eigen bevinding uit de copula-review, R-04
-- status: **open**
+- herkomst: eigen bevinding uit de copula-review, R-04. Stond hier eerst
+  ongenummerd, op 21 oktober 2026 D-15 genoemd in het beslisdocument en hier
+  overgenomen
+- status: **GESLOTEN 21 oktober 2026 door Floris: de referenties blijven
+  gesplitst, copula op de wekelijkse gemiddelden, ECA op de dagelijkse reeks.**
+  Geen effect op de cijfers. Onderbouwing, de gemeten gevoeligheid (script 28,
+  `results/2026-09-04_copula_quantile_reference/`) en het Engelse concept staan
+  in `CHANGELOG-methodology.md`, entry 2026-10-21 (derde). Voorwaarde: de
+  methodensectie benoemt het verschil expliciet en de zin "quantiles relative
+  to the entire dataset" wordt gecorrigeerd
 - wie beslist: Floris, mogelijk met de co-auteurs
 
 `transform_to_quantiles` krijgt in de ECA-kant de **dagelijkse** reeks als
@@ -928,7 +965,17 @@ meet wat de ECA-kant al meet.
 ## D-19. Het criterium achter de tellingen op pagina 31
 
 - herkomst: eigen bevinding uit de manuscripttoets
-- status: **besloten 4 september 2026 door Floris: optie A, de
+- **teruggedraaid 22 oktober 2026, 's avonds, door Floris: criterium A blijft**,
+  drie van vier. De herziening hieronder is herroepen. Tellingen weer 1, 2, 2, 4
+  toenames en 2, 1, 0, 0 afnames; het Engelse concept hieronder geldt weer.
+  Changelog entry 2026-10-22 (derde)
+- **herzien 22 oktober 2026 door Floris:** criterium A is vervangen door twee van
+  drie toetsen (tau, Hoeffding, permutatie), de definitie uit het strict-rapport,
+  zodat het artikel één definitie van "sterk" heeft. Tellingen worden 2, 3, 2, 6
+  toenames en 2, 2, 0, 1 afnames. Het Engelse concept hieronder is achterhaald,
+  het nieuwe staat in `CHANGELOG-methodology.md`, entry 2026-10-22 (tweede).
+  Open: of Dnieper Krementsjoek p1 meetelt, gezien D-12
+- oorspronkelijke status: **besloten 4 september 2026 door Floris: optie A, de
   onafhankelijkheidstoetsen. C afgewezen.** Zie `CHANGELOG-methodology.md`, entry
   2026-09-04, en taak T-60 voor het schrijfwerk
 - wie beslist: Floris
@@ -1096,7 +1143,18 @@ uitleggen als de definitie die hij is.
 
 - herkomst: vraag van Floris op 4 september 2026, na de gerepareerde ECA, of de
   implementatie klopt gezien 92 van de 96 runs significant en 84 op p precies 0
-- status: **open, rekenwerk klaar op 4 september 2026, nog niet in `results/`**
+- status: **BESLOTEN 21 oktober 2026 door Floris: route 1, met C′ als nul.** De
+  drempels blijven SRI 0,5 met floodniveau 0,6915, de toets krijgt de
+  gestratificeerde nul met startregel. B′ en D′ worden als grenzen
+  gerapporteerd, D″ blijft op de plank. Onderbouwing en het Engelse concept in
+  `CHANGELOG-methodology.md`, entry 2026-10-21. Gaat als voorstel naar de
+  co-auteurs. **Productierun gedraaid op 21 oktober 2026**:
+  `results/2026-10-21_eca_null_production/`, script 36, 10.000 simulaties,
+  alle zelfcontroles geslaagd. Uitkomst: C′ 80 van 96 significant, gepoolde
+  ratio 1,246; grenzen A 92 / 1,814 en B′ 90 / 1,627 uit dezelfde run. De
+  gewiste scratchpad-diagnose is daarmee vervangen door repo-code. Nog te
+  doen: het gevoeligheidsraster met C′ (budget nog voor te leggen)
+- eerdere status: open, rekenwerk klaar op 4 september 2026, nog niet in `results/`
 - wie beslist: Floris, met de co-auteurs, want dit raakt de hoofdbevinding
 - materiaal: scratchpad-scripts `nulltest_all.py`, `restricted_null_all.py`,
   `stratified_null_all.py`, `overlap_map.py`, met hun CSV's. **Niet in de repo.** De
@@ -1107,6 +1165,10 @@ uitleggen als de definitie die hij is.
 - **rapport met figuren, 5 september 2026:** `results/2026-09-05_eca_null_routes_report/report.pdf`,
   gemaakt door `scripts/33_eca_null_routes_report.py`. Legt de routes naast elkaar
   voor de keuze, met een advies. De vier diagnose-CSV's staan daar in `data/`
+- **beslisdocument, 9 september 2026:** `results/2026-09-09_eca_null_decision_report/report.pdf`,
+  gemaakt door `scripts/35_eca_null_decision_report.py`. Alle acht nullen A tot D'' naast
+  elkaar met hun effect op de p-waarden, gevolgen per keuze, advies en een Engels concept
+  voor de Revision Notes
 - **derde rapport, 5 september 2026:** `results/2026-09-05_eca_null_dprime/report.pdf`, de
   resultaten van D', gemaakt door `scripts/32_eca_null_dprime_report.py`. De nul zelf:
   `scripts/31_run_permutation_null.py`
@@ -1219,6 +1281,28 @@ de gepubliceerde toets is daarmee vrijwel geheel definitioneel. 22 van 96 is wel
 dan de 5 die onder een zuivere nul te verwachten zijn, dus bij een deel van de
 locaties blijft een echte rest. Welke, staat in het rapport.
 
+**D'', nog niet gebouwd, op de plank op 9 september 2026.** Bij het nalopen van D' op
+conservatisme is één meetbare fout gevonden. Van de floods begint 9,5 procent in een
+droogteweek, en 507 van die 764 lopen over het droogte-einde heen. Dan zit het
+droogte-einde midden in een flood: 547 eindes, 6,9 procent, waarvan 430 in de
+waarneming niet gematcht zijn omdat de flood al vóór het einde begon. D' zet die
+floods op een willekeurige droogteweek, zodat het blok vaak binnen de droogte eindigt
+en het einde vrijkomt voor een andere start. D' overschat daardoor de verwachting
+met ongeveer 282 op 5503 matches, ruim 5 procent: de eerlijke gepoolde ratio bij 0,5
+is eerder 1,10 dan 1,05. Conclusie ongewijzigd, richting wel oneerlijk.
+
+D'' zou twee dingen doen. Eén: floods die in een droogte beginnen met dezelfde afstand
+tot het droogte-einde plaatsen als waargenomen, bij een willekeurig gekozen droogte,
+zodat het straddlen als definitioneel feit blijft en alleen de droogte gerandomiseerd
+wordt. Twee: per simulatie de lagverdeling van de matches bewaren, zodat de
+waargenomen 71, 13, 9, 7 procent op lag 1 tot 4 naast de verwachting komt te staan.
+De 4-weken-telling verzadigt bij 70 procent floodweken; een timingsignaal op lag 1
+zou daar niet in te zien zijn en in de lagverdeling wel. Variant van
+`scripts/31_run_permutation_null.py`, dezelfde zelfcontroles plus de eis dat het
+aantal droogte-eindes in een straddler per simulatie gelijk is aan waargenomen.
+Ongeveer 25 minuten rekenen. Besluit van Floris: bewaren, misschien later.
+
+
 Voorbeeld om A, B en C uit elkaar te houden, D is droogteweek, F floodweek, N geen
 van beide:
 
@@ -1321,7 +1405,7 @@ de complementariteit zit daar nog op 0,28 en het lag-1-effect blijft.
 - de veertien jaarverschuivingen als nul behouden seizoen en autocorrelatie maar
   laten floods in droogteweken vallen, en repareren dit dus niet: ratio 1,63 bij 0,5
 
-### Routes, nog niet gekozen
+### Routes — gekozen op 21 oktober 2026: route 1 met C′
 
 1. **Nul repareren, drempels houden.** SRI 0,5 en percentiel 0,69 blijven, consistent
    met de copula en de tekst. Een variant van `monte_carlo_p_value` met
@@ -1355,9 +1439,14 @@ en 1,63.
 
 - herkomst: eigen bevinding, 5 september 2026, bij het uitzoeken van de vraag
   "EFAS of GloFAS" uit T-12 · raakt **Reviewer #4** (R4-02) en sectie 2.2
-- status: **open, te bevestigen door Floris en Paolo.** Floris meldt op 5 september
+- status: **deels gesloten 21 oktober 2026.** Floris bevestigt dat per dag alleen
+  het 12:00-veld is opgehaald, geen 24-uursgemiddelde; met de `dis06`-semantiek is
+  de dagwaarde dus het zesuursgemiddelde over 06:00–12:00 UTC. De tekstcorrectie
+  voor sectie 2.2 staat in `CHANGELOG-methodology.md`, entry 2026-10-21 (vijfde).
+  **Blijft open:** de EMO-1-forcering bevestigen tegen de EWDS-documentatie en de
+  referentieruil, beide bij Paolo. Floris meldde op 5 september al
   dat de data van ewds.climate.copernicus.eu komt, de Early Warning Data Store. Daar
-  staan zowel EFAS als GloFAS, dus dat beslist het nog niet. De metadata in het
+  staan zowel EFAS als GloFAS, dus dat besliste het nog niet. De metadata in het
   bestand wel
 - wie beslist: Floris, met Paolo voor de referenties
 
@@ -1403,7 +1492,23 @@ batch B01 als feitelijke correctie, de referenties in B06.
 ## D-22. Zijn de locatiespecifieke severity-bevindingen robuust onder de drempelkeuze
 
 - herkomst: eigen bevinding uit de gevoeligheidscontrole met strengere drempels
-- status: **open**, het rekenwerk is klaar
+- status: **BESLOTEN 21 oktober 2026 door Floris: optie 1 en 3 gecombineerd.**
+  De namen waar het artikel op leunt (Po, Ebro, Tagus, Danube, uit D-19
+  criterium A) blijven genoemd, per naam gemarkeerd of hij bij drempel 1,0
+  standhoudt, met expliciet erbij dat alleen Vistula Turon (periode 1) en Rhine
+  Straatsburg (periode 2) dat doen. De definitieve formulering volgt op een
+  uitgebreid effectrapport na de rasterrun met C′, zie taak T-62. Onderbouwing
+  in `CHANGELOG-methodology.md`, entry 2026-10-21 (zesde)
+- **weging 22 oktober 2026**: de voorzet uit het T-62-rapport wordt gevolgd,
+  changelog entry 2026-10-22. **Definitie beslist 22 oktober 2026:** twee van
+  drie toetsen (tau, Hoeffding, permutatie), de regel uit het strict-rapport, ook
+  voor D-19. Daarmee houden Vistula Turon p1 en Rhine Straatsburg p2 stand, zoals
+  bovenstaande formulering zegt. Voorzet opnieuw berekend in
+  `results/2026-10-22_t62_location_claims/`, changelog entry 2026-10-22 (tweede)
+- **teruggedraaid 22 oktober 2026, 's avonds: criterium A blijft.** Robuust bij
+  drempel 1,0 is daarmee alleen Vistula Turon periode 1, mean severity; Rhine
+  Straatsburg valt weg. Leidende voorzet: `results/2026-10-21_t62_location_claims/`.
+  Changelog entry 2026-10-22 (derde)
 - wie beslist: Floris met de co-auteurs
 
 De drempelkeuze zelf is beslist, zie `CHANGELOG-methodology.md` van 4 september: 0,5
