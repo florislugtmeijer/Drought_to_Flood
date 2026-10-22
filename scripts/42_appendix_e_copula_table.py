@@ -64,8 +64,8 @@ def main():
               np.nanmax(np.abs(t["major_resel_point"] - t["major_at_q"])))
     t.to_csv(f"{OUT}/appendix_e_copula_table.csv", index=False)
 
-    def f2(v): return "" if pd.isna(v) else f"{v:.2f}"
-    def ci_s(p, lo, hi): return "" if pd.isna(p) else f"{p:.2f} [{lo:.2f}, {hi:.2f}]"
+    def f2(v): return "" if pd.isna(v) else f"{round(v, 2) + 0.0:.2f}"
+    def ci_s(p, lo, hi): return "" if pd.isna(p) else f"{f2(p)} [{f2(lo)}, {f2(hi)}]"
     order = {"first": 1, "second": 2}
     t = t.sort_values(["river", "river_location", "village", "pair", "period"],
                       key=lambda s: s.map(order) if s.name == "period" else s)
