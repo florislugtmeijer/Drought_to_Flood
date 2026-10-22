@@ -1,0 +1,21 @@
+[project]
+name = "drought-to-flood-europe"
+version = "2.0.0"
+description = "Code and data for 'A twofold probabilistic dependence analysis of drought-to-flood transitions in European rivers' (Journal of Hydrology, revision R2)"
+requires-python = ">=3.12,<3.13"
+# Exact de versies waarmee de resultaten zijn gemaakt, zie de manifests in results/.
+# vinecopulas moet vast: de familie-nummering en een bekende fout in de CDF van
+# Clayton bij een parameter onder ongeveer -0,4 hangen aan de versie.
+dependencies = [
+    "numpy==2.5.2",
+    "scipy==1.18.1",
+    "pandas==3.0.5",
+    "xarray==2026.7.0",
+    "netCDF4==1.7.4",
+    "vinecopulas==2.0.3",
+    "matplotlib==3.11.1",
+    "pyyaml",
+]
+
+[tool.uv]
+package = false
