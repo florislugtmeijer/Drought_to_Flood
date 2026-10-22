@@ -1,4 +1,4 @@
-"""Gevoeligheidsraster van de ECA onder de nul C', met B' en A als grenzen.
+"""Gevoeligheidsraster van de ECA onder de nul C', met de gepubliceerde nul A ernaast.
 
 Vervolg op het besluit D-21 van 21 oktober 2026 en op de productierun van
 scripts/36_run_eca_null_production.py (resultaat in
@@ -10,7 +10,7 @@ reproduceren op de seed na.
 
 De flood- en droogtezijde zijn ontkoppeld zoals in de gevoeligheidsanalyse van
 1 september (flood_quantile apart van threshold, zie Intensity_calc). Bij
-strenge combinaties kan een laag van B' of C' te weinig kandidaatweken hebben
+strenge combinaties kan een laag van C' te weinig kandidaatweken hebben
 of kunnen er geen events zijn; die cellen worden met een melding weggeschreven
 in plaats van dat de run stopt.
 
@@ -48,8 +48,8 @@ OUTCSV = f"{OUT}/grid{'_smoke' if LIMIT else ''}.csv"
 
 HEADER = ["sri_threshold", "flood_quantile", "period", "river", "village",
           "n_dr", "n_fl_starts", "k_layer1", "k_layer2", "obs",
-          "pA", "expA", "pBp", "expBp", "pCp", "expCp",
-          "n_cand_A", "n_cand_Bp1", "n_cand_Bp2", "n_cand_Cp1", "n_cand_Cp2",
+          "pA", "expA", "pCp", "expCp",
+          "n_cand_A", "n_cand_Cp1", "n_cand_Cp2",
           "selfcheck", "seconds"]
 
 done_keys = set()
@@ -132,22 +132,24 @@ for pi, (pname, (b, e)) in enumerate(PERIODS):
                 candC1 = np.where(~isd & ~prevf & tail_ok)[0]
                 candC2 = np.where(isd & ~prevf & tail_ok)[0]
                 row = [st, fq, pname, river, village, len(dend), len(fst), k1, k2, obs]
-                cands = [len(candA), len(candB1), len(candB2), len(candC1), len(candC2)]
+                cands = [len(candA), len(candC1), len(candC2)]
                 sc = []
                 if len(dend) == 0 or len(fst) == 0:
                     sc.append("niet toetsbaar")
-                if k2 > len(candB2): sc.append(f"B': laag 2 past niet ({k2} > {len(candB2)})")
                 if k2 > len(candC2): sc.append(f"C': laag 2 past niet ({k2} > {len(candC2)})")
                 if k1 > len(candC1): sc.append(f"C': laag 1 past niet ({k1} > {len(candC1)})")
                 if len(fst) > len(candA): sc.append("A: meer starts dan kandidaten")
                 if sc:
-                    w.writerow(row + [""] * 6 + cands + ["; ".join(sc), round(time.time() - t1, 1)])
+                    w.writerow(row + [""] * 4 + cands + ["; ".join(sc), round(time.time() - t1, 1)])
                     f.flush(); done += 1; continue
                 pA, eA = sim_pass(dend, candA, np.empty(0, int), len(fst), 0, NSIM, rng, obs)
-                pB, eB = sim_pass(dend, candB1, candB2, k1, k2, NSIM, rng, obs, isd=isd)
+                # Niet gerapporteerd, maar deze trekking moet blijven: hij verbruikt
+                # hetzelfde deel van de randomstroom als in de run van 21 oktober,
+                # zodat C' hieronder exact die getallen reproduceert.
+                sim_pass(dend, candB1, candB2, k1, k2, NSIM, rng, obs, isd=isd)
                 pC, eC = sim_pass(dend, candC1, candC2, k1, k2, NSIM, rng, obs,
                                   isd=isd, prevf=prevf, startrule=True)
-                w.writerow(row + [round(pA, 5), round(eA, 2), round(pB, 5), round(eB, 2),
+                w.writerow(row + [round(pA, 5), round(eA, 2),
                                   round(pC, 5), round(eC, 2)] + cands +
                            ["ok", round(time.time() - t1, 1)])
                 f.flush(); done += 1; computed += 1
