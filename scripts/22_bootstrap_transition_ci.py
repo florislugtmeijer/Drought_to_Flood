@@ -64,11 +64,14 @@ from vinecopulas.bivariate import bestcop, fit as cop_fit, random as cop_random,
 
 DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-09-02_copula_bootstrap"
+# OUT en EXTRA_Q via de omgeving; zonder die twee is dit de run van 3 september
+OUT = os.environ.get("OUT", "results/2026-09-02_copula_bootstrap")
 THRESHOLD, DT, SEED = 0.5, 4, 42
 B = 2000                 # replicaties
 N_POINT, N_REP = 100000, 20000   # trekkingen voor de puntschatting en per replicatie
-Y = np.linspace(0, 1, 101)
+GRID = np.linspace(0, 1, 101)
+EXTRA_Q = tuple(float(x) for x in os.environ.get("EXTRA_Q", "").split(",") if x)
+Y = np.sort(np.concatenate([GRID, EXTRA_Q]))
 PAIRS = {"drought_peak": [1, 2], "mean_drought_severity": [0.5, 1]}
 PERIODS = {"first": (0, 5479), "second": (5480, 10958)}
 COPS = list(range(1, 16))
@@ -272,7 +275,8 @@ def main():
         print(f"hervat: {len(klaar)} locatie-periodes staan er al, "
               f"{len(jobs)} te gaan", flush=True)
     mode = "a" if hervat else "w"
-    ycols = [f"y_{i:03d}" for i in range(len(Y))]
+    ycols = [f"y_{round(v * 100):03d}" if np.isclose(v, round(v * 100) / 100)
+             else f"y_q{str(v)[2:]}" for v in Y]
     fci = open(f"{OUT}/transition_ci.csv", mode, newline=""); wci = csv.writer(fci)
     fdg = open(diag_pad, mode, newline=""); wdg = csv.writer(fdg)
     fsel = open(f"{OUT}/selection_frequency.csv", mode, newline=""); wsel = csv.writer(fsel)
