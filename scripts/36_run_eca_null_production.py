@@ -1,38 +1,28 @@
-"""Productierun van de ECA Monte Carlo onder de nul C', met B' en A als grenzen.
+"""Productierun van de ECA Monte Carlo onder de nul C', met de gepubliceerde nul A ernaast.
 
 Besluit D-21, 21 oktober 2026 (CHANGELOG-methodology.md): de drempels blijven
-SRI 0,5 met floodniveau norm.cdf(0,5), de nul van de toets wordt C'. B' en de
-gepubliceerde nul A draaien in dezelfde pass mee, met dezelfde events en
-dezelfde telling, zodat de Revision Notes de grenzen uit hetzelfde rekenwerk
-kunnen rapporteren. D' staat al in results/2026-09-05_eca_null_dprime/.
+SRI 0,5 met floodniveau norm.cdf(0,5), de nul van de toets wordt C'. De
+gepubliceerde nul A draait in dezelfde pass mee, met dezelfde events en
+dezelfde telling, zodat oud en nieuw uit hetzelfde rekenwerk komen.
 
-De drie nullen verschillen alleen in waar een gesimuleerde floodstart mag
-vallen. Het aantal starts is steeds het waargenomen aantal, getrokken zonder
+De nullen verschillen alleen in waar een gesimuleerde floodstart mag vallen.
+Het aantal starts is steeds het waargenomen aantal, getrokken zonder
 teruglegging, en de telling is die van de toets: een droogte telt als match
 zodra minstens een start strikt na het droogte-einde en hoogstens W weken
 erna valt.
 
-  A   alle weken. De gepubliceerde nul, hier op dezelfde events herhaald als
-      in-run baseline. Conform monte_carlo_p_value in src/dtf/pipeline.py
-      vallen de laatste W weken buiten de kandidaten.
-  B'  gestratificeerd: het waargenomen aantal starts op droogteweken (laag 2)
-      uniform over de droogteweken, de rest (laag 1) over de niet-droogteweken.
-  C'  als B', plus de startregel: de week voor de kandidaatweek is in de
-      waargenomen floodreeks geen floodweek. De regel geldt voor beide lagen.
-      C' gebruikt daarmee de waargenomen floodreeks en is deels circulair; de
-      vergelijking met D' (rapport 5 september) laat zien dat dit hem eerder
-      iets te mild dan te streng maakt.
-
-De scratchpad-diagnose van 4 september (2000 simulaties) is gewist; dit script
-herbouwt C' en B' volgens de beschrijving in docs/open-decisions.md, D-21. De
-staartregel van A (laatste W weken geen kandidaat) wordt voor B' en C' ook
-aangehouden, zodat de drie nullen alleen in de kandidaatverzameling
-verschillen. Kleine afwijkingen van de diagnosecijfers zijn daardoor mogelijk;
-de productiecijfers uit dit script zijn leidend.
+  A   alle weken. De gepubliceerde nul. Conform monte_carlo_p_value in
+      src/dtf/pipeline.py vallen de laatste W weken buiten de kandidaten.
+  C'  gestratificeerd met startregel: het waargenomen aantal starts op
+      droogteweken (laag 2) uniform over de droogteweken, de rest (laag 1) over
+      de niet-droogteweken, en in beide lagen alleen op weken waarvan de
+      voorganger in de waargenomen floodreeks geen floodweek is. C' gebruikt
+      daarmee de waargenomen floodreeks en is deels circulair. Ook hier vallen
+      de laatste W weken buiten de kandidaten.
 
 Weekmaskers op het weekraster van de toets: droogteweek is SRI < -threshold,
 floodweek is weekmaximum-quantiel > norm.cdf(threshold), referentie de
-dagelijkse reeks van de periode (de gepubliceerde keten, zie script 31).
+dagelijkse reeks van de periode.
 
 Zelfcontroles per cel, hard: elke gesimuleerde trekking heeft het juiste
 aantal starts per laag, laag 1 ligt niet op een droogteweek, en onder C' heeft
@@ -73,8 +63,8 @@ OUTCSV = f"{OUT}/production{'_smoke' if LIMIT else ''}.csv"
 
 HEADER = ["threshold", "period", "river", "village", "n_dr", "n_fl_starts",
           "k_layer1", "k_layer2", "obs",
-          "pA", "expA", "pBp", "expBp", "pCp", "expCp",
-          "n_cand_A", "n_cand_Bp1", "n_cand_Bp2", "n_cand_Cp1", "n_cand_Cp2",
+          "pA", "expA", "pCp", "expCp",
+          "n_cand_A", "n_cand_Cp1", "n_cand_Cp2",
           "selfcheck", "seconds"]
 
 done_keys = set()
@@ -159,33 +149,35 @@ for thr in THRESHOLDS:
             candC2 = np.where(isd & ~prevf & tail_ok)[0]
             row = [thr, pname, river, village, len(dend), len(fst), k1, k2, obs]
             if len(dend) == 0 or len(fst) == 0:
-                w.writerow(row + [""] * 6 + [len(candA), len(candB1), len(candB2),
+                w.writerow(row + [""] * 4 + [len(candA),
                            len(candC1), len(candC2), "niet toetsbaar",
                            round(time.time() - t1, 1)]); f.flush(); done += 1
                 print(f"[{done}/{total}] {thr} {pname} {river} {village[:14]} niet toetsbaar", flush=True)
                 continue
             sc = []
-            if k2 > len(candB2): sc.append(f"B': laag 2 past niet ({k2} > {len(candB2)})")
             if k2 > len(candC2): sc.append(f"C': laag 2 past niet ({k2} > {len(candC2)})")
             if k1 > len(candC1): sc.append(f"C': laag 1 past niet ({k1} > {len(candC1)})")
             if sc:
-                w.writerow(row + [""] * 6 + [len(candA), len(candB1), len(candB2),
+                w.writerow(row + [""] * 4 + [len(candA),
                            len(candC1), len(candC2), "; ".join(sc),
                            round(time.time() - t1, 1)]); f.flush(); done += 1
                 print(f"[{done}/{total}] {thr} {pname} {river} {village[:14]} {'; '.join(sc)}", flush=True)
                 continue
             pA, eA = sim_pass(dend, candA, np.empty(0, int), len(fst), 0, NSIM, rng, obs)
-            pB, eB = sim_pass(dend, candB1, candB2, k1, k2, NSIM, rng, obs, isd=isd)
+            # Niet gerapporteerd, maar deze trekking moet blijven: hij verbruikt
+            # hetzelfde deel van de randomstroom als in de productierun van
+            # 21 oktober, zodat C' hieronder exact die getallen reproduceert.
+            sim_pass(dend, candB1, candB2, k1, k2, NSIM, rng, obs, isd=isd)
             pC, eC = sim_pass(dend, candC1, candC2, k1, k2, NSIM, rng, obs,
                               isd=isd, prevf=prevf, startrule=True)
-            w.writerow(row + [round(pA, 5), round(eA, 2), round(pB, 5), round(eB, 2),
+            w.writerow(row + [round(pA, 5), round(eA, 2),
                               round(pC, 5), round(eC, 2),
-                              len(candA), len(candB1), len(candB2), len(candC1), len(candC2),
+                              len(candA), len(candC1), len(candC2),
                               "ok", round(time.time() - t1, 1)])
             f.flush(); done += 1
             el = time.time() - t0
             print(f"[{done}/{total}] {thr} {pname} {river:8} {village[:14]:14} obs={obs:3} "
-                  f"pA={pA:.4f} pB'={pB:.4f} pC'={pC:.4f} expC'={eC:5.1f} "
+                  f"pA={pA:.4f} pC'={pC:.4f} expC'={eC:5.1f} "
                   f"({el/60:.1f}m, eta {el/max(1,done-len(done_keys))*(total-done)/60:.0f}m)", flush=True)
 f.close()
 print("klaar:", OUTCSV)
