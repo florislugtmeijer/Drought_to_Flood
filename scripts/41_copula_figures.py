@@ -3,7 +3,9 @@
 Besluiten van Floris, 22 oktober 2026: Po en Ebro blijven de voorbeeldrivieren,
 met bootstrapinterval en "threshold-dependent"; Vistula Toruń komt erbij als de
 enige cel die bij beide droogtedrempels standhoudt (changelog 2026-10-22, punt 2).
-Figuren met bootstrapband en de onafhankelijkheidslijn 1 - F_Y (plan, F-5).
+Figuren met bootstrapband (plan, F-5). De onafhankelijkheidslijn 1 - F_Y stond
+er van 22 tot 27 oktober in; op 27 oktober door Floris geschrapt, de opsplitsing
+in een marginaal en een copula-deel blijft in de tekst en in appendix E staan.
 
 Per figuur één locatie en één droogtevariabele, periode 1 boven, periode 2 onder:
   links   P(hoogste afvoer in de vier weken na de droogte > q | droogte >= x),
@@ -11,7 +13,7 @@ Per figuur één locatie en één droogtevariabele, periode 1 boven, periode 2 o
           De gestippelde lijnen markeren de milde en de zware drempel; daar wordt
           het rechterpaneel afgelezen
   rechts  de milde en de zware curve met 95%-bootstrapband, de unconditionele
-          curve en de onafhankelijkheidslijn 1 - F_Y, plus het floodniveau 0,6915
+          curve, plus het floodniveau 0,6915
 
 Puntschatting en oppervlak komen uit fit_copula met dezelfde invoer en seed als
 script 22; de banden uit results/2026-09-02_copula_bootstrap/transition_ci.csv
@@ -19,7 +21,7 @@ script 22; de banden uit results/2026-09-02_copula_bootstrap/transition_ci.csv
 dat de rij van het oppervlak bij de milde drempel gelijk is aan de milde curve.
 
 Kleuren als in de ingediende versie: mild groen, zwaar rood, unconditioneel
-oranje, de onafhankelijkheidslijn gestippeld grijs, oppervlak in viridis (besluit
+oranje, oppervlak in viridis (besluit
 Floris 27 oktober 2026; groen/rood is niet kleurenblindveilig, dat is een bewuste
 keuze voor continuiteit met R1).
 
@@ -159,8 +161,6 @@ def main():
                 ax.plot(Y, res["conditional_minor" if qty == "minor_resel" else "conditional_major"],
                         color=col, lw=1.4, label=lab)
             ax.plot(Y, res["unconditional"], color=UNCOND, lw=1.4, label="Unconditional")
-            ax.plot(Y, res["independence_reference"], color=INK2, lw=1.0, ls=(0, (2, 2)),
-                    label="Independence, 1 − $F_Y$")
             ax.axvline(Q_TEXT, color="#b9b8b3", lw=0.8, zorder=0,
                        label=f"Flood threshold, q = {Q_TEXT}")
             ax.set_xlim(0, 1); ax.set_ylim(0, 1)
