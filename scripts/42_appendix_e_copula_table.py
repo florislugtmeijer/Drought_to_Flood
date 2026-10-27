@@ -77,7 +77,7 @@ def main():
             "drought peak" if r.pair == "drought_peak" else "mean severity",
             str(int(r.n_events)), str(int(r.k_major)), r.family,
             f"{r.delta_aic:.2f} ({r.runner_up})",
-            f"{r.max_abs_diff_minor:.2f} / {r.max_abs_diff_major:.2f}",
+            f"{f2(r.max_abs_diff_minor)} / {f2(r.max_abs_diff_major) or '–'}",
             f"{100 * r.modal_share:.0f}%" if not pd.isna(r.modal_share) else "",
             ci_s(r.minor_resel_point, r.minor_resel_lo, r.minor_resel_hi),
             ci_s(r.major_resel_point, r.major_resel_lo, r.major_resel_hi),
