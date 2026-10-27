@@ -18,9 +18,10 @@ script 22; de banden uit results/2026-09-02_copula_bootstrap/transition_ci.csv
 (iid). Het script controleert dat de puntcurves gelijk zijn aan de bootstrap en
 dat de rij van het oppervlak bij de milde drempel gelijk is aan de milde curve.
 
-Kleuren: mild blauw #2a78d6, zwaar oranje #eb6834 (gevalideerd op
-kleurenblindheid, CVD dE 24,7), referentielijnen in grijze inkt, oppervlak in een
-sequentiële blauwe schaal.
+Kleuren als in de ingediende versie: mild groen, zwaar rood, unconditioneel
+oranje, de onafhankelijkheidslijn gestippeld grijs, oppervlak in viridis (besluit
+Floris 27 oktober 2026; groen/rood is niet kleurenblindveilig, dat is een bewuste
+keuze voor continuiteit met R1).
 
 Uitvoer in results/2026-10-22_copula_figures/: fig05 tot fig09 als png (300 dpi)
 en pdf, check.txt, README.md, manifest.yaml.
@@ -56,7 +57,9 @@ FIGURES = [  # nummer, rivier, locatie, variabele, Engelse plaatsnaam
     (8, "Ebro", "Tudela", "mean_drought_severity", "Tudela"),
     (9, "Vistula", "Turon", "mean_drought_severity", "Toruń"),
 ]
-MINOR, MAJOR = "#2a78d6", "#eb6834"
+# Kleuren als in de ingediende versie (notebook cel 25): groen mild, rood zwaar,
+# oranje unconditioneel, oppervlak in viridis. Besluit Floris 27 oktober 2026.
+MINOR, MAJOR, UNCOND = "green", "red", "orange"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
 
 
@@ -133,9 +136,9 @@ def main():
                           f"(X[0]={X[0]}) vs milde curve {surf_dev:.3f}")
 
             ax = axes[pi, 0]
-            pm = ax.pcolormesh(Y, vals, res["surface"], shading="auto", cmap="Blues",
+            pm = ax.pcolormesh(Y, vals, res["surface"], shading="auto", cmap="viridis",
                                vmin=0, vmax=1, rasterized=True)
-            for x0, col, lab in ((X[0], MINOR, "minor"), (X[1], MAJOR, "major")):
+            for x0, col, lab in ((X[0], "white", "minor"), (X[1], "red", "major")):
                 if vals.min() <= x0 <= vals.max():
                     ax.axhline(x0, color=col, lw=1.0, ls=(0, (4, 2)))
                     ax.text(1.0, x0, f" {lab}", color=INK2, va="center", ha="left", fontsize=7,
@@ -155,7 +158,7 @@ def main():
                 ax.fill_between(Y, lo, hi, color=col, alpha=0.18, lw=0)
                 ax.plot(Y, res["conditional_minor" if qty == "minor_resel" else "conditional_major"],
                         color=col, lw=1.4, label=lab)
-            ax.plot(Y, res["unconditional"], color=INK2, lw=1.2, label="Unconditional")
+            ax.plot(Y, res["unconditional"], color=UNCOND, lw=1.4, label="Unconditional")
             ax.plot(Y, res["independence_reference"], color=INK2, lw=1.0, ls=(0, (2, 2)),
                     label="Independence, 1 − $F_Y$")
             ax.axvline(Q_TEXT, color="#b9b8b3", lw=0.8, zorder=0,
