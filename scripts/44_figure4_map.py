@@ -6,10 +6,15 @@ beide onder 0,05 ligt, en of de locatie gemarkeerd is (D-12, de vier
 gereguleerde locaties waar de SRI vrijwel geen droogtes vindt). Coördinaten uit
 de locatielijst van de notebook, dezelfde bron als script 27.
 
-Symbolen als in de ingediende figuur 4: cirkel beide periodes, ruit alleen
-periode 1, vierkant alleen periode 2; nieuw: kruis voor geen van beide, elke
-categorie in een eigen kleur (Okabe-Ito, besluit Floris 30 oktober); de vier
-gemarkeerde locaties als open grijze cirkel, zonder categorie. Kaartlaag: Natural Earth 50m via cartopy.
+Opbouw als in de ingediende figuur 4 (besluit Floris 30 oktober): het open
+zwarte buitensymbool is de categorie (cirkel beide periodes, vierkant alleen
+periode 2, ruit alleen periode 1; nieuw: driehoek geen van beide, grijze
+gestippelde cirkel test niet informatief), de gekleurde binnenstip is de rivier
+(tab20 over de rivieren in alfabetische volgorde, zoals in de ingediende figuur),
+het cijfer is de positie op de rivier (1 stroomop, 2 midden, 3 stroomaf). Drie
+legenda's: rivier, categorie, cijfer. Anders dan in R1 staan alle 48 locaties
+op de kaart, niet alleen de significante, en staat er geen titel in de figuur
+(de uitleg hoort in het bijschrift). Kaartlaag: Natural Earth 50m via cartopy.
 
 Uitvoer in results/2026-10-28_figure4_map/: fig04_map.png (300 dpi), fig04_map.pdf,
 caption_en.md, README.md, manifest.yaml.
@@ -18,20 +23,25 @@ Draaien vanuit de repo-root:
   uv run --frozen python scripts/44_figure4_map.py
 """
 import os, re, ast, json, hashlib, platform
-import pandas as pd
+import numpy as np, pandas as pd
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+import matplotlib.patheffects as pe
 from matplotlib.lines import Line2D
 import cartopy.crs as ccrs, cartopy.feature as cf
 
 CAT = "results/2026-10-27_table3_eca_cprime/figure4_categories.csv"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-10-28_figure4_map"
-EXTENT = (-11, 42, 35.5, 60.5)
-INK, INK2 = "#0b0b0b", "#52514e"
-# symbool, kleur, legendatekst per categorie (kleuren Okabe-Ito, kleurenblindveilig)
-MARK = {"both": ("o", "#0072b2", "Both periods"), "first only": ("D", "#e69f00", "Period 1 only"),
-        "second only": ("s", "#009e73", "Period 2 only"), "none": ("X", "#d55e00", "Neither period")}
+EXTENT = (-10.5, 44.5, 35.5, 58.5)
+INK, INK2, GREY = "#0b0b0b", "#52514e", "#8a8984"
+# buitensymbool en legendatekst per categorie
+OUTER = {"both": ("o", "Both periods"),
+         "first only": ("D", "Period 1 only"),
+         "second only": ("s", "Period 2 only"),
+         "none": ("^", "Neither period")}
+POS = {"First location": "1", "Second location": "2", "Third location": "3"}
+PLACE = {"Rhone": "Rhône"}
 
 
 def sha256(path):
@@ -47,57 +57,79 @@ def main():
     cat = pd.read_csv(CAT)
     src = "\n".join("".join(c["source"]) for c in json.load(open(NB))["cells"])
     rivers = ast.literal_eval(re.search(r'rivers\s*=\s*(\[.*?\n\])', src, re.S).group(1))
-    coords = {(r["river"], l["village"]): (l["latitude"], l["longitude"])
-              for r in rivers for l in r["locations"]}
-    cat["lat"] = [coords[(r, v)][0] for r, v in zip(cat.river, cat.village)]
-    cat["lon"] = [coords[(r, v)][1] for r, v in zip(cat.river, cat.village)]
+    info = {(r["river"], l["village"]): (l["latitude"], l["longitude"], l["river_location"])
+            for r in rivers for l in r["locations"]}
+    cat["lat"] = [info[(r, v)][0] for r, v in zip(cat.river, cat.village)]
+    cat["lon"] = [info[(r, v)][1] for r, v in zip(cat.river, cat.village)]
+    cat["pos"] = [POS[info[(r, v)][2]] for r, v in zip(cat.river, cat.village)]
     assert len(cat) == 48 and cat.lat.notna().all()
 
-    plt.rcParams.update({"font.size": 8, "pdf.fonttype": 42})
-    fig = plt.figure(figsize=(7.2, 5.2))
-    ax = plt.axes(projection=ccrs.PlateCarree())
-    ax.set_extent(EXTENT, crs=ccrs.PlateCarree())
-    ax.add_feature(cf.LAND.with_scale("50m"), facecolor="#f3f2ee", zorder=0)
-    ax.add_feature(cf.OCEAN.with_scale("50m"), facecolor="#e3eaf0", zorder=0)
-    ax.add_feature(cf.COASTLINE.with_scale("50m"), lw=0.4, edgecolor=INK2, zorder=1)
-    ax.add_feature(cf.BORDERS.with_scale("50m"), lw=0.25, edgecolor="#9a9994", zorder=1)
-    ax.add_feature(cf.RIVERS.with_scale("50m"), lw=0.5, edgecolor="#7fa6c9", zorder=1)
-    for s in ax.spines.values():
-        s.set_linewidth(0.4); s.set_edgecolor(INK2)
+    names = sorted(cat.river.unique(), key=lambda s: PLACE.get(s, s))
+    colours = dict(zip(names, plt.cm.tab20(np.linspace(0, 1, len(names)))))
 
-    # de vier gemarkeerde locaties krijgen één eigen symbool, los van hun categorie:
-    # de toets is daar niet informatief (D-12), dus hun categorie wordt niet getoond
-    for c, (m, col, _) in MARK.items():
-        sub = cat[(cat.category == c) & ~cat.regulated]
-        if sub.empty:
-            continue
-        ax.scatter(sub.lon, sub.lat, marker=m, s=46 if m != "X" else 54, facecolor=col,
-                   edgecolor="white", linewidths=0.5, zorder=3, transform=ccrs.PlateCarree())
-    reg = cat[cat.regulated]
-    ax.scatter(reg.lon, reg.lat, marker="o", s=52, facecolor="white", edgecolor=INK2,
-               linewidths=1.4, zorder=3, transform=ccrs.PlateCarree())
-    handles = [Line2D([], [], marker=m, ls="", ms=7, mfc=col, mec="white", mew=0.5, label=lab)
-               for m, col, lab in MARK.values()]
-    handles.append(Line2D([], [], marker="o", ls="", ms=7.5, mfc="white", mec=INK2, mew=1.4,
-                          label="Test not informative (SRI detects very few droughts)"))
-    ax.legend(handles=handles, loc="lower right", fontsize=7, frameon=True, framealpha=0.95,
-              edgecolor="#cfcec9", borderpad=0.7)
+    plt.rcParams.update({"font.size": 8, "pdf.fonttype": 42})
+    fig = plt.figure(figsize=(10.2, 3.3))
+    ax = fig.add_axes([0.04, 0.08, 0.66, 0.89], projection=ccrs.PlateCarree())
+    ax.set_extent(EXTENT, crs=ccrs.PlateCarree())
+    ax.add_feature(cf.LAND.with_scale("50m"), facecolor="#f2f2f0", zorder=0)
+    ax.add_feature(cf.OCEAN.with_scale("50m"), facecolor="white", zorder=0)
+    ax.add_feature(cf.COASTLINE.with_scale("50m"), lw=0.4, edgecolor=INK2, zorder=1)
+    ax.add_feature(cf.BORDERS.with_scale("50m"), lw=0.3, edgecolor="#9a9994", zorder=1)
+    ax.add_feature(cf.RIVERS.with_scale("50m"), lw=0.4, edgecolor="#a9c3da", zorder=1)
+    gl = ax.gridlines(draw_labels=True, lw=0.3, color="#d9d8d4", xlocs=range(-10, 45, 10),
+                      ylocs=range(35, 61, 5))
+    gl.top_labels = gl.right_labels = False
+    gl.xlabel_style = gl.ylabel_style = {"size": 7, "color": INK2}
+    for s in ax.spines.values():
+        s.set_linewidth(0.5); s.set_edgecolor(INK2)
+
+    T = ccrs.PlateCarree()
+    for _, r in cat.iterrows():
+        if r.regulated:
+            ax.scatter(r.lon, r.lat, marker="o", s=125, facecolor="white", edgecolor=GREY,
+                       linewidths=1.0, linestyle=(0, (2, 1.5)), zorder=3, transform=T)
+        else:
+            m = OUTER[r.category][0]
+            ax.scatter(r.lon, r.lat, marker=m, s=125 if m != "^" else 150, facecolor="white",
+                       edgecolor=INK, linewidths=1.0, zorder=3, transform=T)
+        ax.scatter(r.lon, r.lat, marker="o", s=52, facecolor=colours[r.river], edgecolor=INK,
+                   linewidths=0.3, zorder=4, transform=T)
+        ax.text(r.lon, r.lat, r.pos, ha="center", va="center", fontsize=4.6, fontweight="bold",
+                color="white", zorder=5, transform=T,
+                path_effects=[pe.withStroke(linewidth=1.0, foreground=INK)])
+
+    kw = dict(frameon=True, framealpha=1, edgecolor="#bdbcb7", fontsize=7.5, title_fontsize=8,
+              borderpad=0.6, labelspacing=0.45, handletextpad=0.6)
+    h_river = [Line2D([], [], marker="o", ls="", ms=7, mfc=colours[n], mec=INK, mew=0.4,
+                      label=PLACE.get(n, n)) for n in names]
+    fig.legend(handles=h_river, title="River (inner dot)", loc="upper left",
+               bbox_to_anchor=(0.715, 0.975), ncols=2, columnspacing=0.8, **kw)
+    h_cat = [Line2D([], [], marker=m, ls="", ms=9, mfc="white", mec=INK, mew=1.1, label=lab)
+             for m, lab in OUTER.values()]
+    h_cat.append(Line2D([], [], marker="o", ls="", ms=9, mfc="white", mec=GREY, mew=1.1,
+                        label="Test not informative"))
+    fig.legend(handles=h_cat, title="Significant (outer symbol)",
+               loc="upper left", bbox_to_anchor=(0.715, 0.455), **kw)
+    h_pos = [Line2D([], [], ls="", label=t) for t in ("1 = upstream", "2 = midstream", "3 = downstream")]
+    fig.legend(handles=h_pos, title="Location (number)", loc="upper left",
+               bbox_to_anchor=(0.876, 0.455), handlelength=0, **{**kw, "handletextpad": 0})
     for ext in ("png", "pdf"):
         fig.savefig(f"{OUT}/fig04_map.{ext}", dpi=300 if ext == "png" else None,
-                    bbox_inches="tight", facecolor="white")
+                    facecolor="white")
     plt.close(fig)
 
-    caption = ("Figure 4: Locations where droughts are followed by floods more often than expected "
-               "under the stratified null (Monte Carlo p < 0.05, Table 3): in both periods (circle), "
-               "in period 1 only (diamond), in period 2 only (square), in neither (cross), each category in its own colour. Open grey circles: "
-               "the four locations where the SRI detects very few droughts; the test is not informative there.")
+    caption = ("Figure 4: Locations where droughts are followed by floods more often than expected under the "
+               "stratified null (Monte Carlo p < 0.05, Table 3). Outer symbol: significant in both periods (circle), "
+               "in period 1 only (diamond), in period 2 only (square), in neither period (triangle); dashed grey circle: the "
+               "four locations where the SRI detects very few droughts and the test is not informative. "
+               "Inner dot: river. Number: position along the river (1 upstream, 2 midstream, 3 downstream).")
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
-    counts = cat.category.value_counts().to_dict()
+    counts = cat[~cat.regulated].category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
         "# Figuur 4 onder C'\n\nScript: scripts/44_figure4_map.py. Bron: figure4_categories.csv (script 39).\n\n"
-        f"Categorieën: {counts}. Gemarkeerd (open symbool): "
-        f"{', '.join(cat[cat.regulated].village)}.\n\nKaartlaag: Natural Earth 50m via cartopy "
-        "(land, oceaan, kustlijn, landsgrenzen, rivieren).\n")
+        f"Categorieën zonder de vier niet-toetsbare locaties: {counts}. Niet toetsbaar (grijze "
+        f"gestippelde cirkel): {', '.join(cat[cat.regulated].village)}.\n\nOpbouw als de ingediende figuur: "
+        "buitensymbool categorie, binnenstip rivier (tab20, alfabetisch), cijfer positie.\n")
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/44_figure4_map.py\npython: {platform.python_version()}\n"
                  f"inputs:\n  {CAT}: {sha256(CAT)}\n  {NB}: {sha256(NB)}\n")
