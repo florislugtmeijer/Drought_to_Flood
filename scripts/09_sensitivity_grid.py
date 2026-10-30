@@ -43,7 +43,7 @@ from dtf.pipeline import find_nearest_grid_point, drought_flood_p_value_trigger_
 # --- parameters, horen in config/analysis.yaml (T-42) ---------------------
 DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-09-02_sensitivity_grid_endfix"
+OUT = os.environ.get("OUT", "results/2026-09-02_sensitivity_grid_endfix")
 RUN_DATE = "2026-09-02"
 # Herberekening van het volledige raster na de reparatie van de einddetectie in
 # extract_events, zie CHANGELOG-methodology.md 2026-09-02. Resultaten uit een
@@ -61,6 +61,16 @@ BASE_WINDOW = 4                       # weken
 PLANE_THRESHOLD = (0.25, BASE_THRESHOLD, 0.75, 1.0, 1.5)
 PLANE_FLOOD_Q = (0.60, BASE_FLOOD_Q, 0.80, 0.90, 0.95)
 WINDOWS = (1, 2, BASE_WINDOW, 8, 12)  # alle vensters, volledig gekruist
+# losse cel buiten het raster via de omgeving (30 oktober 2026, de strenge
+# definitie SRI -1 met floodniveau norm.cdf(1) = 0,8413): CELL="1.0,0.8413,4"
+# met een eigen OUT. Het floodquantiel wordt dan als norm.cdf(threshold)
+# genomen als het op 4 decimalen met de opgegeven waarde overeenkomt, zodat de
+# berekening exact die van de gepubliceerde code is.
+if os.environ.get("CELL"):
+    _t, _q, _w = (float(x) for x in os.environ["CELL"].split(","))
+    if abs(float(norm.cdf(_t)) - _q) < 5e-5:
+        _q = float(norm.cdf(_t))
+    PLANE_THRESHOLD, PLANE_FLOOD_Q, WINDOWS = (_t,), (_q,), (int(_w),)
 
 TIME_SCALE = "1W"
 N_SIMULATIONS = 10000
