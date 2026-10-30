@@ -78,9 +78,14 @@ def categories_from_grid(sri):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sri", type=float, default=None, help="andere droogtedrempel (variant, uit het raster)")
+    ap.add_argument("--categories", default=None, help="eigen categoriebestand (zelfde kolommen als CAT), met --out en --label")
+    ap.add_argument("--out", default=None); ap.add_argument("--label", default="variant")
     args = ap.parse_args()
     global OUT
-    if args.sri is None:
+    if args.categories is not None:
+        cat = pd.read_csv(args.categories); OUT = args.out or OUT
+        assert OUT != "results/2026-10-28_figure4_map", "geef --out op voor een variant"
+    elif args.sri is None:
         cat = pd.read_csv(CAT)
     else:
         cat = categories_from_grid(args.sri)
@@ -172,9 +177,11 @@ def main():
                "Inner dot: river. Number: position along the river (1 upstream, 2 midstream, 3 downstream).")
     if args.sri is not None:
         caption = caption.replace("Figure 4:", f"Figure 4 (variant, droughts at SRI < −{args.sri:g}, flood level unchanged):", 1)
+    elif args.categories is not None:
+        caption = caption.replace("Figure 4:", f"Figure 4 ({args.label}):", 1)
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
     pd.DataFrame(drawn).to_csv(f"{OUT}/fig04_symbols.csv", index=False)
-    if args.sri is not None:
+    if args.sri is not None or args.categories is not None:
         cat.to_csv(f"{OUT}/figure4_categories.csv", index=False)
     counts = cat[~cat.regulated].category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
@@ -184,7 +191,8 @@ def main():
         "buitensymbool categorie, binnenstip rivier (tab20, alfabetisch), cijfer positie.\n")
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/44_figure4_map.py\npython: {platform.python_version()}\n"
-                 f"sri: {'0.5 (hoofdanalyse)' if args.sri is None else args.sri}\n"
+                 f"sri: {'0.5 (hoofdanalyse)' if args.sri is None and args.categories is None else args.sri}\n"
+                 f"categories: {args.categories}\n"
                  f"inputs:\n  {CAT}: {sha256(CAT)}\n  {GRID}: {sha256(GRID)}\n  {NB}: {sha256(NB)}\n")
     print(counts)
 

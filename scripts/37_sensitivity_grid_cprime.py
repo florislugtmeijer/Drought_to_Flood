@@ -17,6 +17,10 @@ in plaats van dat de run stopt.
 Uitvoer: results/2026-10-21_sensitivity_grid_cprime/grid.csv, incrementeel met
 hervatten. NSIM en LIMIT via de omgeving, default NSIM=10000.
 
+Losse cel buiten het raster (schrijft naar een eigen map):
+  OUT=results/2026-10-30_eca_cprime_strict SRI_THRESHOLDS=1.0 FLOOD_QUANTILES=0.8413 \
+      uv run --frozen python scripts/37_sensitivity_grid_cprime.py
+
 Draaien vanuit de repo-root:
   uv run --python 3.12 --with numpy --with pandas --with xarray --with scipy \
       --with netCDF4 --no-project python scripts/37_sensitivity_grid_cprime.py
@@ -30,12 +34,14 @@ from dtf.pipeline import (find_nearest_grid_point, river_runoff_time_location_me
 
 DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-10-21_sensitivity_grid_cprime"
+OUT = os.environ.get("OUT", "results/2026-10-21_sensitivity_grid_cprime")
 W = 4
 NSIM = int(os.environ.get("NSIM", 10000))
 LIMIT = int(os.environ.get("LIMIT", 0))
-SRI_THRESHOLDS = (0.25, 0.5, 0.75, 1.0, 1.5)
-FLOOD_QUANTILES = (0.60, 0.6915, 0.80, 0.90, 0.95)
+# losse cellen via de omgeving, bijvoorbeeld SRI_THRESHOLDS=1.0 FLOOD_QUANTILES=0.8413
+# (de gespiegelde strenge definitie, vraag Floris 30 oktober); defaults zijn het raster
+SRI_THRESHOLDS = tuple(float(x) for x in os.environ.get("SRI_THRESHOLDS", "0.25,0.5,0.75,1.0,1.5").split(","))
+FLOOD_QUANTILES = tuple(float(x) for x in os.environ.get("FLOOD_QUANTILES", "0.60,0.6915,0.80,0.90,0.95").split(","))
 PERIODS = (("first", (0, 5479)), ("second", (5480, 10958)))
 
 d = xr.open_dataset(DATA).set_index(point=["latitude", "longitude"])
