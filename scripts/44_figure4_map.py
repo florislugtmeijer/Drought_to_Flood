@@ -77,7 +77,7 @@ def main():
                for m, col, lab in MARK.values()]
     handles.append(Line2D([], [], marker="o", ls="", ms=7, mfc="white", mec=INK, mew=1.4,
                           label="Open symbol: SRI detects very few droughts"))
-    ax.legend(handles=handles, loc="upper right", fontsize=7, frameon=True, framealpha=0.95,
+    ax.legend(handles=handles, loc="lower right", fontsize=7, frameon=True, framealpha=0.95,
               edgecolor="#cfcec9", borderpad=0.7)
     for ext in ("png", "pdf"):
         fig.savefig(f"{OUT}/fig04_map.{ext}", dpi=300 if ext == "png" else None,
