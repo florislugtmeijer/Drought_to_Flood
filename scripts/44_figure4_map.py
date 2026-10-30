@@ -28,6 +28,8 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 from matplotlib.lines import Line2D
+from matplotlib.patches import Circle
+from matplotlib.legend_handler import HandlerPatch
 import cartopy.crs as ccrs, cartopy.feature as cf
 
 CAT = "results/2026-10-27_table3_eca_cprime/figure4_categories.csv"
@@ -84,7 +86,12 @@ def main():
         s.set_linewidth(0.5); s.set_edgecolor(INK2)
 
     T = ccrs.PlateCarree()
+    drawn = []
     for _, r in cat.iterrows():
+        drawn.append({"river": r.river, "village": r.village, "number": r.pos,
+                      "outer": "dashed grey circle" if r.regulated else OUTER[r.category][1],
+                      "category": r.category, "regulated": bool(r.regulated),
+                      "colour": matplotlib.colors.to_hex(colours[r.river])})
         if r.regulated:
             ax.scatter(r.lon, r.lat, marker="o", s=125, facecolor="white", edgecolor=GREY,
                        linewidths=1.0, linestyle=(0, (2, 1.5)), zorder=3, transform=T)
@@ -106,10 +113,16 @@ def main():
                bbox_to_anchor=(0.715, 0.975), ncols=2, columnspacing=0.8, **kw)
     h_cat = [Line2D([], [], marker=m, ls="", ms=9, mfc="white", mec=INK, mew=1.1, label=lab)
              for m, lab in OUTER.values()]
-    h_cat.append(Line2D([], [], marker="o", ls="", ms=9, mfc="white", mec=GREY, mew=1.1,
-                        label="Test not informative"))
+    # de gestippelde cirkel ook gestippeld in de legenda, anders klopt de legenda niet met de kaart
+    dashed = Circle((0, 0), 1, facecolor="white", edgecolor=GREY, lw=1.1, linestyle=(0, (2, 1.5)),
+                    label="Test not informative")
+    h_cat.append(dashed)
     fig.legend(handles=h_cat, title="Significant (outer symbol)",
-               loc="upper left", bbox_to_anchor=(0.715, 0.455), **kw)
+               loc="upper left", bbox_to_anchor=(0.715, 0.455),
+               handler_map={Circle: HandlerPatch(patch_func=lambda legend, orig_handle, xdescent, ydescent,
+                                                 width, height, fontsize: Circle((width / 2 - xdescent, height / 2 - ydescent),
+                                                 4.6, facecolor="white", edgecolor=GREY, lw=1.1, linestyle=(0, (2, 1.5))))},
+               **kw)
     h_pos = [Line2D([], [], ls="", label=t) for t in ("1 = upstream", "2 = midstream", "3 = downstream")]
     fig.legend(handles=h_pos, title="Location (number)", loc="upper left",
                bbox_to_anchor=(0.876, 0.455), handlelength=0, **{**kw, "handletextpad": 0})
@@ -124,6 +137,7 @@ def main():
                "four locations where the SRI detects very few droughts and the test is not informative. "
                "Inner dot: river. Number: position along the river (1 upstream, 2 midstream, 3 downstream).")
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
+    pd.DataFrame(drawn).to_csv(f"{OUT}/fig04_symbols.csv", index=False)
     counts = cat[~cat.regulated].category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
         "# Figuur 4 onder C'\n\nScript: scripts/44_figure4_map.py. Bron: figure4_categories.csv (script 39).\n\n"
