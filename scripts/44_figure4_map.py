@@ -8,8 +8,8 @@ de locatielijst van de notebook, dezelfde bron als script 27.
 
 Symbolen als in de ingediende figuur 4: cirkel beide periodes, ruit alleen
 periode 1, vierkant alleen periode 2; nieuw: kruis voor geen van beide, elke
-categorie in een eigen kleur (Okabe-Ito, besluit Floris 30 oktober), open
-symbool voor de gemarkeerde locaties. Kaartlaag: Natural Earth 50m via cartopy.
+categorie in een eigen kleur (Okabe-Ito, besluit Floris 30 oktober); de vier
+gemarkeerde locaties als open grijze cirkel, zonder categorie. Kaartlaag: Natural Earth 50m via cartopy.
 
 Uitvoer in results/2026-10-28_figure4_map/: fig04_map.png (300 dpi), fig04_map.pdf,
 caption_en.md, README.md, manifest.yaml.
@@ -65,18 +65,21 @@ def main():
     for s in ax.spines.values():
         s.set_linewidth(0.4); s.set_edgecolor(INK2)
 
+    # de vier gemarkeerde locaties krijgen één eigen symbool, los van hun categorie:
+    # de toets is daar niet informatief (D-12), dus hun categorie wordt niet getoond
     for c, (m, col, _) in MARK.items():
-        for reg in (False, True):
-            sub = cat[(cat.category == c) & (cat.regulated == reg)]
-            if sub.empty:
-                continue
-            ax.scatter(sub.lon, sub.lat, marker=m, s=46 if m != "X" else 54,
-                       facecolor="white" if reg else col, edgecolor=col if reg else "white",
-                       linewidths=1.4 if reg else 0.5, zorder=3, transform=ccrs.PlateCarree())
+        sub = cat[(cat.category == c) & ~cat.regulated]
+        if sub.empty:
+            continue
+        ax.scatter(sub.lon, sub.lat, marker=m, s=46 if m != "X" else 54, facecolor=col,
+                   edgecolor="white", linewidths=0.5, zorder=3, transform=ccrs.PlateCarree())
+    reg = cat[cat.regulated]
+    ax.scatter(reg.lon, reg.lat, marker="o", s=52, facecolor="white", edgecolor=INK2,
+               linewidths=1.4, zorder=3, transform=ccrs.PlateCarree())
     handles = [Line2D([], [], marker=m, ls="", ms=7, mfc=col, mec="white", mew=0.5, label=lab)
                for m, col, lab in MARK.values()]
-    handles.append(Line2D([], [], marker="o", ls="", ms=7, mfc="white", mec=INK, mew=1.4,
-                          label="Open symbol: SRI detects very few droughts"))
+    handles.append(Line2D([], [], marker="o", ls="", ms=7.5, mfc="white", mec=INK2, mew=1.4,
+                          label="Test not informative (SRI detects very few droughts)"))
     ax.legend(handles=handles, loc="lower right", fontsize=7, frameon=True, framealpha=0.95,
               edgecolor="#cfcec9", borderpad=0.7)
     for ext in ("png", "pdf"):
@@ -86,8 +89,8 @@ def main():
 
     caption = ("Figure 4: Locations where droughts are followed by floods more often than expected "
                "under the stratified null (Monte Carlo p < 0.05, Table 3): in both periods (circle), "
-               "in period 1 only (diamond), in period 2 only (square), in neither (cross), each category in its own colour. Open symbols: "
-               "the four locations where the SRI detects very few droughts and the test is not informative.")
+               "in period 1 only (diamond), in period 2 only (square), in neither (cross), each category in its own colour. Open grey circles: "
+               "the four locations where the SRI detects very few droughts; the test is not informative there.")
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
     counts = cat.category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
