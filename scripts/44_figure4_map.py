@@ -7,7 +7,8 @@ gereguleerde locaties waar de SRI vrijwel geen droogtes vindt). Coördinaten uit
 de locatielijst van de notebook, dezelfde bron als script 27.
 
 Symbolen als in de ingediende figuur 4: cirkel beide periodes, ruit alleen
-periode 1, vierkant alleen periode 2; nieuw: kruis voor geen van beide, open
+periode 1, vierkant alleen periode 2; nieuw: kruis voor geen van beide, elke
+categorie in een eigen kleur (Okabe-Ito, besluit Floris 30 oktober), open
 symbool voor de gemarkeerde locaties. Kaartlaag: Natural Earth 50m via cartopy.
 
 Uitvoer in results/2026-10-28_figure4_map/: fig04_map.png (300 dpi), fig04_map.pdf,
@@ -28,9 +29,9 @@ NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-10-28_figure4_map"
 EXTENT = (-11, 42, 35.5, 60.5)
 INK, INK2 = "#0b0b0b", "#52514e"
-MARK = {"both": ("o", "Both periods"), "first only": ("D", "Period 1 only"),
-        "second only": ("s", "Period 2 only"), "none": ("X", "Neither period")}
-FILL = "#1f5fa8"
+# symbool, kleur, legendatekst per categorie (kleuren Okabe-Ito, kleurenblindveilig)
+MARK = {"both": ("o", "#0072b2", "Both periods"), "first only": ("D", "#e69f00", "Period 1 only"),
+        "second only": ("s", "#009e73", "Period 2 only"), "none": ("X", "#d55e00", "Neither period")}
 
 
 def sha256(path):
@@ -64,18 +65,18 @@ def main():
     for s in ax.spines.values():
         s.set_linewidth(0.4); s.set_edgecolor(INK2)
 
-    for c, (m, _) in MARK.items():
+    for c, (m, col, _) in MARK.items():
         for reg in (False, True):
             sub = cat[(cat.category == c) & (cat.regulated == reg)]
             if sub.empty:
                 continue
             ax.scatter(sub.lon, sub.lat, marker=m, s=46 if m != "X" else 54,
-                       facecolor="white" if reg else FILL, edgecolor=INK if reg else "white",
-                       linewidths=0.9 if reg else 0.5, zorder=3, transform=ccrs.PlateCarree())
-    handles = [Line2D([], [], marker=m, ls="", ms=7, mfc=FILL, mec="white", mew=0.5, label=lab)
-               for m, lab in MARK.values()]
-    handles.append(Line2D([], [], marker="o", ls="", ms=7, mfc="white", mec=INK, mew=0.9,
-                          label="SRI detects very few droughts"))
+                       facecolor="white" if reg else col, edgecolor=col if reg else "white",
+                       linewidths=1.4 if reg else 0.5, zorder=3, transform=ccrs.PlateCarree())
+    handles = [Line2D([], [], marker=m, ls="", ms=7, mfc=col, mec="white", mew=0.5, label=lab)
+               for m, col, lab in MARK.values()]
+    handles.append(Line2D([], [], marker="o", ls="", ms=7, mfc="white", mec=INK, mew=1.4,
+                          label="Open symbol: SRI detects very few droughts"))
     ax.legend(handles=handles, loc="upper right", fontsize=7, frameon=True, framealpha=0.95,
               edgecolor="#cfcec9", borderpad=0.7)
     for ext in ("png", "pdf"):
@@ -85,7 +86,7 @@ def main():
 
     caption = ("Figure 4: Locations where droughts are followed by floods more often than expected "
                "under the stratified null (Monte Carlo p < 0.05, Table 3): in both periods (circle), "
-               "in period 1 only (diamond), in period 2 only (square), in neither (cross). Open symbols: "
+               "in period 1 only (diamond), in period 2 only (square), in neither (cross), each category in its own colour. Open symbols: "
                "the four locations where the SRI detects very few droughts and the test is not informative.")
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
     counts = cat.category.value_counts().to_dict()
