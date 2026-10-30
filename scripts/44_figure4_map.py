@@ -19,9 +19,16 @@ op de kaart, niet alleen de significante, en staat er geen titel in de figuur
 Uitvoer in results/2026-10-28_figure4_map/: fig04_map.png (300 dpi), fig04_map.pdf,
 caption_en.md, README.md, manifest.yaml.
 
+Variant (vraag Floris 30 oktober): dezelfde kaart bij een andere droogtedrempel,
+uit het gevoeligheidsraster onder C' (script 37, floodniveau 0,6915):
+  uv run --frozen python scripts/44_figure4_map.py --sri 1.0
+schrijft naar results/2026-10-30_figure4_map_sri1.0/ en meldt welke locaties
+van categorie wisselen ten opzichte van de hoofdanalyse.
+
 Draaien vanuit de repo-root:
   uv run --frozen python scripts/44_figure4_map.py
 """
+import argparse
 import os, re, ast, json, hashlib, platform
 import numpy as np, pandas as pd
 import matplotlib; matplotlib.use("Agg")
@@ -33,8 +40,10 @@ from matplotlib.legend_handler import HandlerPatch
 import cartopy.crs as ccrs, cartopy.feature as cf
 
 CAT = "results/2026-10-27_table3_eca_cprime/figure4_categories.csv"
+GRID = "results/2026-10-21_sensitivity_grid_cprime/grid.csv"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-10-28_figure4_map"
+FLOOD_Q, ALPHA = 0.6915, 0.05
 EXTENT = (-10.5, 44.5, 35.5, 58.5)
 INK, INK2, GREY = "#0b0b0b", "#52514e", "#8a8984"
 # buitensymbool en legendatekst per categorie
@@ -54,9 +63,34 @@ def sha256(path):
     return h.hexdigest()
 
 
+def categories_from_grid(sri):
+    """Categorieën bij een andere SRI-drempel, zelfde floodniveau, uit het C'-raster."""
+    g = pd.read_csv(GRID)
+    g = g[(g.sri_threshold == sri) & (np.isclose(g.flood_quantile, FLOOD_Q, atol=1e-3))]
+    assert len(g) == 96 and (g.selfcheck == "ok").all(), "rastercel onvolledig of zelfcontrole mislukt"
+    w = g.pivot_table(index=["river", "village"], columns="period", values="pCp").reset_index()
+    s1, s2 = w["first"] < ALPHA, w["second"] < ALPHA
+    w["category"] = np.where(s1 & s2, "both", np.where(s1, "first only", np.where(s2, "second only", "none")))
+    base = pd.read_csv(CAT)[["river", "village", "regulated"]]
+    return w.merge(base, on=["river", "village"], validate="one_to_one")
+
+
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--sri", type=float, default=None, help="andere droogtedrempel (variant, uit het raster)")
+    args = ap.parse_args()
+    global OUT
+    if args.sri is None:
+        cat = pd.read_csv(CAT)
+    else:
+        cat = categories_from_grid(args.sri)
+        OUT = f"results/2026-10-30_figure4_map_sri{args.sri:g}"
+        base = pd.read_csv(CAT)[["river", "village", "category"]].rename(columns={"category": "cat_main"})
+        diff = cat.merge(base, on=["river", "village"])
+        diff = diff[diff.category != diff.cat_main]
+        print(f"SRI {args.sri:g}: {len(diff)} locaties wisselen van categorie t.o.v. de hoofdanalyse")
+        print(diff[["river", "village", "cat_main", "category", "regulated"]].to_string(index=False))
     os.makedirs(OUT, exist_ok=True)
-    cat = pd.read_csv(CAT)
     src = "\n".join("".join(c["source"]) for c in json.load(open(NB))["cells"])
     rivers = ast.literal_eval(re.search(r'rivers\s*=\s*(\[.*?\n\])', src, re.S).group(1))
     info = {(r["river"], l["village"]): (l["latitude"], l["longitude"], l["river_location"])
@@ -136,8 +170,12 @@ def main():
                "in period 1 only (diamond), in period 2 only (square), in neither period (triangle); dashed grey circle: the "
                "four locations where the SRI detects very few droughts and the test is not informative. "
                "Inner dot: river. Number: position along the river (1 upstream, 2 midstream, 3 downstream).")
+    if args.sri is not None:
+        caption = caption.replace("Figure 4:", f"Figure 4 (variant, droughts at SRI < −{args.sri:g}, flood level unchanged):", 1)
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
     pd.DataFrame(drawn).to_csv(f"{OUT}/fig04_symbols.csv", index=False)
+    if args.sri is not None:
+        cat.to_csv(f"{OUT}/figure4_categories.csv", index=False)
     counts = cat[~cat.regulated].category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
         "# Figuur 4 onder C'\n\nScript: scripts/44_figure4_map.py. Bron: figure4_categories.csv (script 39).\n\n"
@@ -146,7 +184,8 @@ def main():
         "buitensymbool categorie, binnenstip rivier (tab20, alfabetisch), cijfer positie.\n")
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/44_figure4_map.py\npython: {platform.python_version()}\n"
-                 f"inputs:\n  {CAT}: {sha256(CAT)}\n  {NB}: {sha256(NB)}\n")
+                 f"sri: {'0.5 (hoofdanalyse)' if args.sri is None else args.sri}\n"
+                 f"inputs:\n  {CAT}: {sha256(CAT)}\n  {GRID}: {sha256(GRID)}\n  {NB}: {sha256(NB)}\n")
     print(counts)
 
 
