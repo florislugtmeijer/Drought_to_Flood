@@ -31,10 +31,15 @@ Draaien vanuit de repo-root:
 import os, hashlib, platform
 import numpy as np, pandas as pd
 
-PHYS = "results/2026-09-04_physical_table/per_location.csv"
-PROD = "results/2026-10-21_eca_null_production/production.csv"
-OUT = "results/2026-10-28_physical_table_cprime"
+# Hoofdanalyse sinds 30 oktober 2026 (besluit Floris): SRI -1, floodniveau 0,841.
+# De versie bij -0,5 staat in results/2026-10-28_physical_table_cprime/ en wordt
+# niet meer bijgewerkt. Bronnen via de omgeving voor varianten.
+PHYS = os.environ.get("PHYS", "results/2026-10-30_physical_table_strict/per_location.csv")
+PROD = os.environ.get("PROD", "results/2026-10-30_eca_cprime_strict/grid.csv")
+OUT = os.environ.get("OUT", "results/2026-10-30_physical_table")
 ALPHA = 0.05
+THRESHOLD, FLOOD_Q = float(os.environ.get("THRESHOLD", 1.0)), float(os.environ.get("FLOOD_Q", 0.8413))
+FQ_TXT = f"{FLOOD_Q:.4f}".rstrip("0")
 PLACE = {"Turijn": "Turin", "Turon": "Toruń", "Warchau": "Warsaw", "Straatsburg": "Strasbourg",
          "Krementsjoek": "Kremenchuk", "Rostov - Dov": "Rostov-on-Don", "St. Maurillle": "Saint-Maurille",
          "Pora Wesfalica": "Porta Westfalica", "Krapowice": "Krapkowice", "Scinawa": "Ścinawa",
@@ -78,8 +83,8 @@ def main():
             "transition_season_share", "pct_weeks_sri_below_minus1"]
     m[keep].to_csv(f"{OUT}/table4.csv", index=False)
 
-    caption = ("Table 4: Drought-to-flood transitions per location in period 1 (a, 1995–2009) and period 2 "
-               "(b, 2010–2024), at SRI < −0.5 and the 0.6915 discharge quantile. Droughts: number of drought "
+    caption = (f"Table 4: Drought-to-flood transitions per location in period 1 (a, 1995–2009) and period 2 "
+               f"(b, 2010–2024), at SRI < −{THRESHOLD:g} and the {FQ_TXT} discharge quantile. Droughts: number of drought "
                "events; duration: median duration in weeks; followed: share of droughts followed by a flood "
                "within four weeks; expected: the same share expected under the stratified null (Section 2.4.1); "
                "ratio: followed divided by expected; p: Monte Carlo p-value under the stratified null, bold "
