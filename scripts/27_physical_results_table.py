@@ -42,14 +42,16 @@ from dtf.pipeline import (find_nearest_grid_point, river_runoff_time_location_me
 # --- parameters, horen in config/analysis.yaml (T-42) ---------------------
 DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-09-04_physical_table"
-RUN_DATE = "2026-09-04"
-GRID = "results/2026-09-02_sensitivity_grid_endfix/grid_results.csv"
+OUT = os.environ.get("OUT", "results/2026-09-04_physical_table")
+RUN_DATE = os.environ.get("RUN_DATE", "2026-09-04")
+GRID = os.environ.get("GRID", "results/2026-09-02_sensitivity_grid_endfix/grid_results.csv")
 BOOT = "results/2026-09-02_copula_bootstrap/transition_ci.csv"
 DEP = "results/2026-09-02_dependence_tests/dependence_tests.csv"
 
-THRESHOLD = 0.5                       # T-01
-FLOOD_Q = float(norm.cdf(0.5))        # niet afgerond, zie script 09
+# Besluit Floris 30 oktober 2026: hoofdanalyse naar SRI -1, floodniveau norm.cdf(1);
+# via THRESHOLD=1.0 in de omgeving, met GRID op de strenge analytische run en een eigen OUT
+THRESHOLD = float(os.environ.get("THRESHOLD", 0.5))   # T-01, herzien 30 oktober
+FLOOD_Q = float(norm.cdf(THRESHOLD))  # gespiegeld, niet afgerond, zie script 09
 WINDOW = 4                            # weken
 TIME_SCALE = "1W"
 PERIODS = (("first", (0, 5479)), ("second", (5480, 10958)))

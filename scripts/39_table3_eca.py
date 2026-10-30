@@ -29,10 +29,18 @@ Draaien vanuit de repo-root:
 import os, hashlib, platform
 import numpy as np, pandas as pd
 
-GRID = "results/2026-09-02_sensitivity_grid_endfix/grid_results.csv"
-PROD = "results/2026-10-21_eca_null_production/production.csv"
-OUT = "results/2026-10-27_table3_eca_cprime"
-THRESHOLD, FLOOD_Q, WINDOW, ALPHA = 0.5, 0.6915, 4, 0.05
+# Bronnen en drempels via de omgeving; defaults zijn de analyse van 27 oktober
+# (SRI -0,5, floodniveau 0,6915). Besluit Floris 30 oktober 2026: de
+# hoofdanalyse gaat naar SRI -1 met het gespiegelde floodniveau 0,841; daarvoor:
+#   GRID=results/2026-10-30_eca_poisson_strict/grid_results.csv \
+#   PROD=results/2026-10-30_eca_cprime_strict/grid.csv \
+#   OUT=results/2026-10-30_table3_eca_strict THRESHOLD=1.0 FLOOD_Q=0.8413
+GRID = os.environ.get("GRID", "results/2026-09-02_sensitivity_grid_endfix/grid_results.csv")
+PROD = os.environ.get("PROD", "results/2026-10-21_eca_null_production/production.csv")
+OUT = os.environ.get("OUT", "results/2026-10-27_table3_eca_cprime")
+THRESHOLD, FLOOD_Q = float(os.environ.get("THRESHOLD", 0.5)), float(os.environ.get("FLOOD_Q", 0.6915))
+WINDOW, ALPHA = 4, 0.05
+FQ_TXT = f"{FLOOD_Q:.4f}".rstrip("0")
 PLACE = {"Turijn": "Turin", "Turon": "Toruń", "Warchau": "Warsaw", "Straatsburg": "Strasbourg",
          "Krementsjoek": "Kremenchuk", "Rostov - Dov": "Rostov-on-Don", "St. Maurillle": "Saint-Maurille",
          "Pora Wesfalica": "Porta Westfalica", "Krapowice": "Krapkowice", "Scinawa": "Ścinawa",
@@ -98,8 +106,8 @@ def main():
             r.river, RLOC[r.river_location], PLACE.get(r.village, r.village),
             cell(r.p_poisson_first, r.regulated), cell(r.p_mc_cprime_first, r.regulated),
             cell(r.p_poisson_second, r.regulated), cell(r.p_mc_cprime_second, r.regulated)]) + " |")
-    caption = ("Table 3: p-values of the trigger coincidence test (droughts followed by a flood within four "
-               "weeks) per location and period, at SRI < −0.5 and the 0.6915 discharge quantile. Poisson: "
+    caption = (f"Table 3: p-values of the trigger coincidence test (droughts followed by a flood within four "
+               f"weeks) per location and period, at SRI < −{THRESHOLD:g} and the {FQ_TXT} discharge quantile. Poisson: "
                "analytical test under the assumption that flood onsets follow a Poisson process over all "
                "weeks. Monte Carlo: permutation test with 10,000 simulations under a null that places flood "
                "onsets only on weeks where an onset can occur (Section 2.4.1). Bold: p < 0.05. "

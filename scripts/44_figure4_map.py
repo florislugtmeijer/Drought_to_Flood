@@ -39,11 +39,15 @@ from matplotlib.patches import Circle
 from matplotlib.legend_handler import HandlerPatch
 import cartopy.crs as ccrs, cartopy.feature as cf
 
-CAT = "results/2026-10-27_table3_eca_cprime/figure4_categories.csv"
+# Hoofdanalyse sinds 30 oktober 2026 (besluit Floris): SRI -1 met floodniveau
+# 0,841, de definitie van de ingediende versie. De categorieën komen uit de
+# Tabel 3-run bij die definitie (script 39). De kaart bij SRI -0,5 staat in
+# results/2026-10-28_figure4_map/ als vergelijking en wordt niet meer bijgewerkt.
+CAT = os.environ.get("CAT", "results/2026-10-30_table3_eca_strict/figure4_categories.csv")
 GRID = "results/2026-10-21_sensitivity_grid_cprime/grid.csv"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
-OUT = "results/2026-10-28_figure4_map"
-FLOOD_Q, ALPHA = 0.6915, 0.05
+OUT = os.environ.get("OUT", "results/2026-10-30_figure4_map")
+FLOOD_Q, ALPHA = 0.6915, 0.05   # FLOOD_Q alleen voor de --sri-variant uit het raster
 EXTENT = (-10.5, 44.5, 35.5, 58.5)
 INK, INK2, GREY = "#0b0b0b", "#52514e", "#8a8984"
 # buitensymbool en legendatekst per categorie
@@ -84,7 +88,7 @@ def main():
     global OUT
     if args.categories is not None:
         cat = pd.read_csv(args.categories); OUT = args.out or OUT
-        assert OUT != "results/2026-10-28_figure4_map", "geef --out op voor een variant"
+        assert OUT != "results/2026-10-30_figure4_map", "geef --out op voor een variant"
     elif args.sri is None:
         cat = pd.read_csv(CAT)
     else:
