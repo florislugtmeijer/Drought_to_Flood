@@ -31,9 +31,13 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 GRID = "results/2026-10-21_sensitivity_grid_cprime/grid.csv"
-OUT = "results/2026-10-27_sensitivity_cprime_report"
+# Extra kolom bij floodniveau 0,8413 (script 37 met FLOOD_QUANTILES=0.8413), nodig
+# sinds de hoofdanalyse op 30 oktober 2026 naar SRI -1 met het gespiegelde
+# floodniveau ging (besluit Floris). De omkaderde cel is nu (1,0, 0,8413).
+GRID_EXTRA = "results/2026-10-30_sensitivity_grid_strict_column/grid.csv"
+OUT = "results/2026-10-30_sensitivity_cprime_report"
 ALPHA = 0.05
-BASE = (0.5, 0.6915)
+BASE = (1.0, 0.8413)
 INK, INK2 = "#0b0b0b", "#52514e"
 
 
@@ -46,12 +50,13 @@ def sha256(path):
 
 
 def fq(q):
-    return f"{q:.4f}".rstrip("0") if abs(q - 0.6915) < 1e-6 else f"{q:.2f}"
+    return f"{q:.4f}".rstrip("0") if abs(q - 0.6915) < 1e-6 or abs(q - 0.8413) < 1e-6 else f"{q:.2f}"
 
 
 def main():
     os.makedirs(OUT, exist_ok=True)
-    g = pd.read_csv(GRID)
+    g = pd.concat([pd.read_csv(GRID), pd.read_csv(GRID_EXTRA)], ignore_index=True)
+    assert len(g) == 2880 and not g.duplicated(["sri_threshold", "flood_quantile", "period", "river", "village"]).any()
     g["testable"] = g.selfcheck == "ok"
     rows = []
     for (st, q, per), grp in g.groupby(["sri_threshold", "flood_quantile", "period"]):
@@ -104,7 +109,7 @@ def main():
                "expectation is the mean of the Monte Carlo null distribution under the stratified null "
                "(Section 2.4.1, 10,000 simulations per location). Lower number: locations with p < 0.05 "
                "out of the locations where the test is defined. The framed cell is the configuration "
-               "used in the main analysis (SRI < −0.5, quantile 0.6915). The pooled ratio is a point "
+               "used in the main analysis (SRI < −1, quantile 0.841). The pooled ratio is a point "
                "estimate; no pooled significance test is reported.")
     open(f"{OUT}/caption_en.md", "w").write(caption + "\n")
     lines = [caption, "", "| Flood threshold | SRI threshold | Period 1: ratio | Period 1: p < 0.05 | Period 2: ratio | Period 2: p < 0.05 |",
@@ -117,8 +122,8 @@ def main():
     open(f"{OUT}/table_sensitivity_cprime.md", "w").write("\n".join(lines).replace("Figure F1:", "Table F1:", 1) + "\n")
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/43_sensitivity_cprime_report.py\npython: {platform.python_version()}\n"
-                 f"inputs:\n  {GRID}: {sha256(GRID)}\n")
-    base = t[(t.sri_threshold == 0.5) & (np.isclose(t.flood_quantile, 0.6915, atol=1e-3))]
+                 f"inputs:\n  {GRID}: {sha256(GRID)}\n  {GRID_EXTRA}: {sha256(GRID_EXTRA)}\n")
+    base = t[(t.sri_threshold == BASE[0]) & (np.isclose(t.flood_quantile, BASE[1], atol=1e-3))]
     print(base.to_string(index=False))
     print("cellen met n_sig >= 24 van 48 (C'):", int((t.n_sig >= 24).sum()), "van", len(t))
 
