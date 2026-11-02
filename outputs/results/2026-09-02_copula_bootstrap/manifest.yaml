@@ -1,0 +1,37 @@
+run_date: 2026-09-03
+script: scripts/22_bootstrap_transition_ci.py
+git_commit: 7ec93b930ebe96ff975d31dae4cea73515228d3e
+git_dirty: true
+config:
+  threshold: 0.5
+  period_after_event: 4
+  B: 2000
+  n_point: 100000
+  n_rep: 20000
+  seed: 42
+  seed_scheme: "numpy.random.SeedSequence(42).spawn(96)"
+  marginals: parametric
+  axis: quantile
+  definities: "gerepareerde extract_events (commit 23429e1)"
+  min_events: 15
+  schemes: [iid, block]
+  block_length: "round(n^(1/3))"
+  fixed_family_kolom: "alleen op de eerste locatie van elke rivier, diagnostiek"
+  cells: 190
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+packages:
+  python: 3.12.13
+  numpy: 2.5.2
+  pandas: 3.0.5
+  xarray: 2026.7.0
+  scipy: 1.18.1
+  netCDF4: 1.7.4
+  vinecopulas: 2.0.3
+sanity:
+  cellen: 190               # 192 min Dnieper Cherson periode 1, n=11
+  mislukte_replicaties: "mediaan 0, max 5 van 2000, geen cel boven 1 procent"
+  dubbele_regels: 0
+# eerdere versies van deze run staan apart: _ONGELDIG (bug waarbij een mislukte
+# vaste-familie-diagnostiek de hele replicatie weggooide) en _PREFIX_ENDTIME
+# (gedraaid voor de reparatie van de einddetectie, commit 23429e1)
