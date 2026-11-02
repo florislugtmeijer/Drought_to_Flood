@@ -1,0 +1,23 @@
+run_date: 2026-09-01
+script: scripts/07_reference_grid.py
+git_commit: 515f5a436b18b5beef22400b8695a29336f3e1f2
+git_dirty: true   # true betekent: niet-gecommitte wijzigingen tijdens de run
+config:
+  threshold: 0.5
+  period_after_event: 4
+  time_scale: "1W"
+  n_simulations: 10000
+  seed: 42
+  periods: {first: [0, 5479], second: [5480, 10958]}
+  full_window: [0, 10958]
+  cells: [['daily', 'period'], ['weekly_max', 'period'], ['daily', 'full'], ['weekly_max', 'full']]
+  locations: 48
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+python: 3.12.13
+packages:
+  numpy: 2.5.2
+  pandas: 3.0.5
+  xarray: 2026.7.0
+  scipy: 1.18.1
+# uv.lock bestaat nog niet, zie T-44. Versies hierboven zijn wat deze run gebruikte.

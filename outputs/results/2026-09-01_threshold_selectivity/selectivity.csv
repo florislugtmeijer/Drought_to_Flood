@@ -1,0 +1,193 @@
+period,river,village,threshold,pct_weeks_flood,pct_weeks_drought
+first,Danube,Aschach an der Donau,0.5,46.05,33.8
+first,Danube,Aschach an der Donau,1.0,28.19,14.8
+first,Danube,Visegrád,0.5,46.43,34.18
+first,Danube,Visegrád,1.0,26.91,15.18
+first,Danube,Donji Milanovac,0.5,43.37,34.44
+first,Danube,Donji Milanovac,1.0,24.87,17.22
+first,Dnieper,Krementsjoek,0.5,35.59,35.84
+first,Dnieper,Krementsjoek,1.0,17.73,2.93
+first,Dnieper,Dnipro,0.5,38.9,39.8
+first,Dnieper,Dnipro,1.0,17.47,5.61
+first,Dnieper,Cherson,0.5,39.54,19.77
+first,Dnieper,Cherson,1.0,17.86,3.44
+first,Rhine,Straatsburg,0.5,45.66,34.82
+first,Rhine,Straatsburg,1.0,27.55,15.69
+first,Rhine,Mainz,0.5,47.45,33.42
+first,Rhine,Mainz,1.0,28.7,16.2
+first,Rhine,Nijmegen,0.5,46.81,32.78
+first,Rhine,Nijmegen,1.0,25.64,17.86
+first,Don,Nikolaevskaya,0.5,37.12,35.97
+first,Don,Nikolaevskaya,1.0,19.26,15.69
+first,Don,Kochetovskaya,0.5,38.01,33.16
+first,Don,Kochetovskaya,1.0,19.64,17.35
+first,Don,Rostov - Dov,0.5,37.76,34.69
+first,Don,Rostov - Dov,1.0,19.52,16.84
+first,Vistula,Łączany,0.5,50.89,40.82
+first,Vistula,Łączany,1.0,28.83,10.33
+first,Vistula,Warchau,0.5,46.56,35.59
+first,Vistula,Warchau,1.0,26.91,14.8
+first,Vistula,Turon,0.5,40.05,32.65
+first,Vistula,Turon,1.0,23.72,15.43
+first,Po,Turijn,0.5,45.28,39.8
+first,Po,Turijn,1.0,28.06,9.82
+first,Po,Piacenza,0.5,45.79,36.22
+first,Po,Piacenza,1.0,28.57,16.45
+first,Po,Cermede / Castelmassa,0.5,45.92,36.22
+first,Po,Cermede / Castelmassa,1.0,28.32,16.33
+first,Elbe,Dresden,0.5,46.56,36.86
+first,Elbe,Dresden,1.0,26.79,12.88
+first,Elbe,Magdeburg,0.5,44.52,36.1
+first,Elbe,Magdeburg,1.0,23.6,14.54
+first,Elbe,Wittenberge,0.5,42.6,35.46
+first,Elbe,Wittenberge,1.0,24.11,14.67
+first,Rhône,Lyon,0.5,46.56,36.73
+first,Rhône,Lyon,1.0,28.19,17.86
+first,Rhône,Montelimar,0.5,45.79,37.12
+first,Rhône,Montelimar,1.0,27.55,17.98
+first,Rhône,Avignon,0.5,46.05,36.22
+first,Rhône,Avignon,1.0,27.04,18.37
+first,Oder,Krapowice,0.5,54.08,36.73
+first,Oder,Krapowice,1.0,32.78,16.33
+first,Oder,Scinawa,0.5,47.19,38.52
+first,Oder,Scinawa,1.0,27.55,16.33
+first,Oder,Kostrzyn nad Odra,0.5,42.35,35.97
+first,Oder,Kostrzyn nad Odra,1.0,23.34,16.2
+first,Loire,Decize,0.5,51.15,37.37
+first,Loire,Decize,1.0,30.1,17.35
+first,Loire,Orléans,0.5,45.54,35.71
+first,Loire,Orléans,1.0,28.83,17.35
+first,Loire,St. Maurillle,0.5,42.47,36.22
+first,Loire,St. Maurillle,1.0,25.13,16.45
+first,Seine,Paris,0.5,44.26,34.82
+first,Seine,Paris,1.0,25.0,16.71
+first,Seine,Vernon,0.5,43.37,34.57
+first,Seine,Vernon,1.0,24.87,16.2
+first,Seine,Rouen,0.5,42.86,35.08
+first,Seine,Rouen,1.0,24.36,16.2
+first,Ebro,Haro,0.5,52.55,38.01
+first,Ebro,Haro,1.0,33.67,13.01
+first,Ebro,Tudela,0.5,51.91,36.86
+first,Ebro,Tudela,1.0,32.78,14.92
+first,Ebro,Zaragoza,0.5,50.38,36.35
+first,Ebro,Zaragoza,1.0,32.53,14.92
+first,Douro,Pocinho,0.5,35.97,39.67
+first,Douro,Pocinho,1.0,20.66,11.1
+first,Douro,Peso da Regua,0.5,37.88,40.05
+first,Douro,Peso da Regua,1.0,21.68,10.46
+first,Douro,Rio Mau,0.5,37.37,38.52
+first,Douro,Rio Mau,1.0,22.32,10.97
+first,Tagus,Toledo,0.5,46.3,39.41
+first,Tagus,Toledo,1.0,29.34,14.92
+first,Tagus,La Bazagona,0.5,39.8,40.43
+first,Tagus,La Bazagona,1.0,21.81,12.76
+first,Tagus,Vila Velha de Rodao,0.5,37.76,41.71
+first,Tagus,Vila Velha de Rodao,1.0,20.28,6.63
+first,Weser,Bodenwerder,0.5,46.56,33.93
+first,Weser,Bodenwerder,1.0,27.04,16.84
+first,Weser,Pora Wesfalica,0.5,45.28,33.93
+first,Weser,Pora Wesfalica,1.0,27.04,15.94
+first,Weser,Bremen,0.5,42.22,34.95
+first,Weser,Bremen,1.0,24.74,16.07
+first,Meuse,Dun-sur-Meuse,0.5,47.07,34.57
+first,Meuse,Dun-sur-Meuse,1.0,28.95,17.22
+first,Meuse,Givet,0.5,45.54,34.69
+first,Meuse,Givet,1.0,26.53,16.07
+first,Meuse,Maastricht,0.5,47.83,33.8
+first,Meuse,Maastricht,1.0,28.95,17.09
+second,Danube,Aschach an der Donau,0.5,47.7,36.99
+second,Danube,Aschach an der Donau,1.0,28.19,17.22
+second,Danube,Visegrád,0.5,47.19,36.1
+second,Danube,Visegrád,1.0,28.32,17.22
+second,Danube,Donji Milanovac,0.5,44.9,33.55
+second,Danube,Donji Milanovac,1.0,24.49,16.58
+second,Dnieper,Krementsjoek,0.5,38.65,30.23
+second,Dnieper,Krementsjoek,1.0,25.77,16.2
+second,Dnieper,Dnipro,0.5,33.42,26.53
+second,Dnieper,Dnipro,1.0,18.75,16.2
+second,Dnieper,Cherson,0.5,33.29,24.23
+second,Dnieper,Cherson,1.0,19.39,17.73
+second,Rhine,Straatsburg,0.5,50.51,34.95
+second,Rhine,Straatsburg,1.0,29.97,17.35
+second,Rhine,Mainz,0.5,47.7,34.95
+second,Rhine,Mainz,1.0,28.95,16.45
+second,Rhine,Nijmegen,0.5,44.52,35.08
+second,Rhine,Nijmegen,1.0,26.28,16.33
+second,Don,Nikolaevskaya,0.5,39.8,33.42
+second,Don,Nikolaevskaya,1.0,19.39,14.8
+second,Don,Kochetovskaya,0.5,39.29,33.67
+second,Don,Kochetovskaya,1.0,20.54,14.29
+second,Don,Rostov - Dov,0.5,38.78,32.91
+second,Don,Rostov - Dov,1.0,20.03,16.07
+second,Vistula,Łączany,0.5,54.72,40.82
+second,Vistula,Łączany,1.0,30.99,11.86
+second,Vistula,Warchau,0.5,47.19,36.35
+second,Vistula,Warchau,1.0,25.89,14.16
+second,Vistula,Turon,0.5,38.52,33.04
+second,Vistula,Turon,1.0,22.07,14.16
+second,Po,Turijn,0.5,50.89,37.88
+second,Po,Turijn,1.0,30.74,13.78
+second,Po,Piacenza,0.5,50.38,36.86
+second,Po,Piacenza,1.0,30.87,14.41
+second,Po,Cermede / Castelmassa,0.5,47.45,36.86
+second,Po,Cermede / Castelmassa,1.0,29.46,13.78
+second,Elbe,Dresden,0.5,49.62,35.08
+second,Elbe,Dresden,1.0,29.85,14.8
+second,Elbe,Magdeburg,0.5,44.26,33.42
+second,Elbe,Magdeburg,1.0,26.79,15.43
+second,Elbe,Wittenberge,0.5,43.62,32.78
+second,Elbe,Wittenberge,1.0,25.77,15.56
+second,Rhône,Lyon,0.5,47.07,34.82
+second,Rhône,Lyon,1.0,28.7,16.84
+second,Rhône,Montelimar,0.5,46.3,35.71
+second,Rhône,Montelimar,1.0,27.42,16.84
+second,Rhône,Avignon,0.5,48.72,35.08
+second,Rhône,Avignon,1.0,30.23,16.71
+second,Oder,Krapowice,0.5,55.74,36.86
+second,Oder,Krapowice,1.0,35.97,16.33
+second,Oder,Scinawa,0.5,49.36,36.1
+second,Oder,Scinawa,1.0,28.06,14.92
+second,Oder,Kostrzyn nad Odra,0.5,42.35,35.2
+second,Oder,Kostrzyn nad Odra,1.0,24.36,15.69
+second,Loire,Decize,0.5,51.15,37.5
+second,Loire,Decize,1.0,30.48,17.47
+second,Loire,Orléans,0.5,46.17,34.06
+second,Loire,Orléans,1.0,26.79,16.58
+second,Loire,St. Maurillle,0.5,42.6,33.55
+second,Loire,St. Maurillle,1.0,26.28,17.73
+second,Seine,Paris,0.5,42.86,36.61
+second,Seine,Paris,1.0,26.79,17.47
+second,Seine,Vernon,0.5,42.73,36.35
+second,Seine,Vernon,1.0,26.79,17.22
+second,Seine,Rouen,0.5,42.35,36.86
+second,Seine,Rouen,1.0,26.4,17.22
+second,Ebro,Haro,0.5,53.19,40.69
+second,Ebro,Haro,1.0,34.18,14.16
+second,Ebro,Tudela,0.5,50.13,37.5
+second,Ebro,Tudela,1.0,32.02,15.43
+second,Ebro,Zaragoza,0.5,48.21,37.24
+second,Ebro,Zaragoza,1.0,29.72,15.94
+second,Douro,Pocinho,0.5,37.63,37.5
+second,Douro,Pocinho,1.0,20.79,10.97
+second,Douro,Peso da Regua,0.5,37.63,37.37
+second,Douro,Peso da Regua,1.0,22.58,10.97
+second,Douro,Rio Mau,0.5,38.39,37.5
+second,Douro,Rio Mau,1.0,22.58,11.1
+second,Tagus,Toledo,0.5,47.58,39.03
+second,Tagus,Toledo,1.0,29.08,14.54
+second,Tagus,La Bazagona,0.5,40.18,38.14
+second,Tagus,La Bazagona,1.0,25.26,15.05
+second,Tagus,Vila Velha de Rodao,0.5,37.5,38.39
+second,Tagus,Vila Velha de Rodao,1.0,22.07,14.16
+second,Weser,Bodenwerder,0.5,46.3,37.76
+second,Weser,Bodenwerder,1.0,27.17,17.73
+second,Weser,Pora Wesfalica,0.5,45.66,36.73
+second,Weser,Pora Wesfalica,1.0,27.04,18.37
+second,Weser,Bremen,0.5,46.05,36.61
+second,Weser,Bremen,1.0,25.13,17.47
+second,Meuse,Dun-sur-Meuse,0.5,46.05,37.12
+second,Meuse,Dun-sur-Meuse,1.0,28.57,17.22
+second,Meuse,Givet,0.5,46.3,37.63
+second,Meuse,Givet,1.0,27.55,16.84
+second,Meuse,Maastricht,0.5,48.6,35.33
+second,Meuse,Maastricht,1.0,29.08,17.47
