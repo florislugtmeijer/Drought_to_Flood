@@ -1,0 +1,26 @@
+run_date: 2026-09-04
+git_commit: e5e908698fe05a47a6feb6ca6121f8f3d88b7afb
+git_dirty: true
+variant: "strikte definities, gevoeligheidsvariant op verzoek van Floris"
+config:
+  drought_threshold: 1.0          # hoofdanalyse: 0.5
+  flood_read_level: 0.8413        # norm.cdf(1), hoofdanalyse leest op 0.6915
+  X_minor_major: {drought_peak: [1, 2], mean_drought_severity: [0.5, 1]}   # bewust ongewijzigd, zie README
+  period_after_event: 4
+  marginals: parametric
+  axis: quantile
+  definities: "gerepareerde extract_events (commit 23429e1)"
+  min_events: 15
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+packages:
+  python: 3.12.13
+  numpy: 2.5.2
+  pandas: 3.0.5
+  xarray: 2026.7.0
+  scipy: 1.18.1
+  netCDF4: 1.7.4
+  vinecopulas: 2.0.3
+script: scripts/28_strict_bootstrap_and_tests.py (importeert do_cell uit scripts/25, drempel overschreven)
+seed: 43
+b_perm: 1000

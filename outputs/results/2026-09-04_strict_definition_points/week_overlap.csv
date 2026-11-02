@@ -1,0 +1,193 @@
+variant,threshold,flood_mirror,river,village,period,n_weeks,drought_weeks,flood_weeks,both_weeks,share_drought_weeks_also_flood
+referentie_0.5,0.5,0.6915,Danube,Aschach an der Donau,first,784,265,357,29,0.1094
+strikt_1.0,1.0,0.8413,Danube,Aschach an der Donau,first,784,116,228,0,0.0
+referentie_0.5,0.5,0.6915,Danube,Visegrád,first,784,268,364,22,0.0821
+strikt_1.0,1.0,0.8413,Danube,Visegrád,first,784,119,230,0,0.0
+referentie_0.5,0.5,0.6915,Danube,Donji Milanovac,first,784,270,341,7,0.0259
+strikt_1.0,1.0,0.8413,Danube,Donji Milanovac,first,784,135,197,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Krementsjoek,first,784,281,251,13,0.0463
+strikt_1.0,1.0,0.8413,Dnieper,Krementsjoek,first,784,23,142,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Dnipro,first,784,312,299,26,0.0833
+strikt_1.0,1.0,0.8413,Dnieper,Dnipro,first,784,44,132,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Cherson,first,784,155,306,10,0.0645
+strikt_1.0,1.0,0.8413,Dnieper,Cherson,first,784,27,137,0,0.0
+referentie_0.5,0.5,0.6915,Rhine,Straatsburg,first,784,273,360,31,0.1136
+strikt_1.0,1.0,0.8413,Rhine,Straatsburg,first,784,123,217,0,0.0
+referentie_0.5,0.5,0.6915,Rhine,Mainz,first,784,262,362,9,0.0344
+strikt_1.0,1.0,0.8413,Rhine,Mainz,first,784,127,237,0,0.0
+referentie_0.5,0.5,0.6915,Rhine,Nijmegen,first,784,257,367,3,0.0117
+strikt_1.0,1.0,0.8413,Rhine,Nijmegen,first,784,140,214,1,0.0071
+referentie_0.5,0.5,0.6915,Don,Nikolaevskaya,first,784,282,282,34,0.1206
+strikt_1.0,1.0,0.8413,Don,Nikolaevskaya,first,784,123,154,6,0.0488
+referentie_0.5,0.5,0.6915,Don,Kochetovskaya,first,784,260,299,34,0.1308
+strikt_1.0,1.0,0.8413,Don,Kochetovskaya,first,784,136,158,5,0.0368
+referentie_0.5,0.5,0.6915,Don,Rostov - Dov,first,784,272,304,29,0.1066
+strikt_1.0,1.0,0.8413,Don,Rostov - Dov,first,784,132,156,7,0.053
+referentie_0.5,0.5,0.6915,Vistula,Łączany,first,784,320,390,22,0.0688
+strikt_1.0,1.0,0.8413,Vistula,Łączany,first,784,81,242,0,0.0
+referentie_0.5,0.5,0.6915,Vistula,Warchau,first,784,279,365,16,0.0573
+strikt_1.0,1.0,0.8413,Vistula,Warchau,first,784,116,231,0,0.0
+referentie_0.5,0.5,0.6915,Vistula,Turon,first,784,256,283,2,0.0078
+strikt_1.0,1.0,0.8413,Vistula,Turon,first,784,121,182,0,0.0
+referentie_0.5,0.5,0.6915,Po,Turijn,first,784,312,336,33,0.1058
+strikt_1.0,1.0,0.8413,Po,Turijn,first,784,77,220,0,0.0
+referentie_0.5,0.5,0.6915,Po,Piacenza,first,784,284,341,4,0.0141
+strikt_1.0,1.0,0.8413,Po,Piacenza,first,784,129,227,0,0.0
+referentie_0.5,0.5,0.6915,Po,Cermede / Castelmassa,first,784,284,351,13,0.0458
+strikt_1.0,1.0,0.8413,Po,Cermede / Castelmassa,first,784,128,226,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Dresden,first,784,289,360,13,0.045
+strikt_1.0,1.0,0.8413,Elbe,Dresden,first,784,101,231,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Magdeburg,first,784,283,348,5,0.0177
+strikt_1.0,1.0,0.8413,Elbe,Magdeburg,first,784,114,188,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Wittenberge,first,784,278,336,1,0.0036
+strikt_1.0,1.0,0.8413,Elbe,Wittenberge,first,784,115,184,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Lyon,first,784,288,352,8,0.0278
+strikt_1.0,1.0,0.8413,Rhône,Lyon,first,784,140,233,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Montelimar,first,784,291,353,8,0.0275
+strikt_1.0,1.0,0.8413,Rhône,Montelimar,first,784,141,226,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Avignon,first,784,284,360,8,0.0282
+strikt_1.0,1.0,0.8413,Rhône,Avignon,first,784,144,226,0,0.0
+referentie_0.5,0.5,0.6915,Oder,Krapowice,first,784,288,412,23,0.0799
+strikt_1.0,1.0,0.8413,Oder,Krapowice,first,784,128,256,1,0.0078
+referentie_0.5,0.5,0.6915,Oder,Scinawa,first,784,302,363,17,0.0563
+strikt_1.0,1.0,0.8413,Oder,Scinawa,first,784,128,239,0,0.0
+referentie_0.5,0.5,0.6915,Oder,Kostrzyn nad Odra,first,784,282,339,3,0.0106
+strikt_1.0,1.0,0.8413,Oder,Kostrzyn nad Odra,first,784,127,184,0,0.0
+referentie_0.5,0.5,0.6915,Loire,Decize,first,784,293,397,13,0.0444
+strikt_1.0,1.0,0.8413,Loire,Decize,first,784,136,251,0,0.0
+referentie_0.5,0.5,0.6915,Loire,Orléans,first,784,280,354,9,0.0321
+strikt_1.0,1.0,0.8413,Loire,Orléans,first,784,136,241,0,0.0
+referentie_0.5,0.5,0.6915,Loire,St. Maurillle,first,784,284,322,6,0.0211
+strikt_1.0,1.0,0.8413,Loire,St. Maurillle,first,784,129,204,1,0.0078
+referentie_0.5,0.5,0.6915,Seine,Paris,first,784,273,348,10,0.0366
+strikt_1.0,1.0,0.8413,Seine,Paris,first,784,131,206,0,0.0
+referentie_0.5,0.5,0.6915,Seine,Vernon,first,784,271,337,10,0.0369
+strikt_1.0,1.0,0.8413,Seine,Vernon,first,784,127,211,0,0.0
+referentie_0.5,0.5,0.6915,Seine,Rouen,first,784,275,331,9,0.0327
+strikt_1.0,1.0,0.8413,Seine,Rouen,first,784,127,202,0,0.0
+referentie_0.5,0.5,0.6915,Ebro,Haro,first,784,298,398,28,0.094
+strikt_1.0,1.0,0.8413,Ebro,Haro,first,784,102,264,0,0.0
+referentie_0.5,0.5,0.6915,Ebro,Tudela,first,784,289,398,32,0.1107
+strikt_1.0,1.0,0.8413,Ebro,Tudela,first,784,117,266,2,0.0171
+referentie_0.5,0.5,0.6915,Ebro,Zaragoza,first,784,285,380,20,0.0702
+strikt_1.0,1.0,0.8413,Ebro,Zaragoza,first,784,117,269,1,0.0085
+referentie_0.5,0.5,0.6915,Douro,Pocinho,first,784,311,274,11,0.0354
+strikt_1.0,1.0,0.8413,Douro,Pocinho,first,784,87,162,0,0.0
+referentie_0.5,0.5,0.6915,Douro,Peso da Regua,first,784,314,283,26,0.0828
+strikt_1.0,1.0,0.8413,Douro,Peso da Regua,first,784,82,169,0,0.0
+referentie_0.5,0.5,0.6915,Douro,Rio Mau,first,784,302,281,17,0.0563
+strikt_1.0,1.0,0.8413,Douro,Rio Mau,first,784,86,175,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,Toledo,first,784,309,332,15,0.0485
+strikt_1.0,1.0,0.8413,Tagus,Toledo,first,784,117,236,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,La Bazagona,first,784,317,312,11,0.0347
+strikt_1.0,1.0,0.8413,Tagus,La Bazagona,first,784,100,176,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,Vila Velha de Rodao,first,784,327,294,10,0.0306
+strikt_1.0,1.0,0.8413,Tagus,Vila Velha de Rodao,first,784,52,161,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Bodenwerder,first,784,266,351,15,0.0564
+strikt_1.0,1.0,0.8413,Weser,Bodenwerder,first,784,132,211,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Pora Wesfalica,first,784,266,354,10,0.0376
+strikt_1.0,1.0,0.8413,Weser,Pora Wesfalica,first,784,125,208,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Bremen,first,784,274,330,9,0.0328
+strikt_1.0,1.0,0.8413,Weser,Bremen,first,784,126,194,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Dun-sur-Meuse,first,784,271,354,12,0.0443
+strikt_1.0,1.0,0.8413,Meuse,Dun-sur-Meuse,first,784,135,239,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Givet,first,784,272,351,19,0.0699
+strikt_1.0,1.0,0.8413,Meuse,Givet,first,784,126,210,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Maastricht,first,784,265,379,17,0.0642
+strikt_1.0,1.0,0.8413,Meuse,Maastricht,first,784,134,235,0,0.0
+referentie_0.5,0.5,0.6915,Danube,Aschach an der Donau,second,784,290,370,53,0.1828
+strikt_1.0,1.0,0.8413,Danube,Aschach an der Donau,second,784,135,220,0,0.0
+referentie_0.5,0.5,0.6915,Danube,Visegrád,second,784,283,362,34,0.1201
+strikt_1.0,1.0,0.8413,Danube,Visegrád,second,784,135,225,1,0.0074
+referentie_0.5,0.5,0.6915,Danube,Donji Milanovac,second,784,263,352,10,0.038
+strikt_1.0,1.0,0.8413,Danube,Donji Milanovac,second,784,130,195,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Krementsjoek,second,784,237,285,0,0.0
+strikt_1.0,1.0,0.8413,Dnieper,Krementsjoek,second,784,127,193,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Dnipro,second,784,208,262,0,0.0
+strikt_1.0,1.0,0.8413,Dnieper,Dnipro,second,784,127,144,0,0.0
+referentie_0.5,0.5,0.6915,Dnieper,Cherson,second,784,190,259,0,0.0
+strikt_1.0,1.0,0.8413,Dnieper,Cherson,second,784,139,151,0,0.0
+referentie_0.5,0.5,0.6915,Rhine,Straatsburg,second,784,274,408,30,0.1095
+strikt_1.0,1.0,0.8413,Rhine,Straatsburg,second,784,136,253,1,0.0074
+referentie_0.5,0.5,0.6915,Rhine,Mainz,second,784,274,369,10,0.0365
+strikt_1.0,1.0,0.8413,Rhine,Mainz,second,784,129,236,0,0.0
+referentie_0.5,0.5,0.6915,Rhine,Nijmegen,second,784,275,357,8,0.0291
+strikt_1.0,1.0,0.8413,Rhine,Nijmegen,second,784,128,214,0,0.0
+referentie_0.5,0.5,0.6915,Don,Nikolaevskaya,second,784,262,313,22,0.084
+strikt_1.0,1.0,0.8413,Don,Nikolaevskaya,second,784,116,161,3,0.0259
+referentie_0.5,0.5,0.6915,Don,Kochetovskaya,second,784,264,309,26,0.0985
+strikt_1.0,1.0,0.8413,Don,Kochetovskaya,second,784,112,161,1,0.0089
+referentie_0.5,0.5,0.6915,Don,Rostov - Dov,second,784,258,307,26,0.1008
+strikt_1.0,1.0,0.8413,Don,Rostov - Dov,second,784,126,161,3,0.0238
+referentie_0.5,0.5,0.6915,Vistula,Łączany,second,784,320,433,41,0.1281
+strikt_1.0,1.0,0.8413,Vistula,Łączany,second,784,93,248,0,0.0
+referentie_0.5,0.5,0.6915,Vistula,Warchau,second,784,285,370,9,0.0316
+strikt_1.0,1.0,0.8413,Vistula,Warchau,second,784,111,209,0,0.0
+referentie_0.5,0.5,0.6915,Vistula,Turon,second,784,259,275,2,0.0077
+strikt_1.0,1.0,0.8413,Vistula,Turon,second,784,111,173,0,0.0
+referentie_0.5,0.5,0.6915,Po,Turijn,second,784,297,388,38,0.1279
+strikt_1.0,1.0,0.8413,Po,Turijn,second,784,108,235,3,0.0278
+referentie_0.5,0.5,0.6915,Po,Piacenza,second,784,289,390,19,0.0657
+strikt_1.0,1.0,0.8413,Po,Piacenza,second,784,113,242,0,0.0
+referentie_0.5,0.5,0.6915,Po,Cermede / Castelmassa,second,784,289,357,18,0.0623
+strikt_1.0,1.0,0.8413,Po,Cermede / Castelmassa,second,784,108,241,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Dresden,second,784,275,390,11,0.04
+strikt_1.0,1.0,0.8413,Elbe,Dresden,second,784,116,231,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Magdeburg,second,784,262,339,3,0.0115
+strikt_1.0,1.0,0.8413,Elbe,Magdeburg,second,784,121,226,0,0.0
+referentie_0.5,0.5,0.6915,Elbe,Wittenberge,second,784,257,344,2,0.0078
+strikt_1.0,1.0,0.8413,Elbe,Wittenberge,second,784,122,203,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Lyon,second,784,273,357,7,0.0256
+strikt_1.0,1.0,0.8413,Rhône,Lyon,second,784,132,227,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Montelimar,second,784,280,362,8,0.0286
+strikt_1.0,1.0,0.8413,Rhône,Montelimar,second,784,132,215,0,0.0
+referentie_0.5,0.5,0.6915,Rhône,Avignon,second,784,275,383,11,0.04
+strikt_1.0,1.0,0.8413,Rhône,Avignon,second,784,131,240,1,0.0076
+referentie_0.5,0.5,0.6915,Oder,Krapowice,second,784,289,418,30,0.1038
+strikt_1.0,1.0,0.8413,Oder,Krapowice,second,784,128,290,1,0.0078
+referentie_0.5,0.5,0.6915,Oder,Scinawa,second,784,283,381,16,0.0565
+strikt_1.0,1.0,0.8413,Oder,Scinawa,second,784,117,227,0,0.0
+referentie_0.5,0.5,0.6915,Oder,Kostrzyn nad Odra,second,784,276,332,1,0.0036
+strikt_1.0,1.0,0.8413,Oder,Kostrzyn nad Odra,second,784,123,188,0,0.0
+referentie_0.5,0.5,0.6915,Loire,Decize,second,784,294,394,15,0.051
+strikt_1.0,1.0,0.8413,Loire,Decize,second,784,137,242,0,0.0
+referentie_0.5,0.5,0.6915,Loire,Orléans,second,784,267,358,6,0.0225
+strikt_1.0,1.0,0.8413,Loire,Orléans,second,784,130,217,0,0.0
+referentie_0.5,0.5,0.6915,Loire,St. Maurillle,second,784,263,331,6,0.0228
+strikt_1.0,1.0,0.8413,Loire,St. Maurillle,second,784,139,210,0,0.0
+referentie_0.5,0.5,0.6915,Seine,Paris,second,784,287,325,9,0.0314
+strikt_1.0,1.0,0.8413,Seine,Paris,second,784,137,218,0,0.0
+referentie_0.5,0.5,0.6915,Seine,Vernon,second,784,285,330,8,0.0281
+strikt_1.0,1.0,0.8413,Seine,Vernon,second,784,135,221,0,0.0
+referentie_0.5,0.5,0.6915,Seine,Rouen,second,784,289,326,8,0.0277
+strikt_1.0,1.0,0.8413,Seine,Rouen,second,784,135,214,0,0.0
+referentie_0.5,0.5,0.6915,Ebro,Haro,second,784,319,368,20,0.0627
+strikt_1.0,1.0,0.8413,Ebro,Haro,second,784,111,266,0,0.0
+referentie_0.5,0.5,0.6915,Ebro,Tudela,second,784,294,377,24,0.0816
+strikt_1.0,1.0,0.8413,Ebro,Tudela,second,784,121,251,0,0.0
+referentie_0.5,0.5,0.6915,Ebro,Zaragoza,second,784,292,369,18,0.0616
+strikt_1.0,1.0,0.8413,Ebro,Zaragoza,second,784,125,226,0,0.0
+referentie_0.5,0.5,0.6915,Douro,Pocinho,second,784,294,295,11,0.0374
+strikt_1.0,1.0,0.8413,Douro,Pocinho,second,784,86,163,0,0.0
+referentie_0.5,0.5,0.6915,Douro,Peso da Regua,second,784,293,286,11,0.0375
+strikt_1.0,1.0,0.8413,Douro,Peso da Regua,second,784,86,182,0,0.0
+referentie_0.5,0.5,0.6915,Douro,Rio Mau,second,784,294,293,4,0.0136
+strikt_1.0,1.0,0.8413,Douro,Rio Mau,second,784,87,183,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,Toledo,second,784,306,364,29,0.0948
+strikt_1.0,1.0,0.8413,Tagus,Toledo,second,784,114,224,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,La Bazagona,second,784,299,297,6,0.0201
+strikt_1.0,1.0,0.8413,Tagus,La Bazagona,second,784,118,196,0,0.0
+referentie_0.5,0.5,0.6915,Tagus,Vila Velha de Rodao,second,784,301,288,1,0.0033
+strikt_1.0,1.0,0.8413,Tagus,Vila Velha de Rodao,second,784,111,172,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Bodenwerder,second,784,296,345,15,0.0507
+strikt_1.0,1.0,0.8413,Weser,Bodenwerder,second,784,139,218,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Pora Wesfalica,second,784,288,353,16,0.0556
+strikt_1.0,1.0,0.8413,Weser,Pora Wesfalica,second,784,144,211,0,0.0
+referentie_0.5,0.5,0.6915,Weser,Bremen,second,784,287,357,16,0.0557
+strikt_1.0,1.0,0.8413,Weser,Bremen,second,784,137,196,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Dun-sur-Meuse,second,784,291,337,9,0.0309
+strikt_1.0,1.0,0.8413,Meuse,Dun-sur-Meuse,second,784,135,217,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Givet,second,784,295,352,22,0.0746
+strikt_1.0,1.0,0.8413,Meuse,Givet,second,784,132,214,0,0.0
+referentie_0.5,0.5,0.6915,Meuse,Maastricht,second,784,277,364,19,0.0686
+strikt_1.0,1.0,0.8413,Meuse,Maastricht,second,784,137,228,0,0.0
