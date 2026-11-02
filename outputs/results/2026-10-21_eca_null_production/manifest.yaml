@@ -1,0 +1,13 @@
+run_date: 2026-10-21
+git_commit: e295b39ce8646804f192458ed7930ceeae074059  # werkboom bevatte niet-gecommit werk, zie T-51
+script: scripts/36_run_eca_null_production.py
+config:
+  n_simulations: 10000
+  window_weeks: 4
+  nulls: [A, Bprime, Cprime]
+  tail_rule: laatste 4 weken geen kandidaat, voor alle drie de nullen
+  threshold: 0.5  # flooddrempel norm.cdf(0.5) = 0.6914625
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+python: 3.12.13
+packages: ephemeraal via uv run --with numpy,pandas,xarray,scipy,netCDF4 (niet gepind in uv.lock)

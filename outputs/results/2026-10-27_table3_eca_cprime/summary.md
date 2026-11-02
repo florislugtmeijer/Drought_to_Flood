@@ -1,0 +1,36 @@
+# Tabel 3 onder C′, samenvatting
+
+- first: Poisson p < 0.05 in 46 van 48, Monte Carlo onder A 47, onder C′ 40
+- second: Poisson p < 0.05 in 45 van 48, Monte Carlo onder A 45, onder C′ 40
+- gepoolde ratio waargenomen/verwacht: C′ 1.246, A 1.814
+- cellen Poisson significant maar C′ niet:
+  - Don Nikolaevskaya first: Poisson 0.00148, C′ 0.0524, waargenomen 21, verwacht A 11.2, C′ 16.0
+  - Don Kochetovskaya first: Poisson < 0.001, C′ 0.171, waargenomen 25, verwacht A 13.7, C′ 21.6
+  - Don Rostov-on-Don first: Poisson 0.0337, C′ 0.557, waargenomen 18, verwacht A 11.9, C′ 17.9
+  - Elbe Magdeburg first: Poisson < 0.001, C′ 0.251, waargenomen 50, verwacht A 28.3, C′ 47.3
+  - Elbe Wittenberge first: Poisson < 0.001, C′ 0.136, waargenomen 44, verwacht A 23.6, C′ 40.0
+  - Weser Bremen first: Poisson < 0.001, C′ 0.0716, waargenomen 57, verwacht A 33.4, C′ 51.4
+  - Vistula Toruń second: Poisson < 0.001, C′ 0.0713, waargenomen 27, verwacht A 13.3, C′ 22.5
+  - Elbe Magdeburg second: Poisson < 0.001, C′ 0.075, waargenomen 52, verwacht A 30.1, C′ 47.0
+  - Oder Kostrzyn nad Odrą second: Poisson < 0.001, C′ 0.0746, waargenomen 45, verwacht A 24.3, C′ 39.9
+  - Weser Bodenwerder second: Poisson < 0.001, C′ 0.0671, waargenomen 66, verwacht A 40.6, C′ 60.7
+  - Weser Porta Westfalica second: Poisson < 0.001, C′ 0.29, waargenomen 57, verwacht A 35.7, C′ 54.8
+- cellen C′ significant maar Poisson niet: 0
+- per rivier, locaties significant onder C′ (periode 1, periode 2) van 3:
+  - Danube: 3, 3
+  - Dnieper: 1, 0
+  - Don: 0, 3
+  - Douro: 3, 3
+  - Ebro: 3, 3
+  - Elbe: 1, 2
+  - Loire: 3, 3
+  - Meuse: 3, 3
+  - Oder: 3, 2
+  - Po: 3, 3
+  - Rhine: 3, 3
+  - Rhône: 3, 3
+  - Seine: 3, 3
+  - Tagus: 3, 3
+  - Vistula: 3, 2
+  - Weser: 2, 1
+- Figuur 4-categorieën onder C′: {'both': 35, 'first only': 5, 'second only': 5, 'none': 3}
