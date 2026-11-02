@@ -1,0 +1,9 @@
+script: scripts/42_appendix_e_copula_table.py
+python: 3.12.13
+column: y_q6915
+inputs:
+  results/2026-10-22_copula_family_and_flood_level/cells.csv: 944f4c6f443c678fc5ab1168c948a9447580ca3e908b09af1056191fea7eebbc
+  results/2026-10-22_copula_bootstrap_6915/transition_ci.csv: 0822e050585eca144f40547fe2804e5ef6b02d686702bcb0da5308f68068ae8a
+  results/2026-10-22_copula_bootstrap_6915/bootstrap_diagnostics.csv: bba0389f5324f1638a5ed44307c0caeb01c26e60b8352f1449f9ccfc6eac7c39
+  results/2026-09-02_dependence_tests/dependence_tests.csv: 02867f7f73ee48bc5bb62a74920a5ff555a5845b358e987d5879a7f9463e811c
+check_point_vs_script40: 0.0e+00

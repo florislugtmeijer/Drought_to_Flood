@@ -1,0 +1,21 @@
+run_date: 2026-09-04
+git_commit: 16ce90718fba7e6cb95c22521885f8f8bcdb8030
+script: scripts/28_copula_quantile_reference.py
+purpose: D-15 / R-04, beslismateriaal quantielreferentie, geen wijziging
+config:
+  threshold: 0.5
+  period_after_event: 4
+  time_scale: 1W
+  n_draw: 100000
+  seed: 42                # SeedSequence(42).spawn(96), stroom van script 22
+  q_manuscript: 0.6915
+  y_grid: linspace(0, 1, 101) plus 0.6915
+  pairs: ['drought_peak', 'mean_drought_severity']
+  periods: {'first': (0, 5479), 'second': (5480, 10958)}
+  axis: quantile
+  marginals: parametric
+  variants: [weekly, daily]
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+python: 3.12.13
+packages: {"numpy": "2.5.2", "scipy": "1.18.1", "pandas": "3.0.5", "xarray": "2026.7.0", "netCDF4": "1.7.4", "vinecopulas": "2.0.3"}

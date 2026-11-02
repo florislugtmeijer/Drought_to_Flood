@@ -1,0 +1,192 @@
+Danube Aschach an der Donau first drought_peak: puntcurve vs bootstrap 5.0e-07
+Danube Aschach an der Donau second drought_peak: puntcurve vs bootstrap 5.0e-07
+Danube Aschach an der Donau first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Danube Aschach an der Donau second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Danube Visegrád first drought_peak: puntcurve vs bootstrap 5.0e-07
+Danube Visegrád second drought_peak: puntcurve vs bootstrap 5.0e-07
+Danube Visegrád first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Danube Visegrád second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Danube Donji Milanovac first drought_peak: puntcurve vs bootstrap 4.9e-07
+Danube Donji Milanovac second drought_peak: puntcurve vs bootstrap 5.0e-07
+Danube Donji Milanovac first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Danube Donji Milanovac second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Dnieper Krementsjoek first drought_peak: puntcurve vs bootstrap 4.9e-07
+Dnieper Krementsjoek second drought_peak: puntcurve vs bootstrap 5.0e-07
+Dnieper Krementsjoek first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Dnieper Krementsjoek second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Dnieper Dnipro first drought_peak: puntcurve vs bootstrap 5.0e-07
+Dnieper Dnipro second drought_peak: puntcurve vs bootstrap 5.0e-07
+Dnieper Dnipro first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Dnieper Dnipro second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Dnieper Cherson first drought_peak: geen bootstrap (10 droogtes)
+Dnieper Cherson second drought_peak: puntcurve vs bootstrap 5.0e-07
+Dnieper Cherson first mean_drought_severity: geen bootstrap (10 droogtes)
+Dnieper Cherson second mean_drought_severity: puntcurve vs bootstrap 4.8e-07
+Don Nikolaevskaya first drought_peak: puntcurve vs bootstrap 5.0e-07
+Don Nikolaevskaya second drought_peak: puntcurve vs bootstrap 5.0e-07
+Don Nikolaevskaya first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Don Nikolaevskaya second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Don Kochetovskaya first drought_peak: puntcurve vs bootstrap 5.0e-07
+Don Kochetovskaya second drought_peak: puntcurve vs bootstrap 5.0e-07
+Don Kochetovskaya first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Don Kochetovskaya second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Don Rostov - Dov first drought_peak: puntcurve vs bootstrap 5.0e-07
+Don Rostov - Dov second drought_peak: puntcurve vs bootstrap 4.9e-07
+Don Rostov - Dov first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Don Rostov - Dov second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Douro Pocinho first drought_peak: puntcurve vs bootstrap 4.8e-07
+Douro Pocinho second drought_peak: puntcurve vs bootstrap 5.0e-07
+Douro Pocinho first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Douro Pocinho second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Douro Peso da Regua first drought_peak: puntcurve vs bootstrap 5.0e-07
+Douro Peso da Regua second drought_peak: puntcurve vs bootstrap 5.0e-07
+Douro Peso da Regua first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Douro Peso da Regua second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Douro Rio Mau first drought_peak: puntcurve vs bootstrap 5.0e-07
+Douro Rio Mau second drought_peak: puntcurve vs bootstrap 5.0e-07
+Douro Rio Mau first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Douro Rio Mau second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Ebro Haro first drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Haro second drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Haro first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Ebro Haro second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Ebro Tudela first drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Tudela second drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Tudela first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Ebro Tudela second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Ebro Zaragoza first drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Zaragoza second drought_peak: puntcurve vs bootstrap 5.0e-07
+Ebro Zaragoza first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Ebro Zaragoza second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Elbe Dresden first drought_peak: puntcurve vs bootstrap 5.0e-07
+Elbe Dresden second drought_peak: puntcurve vs bootstrap 5.0e-07
+Elbe Dresden first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Elbe Dresden second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Elbe Magdeburg first drought_peak: puntcurve vs bootstrap 5.0e-07
+Elbe Magdeburg second drought_peak: puntcurve vs bootstrap 4.9e-07
+Elbe Magdeburg first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Elbe Magdeburg second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Elbe Wittenberge first drought_peak: puntcurve vs bootstrap 5.0e-07
+Elbe Wittenberge second drought_peak: puntcurve vs bootstrap 5.0e-07
+Elbe Wittenberge first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Elbe Wittenberge second mean_drought_severity: puntcurve vs bootstrap 4.8e-07
+Loire Decize first drought_peak: puntcurve vs bootstrap 5.0e-07
+Loire Decize second drought_peak: puntcurve vs bootstrap 4.8e-07
+Loire Decize first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Loire Decize second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Loire Orléans first drought_peak: puntcurve vs bootstrap 4.9e-07
+Loire Orléans second drought_peak: puntcurve vs bootstrap 5.0e-07
+Loire Orléans first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Loire Orléans second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Loire St. Maurillle first drought_peak: puntcurve vs bootstrap 5.0e-07
+Loire St. Maurillle second drought_peak: puntcurve vs bootstrap 5.0e-07
+Loire St. Maurillle first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Loire St. Maurillle second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Meuse Dun-sur-Meuse first drought_peak: puntcurve vs bootstrap 4.9e-07
+Meuse Dun-sur-Meuse second drought_peak: puntcurve vs bootstrap 4.9e-07
+Meuse Dun-sur-Meuse first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Meuse Dun-sur-Meuse second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Meuse Givet first drought_peak: puntcurve vs bootstrap 5.0e-07
+Meuse Givet second drought_peak: puntcurve vs bootstrap 5.0e-07
+Meuse Givet first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Meuse Givet second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Meuse Maastricht first drought_peak: puntcurve vs bootstrap 4.9e-07
+Meuse Maastricht second drought_peak: puntcurve vs bootstrap 5.0e-07
+Meuse Maastricht first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Meuse Maastricht second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Oder Krapowice first drought_peak: puntcurve vs bootstrap 4.9e-07
+Oder Krapowice second drought_peak: puntcurve vs bootstrap 5.0e-07
+Oder Krapowice first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Oder Krapowice second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Oder Scinawa first drought_peak: puntcurve vs bootstrap 5.0e-07
+Oder Scinawa second drought_peak: puntcurve vs bootstrap 4.9e-07
+Oder Scinawa first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Oder Scinawa second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Oder Kostrzyn nad Odra first drought_peak: puntcurve vs bootstrap 5.0e-07
+Oder Kostrzyn nad Odra second drought_peak: puntcurve vs bootstrap 4.9e-07
+Oder Kostrzyn nad Odra first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Oder Kostrzyn nad Odra second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Po Turijn first drought_peak: puntcurve vs bootstrap 5.0e-07
+Po Turijn second drought_peak: puntcurve vs bootstrap 4.9e-07
+Po Turijn first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Po Turijn second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Po Piacenza first drought_peak: puntcurve vs bootstrap 5.0e-07
+Po Piacenza second drought_peak: puntcurve vs bootstrap 4.9e-07
+Po Piacenza first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Po Piacenza second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Po Cermede / Castelmassa first drought_peak: puntcurve vs bootstrap 5.0e-07
+Po Cermede / Castelmassa second drought_peak: puntcurve vs bootstrap 5.0e-07
+Po Cermede / Castelmassa first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Po Cermede / Castelmassa second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhine Straatsburg first drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhine Straatsburg second drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhine Straatsburg first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Rhine Straatsburg second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhine Mainz first drought_peak: puntcurve vs bootstrap 4.9e-07
+Rhine Mainz second drought_peak: puntcurve vs bootstrap 4.9e-07
+Rhine Mainz first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Rhine Mainz second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhine Nijmegen first drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhine Nijmegen second drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhine Nijmegen first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhine Nijmegen second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Lyon first drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhône Lyon second drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhône Lyon first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Lyon second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Montelimar first drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhône Montelimar second drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhône Montelimar first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Montelimar second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Avignon first drought_peak: puntcurve vs bootstrap 4.8e-07
+Rhône Avignon second drought_peak: puntcurve vs bootstrap 5.0e-07
+Rhône Avignon first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Rhône Avignon second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Paris first drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Paris second drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Paris first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Paris second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Vernon first drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Vernon second drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Vernon first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Vernon second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Rouen first drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Rouen second drought_peak: puntcurve vs bootstrap 5.0e-07
+Seine Rouen first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Seine Rouen second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Tagus Toledo first drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus Toledo second drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus Toledo first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Tagus Toledo second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Tagus La Bazagona first drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus La Bazagona second drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus La Bazagona first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Tagus La Bazagona second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Tagus Vila Velha de Rodao first drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus Vila Velha de Rodao second drought_peak: puntcurve vs bootstrap 5.0e-07
+Tagus Vila Velha de Rodao first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Tagus Vila Velha de Rodao second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Vistula Łączany first drought_peak: puntcurve vs bootstrap 5.0e-07
+Vistula Łączany second drought_peak: puntcurve vs bootstrap 5.0e-07
+Vistula Łączany first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Vistula Łączany second mean_drought_severity: puntcurve vs bootstrap 4.8e-07
+Vistula Warchau first drought_peak: puntcurve vs bootstrap 4.9e-07
+Vistula Warchau second drought_peak: puntcurve vs bootstrap 4.9e-07
+Vistula Warchau first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Vistula Warchau second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Vistula Turon first drought_peak: puntcurve vs bootstrap 5.0e-07
+Vistula Turon second drought_peak: puntcurve vs bootstrap 4.9e-07
+Vistula Turon first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Vistula Turon second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Weser Bodenwerder first drought_peak: puntcurve vs bootstrap 5.0e-07
+Weser Bodenwerder second drought_peak: puntcurve vs bootstrap 4.9e-07
+Weser Bodenwerder first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Weser Bodenwerder second mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Weser Pora Wesfalica first drought_peak: puntcurve vs bootstrap 5.0e-07
+Weser Pora Wesfalica second drought_peak: puntcurve vs bootstrap 5.0e-07
+Weser Pora Wesfalica first mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Weser Pora Wesfalica second mean_drought_severity: puntcurve vs bootstrap 5.0e-07
+Weser Bremen first drought_peak: puntcurve vs bootstrap 4.9e-07
+Weser Bremen second drought_peak: puntcurve vs bootstrap 5.0e-07
+Weser Bremen first mean_drought_severity: puntcurve vs bootstrap 4.9e-07
+Weser Bremen second mean_drought_severity: puntcurve vs bootstrap 5.0e-07

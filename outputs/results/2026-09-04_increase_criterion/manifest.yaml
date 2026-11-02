@@ -1,0 +1,26 @@
+run_date: 2026-09-04
+script: scripts/29_increase_criterion_counts.py
+git_commit: 16ce90718fba7e6cb95c22521885f8f8bcdb8030
+git_dirty: true
+config:
+  taak: D-19, criterium achter de tellingen op pagina 31
+  rekent_opnieuw: nee, leest alleen results/
+  quantity: diff_resel        # zwaar min mild, familie-herselectie per replicatie
+  scheme: iid
+  marginals: parametric       # zoals de bootstrap
+  axis: quantile
+  niveau_manuscript: y_069  # runoff-quantiel 0.69
+  niveaus_extra: [69, 90, 95]
+  drempels_punt: [0.0, 0.02, 0.05]
+  drempels_mediaan: [0.02, 0.05]
+  toetsen: ['tau_p', 'hoeffd_p', 'aic_perm_p', 'cp_q6915_p']
+  min_toetsen: 3
+  alpha: 0.05
+  cells: 190
+  cells_zonder_zware_curve: 13
+inputs:
+  results/2026-09-02_copula_bootstrap/transition_ci.csv: 71d5adbb41b9a884c44880452c75713c04f64be9becfd6d69badffd03672b908
+  results/2026-09-02_dependence_tests/dependence_tests.csv: 02867f7f73ee48bc5bb62a74920a5ff555a5845b358e987d5879a7f9463e811c
+packages:
+  python: 3.12.13
+  numpy: 2.5.2

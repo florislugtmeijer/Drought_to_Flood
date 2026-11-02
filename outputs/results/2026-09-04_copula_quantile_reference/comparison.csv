@@ -1,0 +1,385 @@
+river,village,river_location,period,pair,variant,n_events,k_minor,k_major,cop_id,cop_name,par,aic,cop_name_next,delta_aic_next,dist_flood_marginal,trans_minor_at_q,trans_major_at_q,uncond_at_q,indep_at_q,weekshare_above_q,n_nonfinite_draws
+Danube,Aschach an der Donau,First location,first,drought_peak,weekly,85,43,4,7,Clayton90,-0.263468,-4.2942,Clayton180,1.7243,beta,0.845306,0.993322,0.678161,0.775822,0.455357,0
+Danube,Aschach an der Donau,First location,first,drought_peak,daily,85,43,4,7,Clayton90,-0.26356,-4.3048,Clayton180,1.9096,beta,0.849708,0.994311,0.688378,0.781371,0.460459,0
+Danube,Aschach an der Donau,First location,first,mean_drought_severity,weekly,85,24,2,7,Clayton90,-0.287152,-6.4994,Clayton180,3.6271,beta,0.891921,1.0,0.678161,0.775822,0.455357,0
+Danube,Aschach an der Donau,First location,first,mean_drought_severity,daily,85,24,2,7,Clayton90,-0.28723,-6.5062,Gaussian,3.8206,beta,0.896519,1.0,0.688378,0.781371,0.460459,0
+Danube,Visegrád,Second location,first,drought_peak,weekly,105,52,3,9,Clayton270,0.087163,1.4751,Clayton90,0.0156,beta,0.768636,0.770216,0.720307,0.780626,0.464286,0
+Danube,Visegrád,Second location,first,drought_peak,daily,105,52,3,9,Clayton270,0.088084,1.4384,Clayton90,0.065,beta,0.776703,0.780095,0.720307,0.788101,0.464286,0
+Danube,Visegrád,Second location,first,mean_drought_severity,weekly,105,35,4,9,Clayton270,0.0904,1.4292,Joe90,0.2118,beta,0.766146,0.765891,0.720307,0.780626,0.464286,0
+Danube,Visegrád,Second location,first,mean_drought_severity,daily,105,35,4,9,Clayton270,0.089293,1.417,Joe90,0.2366,beta,0.774419,0.777081,0.720307,0.788101,0.464286,0
+Danube,Donji Milanovac,Third location,first,drought_peak,weekly,84,50,3,8,Clayton180,-0.202131,-0.1074,Clayton0,1.2749,beta,0.718673,0.595865,0.692209,0.744636,0.434949,0
+Danube,Donji Milanovac,Third location,first,drought_peak,daily,84,50,3,8,Clayton180,-0.203374,-0.1818,Clayton0,1.3312,beta,0.729794,0.608239,0.692209,0.754742,0.433673,0
+Danube,Donji Milanovac,Third location,first,mean_drought_severity,weekly,84,32,1,13,Joe180,1.133446,0.6764,Clayton0,0.0548,beta,0.776696,0.784867,0.692209,0.744636,0.434949,284
+Danube,Donji Milanovac,Third location,first,mean_drought_severity,daily,84,32,1,13,Joe180,1.133883,0.6526,Clayton0,0.0625,beta,0.786665,0.794045,0.692209,0.754742,0.433673,284
+Dnieper,Krementsjoek,First location,first,drought_peak,weekly,28,2,2,7,Clayton90,-0.375588,-2.1014,Frank,1.7457,weibull_min,0.849625,0.979295,0.380587,0.605535,0.320153,0
+Dnieper,Krementsjoek,First location,first,drought_peak,daily,28,2,2,7,Clayton90,-0.375652,-2.0515,Frank,1.8381,weibull_min,0.868627,0.986502,0.484036,0.624002,0.355867,0
+Dnieper,Krementsjoek,First location,first,mean_drought_severity,weekly,28,1,0,7,Clayton90,-0.449528,-6.649,Frank,2.7522,weibull_min,1.0,1.0,0.380587,0.605535,0.320153,0
+Dnieper,Krementsjoek,First location,first,mean_drought_severity,daily,28,1,0,7,Clayton90,-0.449553,-6.6433,Frank,2.9081,weibull_min,1.0,1.0,0.484036,0.624002,0.355867,0
+Dnieper,Dnipro,Second location,first,drought_peak,weekly,23,2,1,9,Clayton270,-0.354594,-0.5045,Clayton0,0.556,uniform,0.549326,0.569705,0.523627,0.404455,0.381378,0
+Dnieper,Dnipro,Second location,first,drought_peak,daily,23,2,1,9,Clayton270,-0.354382,-0.4632,Clayton0,0.5219,uniform,0.548362,0.568456,0.535121,0.404081,0.389031,0
+Dnieper,Dnipro,Second location,first,mean_drought_severity,weekly,23,0,0,9,Clayton270,-0.3577,-0.6408,Clayton0,0.9479,uniform,0.571221,0.604,0.523627,0.404455,0.381378,0
+Dnieper,Dnipro,Second location,first,mean_drought_severity,daily,23,0,0,9,Clayton270,-0.357534,-0.5968,Clayton0,0.9174,uniform,0.570134,0.604,0.535121,0.404081,0.389031,0
+Dnieper,Cherson,Third location,first,drought_peak,weekly,10,0,0,12,Joe90,1.784674,0.3239,Clayton270,0.1932,beta,nan,nan,0.564496,0.603109,0.390306,127
+Dnieper,Cherson,Third location,first,drought_peak,daily,10,0,0,12,Joe90,1.784674,0.3239,Clayton270,0.1932,beta,nan,nan,0.574713,0.604635,0.395408,127
+Dnieper,Cherson,Third location,first,mean_drought_severity,weekly,10,0,0,12,Joe90,1.850115,0.1297,Gumbel90,0.1486,beta,nan,nan,0.564496,0.603109,0.390306,124
+Dnieper,Cherson,Third location,first,mean_drought_severity,daily,10,0,0,12,Joe90,1.850115,0.1297,Gumbel90,0.1486,beta,nan,nan,0.574713,0.604635,0.395408,124
+Rhine,Straatsburg,First location,first,drought_peak,weekly,84,42,3,14,Joe270,1.064757,1.5852,Gumbel270,0.0919,beta,0.763494,0.654381,0.689655,0.786345,0.459184,462
+Rhine,Straatsburg,First location,first,drought_peak,daily,84,42,3,14,Joe270,1.064638,1.5866,Gumbel270,0.0983,beta,0.768374,0.659597,0.687101,0.791334,0.456633,463
+Rhine,Straatsburg,First location,first,mean_drought_severity,weekly,84,28,0,14,Joe270,1.112295,0.6749,Gumbel270,0.3377,beta,0.73732,nan,0.689655,0.786345,0.459184,349
+Rhine,Straatsburg,First location,first,mean_drought_severity,daily,84,28,0,14,Joe270,1.112033,0.6799,Gumbel270,0.347,beta,0.742059,nan,0.687101,0.791334,0.456633,349
+Rhine,Mainz,Second location,first,drought_peak,weekly,81,43,5,6,Clayton0,-0.259255,-2.3084,Clayton270,1.3391,beta,0.78974,0.747024,0.731801,0.842941,0.461735,0
+Rhine,Mainz,Second location,first,drought_peak,daily,81,43,5,6,Clayton0,-0.258604,-2.2805,Clayton270,0.5635,beta,0.784842,0.742666,0.739464,0.838322,0.47449,0
+Rhine,Mainz,Second location,first,mean_drought_severity,weekly,81,32,1,6,Clayton0,-0.228944,-1.0983,Joe90,1.2533,beta,0.78593,0.767148,0.731801,0.842941,0.461735,0
+Rhine,Mainz,Second location,first,mean_drought_severity,daily,81,32,1,6,Clayton0,-0.228515,-1.0916,Clayton270,0.5999,beta,0.780754,0.762635,0.739464,0.838322,0.47449,0
+Rhine,Nijmegen,Third location,first,drought_peak,weekly,84,50,8,8,Clayton180,-0.208811,-1.0667,Clayton270,1.4762,beta,0.817281,0.734388,0.735632,0.835735,0.468112,0
+Rhine,Nijmegen,Third location,first,drought_peak,daily,84,50,8,8,Clayton180,-0.212856,-1.1701,Clayton270,1.7068,beta,0.798069,0.705547,0.735632,0.818627,0.468112,0
+Rhine,Nijmegen,Third location,first,mean_drought_severity,weekly,84,40,4,8,Clayton180,-0.337964,-6.774,Gaussian,7.0012,beta,0.790522,0.567443,0.735632,0.835735,0.468112,0
+Rhine,Nijmegen,Third location,first,mean_drought_severity,daily,84,40,4,8,Clayton180,-0.33642,-6.6779,Gaussian,6.9239,beta,0.76866,0.52523,0.735632,0.818627,0.468112,0
+Don,Nikolaevskaya,First location,first,drought_peak,weekly,52,28,1,14,Joe270,1.093815,1.3825,Clayton270,0.0131,uniform,0.391121,0.314732,0.519796,0.417727,0.359694,364
+Don,Nikolaevskaya,First location,first,drought_peak,daily,52,28,1,14,Joe270,1.094322,1.3775,Clayton270,0.0843,beta,0.550472,0.43521,0.533844,0.583854,0.371173,363
+Don,Nikolaevskaya,First location,first,mean_drought_severity,weekly,52,12,0,9,Clayton270,-0.130044,1.5458,Frank,0.2439,uniform,0.459375,0.431707,0.519796,0.417727,0.359694,0
+Don,Nikolaevskaya,First location,first,mean_drought_severity,daily,52,12,0,9,Clayton270,-0.121653,1.6064,Frank,0.2041,beta,0.612827,0.580488,0.533844,0.583854,0.371173,0
+Don,Kochetovskaya,Second location,first,drought_peak,weekly,58,32,1,9,Clayton270,-0.169205,1.0118,Joe0,0.3326,beta,0.621114,0.635578,0.553001,0.578767,0.381378,0
+Don,Kochetovskaya,Second location,first,drought_peak,daily,58,32,1,9,Clayton270,-0.167056,1.0492,Joe0,0.313,beta,0.584981,0.599238,0.553001,0.541285,0.380102,0
+Don,Kochetovskaya,Second location,first,mean_drought_severity,weekly,58,19,0,11,Joe0,1.174411,-0.1134,Clayton180,0.4657,beta,0.649205,0.778285,0.553001,0.578767,0.381378,270
+Don,Kochetovskaya,Second location,first,mean_drought_severity,daily,58,19,0,11,Joe0,1.172503,-0.084,Clayton180,0.4728,beta,0.615488,0.753425,0.553001,0.541285,0.380102,271
+Don,Rostov - Dov,Third location,first,drought_peak,weekly,57,25,1,9,Clayton270,-0.200301,0.6564,Clayton90,0.7255,beta,0.571515,0.582646,0.542784,0.516807,0.387755,0
+Don,Rostov - Dov,Third location,first,drought_peak,daily,57,25,1,9,Clayton270,-0.200499,0.655,Clayton90,0.669,beta,0.57683,0.588451,0.524904,0.522508,0.377551,0
+Don,Rostov - Dov,Third location,first,mean_drought_severity,weekly,57,11,1,9,Clayton270,-0.209108,0.4684,Joe0,0.7843,beta,0.579568,0.580372,0.542784,0.516807,0.387755,0
+Don,Rostov - Dov,Third location,first,mean_drought_severity,daily,57,11,1,9,Clayton270,-0.209446,0.4633,Joe0,0.7954,beta,0.584709,0.588832,0.524904,0.522508,0.377551,0
+Vistula,Łączany,First location,first,drought_peak,weekly,129,46,0,7,Clayton90,-0.056071,1.7151,Clayton180,0.148,weibull_min,0.957555,1.0,0.813538,0.947809,0.497449,0
+Vistula,Łączany,First location,first,drought_peak,daily,129,46,0,8,Clayton180,0.048214,1.7687,Clayton90,0.0066,beta,0.910706,0.971429,0.823755,0.908209,0.508929,0
+Vistula,Łączany,First location,first,mean_drought_severity,weekly,129,21,0,11,Joe0,1.091317,0.45,Gumbel0,0.2022,weibull_min,0.954957,nan,0.813538,0.947809,0.497449,337
+Vistula,Łączany,First location,first,mean_drought_severity,daily,129,21,0,11,Joe0,1.104436,-0.3176,Gumbel0,0.3503,beta,0.924495,nan,0.823755,0.908209,0.508929,306
+Vistula,Warchau,Second location,first,drought_peak,weekly,90,48,1,8,Clayton180,-0.196556,-1.2641,Gaussian,0.5487,beta,0.822112,0.609896,0.753512,0.844059,0.465561,0
+Vistula,Warchau,Second location,first,drought_peak,daily,90,48,1,8,Clayton180,-0.190655,-1.1219,Gaussian,0.6249,beta,0.849393,0.672037,0.753512,0.867425,0.465561,0
+Vistula,Warchau,Second location,first,mean_drought_severity,weekly,90,32,0,10,Frank,-0.741488,0.6257,Clayton0,0.0799,beta,0.812101,0.815534,0.753512,0.844059,0.465561,0
+Vistula,Warchau,Second location,first,mean_drought_severity,daily,90,32,0,10,Frank,-0.710054,0.7392,Clayton0,0.1868,beta,0.841993,0.84466,0.753512,0.867425,0.465561,0
+Vistula,Turon,Third location,first,drought_peak,weekly,67,36,5,14,Joe270,1.486581,-7.2577,Clayton90,0.1756,beta,0.482276,0.248072,0.565773,0.61004,0.360969,160
+Vistula,Turon,Third location,first,drought_peak,daily,67,36,5,14,Joe270,1.493562,-7.5108,Gumbel270,0.1632,beta,0.497446,0.254991,0.592593,0.626802,0.40051,158
+Vistula,Turon,Third location,first,mean_drought_severity,weekly,67,21,3,14,Joe270,1.479265,-6.8799,Gumbel270,0.3005,beta,0.406064,0.190368,0.565773,0.61004,0.360969,162
+Vistula,Turon,Third location,first,mean_drought_severity,daily,67,21,3,14,Joe270,1.48307,-7.0107,Gumbel270,0.143,beta,0.420485,0.195941,0.592593,0.626802,0.40051,162
+Po,Turijn,First location,first,drought_peak,weekly,85,34,0,7,Clayton90,-0.137653,0.3274,Frank,0.3351,beta,0.892147,1.0,0.684547,0.856324,0.428571,0
+Po,Turijn,First location,first,drought_peak,daily,85,34,0,7,Clayton90,-0.138341,0.2913,Frank,0.2571,beta,0.927315,1.0,0.713921,0.89689,0.452806,0
+Po,Turijn,First location,first,mean_drought_severity,weekly,85,19,0,10,Frank,0.67725,0.934,Clayton90,0.1205,beta,0.891202,0.906977,0.684547,0.856324,0.428571,0
+Po,Turijn,First location,first,mean_drought_severity,daily,85,19,0,10,Frank,0.712947,0.8199,Clayton270,0.1262,beta,0.924782,0.906977,0.713921,0.89689,0.452806,0
+Po,Piacenza,Second location,first,drought_peak,weekly,79,37,1,13,Joe180,1.377574,-7.0193,Clayton0,0.7194,beta,0.887519,0.896259,0.708812,0.814004,0.434949,178
+Po,Piacenza,Second location,first,drought_peak,daily,79,37,1,13,Joe180,1.377622,-7.0224,Clayton0,0.7239,beta,0.927014,0.933107,0.743295,0.863615,0.457908,178
+Po,Piacenza,Second location,first,mean_drought_severity,weekly,79,20,0,13,Joe180,1.447774,-9.1717,Clayton0,0.6341,beta,0.906152,0.931818,0.708812,0.814004,0.434949,162
+Po,Piacenza,Second location,first,mean_drought_severity,daily,79,20,0,13,Joe180,1.448322,-9.1864,Clayton0,0.6472,beta,0.940709,0.954545,0.743295,0.863615,0.457908,162
+Po,Cermede / Castelmassa,Third location,first,drought_peak,weekly,76,37,2,7,Clayton90,-0.14903,0.5607,Frank,1.1574,beta,0.904039,0.97962,0.713921,0.874893,0.447704,0
+Po,Cermede / Castelmassa,Third location,first,drought_peak,daily,76,37,2,7,Clayton90,-0.152232,0.4948,Frank,1.2299,beta,0.91355,0.986183,0.725415,0.88525,0.459184,0
+Po,Cermede / Castelmassa,Third location,first,mean_drought_severity,weekly,76,23,1,10,Frank,0.922615,0.3407,Clayton180,0.1836,beta,0.911985,0.936842,0.713921,0.874893,0.447704,0
+Po,Cermede / Castelmassa,Third location,first,mean_drought_severity,daily,76,23,1,10,Frank,0.907993,0.3929,Gumbel0,0.6227,beta,0.918633,0.94386,0.725415,0.88525,0.459184,0
+Elbe,Dresden,First location,first,drought_peak,weekly,89,38,2,6,Clayton0,-0.132292,0.5484,Frank,0.1235,beta,0.758148,0.741883,0.701149,0.796144,0.459184,0
+Elbe,Dresden,First location,first,drought_peak,daily,89,38,2,6,Clayton0,-0.131641,0.5556,Frank,0.0711,beta,0.755239,0.7397,0.707535,0.792954,0.465561,0
+Elbe,Dresden,First location,first,mean_drought_severity,weekly,89,16,0,14,Joe270,1.08739,1.3389,Clayton0,0.1001,beta,0.741217,0.552419,0.701149,0.796144,0.459184,389
+Elbe,Dresden,First location,first,mean_drought_severity,daily,89,16,0,14,Joe270,1.087209,1.3428,Clayton0,0.1082,beta,0.737963,0.549731,0.707535,0.792954,0.465561,389
+Elbe,Magdeburg,Second location,first,drought_peak,weekly,83,36,3,8,Clayton180,-0.122813,1.0409,Clayton270,0.0652,beta,0.606989,0.496357,0.66539,0.635905,0.443878,0
+Elbe,Magdeburg,Second location,first,drought_peak,daily,83,36,3,8,Clayton180,-0.136921,0.8189,Clayton270,0.0822,beta,0.607088,0.487553,0.670498,0.640195,0.445153,0
+Elbe,Magdeburg,Second location,first,mean_drought_severity,weekly,83,19,1,8,Clayton180,-0.14557,0.7557,Clayton270,0.342,beta,0.572175,0.378168,0.66539,0.635905,0.443878,0
+Elbe,Magdeburg,Second location,first,mean_drought_severity,daily,83,19,1,8,Clayton180,-0.158175,0.5321,Clayton270,0.3677,beta,0.570731,0.366472,0.670498,0.640195,0.445153,0
+Elbe,Wittenberge,Third location,first,drought_peak,weekly,71,35,3,8,Clayton180,-0.241945,-1.7586,Clayton270,0.0897,beta,0.600463,0.363475,0.650064,0.657219,0.428571,0
+Elbe,Wittenberge,Third location,first,drought_peak,daily,71,35,3,9,Clayton270,0.320865,-1.5966,Clayton180,0.0665,beta,0.540934,0.510644,0.650064,0.605073,0.42602,0
+Elbe,Wittenberge,Third location,first,mean_drought_severity,weekly,71,20,1,9,Clayton270,0.277293,-0.7498,Joe90,0.2646,beta,0.593337,0.567215,0.650064,0.657219,0.428571,0
+Elbe,Wittenberge,Third location,first,mean_drought_severity,daily,71,20,1,9,Clayton270,0.273616,-0.6908,Joe90,0.2602,beta,0.534162,0.507657,0.650064,0.605073,0.42602,0
+Rhône,Lyon,First location,first,drought_peak,weekly,102,61,2,12,Joe90,1.163889,-0.3936,Clayton270,0.0098,beta,0.799343,0.844248,0.750958,0.812948,0.44898,267
+Rhône,Lyon,First location,first,drought_peak,daily,102,61,2,12,Joe90,1.168557,-0.6618,Clayton270,0.0653,beta,0.813599,0.856637,0.771392,0.827086,0.465561,265
+Rhône,Lyon,First location,first,mean_drought_severity,weekly,102,40,2,12,Joe90,1.141474,0.2142,Clayton270,0.0936,beta,0.799139,0.849935,0.750958,0.812948,0.44898,283
+Rhône,Lyon,First location,first,mean_drought_severity,daily,102,40,2,12,Joe90,1.146921,-0.0436,Clayton270,0.1367,beta,0.813642,0.862492,0.771392,0.827086,0.465561,274
+Rhône,Montelimar,Second location,first,drought_peak,weekly,93,57,0,9,Clayton270,0.252016,-1.38,Joe90,0.2078,beta,0.774348,0.729323,0.729246,0.798532,0.450255,0
+Rhône,Montelimar,Second location,first,drought_peak,daily,93,57,0,9,Clayton270,0.26031,-1.6465,Joe90,0.0759,beta,0.794461,0.75188,0.736909,0.817369,0.457908,0
+Rhône,Montelimar,Second location,first,mean_drought_severity,weekly,93,35,0,9,Clayton270,0.280392,-1.8858,Joe90,0.1748,beta,0.764032,0.717949,0.729246,0.798532,0.450255,0
+Rhône,Montelimar,Second location,first,mean_drought_severity,daily,93,35,0,9,Clayton270,0.287554,-2.1417,Joe90,0.0691,beta,0.783587,0.74359,0.736909,0.817369,0.457908,0
+Rhône,Avignon,Third location,first,drought_peak,weekly,85,54,0,8,Clayton180,-0.110203,1.2369,Clayton270,0.2857,beta,0.776978,nan,0.735632,0.784421,0.459184,0
+Rhône,Avignon,Third location,first,drought_peak,daily,85,54,0,8,Clayton180,-0.127306,0.9556,Clayton270,0.4389,beta,0.809219,nan,0.735632,0.816096,0.460459,0
+Rhône,Avignon,Third location,first,mean_drought_severity,weekly,85,31,1,8,Clayton180,-0.188113,0.3686,Clayton270,1.3362,beta,0.750059,0.601685,0.735632,0.784421,0.459184,0
+Rhône,Avignon,Third location,first,mean_drought_severity,daily,85,31,1,8,Clayton180,-0.195781,0.1342,Clayton270,1.4947,beta,0.784235,0.642697,0.735632,0.816096,0.460459,0
+Oder,Krapowice,First location,first,drought_peak,weekly,116,65,0,8,Clayton180,-0.088277,1.3638,Clayton90,0.491,beta,0.925814,0.892998,0.859515,0.929551,0.52551,0
+Oder,Krapowice,First location,first,drought_peak,daily,116,65,0,8,Clayton180,-0.095553,1.2621,Clayton90,0.5977,beta,0.942407,0.90716,0.871009,0.944902,0.540816,0
+Oder,Krapowice,First location,first,mean_drought_severity,weekly,116,41,0,7,Clayton90,-0.127521,0.6881,Clayton0,0.9476,beta,0.956754,1.0,0.859515,0.929551,0.52551,0
+Oder,Krapowice,First location,first,mean_drought_severity,daily,116,41,0,7,Clayton90,-0.126828,0.708,Clayton0,0.9237,beta,0.967654,1.0,0.871009,0.944902,0.540816,0
+Oder,Scinawa,Second location,first,drought_peak,weekly,107,58,1,9,Clayton270,-0.091907,1.2155,Frank,0.4623,beta,0.884482,0.873204,0.761175,0.879118,0.46301,0
+Oder,Scinawa,Second location,first,drought_peak,daily,107,58,1,9,Clayton270,-0.091065,1.2299,Frank,0.4513,beta,0.899697,0.89011,0.763729,0.894932,0.471939,0
+Oder,Scinawa,Second location,first,mean_drought_severity,weekly,107,37,1,11,Joe0,1.117741,0.5794,Gumbel0,0.2372,beta,0.893186,0.948,0.761175,0.879118,0.46301,342
+Oder,Scinawa,Second location,first,mean_drought_severity,daily,107,37,1,11,Joe0,1.121744,0.4316,Gumbel0,0.2815,beta,0.908624,0.955823,0.763729,0.894932,0.471939,336
+Oder,Kostrzyn nad Odra,Third location,first,drought_peak,weekly,77,39,4,6,Clayton0,-0.258829,-2.8114,Frank,2.2923,beta,0.606774,0.569637,0.671775,0.675854,0.432398,0
+Oder,Kostrzyn nad Odra,Third location,first,drought_peak,daily,77,39,4,6,Clayton0,-0.257303,-2.7286,Frank,2.2906,beta,0.614763,0.577932,0.669221,0.683217,0.423469,0
+Oder,Kostrzyn nad Odra,Third location,first,mean_drought_severity,weekly,77,27,1,6,Clayton0,-0.282467,-4.4416,Frank,3.2297,beta,0.584618,0.550784,0.671775,0.675854,0.432398,0
+Oder,Kostrzyn nad Odra,Third location,first,mean_drought_severity,daily,77,27,1,6,Clayton0,-0.280164,-4.316,Frank,3.2142,beta,0.592548,0.558216,0.669221,0.683217,0.423469,0
+Loire,Decize,First location,first,drought_peak,weekly,122,68,0,5,Gumbel270,1.100428,-0.5629,Joe270,0.1407,beta,0.894777,0.375,0.794381,0.91352,0.506378,1
+Loire,Decize,First location,first,drought_peak,daily,122,68,0,5,Gumbel270,1.09827,-0.4751,Joe270,0.065,beta,0.84689,0.375,0.798212,0.871597,0.51148,1
+Loire,Decize,First location,first,mean_drought_severity,weekly,122,47,2,9,Clayton270,0.147725,0.3958,Gaussian,0.0175,beta,0.903772,0.906071,0.794381,0.91352,0.506378,0
+Loire,Decize,First location,first,mean_drought_severity,daily,122,47,2,10,Frank,-0.668948,0.4859,Gaussian,0.0797,beta,0.846777,0.837342,0.798212,0.871597,0.51148,0
+Loire,Orléans,Second location,first,drought_peak,weekly,107,63,2,14,Joe270,1.257084,-5.2929,Gumbel270,1.9748,beta,0.760384,0.274699,0.733078,0.805698,0.451531,219
+Loire,Orléans,Second location,first,drought_peak,daily,107,63,2,14,Joe270,1.257028,-5.2938,Gumbel270,1.9633,beta,0.763347,0.274699,0.734355,0.808758,0.455357,219
+Loire,Orléans,Second location,first,mean_drought_severity,weekly,107,46,1,14,Joe270,1.126909,0.4187,Clayton90,0.0535,beta,0.76082,0.593415,0.733078,0.805698,0.451531,310
+Loire,Orléans,Second location,first,mean_drought_severity,daily,107,46,1,8,Clayton180,-0.141465,0.27,Joe270,0.1636,beta,0.782396,0.685157,0.734355,0.808758,0.455357,0
+Loire,St. Maurillle,Third location,first,drought_peak,weekly,98,55,2,8,Clayton180,-0.148241,0.9312,Clayton90,0.6368,beta,0.571607,0.379009,0.643678,0.596476,0.410714,0
+Loire,St. Maurillle,Third location,first,drought_peak,daily,98,55,2,8,Clayton180,-0.139116,0.8475,Clayton90,0.7131,beta,0.616811,0.46414,0.661558,0.639407,0.424745,0
+Loire,St. Maurillle,Third location,first,mean_drought_severity,weekly,98,41,2,14,Joe270,1.049298,1.6533,Clayton90,0.1006,beta,0.580675,0.512068,0.643678,0.596476,0.410714,511
+Loire,St. Maurillle,Third location,first,mean_drought_severity,daily,98,41,2,14,Joe270,1.049485,1.6512,Clayton90,0.1035,beta,0.622906,0.555721,0.661558,0.639407,0.424745,509
+Seine,Paris,First location,first,drought_peak,weekly,76,48,4,8,Clayton180,-0.212106,-1.6361,Gumbel270,2.0534,beta,0.754329,0.619275,0.692209,0.777079,0.443878,0
+Seine,Paris,First location,first,drought_peak,daily,76,48,4,8,Clayton180,-0.220233,-1.9257,Gumbel270,2.3773,beta,0.686316,0.520177,0.692209,0.715182,0.442602,0
+Seine,Paris,First location,first,mean_drought_severity,weekly,76,31,2,8,Clayton180,-0.313687,-6.7672,Frank,6.0083,beta,0.715326,0.467672,0.692209,0.777079,0.443878,0
+Seine,Paris,First location,first,mean_drought_severity,daily,76,31,2,8,Clayton180,-0.31147,-6.8697,Gaussian,6.157,beta,0.638064,0.353718,0.692209,0.715182,0.442602,0
+Seine,Vernon,Second location,first,drought_peak,weekly,77,51,6,7,Clayton90,0.204055,0.3745,Gaussian,0.1525,beta,0.655744,0.485791,0.653895,0.690114,0.429847,0
+Seine,Vernon,Second location,first,drought_peak,daily,77,51,6,7,Clayton90,0.204517,0.3648,Clayton180,0.0271,beta,0.62058,0.453977,0.65645,0.65577,0.433673,0
+Seine,Vernon,Second location,first,mean_drought_severity,weekly,77,30,3,7,Clayton90,0.358098,-2.8972,Joe270,0.0958,beta,0.587346,0.363382,0.653895,0.690114,0.429847,0
+Seine,Vernon,Second location,first,mean_drought_severity,daily,77,30,3,7,Clayton90,0.356902,-2.8718,Joe270,0.1123,beta,0.551888,0.334799,0.65645,0.65577,0.433673,0
+Seine,Rouen,Third location,first,drought_peak,weekly,80,51,5,7,Clayton90,0.209548,0.1449,Clayton0,0.1662,beta,0.587416,0.413903,0.636015,0.62277,0.422194,0
+Seine,Rouen,Third location,first,drought_peak,daily,80,51,5,7,Clayton90,0.20858,0.1587,Clayton0,0.1782,beta,0.615432,0.440671,0.644955,0.651231,0.428571,0
+Seine,Rouen,Third location,first,mean_drought_severity,weekly,80,32,2,7,Clayton90,0.391347,-4.4384,Joe270,0.5817,beta,0.516825,0.193711,0.636015,0.62277,0.422194,0
+Seine,Rouen,Third location,first,mean_drought_severity,daily,80,32,2,7,Clayton90,0.391544,-4.4495,Joe270,0.5881,beta,0.545617,0.211117,0.644955,0.651231,0.428571,0
+Ebro,Haro,First location,first,drought_peak,weekly,124,54,1,7,Clayton90,-0.24389,-4.2255,Clayton180,4.7799,beta,0.938749,1.0,0.822478,0.873698,0.507653,0
+Ebro,Haro,First location,first,drought_peak,daily,124,54,1,7,Clayton90,-0.243704,-4.1844,Clayton180,4.8363,beta,0.951159,1.0,0.83014,0.889356,0.52551,0
+Ebro,Haro,First location,first,mean_drought_severity,weekly,124,36,1,7,Clayton90,-0.236233,-4.0155,Clayton180,5.0513,beta,0.960039,1.0,0.822478,0.873698,0.507653,0
+Ebro,Haro,First location,first,mean_drought_severity,daily,124,36,1,7,Clayton90,-0.23613,-4.0082,Clayton180,5.0866,beta,0.970917,1.0,0.83014,0.889356,0.52551,0
+Ebro,Tudela,Second location,first,drought_peak,weekly,127,56,3,7,Clayton90,-0.167401,-1.0621,Gaussian,1.5747,beta,0.877501,0.968912,0.781609,0.826441,0.507653,0
+Ebro,Tudela,Second location,first,drought_peak,daily,127,56,3,7,Clayton90,-0.171174,-1.1265,Frank,1.8361,beta,0.897728,0.978781,0.791826,0.849131,0.519133,0
+Ebro,Tudela,Second location,first,mean_drought_severity,weekly,127,39,3,7,Clayton90,-0.196472,-2.6078,Gaussian,2.5181,beta,0.903356,0.984769,0.781609,0.826441,0.507653,0
+Ebro,Tudela,Second location,first,mean_drought_severity,daily,127,39,3,7,Clayton90,-0.194317,-2.5074,Frank,2.6058,beta,0.919737,0.988869,0.791826,0.849131,0.519133,0
+Ebro,Zaragoza,Third location,first,drought_peak,weekly,114,55,3,7,Clayton90,-0.157397,-0.1331,Clayton0,0.9052,beta,0.864651,0.958559,0.756066,0.82524,0.484694,0
+Ebro,Zaragoza,Third location,first,drought_peak,daily,114,55,3,7,Clayton90,-0.15803,-0.1338,Clayton0,0.9627,beta,0.86707,0.960455,0.780332,0.828035,0.503827,0
+Ebro,Zaragoza,Third location,first,mean_drought_severity,weekly,114,37,2,7,Clayton90,-0.227403,-3.1434,Gaussian,3.2714,beta,0.917394,0.997906,0.756066,0.82524,0.484694,0
+Ebro,Zaragoza,Third location,first,mean_drought_severity,daily,114,37,2,7,Clayton90,-0.22692,-3.087,Clayton0,3.466,beta,0.919215,0.998325,0.780332,0.828035,0.503827,0
+Douro,Pocinho,First location,first,drought_peak,weekly,36,14,1,9,Clayton270,-0.369081,-4.1134,Gaussian,1.9332,beta,0.613091,0.649118,0.448276,0.502836,0.34949,0
+Douro,Pocinho,First location,first,drought_peak,daily,36,14,1,9,Clayton270,-0.369063,-4.1418,Gaussian,1.863,beta,0.612735,0.649118,0.453384,0.50252,0.359694,0
+Douro,Pocinho,First location,first,mean_drought_severity,weekly,36,3,0,9,Clayton270,-0.368456,-3.5758,Clayton90,0.8091,beta,0.641931,0.614286,0.448276,0.502836,0.34949,0
+Douro,Pocinho,First location,first,mean_drought_severity,daily,36,3,0,9,Clayton270,-0.368618,-3.6368,Clayton90,0.8127,beta,0.641821,0.614286,0.453384,0.50252,0.359694,0
+Douro,Peso da Regua,Second location,first,drought_peak,weekly,46,15,2,8,Clayton180,-0.177468,1.4795,Clayton90,0.3219,beta,0.538958,0.371429,0.467433,0.604397,0.360969,0
+Douro,Peso da Regua,Second location,first,drought_peak,daily,46,15,2,8,Clayton180,-0.187622,1.3902,Clayton90,0.4142,beta,0.549955,0.371815,0.492976,0.617,0.378827,0
+Douro,Peso da Regua,Second location,first,mean_drought_severity,weekly,46,3,0,8,Clayton180,-0.253143,0.503,Gaussian,1.3098,beta,0.390472,0.122892,0.467433,0.604397,0.360969,0
+Douro,Peso da Regua,Second location,first,mean_drought_severity,daily,46,3,0,8,Clayton180,-0.256766,0.3847,Clayton270,1.3929,beta,0.40334,0.127711,0.492976,0.617,0.378827,0
+Douro,Rio Mau,Third location,first,drought_peak,weekly,50,14,2,8,Clayton180,-0.196441,1.036,Clayton270,0.295,beta,0.575425,0.402227,0.508301,0.650199,0.358418,0
+Douro,Rio Mau,Third location,first,drought_peak,daily,50,14,2,8,Clayton180,-0.179844,1.2144,Clayton270,0.1953,beta,0.599346,0.452679,0.515964,0.665498,0.373724,0
+Douro,Rio Mau,Third location,first,mean_drought_severity,weekly,50,4,0,8,Clayton180,-0.203847,0.8519,Clayton270,0.4677,beta,0.527012,nan,0.508301,0.650199,0.358418,0
+Douro,Rio Mau,Third location,first,mean_drought_severity,daily,50,4,0,8,Clayton180,-0.189237,1.0309,Joe90,0.351,beta,0.555743,nan,0.515964,0.665498,0.373724,0
+Tagus,Toledo,First location,first,drought_peak,weekly,74,26,0,12,Joe90,1.114428,1.0775,Clayton270,0.1559,beta,0.900087,0.97668,0.676884,0.90484,0.423469,281
+Tagus,Toledo,First location,first,drought_peak,daily,74,26,0,8,Clayton180,-0.120566,1.2978,Clayton270,0.0211,beta,0.873857,0.805814,0.721584,0.887362,0.46301,0
+Tagus,Toledo,First location,first,mean_drought_severity,weekly,74,13,0,7,Clayton90,-0.112419,1.324,Joe180,0.0394,beta,0.948653,nan,0.676884,0.90484,0.423469,0
+Tagus,Toledo,First location,first,mean_drought_severity,daily,74,13,0,13,Joe180,1.101171,1.3123,Clayton90,0.0102,beta,0.911231,nan,0.721584,0.887362,0.46301,301
+Tagus,La Bazagona,Second location,first,drought_peak,weekly,79,32,0,10,Frank,1.482561,-2.384,Clayton0,0.1286,beta,0.718043,0.753604,0.587484,0.622016,0.397959,0
+Tagus,La Bazagona,Second location,first,drought_peak,daily,79,32,0,10,Frank,1.470076,-2.3044,Clayton0,0.0964,beta,0.768511,0.799476,0.587484,0.679631,0.397959,0
+Tagus,La Bazagona,Second location,first,mean_drought_severity,weekly,79,15,0,6,Clayton0,0.317167,-1.9384,Frank,0.2748,beta,0.709384,nan,0.587484,0.622016,0.397959,0
+Tagus,La Bazagona,Second location,first,mean_drought_severity,daily,79,15,0,6,Clayton0,0.314801,-1.8883,Frank,0.3139,beta,0.766758,nan,0.587484,0.679631,0.397959,0
+Tagus,Vila Velha de Rodao,Third location,first,drought_peak,weekly,64,19,0,14,Joe270,1.116785,0.8862,Clayton90,0.3189,beta,0.551627,nan,0.541507,0.614254,0.375,317
+Tagus,Vila Velha de Rodao,Third location,first,drought_peak,daily,64,19,0,14,Joe270,1.117247,0.88,Clayton90,0.3165,beta,0.56295,nan,0.542784,0.625755,0.377551,316
+Tagus,Vila Velha de Rodao,Third location,first,mean_drought_severity,weekly,64,2,0,8,Clayton180,-0.195495,1.1177,Frank,0.8306,beta,0.337225,nan,0.541507,0.614254,0.375,0
+Tagus,Vila Velha de Rodao,Third location,first,mean_drought_severity,daily,64,2,0,8,Clayton180,-0.239563,0.5922,Frank,1.3625,beta,0.275258,nan,0.542784,0.625755,0.377551,0
+Weser,Bodenwerder,First location,first,drought_peak,weekly,90,53,3,6,Clayton0,-0.281284,-5.5415,Gumbel90,1.5522,beta,0.73865,0.709116,0.716475,0.81179,0.447704,0
+Weser,Bodenwerder,First location,first,drought_peak,daily,90,53,3,6,Clayton0,-0.280958,-5.4796,Gumbel90,2.1068,beta,0.775999,0.745988,0.734355,0.84312,0.465561,0
+Weser,Bodenwerder,First location,first,mean_drought_severity,weekly,90,34,1,6,Clayton0,-0.279532,-5.7574,Gumbel90,2.5273,beta,0.723771,0.709959,0.716475,0.81179,0.447704,0
+Weser,Bodenwerder,First location,first,mean_drought_severity,daily,90,34,1,6,Clayton0,-0.279409,-5.7338,Gumbel90,3.0465,beta,0.761092,0.74538,0.734355,0.84312,0.465561,0
+Weser,Pora Wesfalica,Second location,first,drought_peak,weekly,99,48,3,5,Gumbel270,1.098886,-0.6885,Clayton180,0.0807,beta,0.613267,0.474792,0.701149,0.659998,0.451531,3
+Weser,Pora Wesfalica,Second location,first,drought_peak,daily,99,48,3,5,Gumbel270,1.098866,-0.6957,Clayton180,0.0916,beta,0.625615,0.486062,0.703704,0.6719,0.452806,3
+Weser,Pora Wesfalica,Second location,first,mean_drought_severity,weekly,99,31,1,5,Gumbel270,1.097937,-0.235,Gaussian,0.0844,beta,0.588528,0.451752,0.701149,0.659998,0.451531,3
+Weser,Pora Wesfalica,Second location,first,mean_drought_severity,daily,99,31,1,5,Gumbel270,1.097642,-0.2306,Gaussian,0.1033,beta,0.601548,0.463235,0.703704,0.6719,0.452806,3
+Weser,Bremen,Third location,first,drought_peak,weekly,94,52,3,6,Clayton0,-0.095023,1.3267,Clayton90,0.2887,beta,0.574961,0.565764,0.650064,0.601169,0.420918,0
+Weser,Bremen,Third location,first,drought_peak,daily,94,52,3,6,Clayton0,-0.095797,1.3117,Clayton90,0.2962,beta,0.599419,0.591088,0.650064,0.625735,0.422194,0
+Weser,Bremen,Third location,first,mean_drought_severity,weekly,94,32,3,14,Joe270,1.124776,0.5465,Clayton90,0.134,beta,0.54041,0.431082,0.650064,0.601169,0.420918,307
+Weser,Bremen,Third location,first,mean_drought_severity,daily,94,32,3,14,Joe270,1.123658,0.5597,Clayton90,0.0984,beta,0.565069,0.45348,0.650064,0.625735,0.422194,309
+Meuse,Dun-sur-Meuse,First location,first,drought_peak,weekly,100,59,3,8,Clayton180,-0.071935,1.662,Clayton90,0.1532,beta,0.731515,0.70948,0.722861,0.739475,0.451531,0
+Meuse,Dun-sur-Meuse,First location,first,drought_peak,daily,100,59,3,8,Clayton180,-0.07994,1.5707,Frank,0.2357,beta,0.750514,0.723624,0.742018,0.75818,0.470663,0
+Meuse,Dun-sur-Meuse,First location,first,mean_drought_severity,weekly,100,44,1,7,Clayton90,-0.10847,1.3575,Clayton180,0.264,beta,0.774336,0.860972,0.722861,0.739475,0.451531,0
+Meuse,Dun-sur-Meuse,First location,first,mean_drought_severity,daily,100,44,1,7,Clayton90,-0.109425,1.3496,Clayton180,0.1863,beta,0.792931,0.876216,0.742018,0.75818,0.470663,0
+Meuse,Givet,Second location,first,drought_peak,weekly,109,58,4,8,Clayton180,-0.101203,0.8071,Clayton270,0.1162,beta,0.669152,0.606747,0.710089,0.688729,0.447704,0
+Meuse,Givet,Second location,first,drought_peak,daily,109,58,4,8,Clayton180,-0.096514,0.9183,Clayton270,0.0433,beta,0.703654,0.652835,0.715198,0.721173,0.455357,0
+Meuse,Givet,Second location,first,mean_drought_severity,weekly,109,44,3,7,Clayton90,-0.151302,0.7594,Clayton270,0.2233,beta,0.749892,0.853723,0.710089,0.688729,0.447704,0
+Meuse,Givet,Second location,first,mean_drought_severity,daily,109,44,3,7,Clayton90,-0.151988,0.7361,Clayton270,0.2854,beta,0.781155,0.882029,0.715198,0.721173,0.455357,0
+Meuse,Maastricht,Third location,first,drought_peak,weekly,102,60,8,6,Clayton0,-0.215773,-2.5465,Frank,2.6155,beta,0.861327,0.842998,0.765006,0.896706,0.483418,0
+Meuse,Maastricht,Third location,first,drought_peak,daily,102,60,8,6,Clayton0,-0.223044,-2.8609,Frank,2.817,beta,0.803076,0.785163,0.762452,0.849106,0.478316,0
+Meuse,Maastricht,Third location,first,mean_drought_severity,weekly,102,45,4,6,Clayton0,-0.206483,-1.9273,Clayton270,2.8064,beta,0.854908,0.847773,0.765006,0.896706,0.483418,0
+Meuse,Maastricht,Third location,first,mean_drought_severity,daily,102,45,4,6,Clayton0,-0.213315,-2.2066,Clayton270,2.9948,beta,0.79564,0.78707,0.762452,0.849106,0.478316,0
+Danube,Aschach an der Donau,First location,second,drought_peak,weekly,91,49,2,8,Clayton180,-0.074184,1.6375,Clayton0,0.1621,beta,0.724712,0.665148,0.726692,0.733914,0.471939,0
+Danube,Aschach an der Donau,First location,second,drought_peak,daily,91,49,2,8,Clayton180,-0.097685,1.3745,Clayton0,0.4445,beta,0.725964,0.647901,0.729246,0.738718,0.477041,0
+Danube,Aschach an der Donau,First location,second,mean_drought_severity,weekly,91,34,0,7,Clayton90,-0.130555,0.9366,Clayton0,0.2451,beta,0.784561,0.901961,0.726692,0.733914,0.471939,0
+Danube,Aschach an der Donau,First location,second,mean_drought_severity,daily,91,34,0,7,Clayton90,-0.129824,0.948,Clayton0,0.2673,beta,0.789175,0.903595,0.729246,0.738718,0.477041,0
+Danube,Visegrád,Second location,second,drought_peak,weekly,97,53,4,6,Clayton0,-0.091168,1.4784,Clayton90,0.2997,beta,0.757576,0.741742,0.716475,0.779286,0.461735,0
+Danube,Visegrád,Second location,second,drought_peak,daily,97,53,4,6,Clayton0,-0.088324,1.5139,Clayton90,0.2925,beta,0.771063,0.755041,0.724138,0.792089,0.471939,0
+Danube,Visegrád,Second location,second,mean_drought_severity,weekly,97,36,1,7,Clayton90,-0.233963,-0.8452,Gaussian,2.7281,beta,0.869483,1.0,0.716475,0.779286,0.461735,0
+Danube,Visegrád,Second location,second,mean_drought_severity,daily,97,36,1,7,Clayton90,-0.231988,-0.7794,Gaussian,2.618,beta,0.879381,1.0,0.724138,0.792089,0.471939,0
+Danube,Donji Milanovac,Third location,second,drought_peak,weekly,96,47,5,10,Frank,-0.463062,1.4013,Clayton0,0.0248,weibull_min,0.752767,0.732477,0.710089,0.774091,0.44898,0
+Danube,Donji Milanovac,Third location,second,drought_peak,daily,96,47,5,10,Frank,-0.44736,1.4415,Clayton0,0.045,beta,0.698661,0.679646,0.710089,0.722328,0.44898,0
+Danube,Donji Milanovac,Third location,second,mean_drought_severity,weekly,96,32,5,6,Clayton0,-0.094437,1.4042,Frank,0.1186,weibull_min,0.747605,0.738506,0.710089,0.774091,0.44898,0
+Danube,Donji Milanovac,Third location,second,mean_drought_severity,daily,96,32,5,6,Clayton0,-0.088962,1.4698,Frank,0.0916,beta,0.696454,0.689203,0.710089,0.722328,0.44898,0
+Dnieper,Krementsjoek,First location,second,drought_peak,weekly,19,8,6,6,Clayton0,-0.519462,-9.7193,Clayton270,7.1701,cauchy,0.013974,0.012195,0.466156,0.023841,0.36352,0
+Dnieper,Krementsjoek,First location,second,drought_peak,daily,19,8,6,6,Clayton0,-0.519462,-9.7319,Clayton270,7.3128,cauchy,0.015773,0.013602,0.469987,0.026879,0.38648,0
+Dnieper,Krementsjoek,First location,second,mean_drought_severity,weekly,19,7,4,6,Clayton0,-0.456042,-3.7491,Clayton270,0.916,cauchy,0.015304,0.01395,0.466156,0.023841,0.36352,0
+Dnieper,Krementsjoek,First location,second,mean_drought_severity,daily,19,7,4,6,Clayton0,-0.456049,-3.7565,Clayton270,0.9881,cauchy,0.017146,0.015492,0.469987,0.026879,0.38648,0
+Dnieper,Dnipro,Second location,second,drought_peak,weekly,19,9,5,14,Joe270,1.322684,0.5256,Clayton0,0.53,lognorm,0.05989,0.05139,0.392082,0.071253,0.334184,191
+Dnieper,Dnipro,Second location,second,drought_peak,daily,19,9,5,14,Joe270,1.321809,0.5294,Student,0.5325,lognorm,0.060099,0.051627,0.392082,0.071503,0.334184,191
+Dnieper,Dnipro,Second location,second,mean_drought_severity,weekly,19,7,3,11,Joe0,1.461376,-0.5368,Clayton180,0.5055,lognorm,0.139819,0.199033,0.392082,0.071253,0.334184,155
+Dnieper,Dnipro,Second location,second,mean_drought_severity,daily,19,7,3,11,Joe0,1.455946,-0.4935,Clayton180,0.4977,lognorm,0.139633,0.198504,0.392082,0.071503,0.334184,157
+Dnieper,Cherson,Third location,second,drought_peak,weekly,15,9,5,6,Clayton0,-0.471291,-2.575,Clayton180,0.3165,weibull_min,0.00607,0.005136,0.371648,0.009529,0.330357,0
+Dnieper,Cherson,Third location,second,drought_peak,daily,15,9,5,6,Clayton0,-0.471291,-2.575,Clayton180,0.3165,weibull_min,0.005964,0.00503,0.376756,0.009368,0.332908,0
+Dnieper,Cherson,Third location,second,mean_drought_severity,weekly,15,8,3,6,Clayton0,-0.425107,-0.1586,Joe270,2.0311,weibull_min,0.005624,0.005106,0.371648,0.009529,0.330357,0
+Dnieper,Cherson,Third location,second,mean_drought_severity,daily,15,8,3,6,Clayton0,-0.425107,-0.1586,Joe270,2.0311,weibull_min,0.005601,0.005041,0.376756,0.009368,0.332908,0
+Rhine,Straatsburg,First location,second,drought_peak,weekly,88,45,5,9,Clayton270,0.272709,-1.385,Joe90,0.0828,beta,0.796298,0.775234,0.770115,0.828847,0.520408,0
+Rhine,Straatsburg,First location,second,drought_peak,daily,88,45,5,12,Joe90,1.236241,-2.2307,Clayton270,0.1388,beta,0.806978,0.810837,0.762452,0.829183,0.505102,202
+Rhine,Straatsburg,First location,second,mean_drought_severity,weekly,88,31,1,9,Clayton270,0.345406,-3.0028,Gumbel90,0.264,beta,0.782586,0.757883,0.770115,0.828847,0.520408,0
+Rhine,Straatsburg,First location,second,mean_drought_severity,daily,88,31,1,9,Clayton270,0.37076,-3.8766,Joe90,0.0729,beta,0.780126,0.754122,0.762452,0.829183,0.505102,0
+Rhine,Mainz,Second location,second,drought_peak,weekly,89,42,3,9,Clayton270,-0.08361,1.604,Clayton180,0.0683,beta,0.845348,0.847032,0.757344,0.8376,0.470663,0
+Rhine,Mainz,Second location,second,drought_peak,daily,89,42,3,8,Clayton180,0.068162,1.7227,Clayton270,0.0277,beta,0.847304,0.869464,0.759898,0.840076,0.477041,0
+Rhine,Mainz,Second location,second,mean_drought_severity,weekly,89,29,0,7,Clayton90,-0.099066,1.4442,Clayton180,0.0487,beta,0.871541,nan,0.757344,0.8376,0.470663,0
+Rhine,Mainz,Second location,second,mean_drought_severity,daily,89,29,0,7,Clayton90,-0.09701,1.469,Clayton180,0.0815,beta,0.872902,nan,0.759898,0.840076,0.477041,0
+Rhine,Nijmegen,Third location,second,drought_peak,weekly,80,41,4,9,Clayton270,-0.104653,1.3175,Clayton0,0.4052,beta,0.844925,0.843678,0.725415,0.833427,0.455357,0
+Rhine,Nijmegen,Third location,second,drought_peak,daily,80,41,4,9,Clayton270,-0.1023,1.3455,Clayton0,0.339,beta,0.828875,0.82874,0.706258,0.817043,0.445153,0
+Rhine,Nijmegen,Third location,second,mean_drought_severity,weekly,80,25,1,9,Clayton270,-0.133646,0.7032,Frank,0.6154,beta,0.850909,0.848341,0.725415,0.833427,0.455357,0
+Rhine,Nijmegen,Third location,second,mean_drought_severity,daily,80,25,1,9,Clayton270,-0.130474,0.7641,Frank,0.5933,beta,0.83662,0.829384,0.706258,0.817043,0.445153,0
+Don,Nikolaevskaya,First location,second,drought_peak,weekly,58,29,2,7,Clayton90,0.200135,0.8992,Joe270,0.1715,beta,0.558077,0.391337,0.560664,0.608196,0.399235,0
+Don,Nikolaevskaya,First location,second,drought_peak,daily,58,29,2,7,Clayton90,0.195832,0.9398,Joe270,0.1778,beta,0.519723,0.365881,0.559387,0.570291,0.396684,0
+Don,Nikolaevskaya,First location,second,mean_drought_severity,weekly,58,19,1,10,Frank,-0.946939,0.66,Clayton90,0.3744,beta,0.528143,0.506517,0.560664,0.608196,0.399235,0
+Don,Nikolaevskaya,First location,second,mean_drought_severity,daily,58,19,1,10,Frank,-0.915533,0.741,Clayton90,0.3572,beta,0.489269,0.46427,0.559387,0.570291,0.396684,0
+Don,Kochetovskaya,Second location,second,drought_peak,weekly,57,29,2,14,Joe270,1.259433,-1.3082,Clayton90,1.1085,weibull_min,0.550246,0.337397,0.590038,0.609276,0.394133,171
+Don,Kochetovskaya,Second location,second,drought_peak,daily,57,29,2,14,Joe270,1.259662,-1.3122,Clayton90,1.1082,beta,0.550043,0.336961,0.590038,0.609123,0.392857,171
+Don,Kochetovskaya,Second location,second,mean_drought_severity,weekly,57,20,1,14,Joe270,1.204005,-0.4117,Gumbel270,0.8574,weibull_min,0.519165,0.349334,0.590038,0.609276,0.394133,201
+Don,Kochetovskaya,Second location,second,mean_drought_severity,daily,57,20,1,14,Joe270,1.203873,-0.4096,Gumbel270,0.8549,beta,0.519004,0.349334,0.590038,0.609123,0.392857,201
+Don,Rostov - Dov,Third location,second,drought_peak,weekly,52,26,2,6,Clayton0,-0.325083,-2.3708,Clayton90,2.9006,uniform,0.374047,0.340527,0.554278,0.458945,0.391582,0
+Don,Rostov - Dov,Third location,second,drought_peak,daily,52,26,2,6,Clayton0,-0.32509,-2.3805,Clayton90,2.8929,beta,0.549085,0.501764,0.553001,0.641463,0.387755,0
+Don,Rostov - Dov,Third location,second,mean_drought_severity,weekly,52,13,1,6,Clayton0,-0.262686,-0.3683,Frank,1.9701,uniform,0.38025,0.36742,0.554278,0.458945,0.391582,0
+Don,Rostov - Dov,Third location,second,mean_drought_severity,daily,52,13,1,6,Clayton0,-0.262741,-0.3759,Frank,1.9713,beta,0.549561,0.533916,0.553001,0.641463,0.387755,0
+Vistula,Łączany,First location,second,drought_peak,weekly,122,51,0,7,Clayton90,-0.159667,-0.0521,Clayton180,1.7166,beta,0.963801,1.0,0.851852,0.935083,0.552296,0
+Vistula,Łączany,First location,second,drought_peak,daily,122,51,0,7,Clayton90,-0.159132,-0.0398,Clayton180,1.7728,beta,0.948411,1.0,0.846743,0.914092,0.547194,0
+Vistula,Łączany,First location,second,mean_drought_severity,weekly,122,21,0,7,Clayton90,-0.107983,1.0484,Clayton270,0.8373,beta,0.968243,1.0,0.851852,0.935083,0.552296,0
+Vistula,Łączany,First location,second,mean_drought_severity,daily,122,21,0,7,Clayton90,-0.108085,1.0437,Clayton270,0.7776,beta,0.955506,0.99537,0.846743,0.914092,0.547194,0
+Vistula,Warchau,Second location,second,drought_peak,weekly,90,42,3,15,Student,"[0.176255, 2.316694]",-4.8883,Joe0,3.4996,weibull_min,0.88516,0.750788,0.744572,0.860386,0.471939,0
+Vistula,Warchau,Second location,second,drought_peak,daily,90,42,3,15,Student,"[0.172231, 2.275062]",-5.0374,Joe0,3.5263,beta,0.822442,0.698206,0.744572,0.78446,0.471939,0
+Vistula,Warchau,Second location,second,mean_drought_severity,weekly,90,26,1,15,Student,"[0.172378, 2.226906]",-5.3672,Joe0,3.501,weibull_min,0.869649,0.72641,0.744572,0.860386,0.471939,0
+Vistula,Warchau,Second location,second,mean_drought_severity,daily,90,26,1,15,Student,"[0.166815, 2.227869]",-5.3005,Joe0,3.5421,beta,0.808849,0.696747,0.744572,0.78446,0.471939,0
+Vistula,Turon,Third location,second,drought_peak,weekly,56,34,5,7,Clayton90,-0.330791,-1.6773,Joe90,0.2816,uniform,0.478823,0.71081,0.498084,0.40046,0.350765,0
+Vistula,Turon,Third location,second,drought_peak,daily,56,34,5,12,Joe90,1.258084,-1.9625,Clayton90,0.3062,uniform,0.34203,0.325567,0.544061,0.407052,0.385204,239
+Vistula,Turon,Third location,second,mean_drought_severity,weekly,56,20,1,7,Clayton90,-0.357617,-3.5561,Joe90,2.4574,uniform,0.54338,0.863025,0.498084,0.40046,0.350765,0
+Vistula,Turon,Third location,second,mean_drought_severity,daily,56,20,1,7,Clayton90,-0.357643,-3.5349,Joe90,1.8746,uniform,0.550948,0.868528,0.544061,0.407052,0.385204,0
+Po,Turijn,First location,second,drought_peak,weekly,75,28,0,6,Clayton0,-0.198728,0.7103,Clayton180,0.5815,beta,0.84836,0.772414,0.786718,0.88971,0.494898,0
+Po,Turijn,First location,second,drought_peak,daily,75,28,0,6,Clayton0,-0.200985,0.6765,Clayton180,0.705,beta,0.841266,0.76092,0.795658,0.884907,0.508929,0
+Po,Turijn,First location,second,mean_drought_severity,weekly,75,13,0,6,Clayton0,-0.252653,-1.5058,Joe0,2.4867,beta,0.820434,0.666667,0.786718,0.88971,0.494898,0
+Po,Turijn,First location,second,mean_drought_severity,daily,75,13,0,6,Clayton0,-0.254387,-1.5767,Joe0,2.7904,beta,0.814067,0.666667,0.795658,0.884907,0.508929,0
+Po,Piacenza,Second location,second,drought_peak,weekly,92,40,1,9,Clayton270,-0.267366,-5.8066,Frank,2.3131,weibull_min,0.972669,0.970345,0.785441,0.964209,0.497449,0
+Po,Piacenza,Second location,second,drought_peak,daily,92,40,1,9,Clayton270,-0.263923,-5.5097,Frank,2.0666,beta,0.938533,0.94,0.794381,0.920383,0.503827,0
+Po,Piacenza,Second location,second,mean_drought_severity,weekly,92,26,0,10,Frank,1.916162,-6.6127,Clayton270,0.1772,weibull_min,0.98419,1.0,0.785441,0.964209,0.497449,0
+Po,Piacenza,Second location,second,mean_drought_severity,daily,92,26,0,10,Frank,1.906665,-6.5334,Clayton270,0.129,beta,0.963838,0.931034,0.794381,0.920383,0.503827,0
+Po,Cermede / Castelmassa,Third location,second,drought_peak,weekly,88,39,1,6,Clayton0,-0.111661,1.4954,Clayton180,0.3729,beta,0.907476,0.902743,0.753512,0.924619,0.455357,0
+Po,Cermede / Castelmassa,Third location,second,drought_peak,daily,88,39,1,6,Clayton0,-0.102986,1.5714,Clayton180,0.3375,beta,0.867509,0.866168,0.775223,0.887556,0.47449,0
+Po,Cermede / Castelmassa,Third location,second,mean_drought_severity,weekly,88,19,1,8,Clayton180,0.164029,0.5566,Joe0,0.187,beta,0.938412,0.961059,0.753512,0.924619,0.455357,0
+Po,Cermede / Castelmassa,Third location,second,mean_drought_severity,daily,88,19,1,8,Clayton180,0.155884,0.6831,Joe0,0.2614,beta,0.908288,0.945483,0.775223,0.887556,0.47449,0
+Elbe,Dresden,First location,second,drought_peak,weekly,98,48,2,8,Clayton180,-0.122456,1.0487,Joe270,0.5739,beta,0.875234,0.825532,0.810983,0.888494,0.497449,0
+Elbe,Dresden,First location,second,drought_peak,daily,98,48,2,8,Clayton180,-0.122886,1.0495,Joe270,0.5827,beta,0.913039,0.87853,0.810983,0.923576,0.496173,0
+Elbe,Dresden,First location,second,mean_drought_severity,weekly,98,28,2,8,Clayton180,-0.130821,1.0069,Clayton0,0.9112,beta,0.866873,0.818441,0.810983,0.888494,0.497449,0
+Elbe,Dresden,First location,second,mean_drought_severity,daily,98,28,2,8,Clayton180,-0.130809,1.0038,Clayton0,0.9127,beta,0.907156,0.870722,0.810983,0.923576,0.496173,0
+Elbe,Magdeburg,Second location,second,drought_peak,weekly,75,41,3,8,Clayton180,-0.206918,-0.1785,Clayton90,1.6926,beta,0.675086,0.518856,0.703704,0.712194,0.432398,0
+Elbe,Magdeburg,Second location,second,drought_peak,daily,75,41,3,8,Clayton180,-0.20775,-0.1989,Clayton90,1.7063,beta,0.682336,0.526695,0.708812,0.719473,0.442602,0
+Elbe,Magdeburg,Second location,second,mean_drought_severity,weekly,75,27,1,8,Clayton180,-0.077179,1.6977,Clayton0,0.071,beta,0.688022,0.602007,0.703704,0.712194,0.432398,0
+Elbe,Magdeburg,Second location,second,mean_drought_severity,daily,75,27,1,8,Clayton180,-0.080167,1.6738,Clayton0,0.1,beta,0.694359,0.606785,0.708812,0.719473,0.442602,0
+Elbe,Wittenberge,Third location,second,drought_peak,weekly,68,37,3,13,Joe180,1.189124,0.0586,Clayton0,0.5805,beta,0.759755,0.76652,0.696041,0.713483,0.438776,249
+Elbe,Wittenberge,Third location,second,drought_peak,daily,68,37,3,13,Joe180,1.18899,0.0605,Clayton0,0.5676,beta,0.770987,0.775991,0.690932,0.725994,0.434949,249
+Elbe,Wittenberge,Third location,second,mean_drought_severity,weekly,68,21,1,13,Joe180,1.23103,-1.0186,Clayton0,0.9093,beta,0.773013,0.768387,0.696041,0.713483,0.438776,231
+Elbe,Wittenberge,Third location,second,mean_drought_severity,daily,68,21,1,13,Joe180,1.231646,-1.0335,Clayton0,0.9031,beta,0.786025,0.783226,0.690932,0.725994,0.434949,230
+Rhône,Lyon,First location,second,drought_peak,weekly,99,51,2,8,Clayton180,-0.163093,0.8556,Clayton0,0.2486,beta,0.675327,0.546281,0.731801,0.705249,0.455357,0
+Rhône,Lyon,First location,second,drought_peak,daily,99,51,2,8,Clayton180,-0.16934,0.6599,Clayton0,0.4457,beta,0.728339,0.616105,0.739464,0.753918,0.470663,0
+Rhône,Lyon,First location,second,mean_drought_severity,weekly,99,33,1,7,Clayton90,-0.156665,-0.0512,Clayton0,0.2175,beta,0.771733,0.921303,0.731801,0.705249,0.455357,0
+Rhône,Lyon,First location,second,mean_drought_severity,daily,99,33,1,7,Clayton90,-0.156155,-0.0341,Clayton0,0.2121,beta,0.81715,0.952882,0.739464,0.753918,0.470663,0
+Rhône,Montelimar,Second location,second,drought_peak,weekly,97,47,2,6,Clayton0,0.276673,-2.2941,Clayton90,1.5644,beta,0.835094,0.852965,0.738186,0.77672,0.461735,0
+Rhône,Montelimar,Second location,second,drought_peak,daily,97,47,2,6,Clayton0,0.275273,-2.2599,Clayton90,1.5841,beta,0.823959,0.840374,0.738186,0.765333,0.46301,0
+Rhône,Montelimar,Second location,second,mean_drought_severity,weekly,97,31,2,6,Clayton0,0.355808,-4.6035,Joe180,1.4781,beta,0.855134,0.865223,0.738186,0.77672,0.461735,0
+Rhône,Montelimar,Second location,second,mean_drought_severity,daily,97,31,2,6,Clayton0,0.35342,-4.538,Joe180,1.4606,beta,0.84617,0.853189,0.738186,0.765333,0.46301,0
+Rhône,Avignon,Third location,second,drought_peak,weekly,98,48,3,6,Clayton0,0.197192,-0.2182,Joe180,0.1582,beta,0.85135,0.868056,0.772669,0.813995,0.48852,0
+Rhône,Avignon,Third location,second,drought_peak,daily,98,48,3,6,Clayton0,0.197558,-0.2273,Joe180,0.1701,beta,0.858225,0.875801,0.771392,0.821888,0.487245,0
+Rhône,Avignon,Third location,second,mean_drought_severity,weekly,98,35,3,6,Clayton0,0.217205,-0.5463,Frank,0.3919,beta,0.859664,0.872649,0.772669,0.813995,0.48852,0
+Rhône,Avignon,Third location,second,mean_drought_severity,daily,98,35,3,6,Clayton0,0.21749,-0.5536,Frank,0.4062,beta,0.866297,0.877351,0.771392,0.821888,0.487245,0
+Oder,Krapowice,First location,second,drought_peak,weekly,112,64,1,3,Gumbel90,1.069205,0.8745,Clayton270,0.0362,beta,0.949656,0.9453,0.844189,0.955904,0.533163,4
+Oder,Krapowice,First location,second,drought_peak,daily,112,64,1,3,Gumbel90,1.064647,1.0357,Frank,0.0415,beta,0.955399,0.953041,0.8659,0.960649,0.556122,4
+Oder,Krapowice,First location,second,mean_drought_severity,weekly,112,39,1,9,Clayton270,0.107434,1.2393,Joe90,0.0538,beta,0.950877,0.954023,0.844189,0.955904,0.533163,0
+Oder,Krapowice,First location,second,mean_drought_severity,daily,112,39,1,9,Clayton270,0.089691,1.4724,Joe90,0.0128,beta,0.956469,0.959387,0.8659,0.960649,0.556122,0
+Oder,Scinawa,Second location,second,drought_peak,weekly,101,47,1,15,Student,"[-0.092059, 3.133444]",-1.1644,Joe90,1.0348,beta,0.841745,0.590217,0.787995,0.864253,0.485969,0
+Oder,Scinawa,Second location,second,drought_peak,daily,101,47,1,15,Student,"[-0.092989, 3.208885]",-0.9823,Joe90,0.9696,beta,0.861476,0.621779,0.799489,0.881165,0.493622,0
+Oder,Scinawa,Second location,second,mean_drought_severity,weekly,101,30,0,12,Joe90,1.152787,-0.6044,Gumbel90,0.6989,beta,0.855849,nan,0.787995,0.864253,0.485969,271
+Oder,Scinawa,Second location,second,mean_drought_severity,daily,101,30,0,12,Joe90,1.149582,-0.4586,Gumbel90,0.6422,beta,0.875367,nan,0.799489,0.881165,0.493622,273
+Oder,Kostrzyn nad Odra,Third location,second,drought_peak,weekly,71,31,2,6,Clayton0,-0.119101,0.977,Joe0,0.4666,beta,0.602906,0.582619,0.639847,0.634749,0.423469,0
+Oder,Kostrzyn nad Odra,Third location,second,drought_peak,daily,71,31,2,6,Clayton0,-0.119078,0.9793,Joe0,0.457,beta,0.607723,0.589244,0.639847,0.639657,0.423469,0
+Oder,Kostrzyn nad Odra,Third location,second,mean_drought_severity,weekly,71,24,1,6,Clayton0,-0.107263,1.2467,Frank,0.5459,beta,0.60121,0.588071,0.639847,0.634749,0.423469,0
+Oder,Kostrzyn nad Odra,Third location,second,mean_drought_severity,daily,71,24,1,6,Clayton0,-0.107392,1.2468,Frank,0.561,beta,0.606376,0.591973,0.639847,0.639657,0.423469,0
+Loire,Decize,First location,second,drought_peak,weekly,116,62,0,7,Clayton90,-0.171873,-0.2504,Clayton270,1.687,beta,0.88937,1.0,0.807152,0.851709,0.502551,0
+Loire,Decize,First location,second,drought_peak,daily,116,62,0,7,Clayton90,-0.171427,-0.2487,Clayton270,1.8198,beta,0.899635,1.0,0.818646,0.864256,0.51148,0
+Loire,Decize,First location,second,mean_drought_severity,weekly,116,44,2,11,Joe0,1.093417,0.6834,Clayton90,0.2694,beta,0.863826,0.890741,0.807152,0.851709,0.502551,376
+Loire,Decize,First location,second,mean_drought_severity,daily,116,44,2,11,Joe0,1.092019,0.6978,Clayton90,0.2165,beta,0.874967,0.899147,0.818646,0.864256,0.51148,378
+Loire,Orléans,Second location,second,drought_peak,weekly,103,51,3,7,Clayton90,-0.185389,-0.1255,Joe90,1.6118,beta,0.816586,0.945017,0.745849,0.762685,0.456633,0
+Loire,Orléans,Second location,second,drought_peak,daily,103,51,3,7,Clayton90,-0.186043,-0.1567,Joe90,1.1287,beta,0.842681,0.96134,0.747126,0.791509,0.461735,0
+Loire,Orléans,Second location,second,mean_drought_severity,weekly,103,42,3,7,Clayton90,-0.197411,-0.1591,Joe90,1.7397,beta,0.842622,0.957075,0.745849,0.762685,0.456633,0
+Loire,Orléans,Second location,second,mean_drought_severity,daily,103,42,3,7,Clayton90,-0.19844,-0.2068,Joe90,1.3001,beta,0.867546,0.970702,0.747126,0.791509,0.461735,0
+Loire,St. Maurillle,Third location,second,drought_peak,weekly,87,50,6,12,Joe90,1.159953,-0.4594,Clayton270,0.6358,beta,0.626478,0.625768,0.659004,0.651439,0.422194,233
+Loire,St. Maurillle,Third location,second,drought_peak,daily,87,50,6,12,Joe90,1.154167,-0.3142,Clayton270,0.5126,beta,0.639331,0.641317,0.660281,0.662311,0.42602,239
+Loire,St. Maurillle,Third location,second,mean_drought_severity,weekly,87,36,2,12,Joe90,1.119606,0.433,Clayton90,0.0409,beta,0.632565,0.65702,0.659004,0.651439,0.422194,274
+Loire,St. Maurillle,Third location,second,mean_drought_severity,daily,87,36,2,7,Clayton90,-0.165695,0.5138,Joe90,0.0383,beta,0.72734,0.847845,0.660281,0.662311,0.42602,0
+Seine,Paris,First location,second,drought_peak,weekly,79,36,3,7,Clayton90,-0.266653,-2.0121,Joe180,1.0876,beta,0.814143,0.98256,0.641124,0.740323,0.414541,0
+Seine,Paris,First location,second,drought_peak,daily,79,36,3,7,Clayton90,-0.268007,-2.0648,Joe180,1.1736,beta,0.841064,0.990538,0.650064,0.76953,0.428571,0
+Seine,Paris,First location,second,mean_drought_severity,weekly,79,27,1,7,Clayton90,-0.259869,-2.4788,Joe180,1.3389,beta,0.872797,0.998472,0.641124,0.740323,0.414541,0
+Seine,Paris,First location,second,mean_drought_severity,daily,79,27,1,7,Clayton90,-0.25949,-2.4568,Joe180,1.3683,beta,0.896122,1.0,0.650064,0.76953,0.428571,0
+Seine,Vernon,Second location,second,drought_peak,weekly,74,36,3,9,Clayton270,0.165723,0.9088,Joe90,0.2028,beta,0.764711,0.763012,0.657727,0.783311,0.420918,0
+Seine,Vernon,Second location,second,drought_peak,daily,74,36,3,9,Clayton270,0.160483,0.9722,Joe90,0.1512,beta,0.771231,0.770169,0.657727,0.789465,0.42602,0
+Seine,Vernon,Second location,second,mean_drought_severity,weekly,74,23,1,12,Joe90,1.14599,0.7504,Clayton270,0.0091,beta,0.764658,0.815789,0.657727,0.783311,0.420918,310
+Seine,Vernon,Second location,second,mean_drought_severity,daily,74,23,1,12,Joe90,1.144278,0.7653,Clayton270,0.0546,beta,0.771428,0.821682,0.657727,0.789465,0.42602,312
+Seine,Rouen,Third location,second,drought_peak,weekly,75,38,2,9,Clayton270,0.191751,0.6943,Joe90,0.1136,beta,0.756755,0.746579,0.64751,0.781503,0.415816,0
+Seine,Rouen,Third location,second,drought_peak,daily,75,38,2,9,Clayton270,0.191015,0.588,Clayton180,0.1313,beta,0.780847,0.76978,0.657727,0.802455,0.423469,0
+Seine,Rouen,Third location,second,mean_drought_severity,weekly,75,22,1,12,Joe90,1.155765,0.8327,Clayton270,0.002,beta,0.758383,0.836453,0.64751,0.781503,0.415816,270
+Seine,Rouen,Third location,second,mean_drought_severity,daily,75,22,1,9,Clayton270,0.176009,0.7406,Joe90,0.1998,beta,0.777575,0.761726,0.657727,0.802455,0.423469,0
+Ebro,Haro,First location,second,drought_peak,weekly,120,64,0,7,Clayton90,-0.175735,-1.361,Frank,1.2248,beta,0.937825,1.0,0.763729,0.911377,0.469388,0
+Ebro,Haro,First location,second,drought_peak,daily,120,64,0,7,Clayton90,-0.176478,-1.387,Frank,1.3152,beta,0.940426,1.0,0.822478,0.914327,0.530612,0
+Ebro,Haro,First location,second,mean_drought_severity,weekly,120,34,0,7,Clayton90,-0.30956,-12.2984,Frank,6.4976,beta,0.991927,nan,0.763729,0.911377,0.469388,0
+Ebro,Haro,First location,second,mean_drought_severity,daily,120,34,0,7,Clayton90,-0.311131,-12.5312,Frank,6.7346,beta,0.99299,nan,0.822478,0.914327,0.530612,0
+Ebro,Tudela,Second location,second,drought_peak,weekly,111,56,3,9,Clayton270,-0.220606,-2.9539,Gaussian,0.3259,beta,0.831438,0.8389,0.748404,0.80676,0.480867,0
+Ebro,Tudela,Second location,second,drought_peak,daily,111,56,3,9,Clayton270,-0.240063,-4.1138,Gaussian,1.1212,beta,0.847211,0.856045,0.766284,0.821769,0.501276,0
+Ebro,Tudela,Second location,second,mean_drought_severity,weekly,111,35,2,2,Gumbel0,1.204593,-6.4265,Clayton180,0.3286,beta,0.871365,0.939358,0.748404,0.80676,0.480867,1
+Ebro,Tudela,Second location,second,mean_drought_severity,daily,111,35,2,8,Clayton180,0.375612,-6.1847,Gumbel0,0.0206,beta,0.878047,0.966903,0.766284,0.821769,0.501276,0
+Ebro,Zaragoza,Third location,second,drought_peak,weekly,116,62,3,10,Frank,1.194948,-2.341,Gumbel180,0.5612,beta,0.851618,0.898214,0.735632,0.800579,0.470663,0
+Ebro,Zaragoza,Third location,second,drought_peak,daily,116,62,3,10,Frank,1.190727,-2.3192,Gaussian,0.5084,beta,0.860647,0.904464,0.749681,0.811829,0.482143,0
+Ebro,Zaragoza,Third location,second,mean_drought_severity,weekly,116,42,2,10,Frank,1.240262,-2.6904,Gumbel180,0.7231,beta,0.865883,0.894973,0.735632,0.800579,0.470663,0
+Ebro,Zaragoza,Third location,second,mean_drought_severity,daily,116,42,2,10,Frank,1.241179,-2.7095,Gumbel180,0.7234,beta,0.874549,0.903052,0.749681,0.811829,0.482143,0
+Douro,Pocinho,First location,second,drought_peak,weekly,47,12,3,14,Joe270,1.233072,0.1195,Clayton0,0.1594,beta,0.469907,0.310024,0.51341,0.562824,0.376276,217
+Douro,Pocinho,First location,second,drought_peak,daily,47,12,3,6,Clayton0,-0.225139,0.2265,Joe270,0.0021,beta,0.49689,0.486575,0.51341,0.572805,0.376276,0
+Douro,Pocinho,First location,second,mean_drought_severity,weekly,47,6,0,6,Clayton0,-0.213853,0.6713,Joe270,0.3678,beta,0.480874,0.477064,0.51341,0.562824,0.376276,0
+Douro,Pocinho,First location,second,mean_drought_severity,daily,47,6,0,6,Clayton0,-0.214725,0.651,Clayton90,0.3973,beta,0.488899,0.481651,0.51341,0.572805,0.376276,0
+Douro,Peso da Regua,Second location,second,drought_peak,weekly,57,17,4,7,Clayton90,0.303896,-0.4881,Joe270,0.0328,beta,0.468036,0.30754,0.500639,0.579883,0.364796,0
+Douro,Peso da Regua,Second location,second,drought_peak,daily,57,17,4,7,Clayton90,0.302157,-0.4581,Joe270,0.0067,beta,0.482784,0.321169,0.510856,0.594495,0.376276,0
+Douro,Peso da Regua,Second location,second,mean_drought_severity,weekly,57,7,1,7,Clayton90,0.32937,-1.3406,Joe270,0.3924,beta,0.368656,0.174185,0.500639,0.579883,0.364796,0
+Douro,Peso da Regua,Second location,second,mean_drought_severity,daily,57,7,1,7,Clayton90,0.328279,-1.3197,Joe270,0.3703,beta,0.382566,0.184211,0.510856,0.594495,0.376276,0
+Douro,Rio Mau,Third location,second,drought_peak,weekly,60,20,3,14,Joe270,1.190781,-0.3504,Clayton90,0.0992,beta,0.557307,0.403205,0.536398,0.638157,0.373724,265
+Douro,Rio Mau,Third location,second,drought_peak,daily,60,20,3,7,Clayton90,0.243624,-0.1302,Joe270,0.0141,beta,0.578195,0.420648,0.544061,0.657342,0.383929,0
+Douro,Rio Mau,Third location,second,mean_drought_severity,weekly,60,7,0,14,Joe270,1.204269,-0.3543,Clayton90,0.0167,beta,0.488659,0.323961,0.536398,0.638157,0.373724,256
+Douro,Rio Mau,Third location,second,mean_drought_severity,daily,60,7,0,7,Clayton90,0.252147,-0.2898,Joe270,0.0607,beta,0.512271,0.358881,0.544061,0.657342,0.383929,0
+Tagus,Toledo,First location,second,drought_peak,weekly,84,28,1,15,Student,"[-0.123032, 3.436232]",-0.1746,Joe90,0.6749,beta,0.797731,0.56446,0.715198,0.838494,0.464286,0
+Tagus,Toledo,First location,second,drought_peak,daily,84,28,1,15,Student,"[-0.125942, 4.051067]",0.4234,Clayton270,0.0122,beta,0.820832,0.616056,0.721584,0.857857,0.475765,0
+Tagus,Toledo,First location,second,mean_drought_severity,weekly,84,16,0,15,Student,"[-0.126631, 2.969108]",-0.4887,Joe90,1.292,beta,0.745883,nan,0.715198,0.838494,0.464286,0
+Tagus,Toledo,First location,second,mean_drought_severity,daily,84,16,0,15,Student,"[-0.128626, 3.565376]",0.4716,Clayton270,0.3329,beta,0.779681,nan,0.721584,0.857857,0.475765,0
+Tagus,La Bazagona,Second location,second,drought_peak,weekly,73,27,3,6,Clayton0,0.592307,-9.334,Joe180,0.8111,beta,0.746778,0.779698,0.564496,0.621504,0.378827,0
+Tagus,La Bazagona,Second location,second,drought_peak,daily,73,27,3,6,Clayton0,0.591713,-9.3194,Joe180,0.7908,beta,0.754848,0.787445,0.59387,0.629253,0.40051,0
+Tagus,La Bazagona,Second location,second,mean_drought_severity,weekly,73,18,1,6,Clayton0,0.648791,-10.9725,Joe180,0.1691,beta,0.777916,0.803594,0.564496,0.621504,0.378827,0
+Tagus,La Bazagona,Second location,second,mean_drought_severity,daily,73,18,1,6,Clayton0,0.650105,-11.016,Joe180,0.1542,beta,0.785432,0.811297,0.59387,0.629253,0.40051,0
+Tagus,Vila Velha de Rodao,Third location,second,drought_peak,weekly,76,25,1,7,Clayton90,-0.133983,0.9541,Gumbel0,0.1425,beta,0.587484,0.697666,0.51341,0.517968,0.367347,0
+Tagus,Vila Velha de Rodao,Third location,second,drought_peak,daily,76,25,1,7,Clayton90,-0.126009,1.0577,Clayton0,0.2051,beta,0.593701,0.699039,0.517241,0.528414,0.375,0
+Tagus,Vila Velha de Rodao,Third location,second,mean_drought_severity,weekly,76,10,0,7,Clayton90,-0.130241,0.9739,Clayton0,0.2553,beta,0.610532,nan,0.51341,0.517968,0.367347,0
+Tagus,Vila Velha de Rodao,Third location,second,mean_drought_severity,daily,76,10,0,7,Clayton90,-0.126833,1.0327,Clayton0,0.2305,beta,0.619299,nan,0.517241,0.528414,0.375,0
+Weser,Bodenwerder,First location,second,drought_peak,weekly,97,49,1,3,Gumbel90,1.117054,-0.4427,Frank,0.0221,beta,0.692452,0.646927,0.710089,0.733057,0.440051,0
+Weser,Bodenwerder,First location,second,drought_peak,daily,97,49,1,10,Frank,-0.987806,-0.4451,Gumbel90,0.0234,beta,0.713946,0.683566,0.726692,0.760706,0.46301,0
+Weser,Bodenwerder,First location,second,mean_drought_severity,weekly,97,28,0,12,Joe90,1.189285,-0.8452,Gumbel90,0.1635,beta,0.700814,0.743322,0.710089,0.733057,0.440051,219
+Weser,Bodenwerder,First location,second,mean_drought_severity,daily,97,28,0,12,Joe90,1.186076,-0.741,Gumbel90,0.1228,beta,0.732017,0.775842,0.726692,0.760706,0.46301,221
+Weser,Pora Wesfalica,Second location,second,drought_peak,weekly,92,48,1,9,Clayton270,-0.187313,0.598,Joe270,0.7078,beta,0.733435,0.739485,0.703704,0.697643,0.450255,0
+Weser,Pora Wesfalica,Second location,second,drought_peak,daily,92,48,1,9,Clayton270,-0.191633,0.5461,Joe270,0.7607,beta,0.769544,0.779661,0.704981,0.737063,0.456633,0
+Weser,Pora Wesfalica,Second location,second,mean_drought_severity,weekly,92,29,1,9,Clayton270,-0.119783,1.2168,Clayton90,0.3744,beta,0.723138,0.751553,0.703704,0.697643,0.450255,0
+Weser,Pora Wesfalica,Second location,second,mean_drought_severity,daily,92,29,1,9,Clayton270,-0.12668,1.1372,Clayton90,0.4633,beta,0.760931,0.785714,0.704981,0.737063,0.456633,0
+Weser,Bremen,Third location,second,drought_peak,weekly,85,43,1,7,Clayton90,0.160272,0.6807,Clayton180,0.3097,beta,0.716733,0.516599,0.734355,0.750857,0.455357,0
+Weser,Bremen,Third location,second,drought_peak,daily,85,43,1,8,Clayton180,-0.156371,0.5182,Clayton90,0.1258,beta,0.710716,0.574257,0.738186,0.736706,0.460459,0
+Weser,Bremen,Third location,second,mean_drought_severity,weekly,85,28,1,14,Joe270,1.24341,-2.8158,Clayton90,0.6349,beta,0.645343,0.262575,0.734355,0.750857,0.455357,200
+Weser,Bremen,Third location,second,mean_drought_severity,daily,85,28,1,14,Joe270,1.246071,-2.8942,Clayton180,0.3356,beta,0.629092,0.252261,0.738186,0.736706,0.460459,197
+Meuse,Dun-sur-Meuse,First location,second,drought_peak,weekly,86,47,2,7,Clayton90,-0.094288,1.5482,Frank,0.2663,beta,0.736356,0.835921,0.669221,0.708367,0.429847,0
+Meuse,Dun-sur-Meuse,First location,second,drought_peak,daily,86,47,2,7,Clayton90,-0.093551,1.5562,Joe90,0.119,beta,0.79439,0.881922,0.706258,0.768388,0.460459,0
+Meuse,Dun-sur-Meuse,First location,second,mean_drought_severity,weekly,86,30,1,7,Clayton90,-0.194352,-0.5617,Frank,1.4996,beta,0.795198,0.968071,0.669221,0.708367,0.429847,0
+Meuse,Dun-sur-Meuse,First location,second,mean_drought_severity,daily,86,30,1,7,Clayton90,-0.193163,-0.5175,Frank,1.482,beta,0.848994,0.985734,0.706258,0.768388,0.460459,0
+Meuse,Givet,Second location,second,drought_peak,weekly,95,45,2,9,Clayton270,-0.045613,1.9122,Frank,0.0067,beta,0.7442,0.735736,0.699872,0.735431,0.44898,0
+Meuse,Givet,Second location,second,drought_peak,daily,95,45,2,10,Frank,-0.187969,1.9088,Clayton180,0.0304,beta,0.738155,0.733265,0.712644,0.748781,0.46301,0
+Meuse,Givet,Second location,second,mean_drought_severity,weekly,95,32,1,9,Clayton270,-0.079032,1.7455,Clayton90,0.1683,beta,0.755137,0.746988,0.699872,0.735431,0.44898,0
+Meuse,Givet,Second location,second,mean_drought_severity,daily,95,32,1,9,Clayton270,-0.075783,1.7354,Clayton90,0.1756,beta,0.76709,0.759036,0.712644,0.748781,0.46301,0
+Meuse,Maastricht,Third location,second,drought_peak,weekly,95,49,5,7,Clayton90,-0.107569,1.4627,Clayton270,0.0244,beta,0.799613,0.892122,0.743295,0.770954,0.464286,0
+Meuse,Maastricht,Third location,second,drought_peak,daily,95,49,5,7,Clayton90,-0.106289,1.4764,Clayton0,0.2026,beta,0.820933,0.908043,0.754789,0.79379,0.485969,0
+Meuse,Maastricht,Third location,second,mean_drought_severity,weekly,95,37,3,9,Clayton270,-0.113294,1.2594,Clayton90,0.379,beta,0.793377,0.801473,0.743295,0.770954,0.464286,0
+Meuse,Maastricht,Third location,second,mean_drought_severity,daily,95,37,3,9,Clayton270,-0.084101,1.526,Clayton90,0.1203,beta,0.81004,0.816204,0.754789,0.79379,0.485969,0

@@ -1,0 +1,7 @@
+script: scripts/41_copula_figures.py
+run_minutes: 1.2
+python: 3.12.13
+inputs:
+  data/efas_v5_dis06_48_locations_1995_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+  results/2026-09-02_copula_bootstrap/transition_ci.csv: 71d5adbb41b9a884c44880452c75713c04f64be9becfd6d69badffd03672b908
+seed_scheme: "numpy.random.SeedSequence(42).spawn(96), als script 22"

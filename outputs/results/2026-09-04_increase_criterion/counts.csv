@@ -1,0 +1,33 @@
+criterium,period,pair,toename,afname,beide,geen,n_beoordeeld,n_zonder_zware_curve,gepubliceerd
+"punt bij 0,69 voorbij 0",first,drought_peak,17,28,0,0,45,2,5
+"punt bij 0,69 voorbij 0",first,mean_drought_severity,19,21,0,1,41,6,6
+"punt bij 0,69 voorbij 0",second,drought_peak,18,30,0,0,48,0,7
+"punt bij 0,69 voorbij 0",second,mean_drought_severity,24,19,0,0,43,5,9
+"punt bij 0,69 voorbij +0.02",first,drought_peak,13,24,0,8,45,2,5
+"punt bij 0,69 voorbij +0.02",first,mean_drought_severity,13,18,0,10,41,6,6
+"punt bij 0,69 voorbij +0.02",second,drought_peak,11,19,0,18,48,0,7
+"punt bij 0,69 voorbij +0.02",second,mean_drought_severity,19,10,0,14,43,5,9
+"punt bij 0,69 voorbij +0.05",first,drought_peak,8,18,0,19,45,2,5
+"punt bij 0,69 voorbij +0.05",first,mean_drought_severity,8,13,0,20,41,6,6
+"punt bij 0,69 voorbij +0.05",second,drought_peak,8,13,0,27,48,0,7
+"punt bij 0,69 voorbij +0.05",second,mean_drought_severity,11,7,0,25,43,5,9
+mediaan over y voorbij +0.02,first,drought_peak,5,19,0,21,45,2,5
+mediaan over y voorbij +0.02,first,mean_drought_severity,4,13,0,24,41,6,6
+mediaan over y voorbij +0.02,second,drought_peak,7,11,0,30,48,0,7
+mediaan over y voorbij +0.02,second,mean_drought_severity,8,6,0,29,43,5,9
+mediaan over y voorbij +0.05,first,drought_peak,0,11,0,34,45,2,5
+mediaan over y voorbij +0.05,first,mean_drought_severity,1,9,0,31,41,6,6
+mediaan over y voorbij +0.05,second,drought_peak,2,9,0,37,48,0,7
+mediaan over y voorbij +0.05,second,mean_drought_severity,2,4,0,37,43,5,9
+"95% interval sluit nul uit bij 0,69",first,drought_peak,0,1,0,44,45,2,5
+"95% interval sluit nul uit bij 0,69",first,mean_drought_severity,1,1,0,39,41,6,6
+"95% interval sluit nul uit bij 0,69",second,drought_peak,0,0,0,48,48,0,7
+"95% interval sluit nul uit bij 0,69",second,mean_drought_severity,0,0,0,43,43,5,9
+"95% interval sluit nul uit bij 0,69, 0,90 of 0,95",first,drought_peak,1,1,0,43,45,2,5
+"95% interval sluit nul uit bij 0,69, 0,90 of 0,95",first,mean_drought_severity,1,1,0,39,41,6,6
+"95% interval sluit nul uit bij 0,69, 0,90 of 0,95",second,drought_peak,0,0,0,48,48,0,7
+"95% interval sluit nul uit bij 0,69, 0,90 of 0,95",second,mean_drought_severity,0,0,0,43,43,5,9
+"minstens 3 van 4 toetsen p < 0.05, richting uit tau",first,drought_peak,1,2,0,44,47,0,5
+"minstens 3 van 4 toetsen p < 0.05, richting uit tau",first,mean_drought_severity,2,1,0,44,47,0,6
+"minstens 3 van 4 toetsen p < 0.05, richting uit tau",second,drought_peak,2,0,0,46,48,0,7
+"minstens 3 van 4 toetsen p < 0.05, richting uit tau",second,mean_drought_severity,4,0,0,44,48,0,9
