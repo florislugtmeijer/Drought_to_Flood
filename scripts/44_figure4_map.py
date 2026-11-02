@@ -163,11 +163,13 @@ def main():
                bbox_to_anchor=(0.715, 0.975), ncols=2 if len(present) > 8 else 1, columnspacing=0.8, **kw)
     h_cat = [Line2D([], [], marker=m, ls="", ms=9, mfc="white", mec=INK, mew=0.9, label=lab)
              for m, lab in SHAPE.values()]
+    # bij veel rivieren (twee kolommen) schuiven de andere twee legenda's omlaag
+    y_cat, y_pos = (0.60, 0.33) if len(present) <= 8 else (0.50, 0.23)
     fig.legend(handles=h_cat, title="Significant (shape)", loc="upper left",
-               bbox_to_anchor=(0.715, 0.60), **kw)
+               bbox_to_anchor=(0.715, y_cat), **kw)
     h_pos = [Line2D([], [], ls="", label=t) for t in ("1 = upstream", "2 = midstream", "3 = downstream")]
     fig.legend(handles=h_pos, title="Location (number)", loc="upper left",
-               bbox_to_anchor=(0.715, 0.33), handlelength=0, **{**kw, "handletextpad": 0})
+               bbox_to_anchor=(0.715, y_pos), handlelength=0, **{**kw, "handletextpad": 0})
     for ext in ("png", "pdf"):
         fig.savefig(f"{OUT}/fig04_map.{ext}", dpi=300 if ext == "png" else None,
                     facecolor="white")
