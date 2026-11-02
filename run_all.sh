@@ -3,6 +3,8 @@
 # for the reported runs. Run from the repository root after `uv sync --frozen`.
 # Each script writes a dated folder under results/ and a manifest.yaml.
 # Times are for a 2024 laptop; the three long steps are marked.
+# To skip the long steps, first run `cp -R outputs/results/. results/` and
+# comment out the lines marked LONG: the later steps then read the shipped results.
 set -e
 run() { echo; echo "== $*"; "$@"; }
 P="uv run --frozen python"

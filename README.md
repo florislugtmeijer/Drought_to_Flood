@@ -46,6 +46,18 @@ single steps from it. Every script writes to its own folder under `results/`
 and skips nothing silently: each run ends with a `manifest.yaml` that records
 the script, the input files with their checksums and the parameters.
 
+The `results/` folders named below are created by the scripts; they are not in
+the repository. The copies used for R2 are in `outputs/results/`. To regenerate
+a late step (say Table 3 or Appendix E) without recomputing the long steps it
+depends on, first copy the shipped results into place:
+
+```sh
+cp -R outputs/results/. results/
+```
+
+After that every script finds the inputs it expects, and anything you re-run
+overwrites the copy in `results/` while `outputs/` stays untouched.
+
 Random numbers are seeded. The Monte Carlo test uses a fixed seed per
 location, the copula bootstrap uses `numpy.random.SeedSequence(42).spawn(96)`
 (one stream per location and period), the dependence tests
@@ -111,11 +123,11 @@ options that were not adopted are not in this repository.
 | pooled ratio 1.07, 10 of 48 per period | `outputs/tables/table3_summary.md` |
 | pooled ratio 1.25, 40 of 48 (milder definition) | `outputs/results/2026-10-27_table3_eca_cprime/summary.md` |
 | Figure 4 and which locations it shows | `outputs/figures/fig04_map.png`, `outputs/tables/fig04_symbols.csv` |
-| Figures 5 to 9 | `outputs/figures/fig05...fig09` |
+| Figures 5 to 9 | `outputs/figures/fig05_po_piacenza_drought_peak.png` to `fig09_vistula_turon_mean_drought_severity.png` |
 | Table E1 | `outputs/tables/table_E1.md` |
 | Figure F1, Table F1 | `outputs/figures/figF1_sensitivity_cprime_heatmap.png`, `outputs/tables/table_F1.md` |
 | Figure F2 | `outputs/figures/figF2_map_sri1_flood0.6915.png` |
-| Table G1 | `outputs/tables/table_G1a_period1.md`, `table_G1b_period2.md` |
+| Table G1 | `outputs/tables/table_G1a_period1.md`, `outputs/tables/table_G1b_period2.md` |
 | Appendix D | `outputs/figures/appendix_D.pdf` |
 | percentages in Sections 2.3 and 2.4.1 (drought weeks, overlap, onset probabilities, lag 1 share) | `outputs/tables/definition_stats_sri1.md` |
 
