@@ -7,7 +7,7 @@ gemarkeerd.
 
 Eén wijziging is geen port maar een besluit, en die staat met BESLUIT: gemarkeerd:
 de as waarop de conditionele curve wordt afgelezen. Zie R-01 in de review en
-CHANGELOG-methodology.md.
+CHANGES.md.
 
 Let op de quantielreferentie. De copula-kant gebruikt de wekelijkse gemiddelden als
 referentie voor transform_to_quantiles, de ECA-kant gebruikt de dagelijkse reeks.
@@ -57,7 +57,7 @@ def flood_peak_after_drought(quantiles_weekly_max, end_times, weeks):
     end_time. Die laatste is hier relevant: tot die commit lag end_time van elk
     eenweeks event een week te laat, een derde van de droogtes, en dan stond ook
     dit venster een week te laat. Alles wat voor die commit met deze functie is
-    berekend draagt die verschuiving, zie CHANGELOG-methodology.md.
+    berekend draagt die verschuiving, zie CHANGES.md.
 
     Deze functie geeft nu exact hetzelfde als drought_events["quantile_max_value"]
     en blijft alleen staan omdat de scripts 20, 22 en 25 hem aanroepen. Nieuw werk

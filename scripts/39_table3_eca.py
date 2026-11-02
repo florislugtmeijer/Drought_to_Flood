@@ -1,6 +1,6 @@
 """Tabel 3: ECA p-waardes per locatie en periode, Poisson en Monte Carlo onder C'.
 
-Besluit Floris 27 oktober 2026 (CHANGELOG-methodology.md, 2026-10-27): Tabel 3
+Besluit Floris 27 oktober 2026 (CHANGES.md, 2026-10-27): Tabel 3
 houdt per periode twee kolommen, de analytische p onder de Poisson-aanname en de
 Monte Carlo-p, nu onder nul C' (10.000 simulaties, script 36). p-waardes op drie
 significante cijfers (R4-06, besluit 5 september), onder 0,001 als "< 0.001".

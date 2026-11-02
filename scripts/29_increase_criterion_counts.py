@@ -395,7 +395,7 @@ A("- `per_cell.csv`: per cel het verschil bij 0,69 met interval, de mediaan over
 A("  aantal toetsen en de uitkomst onder elk criterium")
 A("- `manifest.yaml`: herkomst en checksums van de twee bronbestanden")
 A("")
-A("De weging van de criteria en het voorstel staan in `docs/open-decisions.md`, D-19.")
+A("De weging van de criteria en het voorstel staan in het interne beslisdocument D-19 (niet in deze release).")
 open(f"{OUT}/report.md", "w").write("\n".join(L) + "\n")
 
 

@@ -69,7 +69,7 @@ os.makedirs(OUT, exist_ok=True)
 def aic_all(u):
     """AIC per familie, zoals bestcop hem berekent, maar dan de hele lijst.
 
-    Zelfde functie als in scripts/12_copula_selection.py, hier nodig voor het
+    Zelfde functie als in de eerdere copulakeuze (vervangen door script 40), hier nodig voor het
     AIC-verschil met de nummer twee.
     """
     out = []

@@ -11,7 +11,7 @@ Per rastercel en periode:
            door de som van de verwachte matches onder C' (de verwachting is het
            gemiddelde van de nulverdeling per locatie). Dit is een puntschatting;
            de nulverdelingen per locatie zijn niet bewaard, dus een gepoolde
-           p-waarde zoals in scripts/10_sensitivity_report.py is hier niet
+           p-waarde zoals in het eerdere rapport van het raster onder nul A is hier niet
            beschikbaar
   n_sig    aantal locaties met p < 0,05 onder C', van het aantal toetsbare
 

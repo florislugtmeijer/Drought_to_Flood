@@ -16,7 +16,7 @@ gevoeligheidsraster, zodat vaststaat dat dit dezelfde berekening is.
 Wat "verwacht" betekent bij de overgangsratio: het aandeel van alle weken in de
 periode waarna binnen (t, t+4] een flood begint. Dat is de kans dat een op een
 willekeurige week geplaatst droogte-einde een flood treft, dezelfde nullijn als in
-scripts/05_season_control.py. Het is een beschrijvend getal, geen toets; de toets
+de eerdere seizoenscontrole (niet in deze release). Het is een beschrijvend getal, geen toets; de toets
 is de Monte Carlo p uit het raster, die hier wordt overgenomen.
 
 Uitvoer in results/2026-09-04_physical_table/:

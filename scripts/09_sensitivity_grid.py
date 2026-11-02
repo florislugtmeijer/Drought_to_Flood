@@ -11,7 +11,7 @@ Dit script varieert ze alle drie.
 De spiegeling tussen de twee drempels is losgelaten, besloten 1 september 2026.
 Tot nu toe leidde de code het floodpercentiel af uit de SRI-drempel met
 norm.cdf(threshold), dus één parameter bestuurde beide kanten en de as die de
-reviewer vraagt bestond niet. Zie D-11 en CHANGELOG-methodology.md.
+reviewer vraagt bestond niet. Zie D-11 en CHANGES.md.
 
 Vorm van het raster: volledig gekruist, 5 maal 5 maal 5 is 125 cellen. Eerst is
 alleen het vlak bij venster 4 gedraaid plus het venster als lijn door de baseline,
@@ -46,7 +46,7 @@ NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = os.environ.get("OUT", "results/2026-09-02_sensitivity_grid_endfix")
 RUN_DATE = "2026-09-02"
 # Herberekening van het volledige raster na de reparatie van de einddetectie in
-# extract_events, zie CHANGELOG-methodology.md 2026-09-02. Resultaten uit een
+# extract_events, zie CHANGES.md 2026-09-02. Resultaten uit een
 # vorige run worden nooit overschreven: de pre-fix run staat vast in
 # results/2026-09-01_sensitivity_grid/ en blijft de vergelijkingsbasis.
 
@@ -101,7 +101,7 @@ locs = [(r["river"], l["village"], l["river_location"], l["latitude"], l["longit
 # voor de gepoolde toets wel: gecorreleerde surrogaten blazen de variantie van de
 # som op en maken de toets te conservatief. De volgorde hieronder is die van de
 # notebook-lijst en mag niet omgegooid worden, anders krijgt elke locatie een
-# andere stroom. Zie D-04 en CHANGELOG-methodology.md.
+# andere stroom. Zie D-04 en CHANGES.md.
 seeds = np.random.SeedSequence(SEED).spawn(len(locs))
 
 COLUMNS = ["threshold", "flood_quantile", "match_window", "period", "river", "village",

@@ -131,7 +131,7 @@ def extract_events(data_array, SRI_Values, quantiles_weekly_max, period_after_ev
     pad. Voor de copula-kant wel, zie T-11.
 
     Drie reparaties op 2 september 2026, goedgekeurd door Floris, zie
-    CHANGELOG-methodology.md. Deze veranderen cijfers:
+    CHANGES.md. Deze veranderen cijfers:
 
     1. end_time. De einddetectie eiste valid_time > starttijd, waardoor bij een
        event van precies een week de eigen index afviel en het einde een week te

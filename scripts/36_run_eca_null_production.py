@@ -1,6 +1,6 @@
 """Productierun van de ECA Monte Carlo onder de nul C', met de gepubliceerde nul A ernaast.
 
-Besluit D-21, 21 oktober 2026 (CHANGELOG-methodology.md): de drempels blijven
+Besluit D-21, 21 oktober 2026 (CHANGES.md): de drempels blijven
 SRI 0,5 met floodniveau norm.cdf(0,5), de nul van de toets wordt C'. De
 gepubliceerde nul A draait in dezelfde pass mee, met dezelfde events en
 dezelfde telling, zodat oud en nieuw uit hetzelfde rekenwerk komen.
