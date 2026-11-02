@@ -49,7 +49,7 @@ GRID = "results/2026-10-21_sensitivity_grid_cprime/grid.csv"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = os.environ.get("OUT", "results/2026-10-30_figure4_map")
 FLOOD_Q, ALPHA = 0.6915, 0.05   # FLOOD_Q alleen voor de --sri-variant uit het raster
-EXTENT = (-10.5, 44.5, 35.5, 58.5)
+EXTENT = (-10.5, 31.5, 36, 56.5)
 INK, INK2, GREY = "#0b0b0b", "#52514e", "#8a8984"
 # buitensymbool en legendatekst per categorie
 OUTER = {"both": ("o", "Both periods"),
