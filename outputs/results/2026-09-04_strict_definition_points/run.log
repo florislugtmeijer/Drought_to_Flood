@@ -1,0 +1,101 @@
+[1/96] first  Danube   Aschach an der Donau      9.5s eta 901.0s
+[2/96] first  Danube   Visegrád                 19.4s eta 911.3s
+[3/96] first  Danube   Donji Milanovac          28.8s eta 892.0s
+OVERGESLAGEN strikt_1.0 Dnieper/Krementsjoek first drought_peak: Te weinig droogte-events voor een copulafit: 5
+OVERGESLAGEN strikt_1.0 Dnieper/Krementsjoek first mean_drought_severity: Te weinig droogte-events voor een copulafit: 5
+[4/96] first  Dnieper  Krementsjoek             37.2s eta 856.4s
+[5/96] first  Dnieper  Dnipro                   46.1s eta 839.3s
+OVERGESLAGEN strikt_1.0 Dnieper/Cherson first drought_peak: Te weinig droogte-events voor een copulafit: 6
+OVERGESLAGEN strikt_1.0 Dnieper/Cherson first mean_drought_severity: Te weinig droogte-events voor een copulafit: 6
+[6/96] first  Dnieper  Cherson                  54.1s eta 811.4s
+[7/96] first  Rhine    Straatsburg              63.4s eta 805.9s
+[8/96] first  Rhine    Mainz                    72.1s eta 793.2s
+[9/96] first  Rhine    Nijmegen                 80.9s eta 781.9s
+[10/96] first  Don      Nikolaevskaya            89.2s eta 767.1s
+[11/96] first  Don      Kochetovskaya            97.7s eta 755.2s
+[12/96] first  Don      Rostov - Dov            106.0s eta 741.8s
+[13/96] first  Vistula  Łączany                 114.7s eta 732.2s
+[14/96] first  Vistula  Warchau                 123.2s eta 721.5s
+[15/96] first  Vistula  Turon                   131.6s eta 710.8s
+[16/96] first  Po       Turijn                  139.8s eta 699.2s
+[17/96] first  Po       Piacenza                148.4s eta 689.5s
+[18/96] first  Po       Cermede / Castelmassa   156.7s eta 679.1s
+[19/96] first  Elbe     Dresden                 165.5s eta 670.9s
+[20/96] first  Elbe     Magdeburg               174.1s eta 661.6s
+[21/96] first  Elbe     Wittenberge             178.6s eta 638.0s
+[22/96] first  Rhône    Lyon                    183.2s eta 616.3s
+[23/96] first  Rhône    Montelimar              187.3s eta 594.5s
+[24/96] first  Rhône    Avignon                 191.1s eta 573.2s
+[25/96] first  Oder     Krapowice               195.1s eta 554.0s
+[26/96] first  Oder     Scinawa                 199.1s eta 535.9s
+[27/96] first  Oder     Kostrzyn nad Odra       203.0s eta 518.7s
+[28/96] first  Loire    Decize                  207.5s eta 504.0s
+[29/96] first  Loire    Orléans                 215.8s eta 498.7s
+[30/96] first  Loire    St. Maurillle           219.8s eta 483.5s
+[31/96] first  Seine    Paris                   223.6s eta 468.8s
+[32/96] first  Seine    Vernon                  227.6s eta 455.1s
+[33/96] first  Seine    Rouen                   231.7s eta 442.4s
+[34/96] first  Ebro     Haro                    236.1s eta 430.5s
+[35/96] first  Ebro     Tudela                  240.4s eta 419.0s
+[36/96] first  Ebro     Zaragoza                244.9s eta 408.2s
+[37/96] first  Douro    Pocinho                 249.1s eta 397.2s
+[38/96] first  Douro    Peso da Regua           253.3s eta 386.6s
+[39/96] first  Douro    Rio Mau                 257.5s eta 376.4s
+[40/96] first  Tagus    Toledo                  261.8s eta 366.6s
+[41/96] first  Tagus    La Bazagona             266.6s eta 357.6s
+[42/96] first  Tagus    Vila Velha de Rodao     270.9s eta 348.3s
+[43/96] first  Weser    Bodenwerder             275.4s eta 339.5s
+[44/96] first  Weser    Pora Wesfalica          280.0s eta 330.9s
+[45/96] first  Weser    Bremen                  284.9s eta 322.9s
+[46/96] first  Meuse    Dun-sur-Meuse           289.9s eta 315.1s
+[47/96] first  Meuse    Givet                   294.4s eta 306.9s
+[48/96] first  Meuse    Maastricht              298.9s eta 298.9s
+[49/96] second Danube   Aschach an der Donau    303.7s eta 291.3s
+[50/96] second Danube   Visegrád                308.2s eta 283.5s
+[51/96] second Danube   Donji Milanovac         312.7s eta 276.0s
+[52/96] second Dnieper  Krementsjoek            317.4s eta 268.6s
+[53/96] second Dnieper  Dnipro                  321.9s eta 261.1s
+[54/96] second Dnieper  Cherson                 326.3s eta 253.8s
+[55/96] second Rhine    Straatsburg             330.9s eta 246.7s
+[56/96] second Rhine    Mainz                   335.5s eta 239.6s
+[57/96] second Rhine    Nijmegen                340.1s eta 232.7s
+[58/96] second Don      Nikolaevskaya           344.5s eta 225.7s
+[59/96] second Don      Kochetovskaya           349.0s eta 218.8s
+[60/96] second Don      Rostov - Dov            353.7s eta 212.2s
+[61/96] second Vistula  Łączany                 358.5s eta 205.7s
+[62/96] second Vistula  Warchau                 363.8s eta 199.5s
+[63/96] second Vistula  Turon                   371.0s eta 194.4s
+[64/96] second Po       Turijn                  376.0s eta 188.0s
+[65/96] second Po       Piacenza                381.5s eta 181.9s
+[66/96] second Po       Cermede / Castelmassa   385.9s eta 175.4s
+[67/96] second Elbe     Dresden                 391.6s eta 169.5s
+[68/96] second Elbe     Magdeburg               396.2s eta 163.1s
+[69/96] second Elbe     Wittenberge             400.8s eta 156.8s
+[70/96] second Rhône    Lyon                    405.4s eta 150.6s
+[71/96] second Rhône    Montelimar              409.9s eta 144.3s
+[72/96] second Rhône    Avignon                 414.6s eta 138.2s
+[73/96] second Oder     Krapowice               419.5s eta 132.2s
+[74/96] second Oder     Scinawa                 424.4s eta 126.2s
+[75/96] second Oder     Kostrzyn nad Odra       429.0s eta 120.1s
+[76/96] second Loire    Decize                  434.0s eta 114.2s
+[77/96] second Loire    Orléans                 438.9s eta 108.3s
+[78/96] second Loire    St. Maurillle           443.8s eta 102.4s
+[79/96] second Seine    Paris                   448.7s eta  96.6s
+[80/96] second Seine    Vernon                  453.5s eta  90.7s
+[81/96] second Seine    Rouen                   458.5s eta  84.9s
+[82/96] second Ebro     Haro                    463.6s eta  79.2s
+[83/96] second Ebro     Tudela                  469.0s eta  73.5s
+[84/96] second Ebro     Zaragoza                474.6s eta  67.8s
+[85/96] second Douro    Pocinho                 479.7s eta  62.1s
+[86/96] second Douro    Peso da Regua           485.0s eta  56.4s
+[87/96] second Douro    Rio Mau                 490.4s eta  50.7s
+[88/96] second Tagus    Toledo                  496.0s eta  45.1s
+[89/96] second Tagus    La Bazagona             501.4s eta  39.4s
+[90/96] second Tagus    Vila Velha de Rodao     506.7s eta  33.8s
+[91/96] second Weser    Bodenwerder             512.0s eta  28.1s
+[92/96] second Weser    Pora Wesfalica          517.5s eta  22.5s
+[93/96] second Weser    Bremen                  522.9s eta  16.9s
+[94/96] second Meuse    Dun-sur-Meuse           528.4s eta  11.2s
+[95/96] second Meuse    Givet                   534.0s eta   5.6s
+[96/96] second Meuse    Maastricht              539.3s eta   0.0s
+klaar in 539.3s, uitvoer in results/2026-09-04_strict_definition_points/

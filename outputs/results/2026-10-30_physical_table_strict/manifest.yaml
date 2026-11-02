@@ -1,0 +1,29 @@
+run_date: 2026-10-30
+script: scripts/27_physical_results_table.py
+git_commit: bb1b2f6beb6777fb9a24095808bc6c85186568b5
+git_dirty: true   # true betekent: niet-gecommitte wijzigingen tijdens de run
+config:
+  threshold: 1.0
+  flood_quantile: 0.8413447460685429   # norm.cdf(0.5), niet afgerond
+  window: 4
+  time_scale: "1W"
+  quantile_reference: "daily"   # T-02
+  reference_window: None         # T-03, per periode
+  periods: {first: [0, 5479], second: [5480, 10958]}
+  locations: 48
+  sri_severe: -1.0
+  copula_quantile_index: 69   # y_069 op linspace(0,1,101)
+  copula_scheme: "iid"
+  alpha: 0.05
+inputs:
+  efas_v5_dis06_48_locations_1995_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+  results/2026-10-30_eca_poisson_strict/grid_results.csv: 0c790f6ec0848c0b8daac6a4013dcdf77c05e3c5fc89b215e9b69ce639eab6e5
+  results/2026-09-02_copula_bootstrap/transition_ci.csv: 71d5adbb41b9a884c44880452c75713c04f64be9becfd6d69badffd03672b908
+  results/2026-09-02_dependence_tests/dependence_tests.csv: 02867f7f73ee48bc5bb62a74920a5ff555a5845b358e987d5879a7f9463e811c
+python: 3.12.13
+packages:
+  numpy: 2.5.2
+  pandas: 3.0.5
+  xarray: 2026.7.0
+  scipy: 1.18.1
+# uv.lock bestaat nog niet, zie T-44. Versies hierboven zijn wat deze run gebruikte.

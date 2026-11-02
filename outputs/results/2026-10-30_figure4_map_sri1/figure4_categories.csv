@@ -1,0 +1,49 @@
+river,village,first,second,category,regulated,lat,lon,pos
+Danube,Aschach an der Donau,0.0293,0.0,both,False,48.366381,14.027309,1
+Danube,Donji Milanovac,0.0072,0.0379,both,False,44.474911,22.155304,3
+Danube,Visegrád,0.0118,0.0002,both,False,47.792178,18.905964,2
+Dnieper,Cherson,1.0,1.0,none,True,46.635113,32.63581,3
+Dnieper,Dnipro,1.0,0.5824,none,True,48.48264,35.041132,2
+Dnieper,Krementsjoek,1.0,1.0,none,True,49.054867,33.413367,1
+Don,Kochetovskaya,0.5754,0.1505,none,False,47.570679,40.841345,2
+Don,Nikolaevskaya,0.459,0.2275,none,False,47.600147,41.489972,1
+Don,Rostov - Dov,0.8205,0.7613,none,False,47.192214,39.667721,3
+Douro,Peso da Regua,0.0488,0.8334,first only,False,41.156171,-7.78646,2
+Douro,Pocinho,0.1202,0.7662,none,False,41.13496,-7.117411,1
+Douro,Rio Mau,0.0003,0.1785,first only,False,41.050532,-8.36971,3
+Ebro,Haro,0.0,0.0,both,False,42.586275,-2.84976,1
+Ebro,Tudela,0.0,0.0,both,False,42.063636,-1.597827,2
+Ebro,Zaragoza,0.0001,0.0,both,False,41.658177,-0.878864,3
+Elbe,Dresden,0.3201,0.0085,second only,False,51.055155,13.7411,1
+Elbe,Magdeburg,0.7922,0.3006,none,False,52.160399,11.678592,2
+Elbe,Wittenberge,0.7349,0.4163,none,False,52.989057,11.740135,3
+Loire,Decize,0.009,0.0,both,False,46.837409,3.449934,1
+Loire,Orléans,0.0043,0.0311,both,False,47.896073,1.916064,2
+Loire,St. Maurillle,0.0622,0.0297,second only,False,47.42091,-0.521823,3
+Meuse,Dun-sur-Meuse,0.0075,0.0012,both,False,49.378618,5.186304,1
+Meuse,Givet,0.0859,0.016,second only,False,50.135429,4.826093,2
+Meuse,Maastricht,0.1237,0.12,none,False,50.841103,5.699234,3
+Oder,Kostrzyn nad Odra,0.2074,0.9687,none,False,52.630934,14.544242,3
+Oder,Krapowice,0.0001,0.0,both,False,50.475599,17.972122,1
+Oder,Scinawa,0.0,0.1736,first only,False,51.413042,16.443394,2
+Po,Cermede / Castelmassa,0.0001,0.0007,both,False,45.01556,11.288393,3
+Po,Piacenza,0.0023,0.0,both,False,45.059116,9.707053,2
+Po,Turijn,0.0053,0.0618,first only,False,45.059662,7.693335,1
+Rhine,Mainz,0.2974,0.0457,second only,False,49.993896,8.28945,2
+Rhine,Nijmegen,0.6613,0.2605,none,False,51.851323,5.861785,3
+Rhine,Straatsburg,0.2254,0.0648,none,False,48.472895,7.756314,1
+Rhône,Avignon,0.0437,0.0007,both,False,43.937039,4.770245,3
+Rhône,Lyon,0.0688,0.0015,second only,False,45.719767,4.821143,1
+Rhône,Montelimar,0.0271,0.0034,both,False,44.601449,4.737692,2
+Seine,Paris,0.0648,0.0309,second only,False,48.83407,2.379501,1
+Seine,Rouen,0.1033,0.0062,second only,False,49.441246,1.051401,3
+Seine,Vernon,0.0734,0.0102,second only,False,49.093727,1.490657,2
+Tagus,La Bazagona,0.0022,0.0003,both,False,39.921587,-5.914403,2
+Tagus,Toledo,0.0,0.0004,both,False,39.861546,-4.037993,1
+Tagus,Vila Velha de Rodao,0.3841,0.0106,second only,True,39.649085,-7.671259,3
+Vistula,Turon,0.2326,0.9487,none,False,53.01432,18.647809,3
+Vistula,Warchau,0.0001,0.0026,both,False,52.196415,21.104997,2
+Vistula,Łączany,0.0,0.0001,both,False,49.98856,19.584211,1
+Weser,Bodenwerder,0.0147,0.2143,first only,False,51.981058,9.519882,1
+Weser,Bremen,0.7699,0.0889,none,False,53.079236,8.793012,3
+Weser,Pora Wesfalica,0.0273,0.2558,first only,False,52.241772,8.914411,2

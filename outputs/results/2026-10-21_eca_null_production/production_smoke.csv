@@ -1,0 +1,5 @@
+threshold,period,river,village,n_dr,n_fl_starts,k_layer1,k_layer2,obs,pA,expA,pBp,expBp,pCp,expCp,n_cand_A,n_cand_Bp1,n_cand_Bp2,n_cand_Cp1,n_cand_Cp2,selfcheck,seconds
+0.5,first,Danube,Aschach an der Donau,85,83,75,8,52,0.0,30.43,0.0,33.95,0.0,40.97,780,515,265,207,212,ok,2.3
+0.5,first,Danube,Visegrád,105,94,84,10,72,0.0,41.64,0.0,46.07,0.0,55.45,780,512,268,203,213,ok,2.4
+0.5,second,Danube,Aschach an der Donau,92,94,70,24,52,0.0,36.74,0.0,38.41,0.004,42.98,780,491,289,191,215,ok,2.3
+0.5,second,Danube,Visegrád,98,96,84,12,68,0.0,39.68,0.0,43.5,0.0,55.46,780,498,282,192,218,ok,2.2

@@ -1,0 +1,49 @@
+river,village,first,second,category,regulated
+Danube,Aschach an der Donau,0.2728,0.0654,none,False
+Danube,Donji Milanovac,0.8683,0.6253,none,False
+Danube,Visegrád,0.0391,0.0302,both,False
+Dnieper,Cherson,1.0,1.0,none,True
+Dnieper,Dnipro,1.0,1.0,none,True
+Dnieper,Krementsjoek,1.0,1.0,none,True
+Don,Kochetovskaya,0.5749,0.4378,none,False
+Don,Nikolaevskaya,0.8045,0.6018,none,False
+Don,Rostov - Dov,0.9179,0.4573,none,False
+Douro,Peso da Regua,0.8337,0.9254,none,False
+Douro,Pocinho,0.5826,0.967,none,False
+Douro,Rio Mau,0.7965,0.8115,none,False
+Ebro,Haro,0.0001,0.0,both,False
+Ebro,Tudela,0.0243,0.0003,both,False
+Ebro,Zaragoza,0.0861,0.0005,second only,False
+Elbe,Dresden,0.962,0.1743,none,False
+Elbe,Magdeburg,0.9631,0.8364,none,False
+Elbe,Wittenberge,0.9202,0.9433,none,False
+Loire,Decize,0.9164,0.1636,none,False
+Loire,Orléans,0.8478,0.8315,none,False
+Loire,St. Maurillle,0.5381,0.6919,none,False
+Meuse,Dun-sur-Meuse,0.7731,0.4314,none,False
+Meuse,Givet,0.7489,0.3066,none,False
+Meuse,Maastricht,0.532,0.5331,none,False
+Oder,Kostrzyn nad Odra,0.7159,0.8091,none,False
+Oder,Krapowice,0.0002,0.0003,both,False
+Oder,Scinawa,0.0091,0.6946,first only,False
+Po,Cermede / Castelmassa,0.0088,0.0068,both,False
+Po,Piacenza,0.0035,0.0221,both,False
+Po,Turijn,0.0304,0.1944,first only,False
+Rhine,Mainz,0.7524,0.7708,none,False
+Rhine,Nijmegen,0.8099,0.7435,none,False
+Rhine,Straatsburg,0.8659,0.3829,none,False
+Rhône,Avignon,0.6274,0.3451,none,False
+Rhône,Lyon,0.5238,0.5534,none,False
+Rhône,Montelimar,0.5048,0.0532,none,False
+Seine,Paris,0.8633,0.566,none,False
+Seine,Rouen,0.9284,0.8962,none,False
+Seine,Vernon,0.9361,0.7894,none,False
+Tagus,La Bazagona,0.1999,0.0869,none,False
+Tagus,Toledo,0.0026,0.0145,both,False
+Tagus,Vila Velha de Rodao,0.8718,0.0078,second only,True
+Vistula,Turon,0.3756,0.9939,none,False
+Vistula,Warchau,0.1502,0.3891,none,False
+Vistula,Łączany,0.0109,0.0184,both,False
+Weser,Bodenwerder,0.7612,0.6814,none,False
+Weser,Bremen,0.9982,0.5323,none,False
+Weser,Pora Wesfalica,0.7885,0.6833,none,False

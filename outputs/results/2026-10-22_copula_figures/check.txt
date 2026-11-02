@@ -1,0 +1,10 @@
+fig05 Po Piacenza first drought_peak: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.997 (X[0]=1) vs milde curve 0.000
+fig05 Po Piacenza second drought_peak: puntcurve vs bootstrap 4.9e-07; oppervlakrij op x=0.997 (X[0]=1) vs milde curve 0.001
+fig06 Ebro Tudela first drought_peak: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.991 (X[0]=1) vs milde curve 0.002
+fig06 Ebro Tudela second drought_peak: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.996 (X[0]=1) vs milde curve 0.001
+fig07 Po Piacenza first mean_drought_severity: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.504 (X[0]=0.5) vs milde curve 0.001
+fig07 Po Piacenza second mean_drought_severity: puntcurve vs bootstrap 4.9e-07; oppervlakrij op x=0.497 (X[0]=0.5) vs milde curve 0.001
+fig08 Ebro Tudela first mean_drought_severity: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.506 (X[0]=0.5) vs milde curve 0.002
+fig08 Ebro Tudela second mean_drought_severity: puntcurve vs bootstrap 4.9e-07; oppervlakrij op x=0.495 (X[0]=0.5) vs milde curve 0.002
+fig09 Vistula Turon first mean_drought_severity: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.500 (X[0]=0.5) vs milde curve 0.000
+fig09 Vistula Turon second mean_drought_severity: puntcurve vs bootstrap 5.0e-07; oppervlakrij op x=0.506 (X[0]=0.5) vs milde curve 0.003

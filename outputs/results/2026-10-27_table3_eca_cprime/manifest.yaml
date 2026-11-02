@@ -1,0 +1,6 @@
+script: scripts/39_table3_eca.py
+python: 3.12.13
+baseline: threshold 0.5, flood_quantile 0.6915, window 4
+inputs:
+  results/2026-09-02_sensitivity_grid_endfix/grid_results.csv: 63514d071ebdfe55530c40574f6630dbe65988c40f0a6736bca71fd818fec56c
+  results/2026-10-21_eca_null_production/production.csv: 7f76e78d4ab5d70d38939f88804eee60cda035a08bf0f128e3e5df3b6c6f8c9c

@@ -1,0 +1,8 @@
+script: scripts/44_figure4_map.py
+python: 3.12.13
+sri: 0.5 (hoofdanalyse)
+categories: None
+inputs:
+  results/2026-10-30_table3_eca_strict/figure4_categories.csv: 10773586de528bb0d7844f7392903fbe7c3483012d83727606ac507a9ccde756
+  results/2026-10-21_sensitivity_grid_cprime/grid.csv: 53444d9c0dc49ac10fd8270b89d6ef117f51d4382e803be0d9cd4fb9a75367dd
+  notebooks/drought_to_flood_europe_r1_published.ipynb: b911b5aaddc858e35b81649a62a6875f90227c1e7954f3cb016eb49b23925901

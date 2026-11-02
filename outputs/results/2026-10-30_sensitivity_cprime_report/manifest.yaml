@@ -1,0 +1,5 @@
+script: scripts/43_sensitivity_cprime_report.py
+python: 3.12.13
+inputs:
+  results/2026-10-21_sensitivity_grid_cprime/grid.csv: 53444d9c0dc49ac10fd8270b89d6ef117f51d4382e803be0d9cd4fb9a75367dd
+  results/2026-10-30_sensitivity_grid_strict_column/grid.csv: 2faecd8f0381265a82591e30c7b28765135ffcb61dd05104a43129dacdf52834

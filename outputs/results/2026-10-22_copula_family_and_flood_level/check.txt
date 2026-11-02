@@ -1,0 +1,3 @@
+cellen: 190
+vergeleken met de bootstrap, puntrijen iid: 760 curves van 101 punten
+grootste absolute afwijking: 5.00e-07 (de bootstrap schrijft op zes decimalen)

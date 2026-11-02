@@ -1,0 +1,49 @@
+river,village,number,category,regulated,shown,symbol,colour
+Danube,Aschach an der Donau,1,none,False,False,not shown,#1f77b4
+Danube,Visegrád,2,both,False,True,Both periods,#1f77b4
+Danube,Donji Milanovac,3,none,False,False,not shown,#1f77b4
+Dnieper,Krementsjoek,1,none,True,False,not shown,#aec7e8
+Dnieper,Dnipro,2,none,True,False,not shown,#aec7e8
+Dnieper,Cherson,3,none,True,False,not shown,#aec7e8
+Don,Nikolaevskaya,1,none,False,False,not shown,#ff7f0e
+Don,Kochetovskaya,2,none,False,False,not shown,#ff7f0e
+Don,Rostov - Dov,3,none,False,False,not shown,#ff7f0e
+Douro,Pocinho,1,none,False,False,not shown,#2ca02c
+Douro,Peso da Regua,2,none,False,False,not shown,#2ca02c
+Douro,Rio Mau,3,none,False,False,not shown,#2ca02c
+Ebro,Haro,1,both,False,True,Both periods,#98df8a
+Ebro,Tudela,2,both,False,True,Both periods,#98df8a
+Ebro,Zaragoza,3,second only,False,True,Period 2 only,#98df8a
+Elbe,Dresden,1,none,False,False,not shown,#d62728
+Elbe,Magdeburg,2,none,False,False,not shown,#d62728
+Elbe,Wittenberge,3,none,False,False,not shown,#d62728
+Loire,Decize,1,none,False,False,not shown,#9467bd
+Loire,Orléans,2,none,False,False,not shown,#9467bd
+Loire,St. Maurillle,3,none,False,False,not shown,#9467bd
+Meuse,Dun-sur-Meuse,1,none,False,False,not shown,#c5b0d5
+Meuse,Givet,2,none,False,False,not shown,#c5b0d5
+Meuse,Maastricht,3,none,False,False,not shown,#c5b0d5
+Oder,Krapowice,1,both,False,True,Both periods,#8c564b
+Oder,Scinawa,2,first only,False,True,Period 1 only,#8c564b
+Oder,Kostrzyn nad Odra,3,none,False,False,not shown,#8c564b
+Po,Turijn,1,first only,False,True,Period 1 only,#e377c2
+Po,Piacenza,2,both,False,True,Both periods,#e377c2
+Po,Cermede / Castelmassa,3,both,False,True,Both periods,#e377c2
+Rhine,Straatsburg,1,none,False,False,not shown,#f7b6d2
+Rhine,Mainz,2,none,False,False,not shown,#f7b6d2
+Rhine,Nijmegen,3,none,False,False,not shown,#f7b6d2
+Rhône,Lyon,1,none,False,False,not shown,#7f7f7f
+Rhône,Montelimar,2,none,False,False,not shown,#7f7f7f
+Rhône,Avignon,3,none,False,False,not shown,#7f7f7f
+Seine,Paris,1,none,False,False,not shown,#bcbd22
+Seine,Vernon,2,none,False,False,not shown,#bcbd22
+Seine,Rouen,3,none,False,False,not shown,#bcbd22
+Tagus,Toledo,1,both,False,True,Both periods,#dbdb8d
+Tagus,La Bazagona,2,none,False,False,not shown,#dbdb8d
+Tagus,Vila Velha de Rodao,3,second only,True,False,not shown,#dbdb8d
+Vistula,Łączany,1,both,False,True,Both periods,#17becf
+Vistula,Warchau,2,none,False,False,not shown,#17becf
+Vistula,Turon,3,none,False,False,not shown,#17becf
+Weser,Bodenwerder,1,none,False,False,not shown,#9edae5
+Weser,Pora Wesfalica,2,none,False,False,not shown,#9edae5
+Weser,Bremen,3,none,False,False,not shown,#9edae5

@@ -1,0 +1,3 @@
+LET OP: ongelijke stappen in de tijdas: [ 64800000000000  86400000000000 108000000000000]
+dataset: 10958 dagen, 1995-01-01 tot 2024-12-31
+raster-vergelijking: alle 96 locatie-periodes hebben dezelfde droogte-, flood- en overgangsaantallen als de baseline-cel

@@ -10,7 +10,7 @@ sys.path.insert(0, "src"); warnings.filterwarnings("ignore")
 import xarray as xr, numpy as np
 from dtf.pipeline import find_nearest_grid_point, river_runoff_time_location_mean, SRI_calculate
 
-DATA = os.path.expanduser("~/Downloads/8_maart_european_river_runoff_1994_2024.nc")
+DATA = "data/efas_v5_dis06_48_locations_1995_2024.nc"
 NB = "notebooks/drought_to_flood_europe_r1_published.ipynb"
 OUT = "results/2026-08-23_sri_diagnostic"
 os.makedirs(OUT, exist_ok=True)

@@ -1,0 +1,31 @@
+run_date: 2026-09-02
+script: scripts/25_dependence_tests.py
+git_commit: aa2fb76a81cdda696bfb507d6175f8ff2638ccc2
+git_dirty: true
+config:
+  threshold: 0.5
+  period_after_event: 4
+  b_perm: 1000
+  n_draw: 20000
+  seed: 43
+  seed_scheme: "numpy.random.SeedSequence(43).spawn(96)"
+  marginals: parametric
+  definities: "gerepareerde extract_events (commit 23429e1): einddetectie, duur als telling, venster strikt na het event"
+  min_events: 15
+  cells: 190              # 192 min 2 (Dnieper Cherson periode 1, n=11)
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+packages:
+  python: 3.12.13
+  numpy: 2.5.2
+  pandas: 3.0.5
+  xarray: 2026.7.0
+  scipy: 1.18.1
+  netCDF4: 1.7.4
+  vinecopulas: 2.0.3
+# let op: met 1000 permutaties is de kleinst mogelijke p 1/1001. BH-FDR over 190
+# cellen vraagt voor de eerste stap p <= 0,00026, dus de permutatietoetsen KUNNEN
+# die drempel niet halen. De FDR-uitspraak steunt daarom op de analytische p van
+# tau en rho. Zie de README.
+# de eerste versie van deze run draaide met de oude copula-helpers op de nieuwe
+# pipeline en is opzijgezet als results/2026-09-02_dependence_tests_GEMENGD/

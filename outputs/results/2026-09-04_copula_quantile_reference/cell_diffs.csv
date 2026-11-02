@@ -1,0 +1,193 @@
+river,village,river_location,period,pair,n_events,same_family,ranks_equal,d_trans_minor_at_q,d_trans_major_at_q,d_uncond_at_q,d_indep_at_q,max_abs_dcurve_minor,max_abs_dcurve_major,max_abs_duncond
+Danube,Aschach an der Donau,First location,first,drought_peak,85,1,0,0.004402,0.000989,0.010217,0.005549,0.027877,0.052931,0.049808
+Danube,Aschach an der Donau,First location,first,mean_drought_severity,85,1,0,0.004598,0.0,0.010217,0.005549,0.031035,0.07874,0.049808
+Danube,Visegrád,Second location,first,drought_peak,105,1,0,0.008068,0.009879,0.0,0.007475,0.019551,0.022686,0.037037
+Danube,Visegrád,Second location,first,mean_drought_severity,105,1,0,0.008273,0.011191,0.0,0.007475,0.019652,0.022829,0.037037
+Danube,Donji Milanovac,Third location,first,drought_peak,84,1,0,0.011121,0.012375,0.0,0.010106,0.014332,0.02005,0.039591
+Danube,Donji Milanovac,Third location,first,mean_drought_severity,84,1,0,0.009969,0.009178,0.0,0.010106,0.012105,0.01388,0.039591
+Dnieper,Krementsjoek,First location,first,drought_peak,28,1,0,0.019002,0.007207,0.103448,0.018467,0.019971,0.015856,0.130268
+Dnieper,Krementsjoek,First location,first,mean_drought_severity,28,1,0,0.0,0.0,0.103448,0.018467,0.010478,0.019417,0.130268
+Dnieper,Dnipro,Second location,first,drought_peak,23,1,0,-0.000963,-0.001248,0.011494,-0.000374,0.001156,0.001665,0.034483
+Dnieper,Dnipro,Second location,first,mean_drought_severity,23,1,0,-0.001087,0.0,0.011494,-0.000374,0.00145,0.008,0.034483
+Dnieper,Cherson,Third location,first,drought_peak,10,1,1,nan,nan,0.010217,0.001526,nan,nan,0.03576
+Dnieper,Cherson,Third location,first,mean_drought_severity,10,1,1,nan,nan,0.010217,0.001526,nan,nan,0.03576
+Rhine,Straatsburg,First location,first,drought_peak,84,1,0,0.004879,0.005216,-0.002554,0.004989,0.021441,0.020515,0.037037
+Rhine,Straatsburg,First location,first,mean_drought_severity,84,1,0,0.004739,nan,-0.002554,0.004989,0.020023,nan,0.037037
+Rhine,Mainz,Second location,first,drought_peak,81,1,0,-0.004897,-0.004359,0.007663,-0.004619,0.02678,0.024811,0.0447
+Rhine,Mainz,Second location,first,mean_drought_severity,81,1,0,-0.005176,-0.004513,0.007663,-0.004619,0.026271,0.031588,0.0447
+Rhine,Nijmegen,Third location,first,drought_peak,84,1,0,-0.019213,-0.028841,0.0,-0.017108,0.035129,0.04547,0.040868
+Rhine,Nijmegen,Third location,first,mean_drought_severity,84,1,0,-0.021862,-0.042213,0.0,-0.017108,0.035307,0.04197,0.040868
+Don,Nikolaevskaya,First location,first,drought_peak,52,1,0,0.159351,0.120478,0.014049,0.166127,0.163543,0.136623,0.022989
+Don,Nikolaevskaya,First location,first,mean_drought_severity,52,1,0,0.153452,0.14878,0.014049,0.166127,0.156215,0.178049,0.022989
+Don,Kochetovskaya,Second location,first,drought_peak,58,1,0,-0.036133,-0.036341,0.0,-0.037482,0.040136,0.04244,0.020434
+Don,Kochetovskaya,Second location,first,mean_drought_severity,58,1,0,-0.033717,-0.02486,0.0,-0.037482,0.039513,0.040589,0.020434
+Don,Rostov - Dov,Third location,first,drought_peak,57,1,0,0.005316,0.005805,-0.01788,0.005701,0.02637,0.029636,0.020434
+Don,Rostov - Dov,Third location,first,mean_drought_severity,57,1,0,0.005141,0.00846,-0.01788,0.005701,0.02698,0.037225,0.020434
+Vistula,Łączany,First location,first,drought_peak,129,0,0,-0.04685,-0.028571,0.010217,-0.0396,0.074994,0.171429,0.068966
+Vistula,Łączany,First location,first,mean_drought_severity,129,1,0,-0.030461,nan,0.010217,-0.0396,0.106891,nan,0.068966
+Vistula,Warchau,Second location,first,drought_peak,90,1,0,0.027281,0.06214,0.0,0.023366,0.049279,0.089758,0.03576
+Vistula,Warchau,Second location,first,mean_drought_severity,90,1,0,0.029892,0.029126,0.0,0.023366,0.046498,0.063107,0.03576
+Vistula,Turon,Third location,first,drought_peak,67,1,0,0.01517,0.006918,0.02682,0.016762,0.018155,0.052843,0.05364
+Vistula,Turon,Third location,first,mean_drought_severity,67,1,0,0.01442,0.005573,0.02682,0.016762,0.020309,0.089685,0.05364
+Po,Turijn,First location,first,drought_peak,85,1,0,0.035167,0.0,0.029374,0.040566,0.041156,0.04065,0.040868
+Po,Turijn,First location,first,mean_drought_severity,85,1,0,0.03358,0.0,0.029374,0.040566,0.039697,0.069767,0.040868
+Po,Piacenza,Second location,first,drought_peak,79,1,0,0.039495,0.036848,0.034483,0.049611,0.041479,0.046485,0.038314
+Po,Piacenza,Second location,first,mean_drought_severity,79,1,0,0.034557,0.022727,0.034483,0.049611,0.040262,0.136364,0.038314
+Po,Cermede / Castelmassa,Third location,first,drought_peak,76,1,0,0.009511,0.006563,0.011494,0.010357,0.010437,0.012781,0.05364
+Po,Cermede / Castelmassa,Third location,first,mean_drought_severity,76,1,0,0.006648,0.007018,0.011494,0.010357,0.007913,0.011696,0.05364
+Elbe,Dresden,First location,first,drought_peak,89,1,0,-0.00291,-0.002183,0.006386,-0.00319,0.049539,0.049932,0.042146
+Elbe,Dresden,First location,first,mean_drought_severity,89,1,0,-0.003254,-0.002688,0.006386,-0.00319,0.050689,0.051075,0.042146
+Elbe,Magdeburg,Second location,first,drought_peak,83,1,0,9.9e-05,-0.008804,0.005109,0.00429,0.033936,0.038555,0.031928
+Elbe,Magdeburg,Second location,first,mean_drought_severity,83,1,0,-0.001443,-0.011696,0.005109,0.00429,0.033837,0.042885,0.031928
+Elbe,Wittenberge,Third location,first,drought_peak,71,0,0,-0.05953,0.147169,0.0,-0.052147,0.059733,0.182817,0.030651
+Elbe,Wittenberge,Third location,first,mean_drought_severity,71,1,0,-0.059175,-0.059558,0.0,-0.052147,0.05936,0.064663,0.030651
+Rhône,Lyon,First location,first,drought_peak,102,1,0,0.014257,0.012389,0.020434,0.014138,0.06039,0.065487,0.038314
+Rhône,Lyon,First location,first,mean_drought_severity,102,1,0,0.014503,0.012557,0.020434,0.014138,0.06092,0.068324,0.038314
+Rhône,Montelimar,Second location,first,drought_peak,93,1,0,0.020113,0.022556,0.007663,0.018837,0.031246,0.052632,0.047254
+Rhône,Montelimar,Second location,first,mean_drought_severity,93,1,0,0.019555,0.025641,0.007663,0.018837,0.02976,0.076923,0.047254
+Rhône,Avignon,Third location,first,drought_peak,85,1,0,0.032242,nan,0.0,0.031675,0.032645,nan,0.057471
+Rhône,Avignon,Third location,first,mean_drought_severity,85,1,0,0.034176,0.041011,0.0,0.031675,0.035886,0.055618,0.057471
+Oder,Krapowice,First location,first,drought_peak,116,1,0,0.016593,0.014162,0.011494,0.015351,0.048694,0.04878,0.070243
+Oder,Krapowice,First location,first,mean_drought_severity,116,1,0,0.0109,0.0,0.011494,0.015351,0.05156,0.140187,0.070243
+Oder,Scinawa,Second location,first,drought_peak,107,1,0,0.015214,0.016906,0.002554,0.015814,0.031262,0.037194,0.038314
+Oder,Scinawa,Second location,first,mean_drought_severity,107,1,0,0.015438,0.007823,0.002554,0.015814,0.029405,0.042378,0.038314
+Oder,Kostrzyn nad Odra,Third location,first,drought_peak,77,1,0,0.007989,0.008295,-0.002554,0.007363,0.01381,0.017168,0.029374
+Oder,Kostrzyn nad Odra,Third location,first,mean_drought_severity,77,1,0,0.00793,0.007432,-0.002554,0.007363,0.014942,0.022296,0.029374
+Loire,Decize,First location,first,drought_peak,122,1,0,-0.047886,0.0,0.003831,-0.041923,0.075182,0.25,0.045977
+Loire,Decize,First location,first,mean_drought_severity,122,0,0,-0.056995,-0.068729,0.003831,-0.041923,0.098452,0.09622,0.045977
+Loire,Orléans,Second location,first,drought_peak,107,1,0,0.002963,0.0,0.001277,0.00306,0.017052,0.028916,0.054917
+Loire,Orléans,Second location,first,mean_drought_severity,107,0,0,0.021576,0.091742,0.001277,0.00306,0.040038,0.147502,0.054917
+Loire,St. Maurillle,Third location,first,drought_peak,98,1,0,0.045204,0.085131,0.01788,0.042931,0.050569,0.089796,0.031928
+Loire,St. Maurillle,Third location,first,mean_drought_severity,98,1,0,0.042231,0.043652,0.01788,0.042931,0.047673,0.051216,0.031928
+Seine,Paris,First location,first,drought_peak,76,1,0,-0.068013,-0.099098,0.0,-0.061897,0.091403,0.121914,0.033206
+Seine,Paris,First location,first,mean_drought_severity,76,1,0,-0.077262,-0.113955,0.0,-0.061897,0.096423,0.114763,0.033206
+Seine,Vernon,Second location,first,drought_peak,77,1,0,-0.035164,-0.031814,0.002554,-0.034344,0.040218,0.094727,0.034483
+Seine,Vernon,Second location,first,mean_drought_severity,77,1,0,-0.035458,-0.028583,0.002554,-0.034344,0.045179,0.157106,0.034483
+Seine,Rouen,Third location,first,drought_peak,80,1,0,0.028016,0.026768,0.00894,0.028461,0.044006,0.081702,0.034483
+Seine,Rouen,Third location,first,mean_drought_severity,80,1,0,0.028792,0.017406,0.00894,0.028461,0.054237,0.215609,0.034483
+Ebro,Haro,First location,first,drought_peak,124,1,0,0.01241,0.0,0.007663,0.015658,0.077507,0.117688,0.063857
+Ebro,Haro,First location,first,mean_drought_severity,124,1,0,0.010878,0.0,0.007663,0.015658,0.082376,0.122995,0.063857
+Ebro,Tudela,Second location,first,drought_peak,127,1,0,0.020228,0.009869,0.010217,0.02269,0.06975,0.081421,0.066411
+Ebro,Tudela,Second location,first,mean_drought_severity,127,1,0,0.01638,0.004101,0.010217,0.02269,0.073611,0.092853,0.066411
+Ebro,Zaragoza,Third location,first,drought_peak,114,1,0,0.002418,0.001896,0.024266,0.002795,0.08713,0.106446,0.077905
+Ebro,Zaragoza,Third location,first,mean_drought_severity,114,1,0,0.001821,0.000419,0.024266,0.002795,0.096227,0.121022,0.077905
+Douro,Pocinho,First location,first,drought_peak,36,1,0,-0.000356,0.0,0.005109,-0.000316,0.011728,0.014706,0.075351
+Douro,Pocinho,First location,first,mean_drought_severity,36,1,0,-0.00011,0.0,0.005109,-0.000316,0.013852,0.042857,0.075351
+Douro,Peso da Regua,Second location,first,drought_peak,46,1,0,0.010997,0.000386,0.025543,0.012603,0.017731,0.009266,0.0447
+Douro,Peso da Regua,Second location,first,mean_drought_severity,46,1,0,0.012868,0.004819,0.025543,0.012603,0.016896,0.013253,0.0447
+Douro,Rio Mau,Third location,first,drought_peak,50,1,0,0.02392,0.050452,0.007663,0.015299,0.028501,0.0508,0.047254
+Douro,Rio Mau,Third location,first,mean_drought_severity,50,1,0,0.028732,nan,0.007663,0.015299,0.033078,nan,0.047254
+Tagus,Toledo,First location,first,drought_peak,74,0,0,-0.02623,-0.170866,0.0447,-0.017478,0.176162,0.403085,0.051086
+Tagus,Toledo,First location,first,mean_drought_severity,74,0,0,-0.037422,nan,0.0447,-0.017478,0.217575,nan,0.051086
+Tagus,La Bazagona,Second location,first,drought_peak,79,1,0,0.050469,0.045872,0.0,0.057616,0.060691,0.074705,0.031928
+Tagus,La Bazagona,Second location,first,mean_drought_severity,79,1,0,0.057373,nan,0.0,0.057616,0.066121,nan,0.031928
+Tagus,Vila Velha de Rodao,Third location,first,drought_peak,64,1,0,0.011324,nan,0.001277,0.011501,0.016428,nan,0.030651
+Tagus,Vila Velha de Rodao,Third location,first,mean_drought_severity,64,1,0,-0.061967,nan,0.001277,0.011501,0.068702,nan,0.030651
+Weser,Bodenwerder,First location,first,drought_peak,90,1,0,0.03735,0.036873,0.01788,0.031329,0.047012,0.05326,0.033206
+Weser,Bodenwerder,First location,first,mean_drought_severity,90,1,0,0.037321,0.035421,0.01788,0.031329,0.048521,0.052361,0.033206
+Weser,Pora Wesfalica,Second location,first,drought_peak,99,1,0,0.012347,0.011269,0.002554,0.011902,0.018588,0.050415,0.033206
+Weser,Pora Wesfalica,Second location,first,mean_drought_severity,99,1,0,0.01302,0.011483,0.002554,0.011902,0.020012,0.056696,0.033206
+Weser,Bremen,Third location,first,drought_peak,94,1,0,0.024458,0.025324,0.0,0.024566,0.026259,0.029054,0.028097
+Weser,Bremen,Third location,first,mean_drought_severity,94,1,0,0.024659,0.022398,0.0,0.024566,0.025825,0.047898,0.028097
+Meuse,Dun-sur-Meuse,First location,first,drought_peak,100,1,0,0.019,0.014144,0.019157,0.018705,0.026295,0.03383,0.043423
+Meuse,Dun-sur-Meuse,First location,first,mean_drought_severity,100,1,0,0.018595,0.015243,0.019157,0.018705,0.026585,0.035217,0.043423
+Meuse,Givet,Second location,first,drought_peak,109,1,0,0.034502,0.046088,0.005109,0.032444,0.036067,0.046405,0.033206
+Meuse,Givet,Second location,first,mean_drought_severity,109,1,0,0.031264,0.028305,0.005109,0.032444,0.034293,0.037044,0.033206
+Meuse,Maastricht,Third location,first,drought_peak,102,1,0,-0.058251,-0.057835,-0.002554,-0.047599,0.060763,0.064466,0.047254
+Meuse,Maastricht,Third location,first,mean_drought_severity,102,1,0,-0.059268,-0.060703,-0.002554,-0.047599,0.060995,0.065213,0.047254
+Danube,Aschach an der Donau,First location,second,drought_peak,91,1,0,0.001252,-0.017247,0.002554,0.004804,0.013236,0.030589,0.111111
+Danube,Aschach an der Donau,First location,second,mean_drought_severity,91,1,0,0.004614,0.001634,0.002554,0.004804,0.007296,0.00817,0.111111
+Danube,Visegrád,Second location,second,drought_peak,97,1,0,0.013487,0.013299,0.007663,0.012804,0.016192,0.021021,0.075351
+Danube,Visegrád,Second location,second,mean_drought_severity,97,1,0,0.009898,0.0,0.007663,0.012804,0.010623,0.004399,0.075351
+Danube,Donji Milanovac,Third location,second,drought_peak,96,1,0,-0.054105,-0.052831,0.0,-0.051763,0.067448,0.067775,0.037037
+Danube,Donji Milanovac,Third location,second,mean_drought_severity,96,1,0,-0.05115,-0.049303,0.0,-0.051763,0.067964,0.069898,0.037037
+Dnieper,Krementsjoek,First location,second,drought_peak,19,1,0,0.001798,0.001407,0.003831,0.003037,0.042991,0.03759,0.088123
+Dnieper,Krementsjoek,First location,second,mean_drought_severity,19,1,0,0.001842,0.001542,0.003831,0.003037,0.042613,0.041008,0.088123
+Dnieper,Dnipro,Second location,second,drought_peak,19,1,0,0.000208,0.000237,0.0,0.00025,0.00257,0.003051,0.014049
+Dnieper,Dnipro,Second location,second,mean_drought_severity,19,1,0,-0.000185,-0.000529,0.0,0.00025,0.001167,0.000781,0.014049
+Dnieper,Cherson,Third location,second,drought_peak,15,1,1,-0.000107,-0.000106,0.005109,-0.000162,0.00154,0.001513,0.01788
+Dnieper,Cherson,Third location,second,mean_drought_severity,15,1,1,-2.4e-05,-6.5e-05,0.005109,-0.000162,0.001644,0.00181,0.01788
+Rhine,Straatsburg,First location,second,drought_peak,88,0,0,0.01068,0.035602,-0.007663,0.000335,0.026387,0.040828,0.045977
+Rhine,Straatsburg,First location,second,mean_drought_severity,88,1,0,-0.002459,-0.00376,-0.007663,0.000335,0.031473,0.034134,0.045977
+Rhine,Mainz,Second location,second,drought_peak,89,0,0,0.001956,0.022431,0.002554,0.002476,0.079528,0.028018,0.047254
+Rhine,Mainz,Second location,second,mean_drought_severity,89,1,0,0.001362,nan,0.002554,0.002476,0.076025,nan,0.047254
+Rhine,Nijmegen,Third location,second,drought_peak,80,1,0,-0.01605,-0.014938,-0.019157,-0.016383,0.041649,0.046918,0.048531
+Rhine,Nijmegen,Third location,second,mean_drought_severity,80,1,0,-0.014289,-0.018957,-0.019157,-0.016383,0.042424,0.055292,0.048531
+Don,Nikolaevskaya,First location,second,drought_peak,58,1,0,-0.038354,-0.025456,-0.001277,-0.037905,0.049219,0.044453,0.02682
+Don,Nikolaevskaya,First location,second,mean_drought_severity,58,1,0,-0.038874,-0.042247,-0.001277,-0.037905,0.049715,0.049888,0.02682
+Don,Kochetovskaya,Second location,second,drought_peak,57,1,0,-0.000203,-0.000436,0.0,-0.000153,0.068001,0.081019,0.034483
+Don,Kochetovskaya,Second location,second,mean_drought_severity,57,1,0,-0.000161,0.0,0.0,-0.000153,0.06375,0.098792,0.034483
+Don,Rostov - Dov,Third location,second,drought_peak,52,1,0,0.175038,0.161237,-0.001277,0.182518,0.174905,0.163519,0.01788
+Don,Rostov - Dov,Third location,second,mean_drought_severity,52,1,0,0.169311,0.166495,-0.001277,0.182518,0.169682,0.166495,0.01788
+Vistula,Łączany,First location,second,drought_peak,122,1,0,-0.01539,0.0,-0.005109,-0.020992,0.040727,0.061381,0.0447
+Vistula,Łączany,First location,second,mean_drought_severity,122,1,0,-0.012737,-0.00463,-0.005109,-0.020992,0.038897,0.046296,0.0447
+Vistula,Warchau,Second location,second,drought_peak,90,1,0,-0.062718,-0.052581,0.0,-0.075926,0.07032,0.235477,0.033206
+Vistula,Warchau,Second location,second,mean_drought_severity,90,1,0,-0.0608,-0.029663,0.0,-0.075926,0.066117,0.293041,0.033206
+Vistula,Turon,Third location,second,drought_peak,56,0,0,-0.136794,-0.385243,0.045977,0.006593,0.141491,0.393636,0.058748
+Vistula,Turon,Third location,second,mean_drought_severity,56,1,0,0.007568,0.005503,0.045977,0.006593,0.009801,0.011618,0.058748
+Po,Turijn,First location,second,drought_peak,75,1,0,-0.007093,-0.011494,0.00894,-0.004804,0.007244,0.018391,0.040868
+Po,Turijn,First location,second,mean_drought_severity,75,1,0,-0.006368,0.0,0.00894,-0.004804,0.007988,0.055556,0.040868
+Po,Piacenza,Second location,second,drought_peak,92,1,0,-0.034136,-0.030345,0.00894,-0.043826,0.11406,0.135172,0.043423
+Po,Piacenza,Second location,second,mean_drought_severity,92,1,0,-0.020352,-0.068966,0.00894,-0.043826,0.11227,0.103448,0.043423
+Po,Cermede / Castelmassa,Third location,second,drought_peak,88,1,0,-0.039967,-0.036575,0.021711,-0.037063,0.066996,0.077307,0.066411
+Po,Cermede / Castelmassa,Third location,second,mean_drought_severity,88,1,0,-0.030125,-0.015576,0.021711,-0.037063,0.069576,0.08567,0.066411
+Elbe,Dresden,First location,second,drought_peak,98,1,0,0.037806,0.052998,0.0,0.035083,0.046525,0.059574,0.067688
+Elbe,Dresden,First location,second,mean_drought_severity,98,1,0,0.040283,0.052281,0.0,0.035083,0.048832,0.065589,0.067688
+Elbe,Magdeburg,Second location,second,drought_peak,75,1,0,0.007251,0.007839,0.005109,0.007279,0.045006,0.075,0.043423
+Elbe,Magdeburg,Second location,second,mean_drought_severity,75,1,0,0.006337,0.004778,0.005109,0.007279,0.042879,0.054945,0.043423
+Elbe,Wittenberge,Third location,second,drought_peak,68,1,0,0.011232,0.009471,-0.005109,0.012511,0.013096,0.015859,0.030651
+Elbe,Wittenberge,Third location,second,mean_drought_severity,68,1,0,0.013012,0.014839,-0.005109,0.012511,0.013341,0.019355,0.030651
+Rhône,Lyon,First location,second,drought_peak,99,1,0,0.053012,0.069823,0.007663,0.048669,0.055487,0.073569,0.060026
+Rhône,Lyon,First location,second,mean_drought_severity,99,1,0,0.045417,0.031579,0.007663,0.048669,0.045992,0.03609,0.060026
+Rhône,Montelimar,Second location,second,drought_peak,97,1,0,-0.011135,-0.012591,0.0,-0.011387,0.051434,0.054021,0.063857
+Rhône,Montelimar,Second location,second,mean_drought_severity,97,1,0,-0.008963,-0.012034,0.0,-0.011387,0.055635,0.054753,0.063857
+Rhône,Avignon,Third location,second,drought_peak,98,1,0,0.006875,0.007746,-0.001277,0.007893,0.029995,0.032318,0.083014
+Rhône,Avignon,Third location,second,mean_drought_severity,98,1,0,0.006632,0.004702,-0.001277,0.007893,0.030374,0.034875,0.083014
+Oder,Krapowice,First location,second,drought_peak,112,1,0,0.005743,0.00774,0.021711,0.004745,0.062039,0.061848,0.081737
+Oder,Krapowice,First location,second,mean_drought_severity,112,1,0,0.005592,0.005364,0.021711,0.004745,0.059736,0.066667,0.081737
+Oder,Scinawa,Second location,second,drought_peak,101,1,0,0.019731,0.031562,0.011494,0.016912,0.029458,0.036511,0.030651
+Oder,Scinawa,Second location,second,mean_drought_severity,101,1,0,0.019517,nan,0.011494,0.016912,0.030913,nan,0.030651
+Oder,Kostrzyn nad Odra,Third location,second,drought_peak,71,1,0,0.004816,0.006625,0.0,0.004907,0.014799,0.022993,0.034483
+Oder,Kostrzyn nad Odra,Third location,second,mean_drought_severity,71,1,0,0.005166,0.003902,0.0,0.004907,0.014944,0.018952,0.034483
+Loire,Decize,First location,second,drought_peak,116,1,0,0.010265,0.0,0.011494,0.012547,0.048415,0.169811,0.086845
+Loire,Decize,First location,second,mean_drought_severity,116,1,0,0.011141,0.008406,0.011494,0.012547,0.047304,0.052493,0.086845
+Loire,Orléans,Second location,second,drought_peak,103,1,0,0.026095,0.016323,0.001277,0.028823,0.034946,0.038445,0.060026
+Loire,Orléans,Second location,second,mean_drought_severity,103,1,0,0.024924,0.013627,0.001277,0.028823,0.035639,0.040427,0.060026
+Loire,St. Maurillle,Third location,second,drought_peak,87,1,0,0.012853,0.015549,0.001277,0.010872,0.018094,0.02143,0.038314
+Loire,St. Maurillle,Third location,second,mean_drought_severity,87,0,0,0.094775,0.190825,0.001277,0.010872,0.098741,0.212734,0.038314
+Seine,Paris,First location,second,drought_peak,79,1,0,0.026921,0.007978,0.00894,0.029207,0.032724,0.035622,0.057471
+Seine,Paris,First location,second,mean_drought_severity,79,1,0,0.023326,0.001528,0.00894,0.029207,0.032776,0.034131,0.057471
+Seine,Vernon,Second location,second,drought_peak,74,1,0,0.006519,0.007157,0.0,0.006154,0.032921,0.032694,0.040868
+Seine,Vernon,Second location,second,mean_drought_severity,74,1,0,0.006769,0.005892,0.0,0.006154,0.033849,0.041382,0.040868
+Seine,Rouen,Third location,second,drought_peak,75,1,0,0.024092,0.0232,0.010217,0.020952,0.024678,0.02796,0.038314
+Seine,Rouen,Third location,second,mean_drought_severity,75,0,0,0.019193,-0.074727,0.010217,0.020952,0.02206,0.082539,0.038314
+Ebro,Haro,First location,second,drought_peak,120,1,0,0.002601,0.0,0.058748,0.00295,0.089426,0.22449,0.075351
+Ebro,Haro,First location,second,mean_drought_severity,120,1,0,0.001063,nan,0.058748,0.00295,0.107305,nan,0.075351
+Ebro,Tudela,Second location,second,drought_peak,111,1,0,0.015773,0.017145,0.01788,0.015009,0.018512,0.021578,0.063857
+Ebro,Tudela,Second location,second,mean_drought_severity,111,0,0,0.006681,0.027545,0.01788,0.015009,0.016779,0.076964,0.063857
+Ebro,Zaragoza,Third location,second,drought_peak,116,1,0,0.009029,0.00625,0.014049,0.01125,0.042338,0.051339,0.067688
+Ebro,Zaragoza,Third location,second,mean_drought_severity,116,1,0,0.008666,0.008079,0.014049,0.01125,0.044211,0.048773,0.067688
+Douro,Pocinho,First location,second,drought_peak,47,0,0,0.026983,0.176551,0.0,0.009981,0.027246,0.213324,0.045977
+Douro,Pocinho,First location,second,mean_drought_severity,47,1,0,0.008025,0.004587,0.0,0.009981,0.012483,0.014526,0.045977
+Douro,Peso da Regua,Second location,second,drought_peak,57,1,0,0.014748,0.013629,0.010217,0.014611,0.016064,0.016487,0.028097
+Douro,Peso da Regua,Second location,second,mean_drought_severity,57,1,0,0.01391,0.010025,0.010217,0.014611,0.014584,0.031328,0.028097
+Douro,Rio Mau,Third location,second,drought_peak,60,0,0,0.020888,0.017443,0.007663,0.019185,0.024555,0.082819,0.028097
+Douro,Rio Mau,Third location,second,mean_drought_severity,60,0,0,0.023612,0.03492,0.007663,0.019185,0.039402,0.147978,0.028097
+Tagus,Toledo,First location,second,drought_peak,84,1,0,0.023101,0.051596,0.006386,0.019363,0.024792,0.089399,0.048531
+Tagus,Toledo,First location,second,mean_drought_severity,84,1,0,0.033798,nan,0.006386,0.019363,0.036952,nan,0.048531
+Tagus,La Bazagona,Second location,second,drought_peak,73,1,0,0.00807,0.007747,0.029374,0.007749,0.011929,0.015892,0.043423
+Tagus,La Bazagona,Second location,second,mean_drought_severity,73,1,0,0.007515,0.007702,0.029374,0.007749,0.013341,0.014121,0.043423
+Tagus,Vila Velha de Rodao,Third location,second,drought_peak,76,1,0,0.006217,0.001373,0.003831,0.010446,0.012396,0.007207,0.039591
+Tagus,Vila Velha de Rodao,Third location,second,mean_drought_severity,76,1,0,0.008766,nan,0.003831,0.010446,0.012705,nan,0.039591
+Weser,Bodenwerder,First location,second,drought_peak,97,0,0,0.021494,0.03664,0.016603,0.027648,0.029403,0.050058,0.045977
+Weser,Bodenwerder,First location,second,mean_drought_severity,97,1,0,0.031203,0.03252,0.016603,0.027648,0.036639,0.055749,0.045977
+Weser,Pora Wesfalica,Second location,second,drought_peak,92,1,0,0.036109,0.040176,0.001277,0.03942,0.03742,0.045198,0.039591
+Weser,Pora Wesfalica,Second location,second,mean_drought_severity,92,1,0,0.037792,0.034161,0.001277,0.03942,0.038519,0.049689,0.039591
+Weser,Bremen,Third location,second,drought_peak,85,0,0,-0.006017,0.057659,0.003831,-0.014151,0.034923,0.107164,0.039591
+Weser,Bremen,Third location,second,mean_drought_severity,85,1,0,-0.016251,-0.010314,0.003831,-0.014151,0.023192,0.221348,0.039591
+Meuse,Dun-sur-Meuse,First location,second,drought_peak,86,1,0,0.058034,0.046001,0.037037,0.060021,0.060027,0.062115,0.052363
+Meuse,Dun-sur-Meuse,First location,second,mean_drought_severity,86,1,0,0.053796,0.017663,0.037037,0.060021,0.060347,0.059783,0.052363
+Meuse,Givet,Second location,second,drought_peak,95,0,0,-0.006045,-0.002472,0.012771,0.01335,0.02495,0.022863,0.056194
+Meuse,Givet,Second location,second,mean_drought_severity,95,1,0,0.011953,0.012048,0.012771,0.01335,0.013297,0.017146,0.056194
+Meuse,Maastricht,Third location,second,drought_peak,95,1,0,0.02132,0.015921,0.011494,0.022836,0.026137,0.032116,0.063857
+Meuse,Maastricht,Third location,second,mean_drought_severity,95,1,0,0.016663,0.01473,0.011494,0.022836,0.030478,0.036491,0.063857

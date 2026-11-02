@@ -1,0 +1,11 @@
+# Invoerdata van de analyse. Controleer met: python scripts/00_check_data.py
+- file: data/efas_v5_dis06_48_locations_1995_2024.nc
+  bytes: 1482814
+  sha256: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+  original_name: 8_maart_european_river_runoff_1994_2024.nc  # de naam zei 1994, de data begint op 1995-01-01
+  source: EFAS historical simulation v5, Copernicus Early Warning Data Store (EWDS)
+  variable: dis06, mean discharge in the last 6 hours (m3 s-1)
+  daily_value: het veld van 12:00 UTC, dus het gemiddelde over 06:00-12:00 UTC
+  grid: 1 arc-minute (1/60 graad)
+  points: 48 locaties op 16 rivieren, coordinaten en namen in het bestand zelf
+  period: 1995-01-01 tot en met 2024-12-31, 10958 dagen

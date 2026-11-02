@@ -1,0 +1,11 @@
+[50/480] laatst: 1.5 0.8413 first Don Nikolaevskaya pC'=0.7883 (0.9m, eta 8m)
+[100/480] laatst: 1.5 0.8413 first Elbe Magdeburg pC'=0.8616 (2.0m, eta 8m)
+[150/480] laatst: 1.5 0.8413 first Loire St. Maurillle pC'=0.2235 (3.1m, eta 7m)
+[200/480] laatst: 1.5 0.8413 first Tagus Toledo pC'=0.2620 (4.4m, eta 6m)
+[251/480] laatst: 0.25 0.8413 second Danube Donji Milanova pC'=0.0062 (5.6m, eta 5m)
+[301/480] laatst: 0.25 0.8413 second Vistula Łączany pC'=0.0152 (6.6m, eta 4m)
+[351/480] laatst: 0.25 0.8413 second Rhône Montelimar pC'=0.0613 (7.6m, eta 3m)
+[401/480] laatst: 0.25 0.8413 second Seine Rouen pC'=0.0848 (8.6m, eta 2m)
+[451/480] laatst: 0.25 0.8413 second Weser Bodenwerder pC'=0.0305 (9.5m, eta 1m)
+[480/480] laatst: 1.5 0.8413 second Meuse Maastricht pC'=0.9088 (10.0m, eta 0m)
+klaar: results/2026-10-30_sensitivity_grid_strict_column/grid.csv

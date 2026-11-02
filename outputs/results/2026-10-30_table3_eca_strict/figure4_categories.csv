@@ -1,0 +1,49 @@
+river,village,sig_period1,sig_period2,category,regulated
+Danube,Aschach an der Donau,False,False,none,False
+Danube,Visegrád,True,True,both,False
+Danube,Donji Milanovac,False,False,none,False
+Dnieper,Krementsjoek,False,False,none,True
+Dnieper,Dnipro,False,False,none,True
+Dnieper,Cherson,False,False,none,True
+Don,Nikolaevskaya,False,False,none,False
+Don,Kochetovskaya,False,False,none,False
+Don,Rostov - Dov,False,False,none,False
+Douro,Pocinho,False,False,none,False
+Douro,Peso da Regua,False,False,none,False
+Douro,Rio Mau,False,False,none,False
+Ebro,Haro,True,True,both,False
+Ebro,Tudela,True,True,both,False
+Ebro,Zaragoza,False,True,second only,False
+Elbe,Dresden,False,False,none,False
+Elbe,Magdeburg,False,False,none,False
+Elbe,Wittenberge,False,False,none,False
+Loire,Decize,False,False,none,False
+Loire,Orléans,False,False,none,False
+Loire,St. Maurillle,False,False,none,False
+Meuse,Dun-sur-Meuse,False,False,none,False
+Meuse,Givet,False,False,none,False
+Meuse,Maastricht,False,False,none,False
+Oder,Krapowice,True,True,both,False
+Oder,Scinawa,True,False,first only,False
+Oder,Kostrzyn nad Odra,False,False,none,False
+Po,Turijn,True,False,first only,False
+Po,Piacenza,True,True,both,False
+Po,Cermede / Castelmassa,True,True,both,False
+Rhine,Straatsburg,False,False,none,False
+Rhine,Mainz,False,False,none,False
+Rhine,Nijmegen,False,False,none,False
+Rhône,Lyon,False,False,none,False
+Rhône,Montelimar,False,False,none,False
+Rhône,Avignon,False,False,none,False
+Seine,Paris,False,False,none,False
+Seine,Vernon,False,False,none,False
+Seine,Rouen,False,False,none,False
+Tagus,Toledo,True,True,both,False
+Tagus,La Bazagona,False,False,none,False
+Tagus,Vila Velha de Rodao,False,True,second only,True
+Vistula,Łączany,True,True,both,False
+Vistula,Warchau,False,False,none,False
+Vistula,Turon,False,False,none,False
+Weser,Bodenwerder,False,False,none,False
+Weser,Pora Wesfalica,False,False,none,False
+Weser,Bremen,False,False,none,False

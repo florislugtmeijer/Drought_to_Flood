@@ -1,0 +1,49 @@
+river,village,sig_period1,sig_period2,category,regulated
+Danube,Aschach an der Donau,True,True,both,False
+Danube,Visegrád,True,True,both,False
+Danube,Donji Milanovac,True,True,both,False
+Dnieper,Krementsjoek,True,False,first only,True
+Dnieper,Dnipro,False,False,none,True
+Dnieper,Cherson,False,False,none,True
+Don,Nikolaevskaya,False,True,second only,False
+Don,Kochetovskaya,False,True,second only,False
+Don,Rostov - Dov,False,True,second only,False
+Douro,Pocinho,True,True,both,False
+Douro,Peso da Regua,True,True,both,False
+Douro,Rio Mau,True,True,both,False
+Ebro,Haro,True,True,both,False
+Ebro,Tudela,True,True,both,False
+Ebro,Zaragoza,True,True,both,False
+Elbe,Dresden,True,True,both,False
+Elbe,Magdeburg,False,False,none,False
+Elbe,Wittenberge,False,True,second only,False
+Loire,Decize,True,True,both,False
+Loire,Orléans,True,True,both,False
+Loire,St. Maurillle,True,True,both,False
+Meuse,Dun-sur-Meuse,True,True,both,False
+Meuse,Givet,True,True,both,False
+Meuse,Maastricht,True,True,both,False
+Oder,Krapowice,True,True,both,False
+Oder,Scinawa,True,True,both,False
+Oder,Kostrzyn nad Odra,True,False,first only,False
+Po,Turijn,True,True,both,False
+Po,Piacenza,True,True,both,False
+Po,Cermede / Castelmassa,True,True,both,False
+Rhine,Straatsburg,True,True,both,False
+Rhine,Mainz,True,True,both,False
+Rhine,Nijmegen,True,True,both,False
+Rhône,Lyon,True,True,both,False
+Rhône,Montelimar,True,True,both,False
+Rhône,Avignon,True,True,both,False
+Seine,Paris,True,True,both,False
+Seine,Vernon,True,True,both,False
+Seine,Rouen,True,True,both,False
+Tagus,Toledo,True,True,both,False
+Tagus,La Bazagona,True,True,both,False
+Tagus,Vila Velha de Rodao,True,True,both,True
+Vistula,Łączany,True,True,both,False
+Vistula,Warchau,True,True,both,False
+Vistula,Turon,True,False,first only,False
+Weser,Bodenwerder,True,False,first only,False
+Weser,Pora Wesfalica,True,False,first only,False
+Weser,Bremen,False,True,second only,False

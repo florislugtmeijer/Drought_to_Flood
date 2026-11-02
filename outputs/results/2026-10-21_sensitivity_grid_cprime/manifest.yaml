@@ -1,0 +1,14 @@
+run_date: 2026-10-21
+git_commit: e295b39ce8646804f192458ed7930ceeae074059  # werkboom bevatte niet-gecommit werk, zie T-51
+script: scripts/37_sensitivity_grid_cprime.py
+config:
+  n_simulations: 10000
+  window_weeks: 4
+  nulls: [A, Bprime, Cprime]
+  tail_rule: laatste 4 weken geen kandidaat, voor alle drie de nullen
+  sri_thresholds: [0.25, 0.5, 0.75, 1.0, 1.5]
+  flood_quantiles: [0.60, 0.6915, 0.80, 0.90, 0.95]
+inputs:
+  8_maart_european_river_runoff_1994_2024.nc: d5900f65cdb394ad9e5ab2f775737f5244cab28cc836825bde5f705fc170f172
+python: 3.12.13
+packages: ephemeraal via uv run --with numpy,pandas,xarray,scipy,netCDF4 (niet gepind in uv.lock)
