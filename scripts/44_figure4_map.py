@@ -196,11 +196,13 @@ def main():
         f"{', '.join(cat[cat.regulated].village)}.\n\nOpbouw sinds 2 november 2026: alleen significante "
         f"locaties ({int(shown.shape[0])}), één symbool per locatie: vorm gedrag, kleur rivier (tab20 over "
         "alle zestien rivieren, alfabetisch), cijfer positie.\n")
+    # het raster wordt alleen gelezen bij --sri; in de hoofdanalyse hoeft het er niet te zijn
+    grid_line = f"  {GRID}: {sha256(GRID)}\n" if os.path.exists(GRID) else ""
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/44_figure4_map.py\npython: {platform.python_version()}\n"
-                 f"sri: {'0.5 (hoofdanalyse)' if args.sri is None and args.categories is None else args.sri}\n"
+                 f"sri: {'1.0 (hoofdanalyse)' if args.sri is None and args.categories is None else args.sri}\n"
                  f"categories: {args.categories}\n"
-                 f"inputs:\n  {CAT}: {sha256(CAT)}\n  {GRID}: {sha256(GRID)}\n  {NB}: {sha256(NB)}\n")
+                 f"inputs:\n  {CAT}: {sha256(CAT)}\n{grid_line}  {NB}: {sha256(NB)}\n")
     print(counts)
 
 
