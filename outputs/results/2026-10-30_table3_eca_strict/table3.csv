@@ -1,0 +1,97 @@
+river,river_location,village,period,droughts,flood_count,matches,expected_nullA,expected_cprime,p_poisson,p_mc_nullA,p_mc_cprime,regulated
+Danube,First location,Aschach an der Donau,first,59,80,27,20.75,24.48,0.0347483653363587,0.0449,0.2728,False
+Danube,Second location,Visegrád,first,62,78,31,21.36,24.25,0.0039034942251109,0.004,0.0391,False
+Danube,Third location,Donji Milanovac,first,65,66,20,19.06,23.16,0.3979703970179896,0.4366,0.8683,False
+Dnieper,First location,Krementsjoek,first,5,18,0,0.44,0.53,1.0,1.0,1.0,True
+Dnieper,Second location,Dnipro,first,10,19,0,0.95,1.02,1.0,1.0,1.0,True
+Dnieper,Third location,Cherson,first,7,15,0,0.45,0.49,1.0,1.0,1.0,True
+Rhine,First location,Straatsburg,first,58,77,20,19.77,23.2,0.4251218252825609,0.5284,0.8659,False
+Rhine,Second location,Mainz,first,60,79,23,20.91,24.8,0.2395917688732889,0.3204,0.7524,False
+Rhine,Third location,Nijmegen,first,65,78,24,22.33,26.59,0.284892513040386,0.3653,0.8099,False
+Don,First location,Nikolaevskaya,first,41,25,4,4.8,5.25,0.7415226988616691,0.737,0.8045,False
+Don,Second location,Kochetovskaya,first,42,27,6,5.4,6.0,0.4618341818378825,0.4584,0.5749,False
+Don,Third location,Rostov - Dov,first,29,24,2,3.26,3.72,0.8638539479230032,0.8676,0.9179,False
+Vistula,First location,Łączany,first,50,94,30,20.1,22.44,0.0014368891554441,0.0021,0.0109,False
+Vistula,Second location,Warchau,first,54,79,26,18.8,22.21,0.0163332629442989,0.0197,0.1502,False
+Vistula,Third location,Turon,first,41,62,15,11.54,13.67,0.1208078691113668,0.138,0.3756,False
+Po,First location,Turijn,first,46,77,24,15.66,17.64,0.0045854669718884,0.0068,0.0304,False
+Po,Second location,Piacenza,first,50,80,29,17.63,19.85,0.0003422067901548,0.0004,0.0035,False
+Po,Third location,Cermede / Castelmassa,first,49,86,27,18.31,19.19,0.0040768197174416,0.0051,0.0088,False
+Elbe,First location,Dresden,first,55,74,16,18.06,21.25,0.6977728040617466,0.7808,0.962,False
+Elbe,Second location,Magdeburg,first,52,55,11,13.3,15.77,0.7617673271107539,0.8274,0.9631,False
+Elbe,Third location,Wittenberge,first,51,55,12,12.95,15.8,0.6185960628383876,0.6814,0.9202,False
+Rhône,First location,Lyon,first,69,84,31,25.25,30.7,0.054823732624864,0.0712,0.5238,False
+Rhône,Second location,Montelimar,first,66,72,26,21.21,25.55,0.0861459714008235,0.1043,0.5048,False
+Rhône,Third location,Avignon,first,70,73,26,22.65,26.59,0.1702193700462318,0.2063,0.6274,False
+Oder,First location,Krapowice,first,71,117,52,34.0,38.6,1.3497447322025468e-06,0.0,0.0002,False
+Oder,Second location,Scinawa,first,69,85,40,25.52,30.83,9.839632089300122e-05,0.0,0.0091,False
+Oder,Third location,Kostrzyn nad Odra,first,48,54,13,12.01,14.18,0.3689366028139693,0.4222,0.7159,False
+Loire,First location,Decize,first,82,94,36,32.76,40.81,0.1697279693902015,0.2431,0.9164,False
+Loire,Second location,Orléans,first,79,89,33,30.05,36.29,0.1987831352734531,0.2561,0.8478,False
+Loire,Third location,St. Maurillle,first,63,66,23,18.81,22.83,0.1091156313741146,0.1256,0.5381,False
+Seine,First location,Paris,first,66,62,19,18.34,22.11,0.4300252723518033,0.4755,0.8633,False
+Seine,Second location,Vernon,first,68,55,16,17.31,20.35,0.6213967471622353,0.7101,0.9361,False
+Seine,Third location,Rouen,first,68,56,16,17.6,20.31,0.648943025170899,0.7347,0.9284,False
+Ebro,First location,Haro,first,64,109,45,28.24,31.74,7.607856482915159e-06,0.0,0.0001,False
+Ebro,Second location,Tudela,first,65,114,42,30.19,34.98,0.0007230892264015,0.0007,0.0243,False
+Ebro,Third location,Zaragoza,first,65,102,37,27.68,31.93,0.0058680339305773,0.0063,0.0861,False
+Douro,First location,Pocinho,first,22,32,4,3.4,3.93,0.4300566009879669,0.4508,0.5826,False
+Douro,Second location,Peso da Regua,first,22,34,3,3.61,4.31,0.7054708322547746,0.7183,0.8337,False
+Douro,Third location,Rio Mau,first,23,41,4,4.51,5.21,0.6572587146898339,0.6869,0.7965,False
+Tagus,First location,Toledo,first,39,89,25,14.84,16.17,0.0004388575290964,0.0009,0.0026,False
+Tagus,Second location,La Bazagona,first,42,42,12,8.21,9.44,0.0970331277123422,0.091,0.1999,False
+Tagus,Third location,Vila Velha de Rodao,first,26,38,4,4.68,5.72,0.6984966646874352,0.7256,0.8718,True
+Weser,First location,Bodenwerder,first,64,62,21,18.09,22.84,0.1899129480413538,0.234,0.7612,False
+Weser,Second location,Pora Wesfalica,first,55,60,17,15.12,18.93,0.2690429211861392,0.3178,0.7885,False
+Weser,Third location,Bremen,first,63,60,14,17.22,22.59,0.8147924353387996,0.8855,0.9982,False
+Meuse,First location,Dun-sur-Meuse,first,72,85,30,26.66,32.25,0.1551759117056142,0.22,0.7731,False
+Meuse,Second location,Givet,first,63,71,23,20.05,24.75,0.181237313157867,0.2244,0.7489,False
+Meuse,Third location,Maastricht,first,70,90,33,27.16,32.76,0.0506536506914221,0.0672,0.532,False
+Danube,First location,Aschach an der Donau,second,62,78,31,21.26,25.38,0.0039034942251109,0.0035,0.0654,False
+Danube,Second location,Visegrád,second,66,80,34,23.23,26.89,0.0019976281038683,0.0013,0.0302,False
+Danube,Third location,Donji Milanovac,second,50,58,17,13.21,17.42,0.1193607245458084,0.1228,0.6253,False
+Dnieper,First location,Krementsjoek,second,16,59,0,4.36,5.44,1.0,1.0,1.0,True
+Dnieper,Second location,Dnipro,second,15,17,0,1.25,1.6,1.0,1.0,1.0,True
+Dnieper,Third location,Cherson,second,16,25,0,1.98,2.34,1.0,1.0,1.0,True
+Rhine,First location,Straatsburg,second,59,91,30,23.16,28.48,0.0224449125758575,0.0336,0.3829,False
+Rhine,Second location,Mainz,second,56,81,22,19.85,24.11,0.2376230672932382,0.3169,0.7708,False
+Rhine,Third location,Nijmegen,second,54,66,18,16.15,19.6,0.266505311396034,0.3269,0.7435,False
+Don,First location,Nikolaevskaya,second,40,29,6,5.38,6.17,0.480025805127418,0.4552,0.6018,False
+Don,Second location,Kochetovskaya,second,39,29,7,5.51,6.25,0.2869310341971094,0.3096,0.4378,False
+Don,Third location,Rostov - Dov,second,43,30,7,5.91,6.34,0.4136943586490461,0.3761,0.4573,False
+Vistula,First location,Łączany,second,63,107,40,27.67,32.38,0.0005182149654257,0.0003,0.0184,False
+Vistula,Second location,Warchau,second,52,73,21,16.39,19.65,0.1008861762698278,0.0879,0.3891,False
+Vistula,Third location,Turon,second,43,48,6,9.44,11.89,0.9299188843257338,0.9499,0.9939,False
+Po,First location,Turijn,second,54,98,26,21.65,22.6,0.1210496932663539,0.1336,0.1944,False
+Po,Second location,Piacenza,second,55,99,32,22.52,24.77,0.0043157604972922,0.0056,0.0221,False
+Po,Third location,Cermede / Castelmassa,second,53,90,31,20.1,22.16,0.0011308884438373,0.0013,0.0068,False
+Elbe,First location,Dresden,second,58,97,31,23.97,27.37,0.0187528915843799,0.0309,0.1743,False
+Elbe,Second location,Magdeburg,second,51,75,18,17.01,20.5,0.3479122863374713,0.4333,0.8364,False
+Elbe,Third location,Wittenberge,second,51,75,16,17.03,20.26,0.5821455513553381,0.6844,0.9433,False
+Rhône,First location,Lyon,second,60,81,26,21.36,25.96,0.0819396585442719,0.1106,0.5534,False
+Rhône,Second location,Montelimar,second,55,85,30,20.27,23.93,0.0026488328927704,0.004,0.0532,False
+Rhône,Third location,Avignon,second,55,95,29,22.28,27.17,0.0222644380095059,0.0329,0.3451,False
+Oder,First location,Krapowice,second,73,121,55,35.74,42.95,3.6815845231954745e-07,0.0,0.0003,False
+Oder,Second location,Scinawa,second,60,84,26,21.96,27.2,0.1103337820930292,0.1517,0.6946,False
+Oder,Third location,Kostrzyn nad Odra,second,41,55,10,10.03,11.93,0.5676835167903103,0.5725,0.8091,False
+Loire,First location,Decize,second,72,93,38,28.63,34.02,0.0070555722574902,0.0091,0.1636,False
+Loire,Second location,Orléans,second,59,80,23,20.67,25.71,0.227524516219175,0.2969,0.8315,False
+Loire,Third location,St. Maurillle,second,55,73,21,17.84,22.11,0.163592769095769,0.1983,0.6919,False
+Seine,First location,Paris,second,46,63,17,13.18,16.99,0.1053263487551433,0.1171,0.566,False
+Seine,Second location,Vernon,second,52,68,18,15.93,20.03,0.2457561915366348,0.298,0.7894,False
+Seine,Third location,Rouen,second,52,67,17,15.72,20.44,0.326957317523932,0.3928,0.8962,False
+Ebro,First location,Haro,second,73,98,53,30.35,33.94,9.372338821484774e-09,0.0,0.0,False
+Ebro,Second location,Tudela,second,69,98,46,28.75,32.43,4.359177943528571e-06,0.0,0.0003,False
+Ebro,Third location,Zaragoza,second,75,94,47,30.13,34.38,1.5143209683498614e-05,0.0,0.0005,False
+Douro,First location,Pocinho,second,18,41,2,3.49,4.41,0.8807211988127813,0.8993,0.967,False
+Douro,Second location,Peso da Regua,second,22,47,4,4.85,6.32,0.7226704665505923,0.756,0.9254,False
+Douro,Third location,Rio Mau,second,27,45,6,5.52,7.36,0.4906190370958775,0.4889,0.8115,False
+Tagus,First location,Toledo,second,44,83,24,15.95,16.48,0.0052102069169314,0.0096,0.0145,False
+Tagus,Second location,La Bazagona,second,44,62,18,12.16,13.54,0.0337632171957065,0.0319,0.0869,False
+Tagus,Third location,Vila Velha de Rodao,second,36,45,15,7.43,8.26,0.0032536709011356,0.0028,0.0078,True
+Weser,First location,Bodenwerder,second,58,78,23,19.99,24.13,0.1693046045402296,0.2273,0.6814,False
+Weser,Second location,Pora Wesfalica,second,60,70,21,18.84,22.0,0.2429513984439449,0.296,0.6833,False
+Weser,Third location,Bremen,second,55,62,18,15.54,17.79,0.2168514704991201,0.2561,0.5323,False
+Meuse,First location,Dun-sur-Meuse,second,59,76,25,19.84,23.94,0.0650778710612826,0.0844,0.4314,False
+Meuse,Second location,Givet,second,59,76,25,19.89,22.82,0.0650778710612826,0.0837,0.3066,False
+Meuse,Third location,Maastricht,second,63,88,28,23.97,27.83,0.1116153116767732,0.1585,0.5331,False

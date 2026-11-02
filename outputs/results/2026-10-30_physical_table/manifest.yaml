@@ -1,0 +1,5 @@
+script: scripts/45_physical_table_cprime.py
+python: 3.12.13
+inputs:
+  results/2026-10-30_physical_table_strict/per_location.csv: f0b4994b28ea2a4ff5a71b97bce53d46646b02f6e3a42cf795986d952d241cfe
+  results/2026-10-30_eca_cprime_strict/grid.csv: d999164f9740cabc9f884d75c9f056ea7dd736a7bbd939032657cd468b83e89e
