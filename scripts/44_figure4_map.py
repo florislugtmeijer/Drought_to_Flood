@@ -6,15 +6,16 @@ beide onder 0,05 ligt, en of de locatie gemarkeerd is (D-12, de vier
 gereguleerde locaties waar de SRI vrijwel geen droogtes vindt). Coördinaten uit
 de locatielijst van de notebook, dezelfde bron als script 27.
 
-Opbouw als in de ingediende figuur 4 (besluit Floris 30 oktober): het open
-zwarte buitensymbool is de categorie (cirkel beide periodes, vierkant alleen
-periode 2, ruit alleen periode 1; nieuw: driehoek geen van beide, grijze
-gestippelde cirkel test niet informatief), de gekleurde binnenstip is de rivier
-(tab20 over de rivieren in alfabetische volgorde, zoals in de ingediende figuur),
-het cijfer is de positie op de rivier (1 stroomop, 2 midden, 3 stroomaf). Drie
-legenda's: rivier, categorie, cijfer. Anders dan in R1 staan alle 48 locaties
-op de kaart, niet alleen de significante, en staat er geen titel in de figuur
-(de uitleg hoort in het bijschrift). Kaartlaag: Natural Earth 50m via cartopy.
+Opbouw sinds 2 november 2026 (besluit Floris): alleen de locaties met een
+significante samenhang in minstens een van beide periodes, één symbool per
+locatie. De vorm is het gedrag (cirkel beide periodes, ruit alleen periode 1,
+vierkant alleen periode 2), de vulkleur de rivier (tab20 over alle zestien
+rivieren in alfabetische volgorde, zodat de kleur per rivier vast ligt), het
+cijfer de positie op de rivier (1 stroomop, 2 midden, 3 stroomaf). Drie
+legenda's: rivier, vorm, cijfer. Niet-significante locaties en de vier
+niet-toetsbare locaties (D-12) staan niet op de kaart; de volledige
+categorie-indeling staat in Tabel 3 en in fig04_symbols.csv. Geen titel in de
+figuur, de uitleg hoort in het bijschrift. Kaartlaag: Natural Earth 50m via cartopy.
 
 Uitvoer in results/2026-10-28_figure4_map/: fig04_map.png (300 dpi), fig04_map.pdf,
 caption_en.md, README.md, manifest.yaml.
@@ -130,55 +131,54 @@ def main():
 
     T = ccrs.PlateCarree()
     drawn = []
+    # Besluit Floris 2 november 2026: alleen de locaties met significant gedrag in
+    # minstens een van beide periodes, en per locatie één symbool: de vorm is het
+    # gedrag (cirkel beide periodes, ruit alleen periode 1, vierkant alleen
+    # periode 2), de vulkleur de rivier, het cijfer de positie. De vier
+    # niet-toetsbare locaties en de niet-significante blijven weg; de volledige
+    # categorie-indeling staat in Tabel 3 en in fig04_symbols.csv.
+    shown = cat[(~cat.regulated) & (cat.category != "none")]
+    SHAPE = {"both": ("o", "Both periods"), "first only": ("D", "Period 1 only"),
+             "second only": ("s", "Period 2 only")}
     for _, r in cat.iterrows():
         drawn.append({"river": r.river, "village": r.village, "number": r.pos,
-                      "outer": "dashed grey circle" if r.regulated else OUTER[r.category][1],
                       "category": r.category, "regulated": bool(r.regulated),
+                      "shown": bool((not r.regulated) and r.category != "none"),
+                      "symbol": SHAPE[r.category][1] if (not r.regulated and r.category != "none") else "not shown",
                       "colour": matplotlib.colors.to_hex(colours[r.river])})
-        if r.regulated:
-            ax.scatter(r.lon, r.lat, marker="o", s=125, facecolor="white", edgecolor=GREY,
-                       linewidths=1.0, linestyle=(0, (2, 1.5)), zorder=3, transform=T)
-        else:
-            m = OUTER[r.category][0]
-            ax.scatter(r.lon, r.lat, marker=m, s=125 if m != "^" else 150, facecolor="white",
-                       edgecolor=INK, linewidths=1.0, zorder=3, transform=T)
-        ax.scatter(r.lon, r.lat, marker="o", s=52, facecolor=colours[r.river], edgecolor=INK,
-                   linewidths=0.3, zorder=4, transform=T)
-        ax.text(r.lon, r.lat, r.pos, ha="center", va="center", fontsize=4.6, fontweight="bold",
+    for _, r in shown.iterrows():
+        m = SHAPE[r.category][0]
+        ax.scatter(r.lon, r.lat, marker=m, s=190 if m != "D" else 150, facecolor=colours[r.river],
+                   edgecolor=INK, linewidths=0.8, zorder=3, transform=T)
+        ax.text(r.lon, r.lat, r.pos, ha="center", va="center", fontsize=6, fontweight="bold",
                 color="white", zorder=5, transform=T,
-                path_effects=[pe.withStroke(linewidth=1.0, foreground=INK)])
+                path_effects=[pe.withStroke(linewidth=1.2, foreground=INK)])
 
     kw = dict(frameon=True, framealpha=1, edgecolor="#bdbcb7", fontsize=7.5, title_fontsize=8,
               borderpad=0.6, labelspacing=0.45, handletextpad=0.6)
-    h_river = [Line2D([], [], marker="o", ls="", ms=7, mfc=colours[n], mec=INK, mew=0.4,
-                      label=PLACE.get(n, n)) for n in names]
-    fig.legend(handles=h_river, title="River (inner dot)", loc="upper left",
-               bbox_to_anchor=(0.715, 0.975), ncols=2, columnspacing=0.8, **kw)
-    h_cat = [Line2D([], [], marker=m, ls="", ms=9, mfc="white", mec=INK, mew=1.1, label=lab)
-             for m, lab in OUTER.values()]
-    # de gestippelde cirkel ook gestippeld in de legenda, anders klopt de legenda niet met de kaart
-    dashed = Circle((0, 0), 1, facecolor="white", edgecolor=GREY, lw=1.1, linestyle=(0, (2, 1.5)),
-                    label="Test not informative")
-    h_cat.append(dashed)
-    fig.legend(handles=h_cat, title="Significant (outer symbol)",
-               loc="upper left", bbox_to_anchor=(0.715, 0.455),
-               handler_map={Circle: HandlerPatch(patch_func=lambda legend, orig_handle, xdescent, ydescent,
-                                                 width, height, fontsize: Circle((width / 2 - xdescent, height / 2 - ydescent),
-                                                 4.6, facecolor="white", edgecolor=GREY, lw=1.1, linestyle=(0, (2, 1.5))))},
-               **kw)
+    present = [n for n in names if n in set(shown.river)]
+    h_river = [Line2D([], [], marker="o", ls="", ms=8, mfc=colours[n], mec=INK, mew=0.6,
+                      label=PLACE.get(n, n)) for n in present]
+    fig.legend(handles=h_river, title="River (colour)", loc="upper left",
+               bbox_to_anchor=(0.715, 0.975), ncols=2 if len(present) > 8 else 1, columnspacing=0.8, **kw)
+    h_cat = [Line2D([], [], marker=m, ls="", ms=9, mfc="white", mec=INK, mew=0.9, label=lab)
+             for m, lab in SHAPE.values()]
+    fig.legend(handles=h_cat, title="Significant (shape)", loc="upper left",
+               bbox_to_anchor=(0.715, 0.60), **kw)
     h_pos = [Line2D([], [], ls="", label=t) for t in ("1 = upstream", "2 = midstream", "3 = downstream")]
     fig.legend(handles=h_pos, title="Location (number)", loc="upper left",
-               bbox_to_anchor=(0.876, 0.455), handlelength=0, **{**kw, "handletextpad": 0})
+               bbox_to_anchor=(0.715, 0.33), handlelength=0, **{**kw, "handletextpad": 0})
     for ext in ("png", "pdf"):
         fig.savefig(f"{OUT}/fig04_map.{ext}", dpi=300 if ext == "png" else None,
                     facecolor="white")
     plt.close(fig)
 
     caption = ("Figure 4: Locations where droughts are followed by floods more often than expected under the "
-               "stratified null (Monte Carlo p < 0.05, Table 3). Outer symbol: significant in both periods (circle), "
-               "in period 1 only (diamond), in period 2 only (square), in neither period (triangle); dashed grey circle: the "
-               "four locations where the SRI detects very few droughts and the test is not informative. "
-               "Inner dot: river. Number: position along the river (1 upstream, 2 midstream, 3 downstream).")
+               "stratified null (Monte Carlo p < 0.05, Table 3). Shape: significant in both periods (circle), "
+               "in period 1 only (diamond), in period 2 only (square). Colour: river. Number: position along "
+               "the river (1 upstream, 2 midstream, 3 downstream). Locations without a significant association "
+               "in either period, and the four locations where the SRI detects very few droughts (Table 3, \u2020), "
+               "are not shown.")
     if args.sri is not None:
         caption = caption.replace("Figure 4:", f"Figure 4 (variant, droughts at SRI < −{args.sri:g}, flood level unchanged):", 1)
     elif args.categories is not None:
@@ -190,9 +190,10 @@ def main():
     counts = cat[~cat.regulated].category.value_counts().to_dict()
     open(f"{OUT}/README.md", "w").write(
         "# Figuur 4 onder C'\n\nScript: scripts/44_figure4_map.py. Bron: figure4_categories.csv (script 39).\n\n"
-        f"Categorieën zonder de vier niet-toetsbare locaties: {counts}. Niet toetsbaar (grijze "
-        f"gestippelde cirkel): {', '.join(cat[cat.regulated].village)}.\n\nOpbouw als de ingediende figuur: "
-        "buitensymbool categorie, binnenstip rivier (tab20, alfabetisch), cijfer positie.\n")
+        f"Categorieën zonder de vier niet-toetsbare locaties: {counts}. Niet toetsbaar (weggelaten): "
+        f"{', '.join(cat[cat.regulated].village)}.\n\nOpbouw sinds 2 november 2026: alleen significante "
+        f"locaties ({int(shown.shape[0])}), één symbool per locatie: vorm gedrag, kleur rivier (tab20 over "
+        "alle zestien rivieren, alfabetisch), cijfer positie.\n")
     with open(f"{OUT}/manifest.yaml", "w") as fh:
         fh.write(f"script: scripts/44_figure4_map.py\npython: {platform.python_version()}\n"
                  f"sri: {'0.5 (hoofdanalyse)' if args.sri is None and args.categories is None else args.sri}\n"
